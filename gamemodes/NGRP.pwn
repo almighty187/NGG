@@ -18,10 +18,7 @@
 								    Shane
 
 								**  Development Staff:
-									Miguel (s0nic)
-									Farva
-									Hector
-									Thomas
+									187
 				Past Developers:
 								*** Director of SA:MP Development:
 									Dom
@@ -40,6 +37,10 @@
 									Connolly
 
 								** 	Developers:
+									Miguel (s0nic)
+									Farva
+									Hector
+									Thomas
 									AlexR
 									Jamie
 									Connor
@@ -83,7 +84,7 @@
 /*  ---------------- SCRIPT REVISION ----------------- */
 
 // Do not forget to change this everytime you commit - it's mandatory!
-#define SERVER_GM_TEXT "NG:RP v3.0.452"
+#define SERVER_GM_TEXT "NG:RP v3.0.453"
 
 //#define AREA_DEBUG
 //#define TEXTLABEL_DEBUG

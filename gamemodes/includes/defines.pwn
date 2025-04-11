@@ -345,6 +345,8 @@ native IsValidVehicle(vehicleid);
 #define			TWEDITTURFSLOCKED			(160)
 #define			TWEDITTURFSVUL				(170)
 #define			TWEDITTURFSPERKS			(180)
+#define         TWEDITTURFSNAME             (190)
+#define			TURF_MAX_NAME_LEN			(64)
 #define			PBMAINMENU					(200)
 #define			PBARENASELECTION			(210)
 #define			PBTOKENBUYMENU				(220)

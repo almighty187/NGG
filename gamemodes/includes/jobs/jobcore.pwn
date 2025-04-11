@@ -927,3 +927,114 @@ CMD:quitjob(playerid, params[])
 	}
 	return 1;
 }
+
+CMD:skills(playerid, params[])
+{
+	if(gPlayerLogged{playerid} == 0) SendClientMessageEx(playerid, COLOR_GREY, "You're not logged in.");
+
+	szMiscArray[0] = 0;
+	
+	new detlevel = PlayerInfo[playerid][pDetSkill], detskill, dettimes;
+	if(detlevel >= 0 && detlevel < 50) { detskill=1; dettimes=50 - detlevel; }
+	else if(detlevel >= 50 && detlevel < 100) { detskill=2; dettimes=100 - detlevel; }
+	else if(detlevel >= 100 && detlevel < 200) { detskill=3; dettimes=200 - detlevel; }
+	else if(detlevel >= 200 && detlevel < 400) { detskill=4; dettimes=400 - detlevel; }
+	else if(detlevel >= 400) { detskill=5; }
+
+	new lawlevel = PlayerInfo[playerid][pLawSkill], lawskill, lawtimes;
+	if(lawlevel >= 0 && lawlevel < 50) { lawskill = 1; lawtimes = 50 - lawlevel; }
+	else if(lawlevel >= 50 && lawlevel < 100) { lawskill = 2; lawtimes = 100 - lawlevel; }
+	else if(lawlevel >= 100 && lawlevel < 200) { lawskill = 3; lawtimes = 200 - lawlevel; }
+	else if(lawlevel >= 200 && lawlevel < 400) { lawskill = 4; lawtimes = 400 - lawlevel; }
+	else if(lawlevel >= 400) { lawskill = 5; }
+
+	new sexlevel = PlayerInfo[playerid][pSexSkill], sexskill, sextimes;
+	if(sexlevel >= 0 && sexlevel < 50) { sexskill = 1; sextimes = 50 - sexlevel; }
+	else if(sexlevel >= 50 && sexlevel < 100) { sexskill = 2; sextimes = 100 - sexlevel; }
+	else if(sexlevel >= 100 && sexlevel < 200) { sexskill = 3; sextimes = 200 - sexlevel; }
+	else if(sexlevel >= 200 && sexlevel < 400) { sexskill = 4; sextimes = 400 - sexlevel; }
+	else if(sexlevel >= 400) { sexskill = 5; }
+
+	new druglevel = PlayerInfo[playerid][pDrugSmuggler], drugsmuggler, drugtimes;
+	if(druglevel >=0 && druglevel < 50) { drugsmuggler = 1; drugtimes =  50 - druglevel; }
+	else if(druglevel >= 50 && druglevel < 100) { drugsmuggler = 2; drugtimes =  100 - druglevel;  }
+	else if(druglevel >=100 && druglevel < 200) { drugsmuggler = 3; drugtimes =  200 - druglevel; }
+	else if(druglevel >=200 && druglevel < 400) { drugsmuggler = 4; drugtimes = 400 - druglevel; }
+	else if(druglevel >=400) { drugsmuggler = 5; }
+
+	new armslevel = PlayerInfo[playerid][pArmsSkill], armsskill, armstimes;
+	if(armslevel >= 0 && armslevel < 50) { armsskill = 1; armstimes = 50 - armslevel; }
+	else if(armslevel >= 50 && armslevel < 200) { armsskill = 2; armstimes = 200 - armslevel; }
+	else if(armslevel >= 200 && armslevel < 700) { armsskill = 3; armstimes = 700 - armslevel; }
+	else if(armslevel >= 700 && armslevel < 1200) { armsskill = 4; armstimes = 1200 - armslevel; }
+	else if(armslevel >= 1200) { armsskill = 5; }
+
+	new mechlevel = PlayerInfo[playerid][pMechSkill], mechskill, mechtimes;
+	if(mechlevel >= 0 && mechlevel < 50) { mechskill = 1; mechtimes = 50 - mechlevel; }
+	else if(mechlevel >= 50 && mechlevel < 100) { mechskill = 2; mechtimes = 100 - mechlevel; }
+	else if(mechlevel >= 100 && mechlevel < 200) { mechskill = 3; mechtimes = 200 - mechlevel; }
+	else if(mechlevel >= 200 && mechlevel < 400) { mechskill = 4; mechtimes = 400 - mechlevel; }
+	else if(mechlevel >= 400) { mechskill = 5; }
+
+	new boxlevel = PlayerInfo[playerid][pBoxSkill], boxskill, boxtimes;
+	if(boxlevel >= 0 && boxlevel < 50) { boxskill = 1; boxtimes = 50 - boxlevel; }
+	else if(boxlevel >= 50 && boxlevel < 100) { boxskill = 2; boxtimes = 100 - boxlevel; }
+	else if(boxlevel >= 100 && boxlevel < 200) { boxskill = 3; boxtimes = 200 - boxlevel; }
+	else if(boxlevel >= 200 && boxlevel < 400) { boxskill = 4; boxtimes = 400 - boxlevel; }
+	else if(boxlevel >= 400) { boxskill = 5; }
+
+	new fishlevel = PlayerInfo[playerid][pFishingSkill], fishskill, fishtimes;
+	if(fishlevel >=0 && fishlevel < 50) { fishskill = 1; fishtimes = 50 - fishlevel; }
+	else if(fishlevel >= 50 && fishlevel < 100) { fishskill = 2; fishtimes = 100 - fishlevel; }
+	else if(fishlevel >=100 && fishlevel < 200) { fishskill = 3; fishtimes = 200 - fishlevel; }
+	else if(fishlevel >=200 && fishlevel < 400) { fishskill = 4; fishtimes = 400 - fishlevel; } 
+	else if(fishlevel >=400) { fishskill = 5; }
+
+	new trucklevel = PlayerInfo[playerid][pTruckSkill], truckskill, trucktimes;
+	if(trucklevel >= 0 && trucklevel < 50) { truckskill = 1; trucktimes = 51 - trucklevel; }
+	else if(trucklevel >= 50 && trucklevel < 100) { truckskill = 2; trucktimes = 101 - trucklevel; }
+	else if(trucklevel >= 100 && trucklevel < 200) { truckskill = 3; trucktimes = 201 - trucklevel; }
+	else if(trucklevel >= 200 && trucklevel < 400) { truckskill = 4; trucktimes = 401 - trucklevel; }
+	else if(trucklevel >= 400) { truckskill = 5; }
+
+	new treslevel = PlayerInfo[playerid][pTreasureSkill], trestimes, tresskill;
+	if(treslevel >=0 && treslevel <= 24) { tresskill = 1; trestimes = 25 - treslevel; }
+	else if(treslevel >= 25 && treslevel <= 149) {tresskill = 2; trestimes = 150 - treslevel; } 
+	else if(treslevel >=150 && treslevel <= 299) {tresskill = 3; trestimes = 300 - treslevel; } 
+	else if(treslevel >=300 && treslevel <= 599) {tresskill = 4; trestimes = 600 - treslevel; }
+	else if(treslevel >=600) {tresskill = 5; }
+
+	new lockpicklevel = PlayerInfo[playerid][pCarLockPickSkill], lockpickskill, lockpicktimes;
+	if(lockpicklevel >=0 && lockpicklevel <= 49){ lockpickskill = 1; lockpicktimes = 50 - lockpicklevel; }
+	else if(lockpicklevel >= 50 && lockpicklevel <= 124) {lockpickskill = 2; lockpicktimes = 125 - lockpicklevel; }
+	else if(lockpicklevel >=125 && lockpicklevel <= 224) {lockpickskill = 3; lockpicktimes = 225 - lockpicklevel; } 
+	else if(lockpicklevel >=225 && lockpicklevel <= 349) {lockpickskill = 4; lockpicktimes = 350 - lockpicklevel; }
+	else if(lockpicklevel >=350) {lockpickskill = 5; }
+
+	if(detskill==5) format(szMiscArray, sizeof(szMiscArray), "Detective Level: 5 - (max level)");	
+	else format(szMiscArray, sizeof(szMiscArray), "Detective Level: %d - (%d more times to level up)", detskill, dettimes);	
+	if(lawskill==5) format(szMiscArray, sizeof(szMiscArray), "%s\nLawyer Level: 5 - (max level)", szMiscArray);
+	else format(szMiscArray, sizeof(szMiscArray), "%s\nLawyer Level: %d - (%d more times to level up)", szMiscArray, lawskill, lawtimes);
+	if(sexskill==5) format(szMiscArray, sizeof(szMiscArray), "%s\nWhore Level: 5 - (max level)", szMiscArray);
+	else format(szMiscArray, sizeof(szMiscArray), "%s\nWhore Level: %d - (%d more times to level up)", szMiscArray, sexskill, sextimes);
+	if(drugsmuggler==5) format(szMiscArray, sizeof(szMiscArray), "%s\nDrug Smuggler Level: 5 - (max level)", szMiscArray);
+	else format(szMiscArray, sizeof(szMiscArray), "%s\nDrug Smuggler Level: %d - (%d more times to level up)", szMiscArray, drugsmuggler, drugtimes);
+	if(armsskill==5) format(szMiscArray, sizeof(szMiscArray), "%s\nArms Dealer Level: 5 - (max level)", szMiscArray);
+	else format(szMiscArray, sizeof(szMiscArray), "%s\nArms Dealer Level: %d - (%d more times to level up)", szMiscArray, armsskill, armstimes);
+	if(mechskill==5) format(szMiscArray, sizeof(szMiscArray), "%s\nCar Mechanic Level: 5 - (max level)", szMiscArray);
+	else format(szMiscArray, sizeof(szMiscArray), "%s\nCar Mechanic Level: %d - (%d more times to level up)", szMiscArray, mechskill, mechtimes);
+	if(boxskill==5) format(szMiscArray, sizeof(szMiscArray), "%s\nBoxer Level: 5 - (max level)", szMiscArray);
+	else format(szMiscArray, sizeof(szMiscArray), "%s\nBoxer Level: %d - (%d more times to level up)", szMiscArray, boxskill, boxtimes);
+	if(fishskill==5) format(szMiscArray, sizeof(szMiscArray), "%s\nFishing Level: 5 - (max level)", szMiscArray);
+	else format(szMiscArray, sizeof(szMiscArray), "%s\nFishing Level: %d - (%d more times to level up)", szMiscArray, fishskill, fishtimes);
+	if(truckskill==5) format(szMiscArray, sizeof(szMiscArray), "%s\nTrucker Level: 5 - (max level)", szMiscArray);
+	else  format(szMiscArray, sizeof(szMiscArray), "%s\nTrucker Level: %d - (%d more times to level up)", szMiscArray, truckskill, trucktimes);
+	if(tresskill==5) format(szMiscArray, sizeof(szMiscArray), "%s\nTreasure Hunter Level: 5 - (max level)", szMiscArray);
+	else format(szMiscArray, sizeof(szMiscArray), "%s\nTreasure Hunter Level: %d - (%d more times to level up)", szMiscArray, tresskill, trestimes);
+	if(lockpickskill==5) format(szMiscArray, sizeof(szMiscArray), "%s\nLock Picking Level: 5 - (max level)", szMiscArray);
+	else format(szMiscArray, sizeof(szMiscArray), "%s\nLock Picking Level: %d - (%d more times to level up)", szMiscArray, lockpickskill, lockpicktimes);
+
+	ShowPlayerDialogEx(playerid, 0, DIALOG_STYLE_MSGBOX, "Skills", szMiscArray, "Close", "");
+					
+	return 1;	
+}
