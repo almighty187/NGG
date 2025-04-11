@@ -1758,6 +1758,151 @@ CMD:setsec(playerid, params[])
 	return 1;
 }
 
+CMD:setseclevel(playerid, params[])
+{
+	if(PlayerInfo[playerid][pAdmin] >= 1337 || PlayerInfo[playerid][pHR] >= 2 || PlayerInfo[playerid][pAP] >= 2 || PlayerInfo[playerid][pSecurity] >= 2)
+	{
+
+	    new giveplayerid, task[8], string[128], level;
+	    if(sscanf(params, "us[8]d", giveplayerid, task, level))
+		{
+			SendClientMessage(playerid, COLOR_GREY, "USAGE: /setseclevel [playerid] [secondary task] [level]");
+			SendClientMessage(playerid, COLOR_GRAD6, "Secondary Tasks: FMod, GMod, SO, BA, ST, PR, HR, BM");
+			return 1;
+		}
+		if(giveplayerid != INVALID_PLAYER_ID)
+		{
+			if(PlayerInfo[giveplayerid][pAdmin] > 2)
+			{
+				if(strcmp(task, "fmod", true) == 0)
+				{
+				    if(level < 3)
+				    {
+						PlayerInfo[giveplayerid][pFactionModerator] = level;
+						format(string, sizeof(string), "You have been set to level %d Faction Moderator by %s.", level, GetPlayerNameEx(playerid));
+						SendClientMessage(playerid, COLOR_GREY, string);
+						format(string, sizeof(string), "You have given %s level %d Faction Moderator.", GetPlayerNameEx(giveplayerid), level);
+						SendClientMessage(giveplayerid, COLOR_GREY, string);
+						format(string, sizeof(string), "%s has given Faction Moderator Level %d to %s", GetPlayerNameEx(playerid), level, GetPlayerNameEx(giveplayerid));
+						Log("logs/admin.log", string);
+						DBLog(playerid, giveplayerid, "Admin", "issued faction moderator");
+					}
+					else return SendClientMessageEx(playerid, COLOR_GREY, "You can't set someone higher than DoFM.");
+				}
+				else if(strcmp(task, "gmod", true) == 0)
+				{
+				    if(level < 3)
+				    {
+						PlayerInfo[giveplayerid][pGangModerator] = level;
+						format(string, sizeof(string), "You have been set to level %d Gang Moderator by %s.", level, GetPlayerNameEx(playerid));
+						SendClientMessage(playerid, COLOR_GREY, string);
+						format(string, sizeof(string), "You have given %s level %d Gang Moderator.", GetPlayerNameEx(giveplayerid), level);
+						SendClientMessage(giveplayerid, COLOR_GREY, string);
+						format(string, sizeof(string), "%s has given Gang Moderator Level %d to %s", GetPlayerNameEx(playerid), level, GetPlayerNameEx(giveplayerid));
+						Log("logs/admin.log", string);
+						DBLog(playerid, giveplayerid, "Admin", "issued gang moderator");
+					}
+					else return SendClientMessageEx(playerid, COLOR_GREY, "You can't set someone higher than DoFM.");
+				}
+				else if(strcmp(task, "so", true) == 0)
+				{
+	  				if(level < 3)
+	  				{
+						PlayerInfo[giveplayerid][pUndercover] = level;
+						format(string, sizeof(string), "You have been set to level %d Spec Ops by %s.", level, GetPlayerNameEx(playerid));
+						SendClientMessage(playerid, COLOR_GREY, string);
+						format(string, sizeof(string), "You have given %s level %d Spec Ops.", GetPlayerNameEx(giveplayerid), level);
+						SendClientMessage(giveplayerid, COLOR_GREY, string);
+						format(string, sizeof(string), "%s has given Spec Ops Level %d to %s", GetPlayerNameEx(playerid), level, GetPlayerNameEx(giveplayerid));
+						Log("logs/admin.log", string);
+						DBLog(playerid, giveplayerid, "Admin", "issued special ops");
+					}
+					else return SendClientMessageEx(playerid, COLOR_GREY, "You can't set someone higher than DoSO.");
+				}
+				else if(strcmp(task, "ba", true) == 0)
+				{
+				   	if(level < 3)
+				   	{
+						PlayerInfo[giveplayerid][pBanAppealer] = level;
+						format(string, sizeof(string), "You have been set to level %d Ban Appealer by %s.", level, GetPlayerNameEx(playerid));
+						SendClientMessage(playerid, COLOR_GREY, string);
+						format(string, sizeof(string), "You have given %s level %d Ban Appealer.", GetPlayerNameEx(giveplayerid), level);
+						SendClientMessage(giveplayerid, COLOR_GREY, string);
+						format(string, sizeof(string), "%s has given Ban Appealer Level %d to %s", GetPlayerNameEx(playerid), level, GetPlayerNameEx(giveplayerid));
+						Log("logs/admin.log", string);
+						DBLog(playerid, giveplayerid, "Admin", "issued ban appealer");
+ 					}
+					else return SendClientMessageEx(playerid, COLOR_GREY, "You can't set someone higher than DoCI.");
+				}
+				else if(strcmp(task, "st", true) == 0)
+				{
+				    if(level < 4)
+				    {
+						PlayerInfo[giveplayerid][pShopTech] = level;
+						format(string, sizeof(string), "You have been set to level %d Shop Tech by %s.", level, GetPlayerNameEx(playerid));
+						SendClientMessage(playerid, COLOR_GREY, string);
+						format(string, sizeof(string), "You have given %s level %d Shop Tech.", GetPlayerNameEx(giveplayerid), level);
+						SendClientMessage(giveplayerid, COLOR_GREY, string);
+						format(string, sizeof(string), "%s has given Shop Technician to %s", GetPlayerNameEx(playerid), GetPlayerNameEx(giveplayerid));
+						Log("logs/admin.log", string);
+						DBLog(playerid, giveplayerid, "Admin", "issued shop tech");
+ 					}
+					else return SendClientMessageEx(playerid, COLOR_GREY, "You can't set someone higher than DoCR.");
+				}
+				else if(strcmp(task, "pr", true) == 0)
+				{
+				    if(level < 3)
+				    {
+						PlayerInfo[giveplayerid][pPR] = level;
+						format(string, sizeof(string), "You have been set to level %d Public Relations by %s.", level, GetPlayerNameEx(playerid));
+						SendClientMessage(playerid, COLOR_GREY, string);
+						format(string, sizeof(string), "You have given %s level %d Public Relations.", GetPlayerNameEx(giveplayerid), level);
+						SendClientMessage(giveplayerid, COLOR_GREY, string);
+						format(string, sizeof(string), "%s has given Public Relations permissions to %s", GetPlayerNameEx(playerid), GetPlayerNameEx(giveplayerid));
+						Log("logs/admin.log", string);
+						DBLog(playerid, giveplayerid, "Admin", "issued public relations");
+					}
+					else return SendClientMessageEx(playerid, COLOR_GREY, "You can't set someone higher than DoPR.");
+				}
+				else if(strcmp(task, "hr", true) == 0)
+				{
+					if(level < 4)
+					{
+						PlayerInfo[giveplayerid][pHR] = level;
+						format(string, sizeof(string), "You have been set to level %d HR by %s.", level, GetPlayerNameEx(playerid));
+						SendClientMessage(playerid, COLOR_GREY, string);
+						format(string, sizeof(string), "You have given %s level %d HR.", GetPlayerNameEx(giveplayerid), level);
+						SendClientMessage(giveplayerid, COLOR_GREY, string);
+						format(string, sizeof(string), "%s has given Human Resources permissions to %s", GetPlayerNameEx(playerid), GetPlayerNameEx(giveplayerid));
+						Log("logs/admin.log", string);
+						DBLog(playerid, giveplayerid, "Admin", "issued human resources");
+					}
+					else return SendClientMessageEx(playerid, COLOR_GREY, "You can't set someone higher than DoHR.");
+				}
+				else if(strcmp(task, "bm", true) == 0)
+				{
+				    if(level < 3)
+				    {
+						PlayerInfo[giveplayerid][pBM] = level;
+						format(string, sizeof(string), "You have been set to level %d Business Moderator by %s.", level, GetPlayerNameEx(playerid));
+						SendClientMessage(playerid, COLOR_GREY, string);
+						format(string, sizeof(string), "You have given %s level %d Business Moderator.", GetPlayerNameEx(giveplayerid), level);
+						SendClientMessage(giveplayerid, COLOR_GREY, string);
+						format(string, sizeof(string), "%s has given Business Moderator permissions to %s", GetPlayerNameEx(playerid), GetPlayerNameEx(giveplayerid));
+						Log("logs/admin.log", string);
+						DBLog(playerid, giveplayerid, "Admin", "issued business moderator");
+					}
+					else return SendClientMessageEx(playerid, COLOR_GREY, "You can't set someone higher than DoBM.");
+				}
+			}
+			else SendClientMessage(playerid, COLOR_GRAD2, "They are not an admin!");
+		}
+		else SendClientMessageEx(playerid, COLOR_GRAD2, "That person is not connected.");
+	}
+	else SendClientMessageEx(playerid, COLOR_GREY, "You are not authorized to use that command.");
+	return 1;
+}
+
 CMD:removepvehicle(playerid, params[])
 {
 	if(PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1)
@@ -1839,6 +1984,7 @@ CMD:makeadmin(playerid, params[])  {
 				}
 
 				PlayerInfo[iTargetID][pAdminLevel] = iAdminValue;
+				PlayerInfo[iTargetID][pAdmin] = iAdminValue; // Keep this in sync
 				ABroadCast(COLOR_LIGHTRED, szRank, 2);
 				Log("logs/admin.log", szRank);
 
@@ -5337,28 +5483,33 @@ CMD:removemoderator(playerid, params[])
 	if (PlayerInfo[playerid][pAdmin] >= 1337)
 	{
 		new string[128], giveplayerid;
-		if(sscanf(params, "u", giveplayerid)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /removemoderator [player]");
+		if(sscanf(params, "u", giveplayerid)) 
+			return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /removemoderator [player]");
 
 		if(IsPlayerConnected(giveplayerid))
 		{
-
 			if(PlayerInfo[giveplayerid][pAdmin] == 1)
 			{
-				if(GetPVarInt(playerid, "AdvisorDuty") == 1)
+				if(GetPVarInt(giveplayerid, "AdvisorDuty") == 1)
 				{
-					DeletePVar(playerid, "AdvisorDuty");
+					DeletePVar(giveplayerid, "AdvisorDuty");
 					Advisors -= 1;
 				}
+
 				PlayerInfo[giveplayerid][pAdminLevel] = 0;
+				PlayerInfo[giveplayerid][pAdmin] = 0;
 				PlayerInfo[giveplayerid][pSMod] = 0;
+
 				format(string, sizeof(string), "%s has kicked you out from the moderator team.", GetPlayerNameEx(playerid));
 				SendClientMessageEx(giveplayerid, COLOR_LIGHTBLUE, string);
-				format(string, sizeof(string), "You took %s's moderator.", GetPlayerNameEx(giveplayerid));
+
+				format(string, sizeof(string), "You removed %s's moderator status.", GetPlayerNameEx(giveplayerid));
 				SendClientMessageEx(playerid, COLOR_LIGHTBLUE, string);
-				format(string, sizeof(string), "%s(%d) moderator has been removed by %s", GetPlayerNameEx(giveplayerid), GetPlayerSQLId(giveplayerid), GetPlayerNameEx(playerid));
+
+				format(string, sizeof(string), "%s(%d)'s moderator rank has been removed by %s", 
+					GetPlayerNameEx(giveplayerid), GetPlayerSQLId(giveplayerid), GetPlayerNameEx(playerid));
 				Log("logs/moderator.log", string);
 			}
-
 		}
 	}
 	else
@@ -5367,6 +5518,7 @@ CMD:removemoderator(playerid, params[])
 	}
 	return 1;
 }
+
 
 CMD:ahelp(playerid, params[]) {
 	return cmd_ah(playerid, params);

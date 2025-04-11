@@ -1,3 +1,5 @@
+#include <YSI\y_hooks>
+
 CMD:togemailcheck(playerid, params[])
 {
 	if(PlayerInfo[playerid][pAdmin] < 1337) return 1;
@@ -47,7 +49,6 @@ public OnInvalidEmailCheck(playerid, response_code, data[])
 	return 1;
 }
 
-#include <YSI\y_hooks>
 hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 
 	if(arrAntiCheat[playerid][ac_iFlags][AC_DIALOGSPOOFING] > 0) return 1;
@@ -55,7 +56,18 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 	{
 		if(!response || isnull(inputtext))
 			ShowPlayerDialogEx(playerid, EMAIL_VALIDATION, DIALOG_STYLE_INPUT, "E-mail Registration - {FF0000}Error", "Please enter a valid e-mail address to associate with your account.", "Submit", "");
-		SetPVarString(playerid, "pEmail", inputtext);
+		if(strfind(inputtext, "@") != -1){
+			mysql_escape_string(inputtext, PlayerInfo[playerid][pEmail]);
+			szMiscArray[0] = 0;
+			mysql_format(MainPipeline, szMiscArray, sizeof(szMiscArray), "UPDATE `accounts` SET `Email` = '%s', `EmailConfirmed` = 0 WHERE `id` = %d", inputtext, PlayerInfo[playerid][pId]);
+			mysql_tquery(MainPipeline, szMiscArray, "OnQueryFinish", "i", SENDDATA_THREAD);
+			format(szMiscArray, sizeof(szMiscArray), "Thank you for submitting your email, if you want to change it use /settings");
+			ShowPlayerDialogEx(playerid, DIALOG_NOTHING, DIALOG_STYLE_MSGBOX, "Email Confirmation", szMiscArray, "Okay", "");
+
+
+			SetPVarString(playerid, "pEmail", inputtext);
+		}
+		else ShowPlayerDialogEx(playerid, EMAIL_VALIDATION, DIALOG_STYLE_INPUT, "E-mail Registration - {FF0000}Error", "Please enter a valid e-mail address to associate with your account.", "Submit", "");
 		InvalidEmailCheck(playerid, inputtext, 2);
 	}
 	return 0;
