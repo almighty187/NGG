@@ -11,9 +11,9 @@ CMD:togcountrycheck(playerid, params[])
 
 CountryCheck(playerid)
 {
-	if(cCheck == false) return 1;
-	new ccGetUrl[68];
-	format(ccGetUrl, sizeof(ccGetUrl), "jamie.ng-gaming.net/geocheck.php?ip=%s&id=%d", PlayerInfo[playerid][pIP], PlayerInfo[playerid][pId]);
+	new ccGetUrl[128], ip[16];
+	GetPlayerIp(playerid, ip, sizeof(ip));
+	format(ccGetUrl, sizeof(ccGetUrl), "http://ip-api.com/json/%s", ip);
 	HTTP(playerid, HTTP_GET, ccGetUrl, "", "CountryCheckResponse");
 	return 1;
 }

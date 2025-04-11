@@ -2132,7 +2132,7 @@ CMD:lock(playerid, params[])
  	}
 	return 1;
 }
-
+CMD:vst(playerid, params[]) return cmd_vstorage(playerid, params);
 CMD:vstorage(playerid, params[])
 {
 	if(PlayerTied[playerid] != 0 || PlayerCuffed[playerid] != 0 || PlayerInfo[playerid][pJailTime] > 0 || GetPVarInt(playerid, "Injured")) return SendClientMessageEx(playerid, COLOR_GRAD2, "You cannot do this at this time.");
@@ -2883,6 +2883,21 @@ CMD:eject(playerid, params[])
 	{
 		SendClientMessageEx(playerid, COLOR_GREY, "   You need to be in a Vehicle to use this!");
 	}
+	return 1;
+}
+
+CMD:cc(playerid, params[])
+{
+	new message[64], string[128], sendername[24];
+	if(sscanf(params, "s[64]", message)) return SendClientMessage(playerid, COLOR_GREY, "Use: /cc <message>");
+	   
+	GetPlayerName(playerid, sendername, 24);
+	format(string, sizeof(string), "[CAR] %s: %s", sendername, message);
+	
+   	foreach(Player, i) {
+    	if(IsPlayerConnected(i) && IsPlayerInVehicle(i, GetPlayerVehicleID(playerid))) SendClientMessage(i, COLOR_WHITE, string); 
+    	}
+      
 	return 1;
 }
 

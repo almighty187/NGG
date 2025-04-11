@@ -69,6 +69,19 @@ stock ShowNMuteFine(playerid)
 	else if(PlayerInfo[playerid][pNMuteTotal] == 6) ShowPlayerDialogEx(playerid,NMUTE,DIALOG_STYLE_LIST,"Newbie Chat Unmute - Select your Punishment:","Prison for 1 Hour and 30 Minutes","Select","Cancel");
 }
 
+stock GetAdvisorRankName(i)
+{
+	switch(i)
+	{
+		case 1: format(szMiscArray, sizeof(szMiscArray), "Helper");
+		case 2: format(szMiscArray, sizeof(szMiscArray), "Advisor");
+		case 3: format(szMiscArray, sizeof(szMiscArray), "Senior Advisor");
+		case 4: format(szMiscArray, sizeof(szMiscArray), "Chief Advisor");
+		default: format(szMiscArray, sizeof(szMiscArray), "Undefined Advisor (%i)", i);
+	}
+	return szMiscArray;
+}
+
 stock SendAdvisorMessage(color, string[])
 {
 	foreach(new i: Player)

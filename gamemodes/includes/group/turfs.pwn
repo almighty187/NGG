@@ -465,28 +465,32 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 						SetPVarInt(playerid, "EditingTurfsStage", 1);
 						SendClientMessageEx(playerid, COLOR_WHITE, "Goto a location and type (/savetwpos) to edit the West Wall.");
 					}
-					case 1: // Edit Owner
+					case 1: // Edit Turf Name
+					{
+						ShowPlayerDialogEx(playerid,TWEDITTURFSNAME,DIALOG_STYLE_INPUT,"Turf Wars - Edit Turfs Name Menu:","Please enter a name that you wish to assign to this turf:","Change","Back");
+					}
+					case 2: // Edit Owner
 					{
 						ShowPlayerDialogEx(playerid,TWEDITTURFSOWNER,DIALOG_STYLE_INPUT,"Turf Wars - Edit Turfs Owner Menu:","Please enter a group ID that you wish to assign to this turf:\n\nHint: Enter -1 if you wish to vacant the turf.","Change","Back");
 					}
-					case 2: // Edit Vulnerablity
+					case 3: // Edit Vulnerablity
 					{
 						ShowPlayerDialogEx(playerid,TWEDITTURFSVUL,DIALOG_STYLE_INPUT,"Turf Wars - Edit Turfs Vulnerable Menu:","Please enter a Vulnerable countdown time for the turf:","Change","Back");
 					}
-					case 3: // Edit Locks
+					case 4: // Edit Locks
 					{
 						ShowPlayerDialogEx(playerid,TWEDITTURFSLOCKED,DIALOG_STYLE_LIST,"Turf Wars - Edit Turfs Locked Menu:","Lock\nUnlock","Change","Back");
 					}
-					case 4: // Edit Perks
+					case 5: // Edit Perks
 					{
-						ShowPlayerDialogEx(playerid,TWEDITTURFSPERKS,DIALOG_STYLE_LIST,"Turf Wars - Edit Turfs Perks Menu:","None\nExtortion\nDrugs","Change","Back");
+						ShowPlayerDialogEx(playerid,TWEDITTURFSPERKS,DIALOG_STYLE_LIST,"Turf Wars - Edit Turfs Perks Menu:","None\nExtortion\nDrugs\nMaterials","Change","Back");
 					}
-					case 5: // Reset War
+					case 6: // Reset War
 					{
 						ResetTurfWarsZone(1, tw);
 						TurfWarsEditTurfsSelection(playerid);
 					}
-					case 6: // Destroy Turf
+					case 7: // Destroy Turf
 					{
 						DestroyTurfWarsZone(tw);
 						TurfWarsEditTurfsSelection(playerid);

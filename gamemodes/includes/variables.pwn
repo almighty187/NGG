@@ -767,6 +767,7 @@ new gPlayerCheckpointStatus[MAX_PLAYERS];
 new gPlayerLogged[MAX_PLAYERS char];
 new gPlayerLogTries[MAX_PLAYERS];
 new gLastCar[MAX_PLAYERS];
+new gcOoc[MAX_PLAYERS];
 new gOoc[MAX_PLAYERS];
 new gNews[MAX_PLAYERS];
 new Spectate[MAX_PLAYERS];
@@ -2773,7 +2774,7 @@ new ROB_MAX_PERCENTAGE = 30,
 
 //new Text3D:PlayerLabel[MAX_PLAYERS];
 
-new DCC_Channel:g_AdminChannelId, DCC_Channel:g_AdminWarningsChannelId, DCC_Channel:g_HeadAdminChannelId, DCC_Channel:g_ServerErrorsChannelId;
+//new DCC_Channel:g_AdminChannelId, DCC_Channel:g_AdminWarningsChannelId, DCC_Channel:g_HeadAdminChannelId, DCC_Channel:g_ServerErrorsChannelId;
 
 // Crate System.
 new 

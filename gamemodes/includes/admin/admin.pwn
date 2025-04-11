@@ -2230,7 +2230,7 @@ CMD:createpvehicle(playerid, params[]) {
 		else if(!(0 <= iColors[0] <= 255 && 0 <= iColors[1] <= 255)) SendClientMessageEx(playerid, COLOR_GRAD2, "Invalid color specified (IDs start at 0, and end at 255).");
 		else if(!vehicleCountCheck(iTargetID)) SendClientMessageEx(playerid, COLOR_GREY, "That person can't have more vehicles - they own too many.");
 		else if(!vehicleSpawnCountCheck(iTargetID)) SendClientMessageEx(playerid, COLOR_GREY, "That person has too many vehicles spawned - they must store one first.");
-		else if(PlayerInfo[iTargetID][pLevel] == 1 && PlayerInfo[iTargetID][pAdmin] < 2) return SendClientMessageEx(playerid, COLOR_RED, "You can't use /givemoney on level 1's");
+		//else if(PlayerInfo[iTargetID][pLevel] == 1 && PlayerInfo[iTargetID][pAdmin] < 2) return SendClientMessageEx(playerid, COLOR_RED, "You can't use /givemoney on level 1's");
 		else
 		{
 			new Float: arr_fPlayerPos[4], szMessage[84];
@@ -3728,7 +3728,7 @@ CMD:setstat(playerid, params[])
 			SendClientMessageEx(playerid, COLOR_GRAD2, "|56 Car Jack Skill |57 Lock Pick Vehicle Count |58 Lock Pick Vehicle Time |59 Tool Box |60 Crowbar");
 			return 1;
 		}
-		if(PlayerInfo[giveplayerid][pLevel] == 1 && PlayerInfo[giveplayerid][pAdmin] < 2) return SendClientMessageEx(playerid, COLOR_RED, "You can't use /setstat on level 1's");
+		//if(PlayerInfo[giveplayerid][pLevel] == 1 && PlayerInfo[giveplayerid][pAdmin] < 2) return SendClientMessageEx(playerid, COLOR_RED, "You can't use /setstat on level 1's");
 		if(IsPlayerConnected(giveplayerid))
 		{
 			switch (statcode)
@@ -4856,7 +4856,7 @@ CMD:setmoney(playerid, params[])
 	{
 		new string[128], giveplayerid, money;
 		if(sscanf(params, "ud", giveplayerid, money)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /setmoney [player] [money]");
-		if(PlayerInfo[giveplayerid][pLevel] == 1 && PlayerInfo[giveplayerid][pAdmin] < 2) return SendClientMessageEx(playerid, COLOR_RED, "You can't use /setmoney on level 1's");
+		//if(PlayerInfo[giveplayerid][pLevel] == 1 && PlayerInfo[giveplayerid][pAdmin] < 2) return SendClientMessageEx(playerid, COLOR_RED, "You can't use /setmoney on level 1's");
 		if(IsPlayerConnected(giveplayerid))
 		{
 			ResetPlayerCash(giveplayerid);
@@ -4882,7 +4882,7 @@ CMD:givemoney(playerid, params[])
 	{
 		new string[128], giveplayerid, money;
 		if(sscanf(params, "ud", giveplayerid, money)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /givemoney [player] [money]");
-		if(PlayerInfo[giveplayerid][pLevel] == 1 && PlayerInfo[giveplayerid][pAdmin] < 2) return SendClientMessageEx(playerid, COLOR_RED, "You can't use /givemoney on level 1's");
+		//if(PlayerInfo[giveplayerid][pLevel] == 1 && PlayerInfo[giveplayerid][pAdmin] < 2) return SendClientMessageEx(playerid, COLOR_RED, "You can't use /givemoney on level 1's");
 		if(money < 1) return SendClientMessageEx(playerid, COLOR_GRAD1, "You cannot give less than $1!");
 		if(IsPlayerConnected(giveplayerid))
 		{
@@ -5284,45 +5284,52 @@ CMD:unfreeze(playerid, params[])
 
 CMD:makemoderator(playerid, params[])
 {
-	if (PlayerInfo[playerid][pAdmin] >= 1337 || PlayerInfo[playerid][pAP] >= 2 || PlayerInfo[playerid][pHR] >= 3)
-	{
-		new string[128], giveplayerid, level;
-		if(sscanf(params, "ui", giveplayerid, level)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /makemoderator [player] [level 1-2]");
+    if (PlayerInfo[playerid][pAdmin] >= 1337 || PlayerInfo[playerid][pAP] >= 2 || PlayerInfo[playerid][pHR] >= 3)
+    {
+        new string[128], giveplayerid, level;
+        if(sscanf(params, "ui", giveplayerid, level)) 
+            return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /makemoderator [player] [level 1-2]");
 
-		if(IsPlayerConnected(giveplayerid))
-		{
-			if(PlayerInfo[giveplayerid][pAdmin] >= 2)
-			{
-				SendClientMessageEx(playerid, COLOR_GRAD1, "You cannot do this to current admins!");
-				return 1;
-			}
-			if(PlayerInfo[giveplayerid][pStaffBanned] >= 1) return SendClientMessage(playerid, COLOR_WHITE, "That player is currently staff banned.");
-			PlayerInfo[giveplayerid][pAdminLevel] = 1;
-			if(level == 1) {
-				PlayerInfo[giveplayerid][pSMod] = 0;
-				format(string, sizeof(string), "You have been made a moderator by %s", GetPlayerNameEx(playerid));
-				SendClientMessageEx(giveplayerid, COLOR_LIGHTBLUE, string);
-				format(string, sizeof(string), "You have made %s a moderator.", GetPlayerNameEx(giveplayerid));
-				SendClientMessageEx(playerid, COLOR_LIGHTBLUE, string);
-				format(string, sizeof(string), "%s(%d) has been made a moderator by %s", GetPlayerNameEx(giveplayerid), GetPlayerSQLId(giveplayerid), GetPlayerNameEx(playerid));
-				Log("logs/moderator.log", string);
-			}
-			else if(level == 2) {
-				PlayerInfo[giveplayerid][pSMod] = 1;
-				format(string, sizeof(string), "You have been made a senior moderator by %s", GetPlayerNameEx(playerid));
-				SendClientMessageEx(giveplayerid, COLOR_LIGHTBLUE, string);
-				format(string, sizeof(string), "You have made %s a senior moderator.", GetPlayerNameEx(giveplayerid));
-				SendClientMessageEx(playerid, COLOR_LIGHTBLUE, string);
-				format(string, sizeof(string), "%s(%d) has been made a senior moderator by %s", GetPlayerNameEx(giveplayerid), GetPlayerSQLId(giveplayerid), GetPlayerNameEx(playerid));
-				Log("logs/moderator.log", string);
-			}
-		}
-	}
-	else
-	{
-		SendClientMessageEx(playerid, COLOR_GRAD1, "You are not authorized to use that command.");
-	}
-	return 1;
+        if(IsPlayerConnected(giveplayerid))
+        {
+            if(PlayerInfo[giveplayerid][pAdmin] >= 2)
+            {
+                SendClientMessageEx(playerid, COLOR_GRAD1, "You cannot do this to current admins!");
+                return 1;
+            }
+            if(PlayerInfo[giveplayerid][pStaffBanned] >= 1) 
+                return SendClientMessage(playerid, COLOR_WHITE, "That player is currently staff banned.");
+
+            PlayerInfo[giveplayerid][pAdminLevel] = 1;
+            PlayerInfo[giveplayerid][pAdmin] = PlayerInfo[giveplayerid][pAdminLevel];
+
+            if(level == 1) 
+            {
+                PlayerInfo[giveplayerid][pSMod] = 0;
+                format(string, sizeof(string), "You have been made a moderator by %s", GetPlayerNameEx(playerid));
+                SendClientMessageEx(giveplayerid, COLOR_LIGHTBLUE, string);
+                format(string, sizeof(string), "You have made %s a moderator.", GetPlayerNameEx(giveplayerid));
+                SendClientMessageEx(playerid, COLOR_LIGHTBLUE, string);
+                format(string, sizeof(string), "%s(%d) has been made a moderator by %s", GetPlayerNameEx(giveplayerid), GetPlayerSQLId(giveplayerid), GetPlayerNameEx(playerid));
+                Log("logs/moderator.log", string);
+            }
+            else if(level == 2) 
+            {
+                PlayerInfo[giveplayerid][pSMod] = 1;
+                format(string, sizeof(string), "You have been made a senior moderator by %s", GetPlayerNameEx(playerid));
+                SendClientMessageEx(giveplayerid, COLOR_LIGHTBLUE, string);
+                format(string, sizeof(string), "You have made %s a senior moderator.", GetPlayerNameEx(giveplayerid));
+                SendClientMessageEx(playerid, COLOR_LIGHTBLUE, string);
+                format(string, sizeof(string), "%s(%d) has been made a senior moderator by %s", GetPlayerNameEx(giveplayerid), GetPlayerSQLId(giveplayerid), GetPlayerNameEx(playerid));
+                Log("logs/moderator.log", string);
+            }
+        }
+    }
+    else
+    {
+        SendClientMessageEx(playerid, COLOR_GRAD1, "You are not authorized to use that command.");
+    }
+    return 1;
 }
 
 CMD:removemoderator(playerid, params[])

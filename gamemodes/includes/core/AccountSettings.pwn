@@ -185,11 +185,10 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			else if(strcmp(inputtext, "OOC Chat", true) == 0) id = 2;
 			else if(strcmp(inputtext, "Whispers", true) == 0) id = 3;
 			else if(strcmp(inputtext, "First ChatBox", true) == 0) id = 4;
-			else if(strcmp(inputtext, "Secondary ChatBox", true) == 0) id = 19;
 			else if(strcmp(inputtext, "Private Radio", true) == 0) id = 5;
-			else if(strcmp(inputtext, "Phone", true) == 0) id = 7;
-			else if(strcmp(inputtext, "Famed", true) == 0) id = 8;
-			else if(strcmp(inputtext, "VIP", true) == 0) id = 9;
+			else if(strcmp(inputtext, "Phone", true) == 0) id = 6;
+			else if(strcmp(inputtext, "Famed", true) == 0) id = 7;
+			else if(strcmp(inputtext, "VIP", true) == 0) id = 8;
 			else if(strcmp(inputtext, "Dept", true) == 0) id = 10;
 			else if(strcmp(inputtext, "International", true) == 0) id = 21;
 			else if(strcmp(inputtext, "OOC Group", true) == 0) id = 11;
@@ -200,14 +199,13 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			else if(strcmp(inputtext, "Staff Chat", true) == 0) id = 15;
 			else if(strcmp(inputtext, "Advisor Chat", true) == 0) id = 16;
 			else if(strcmp(inputtext, "Watchdog Chat", true) == 0) id = 17;
-			// else if(strcmp(inputtext, "Admin", true) == 0) id = 18;
 			if(id == -1) return ShowAccountSettings(playerid, 1);
 			if(PlayerInfo[playerid][pToggledChats][id] == 0) {
 
 				PlayerInfo[playerid][pToggledChats][id] = 1;
 				switch(id) {
 
-					case 7: PhoneOnline[playerid] = 1;
+					case 6: PhoneOnline[playerid] = 1;
 					case 15: advisorchat[playerid] = 0;
 					case 19: for(new i; i < sizeof(TD_ChatBox); ++i) PlayerTextDrawHide(playerid, TD_ChatBox[i]);
 				}
@@ -216,7 +214,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 
 				PlayerInfo[playerid][pToggledChats][id] = 0;
 				switch(id) {
-					case 7: PhoneOnline[playerid] = 0;
+					case 6: PhoneOnline[playerid] = 0;
 					case 15: advisorchat[playerid] = 1;
 					case 19: for(new i; i < sizeof(TD_ChatBox); ++i) PlayerTextDrawShow(playerid, TD_ChatBox[i]);
 				}
@@ -243,9 +241,9 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				else if(strcmp(inputtext, "OOC Chat", true) == 0) id = 2;
 				else if(strcmp(inputtext, "Whispers", true) == 0) id = 3;
 				else if(strcmp(inputtext, "Private Radio", true) == 0) id = 5;
-				else if(strcmp(inputtext, "Phone", true) == 0) id = 7;
-				else if(strcmp(inputtext, "Famed", true) == 0) id = 8;
-				else if(strcmp(inputtext, "VIP", true) == 0) id = 9;
+				else if(strcmp(inputtext, "Phone", true) == 0) id = 6;
+				else if(strcmp(inputtext, "Famed", true) == 0) id = 7;
+				else if(strcmp(inputtext, "VIP", true) == 0) id = 8;
 				else if(strcmp(inputtext, "Dept", true) == 0) id = 10;
 				else if(strcmp(inputtext, "OOC Group", true) == 0) id = 11;
 				else if(strcmp(inputtext, "Radio", true) == 0) id = 12;
@@ -281,9 +279,9 @@ CMD:tog(playerid, params[]) {
     else if(strcmp(params, "ooc", true) == 0) iChatID = 2;
     else if(strcmp(params, "whisper", true) == 0) iChatID = 3;
     else if(strcmp(params, "pr", true) == 0) iChatID = 5;
-    else if(strcmp(params, "phone", true) == 0) iChatID = 7;
-    else if(strcmp(params, "famed", true) == 0) iChatID = 8;
-    else if(strcmp(params, "vip", true) == 0) iChatID = 9;
+    else if(strcmp(params, "phone", true) == 0) iChatID = 6;
+    else if(strcmp(params, "famed", true) == 0) iChatID = 7;
+    else if(strcmp(params, "vip", true) == 0) iChatID = 8;
     else if(strcmp(params, "dept", true) == 0) iChatID = 10;
     else if(strcmp(params, "gooc", true) == 0) iChatID = 11;
     else if(strcmp(params, "radio", true) == 0) iChatID = 12;
@@ -304,7 +302,7 @@ CMD:tog(playerid, params[]) {
         PlayerInfo[playerid][pToggledChats][iChatID] = 1;
         switch(iChatID) {
  
-            case 7: PhoneOnline[playerid] = 1;
+            case 6: PhoneOnline[playerid] = 1;
             case 15: advisorchat[playerid] = 0;
             case 19: for(new i; i < sizeof(TD_ChatBox); ++i) PlayerTextDrawHide(playerid, TD_ChatBox[i]);
             case 23: TextDrawHideForPlayer(playerid, TD_RepFam);
@@ -317,7 +315,7 @@ CMD:tog(playerid, params[]) {
  
         PlayerInfo[playerid][pToggledChats][iChatID] = 0;
         switch(iChatID) {
-            case 7: PhoneOnline[playerid] = 0;
+            case 6: PhoneOnline[playerid] = 0;
             case 15: advisorchat[playerid] = 1;
             case 19: for(new i; i < sizeof(TD_ChatBox); ++i) PlayerTextDrawShow(playerid, TD_ChatBox[i]);
             case 23: if(GetPVarInt(playerid, "RepFam_TL")) TextDrawShowForPlayer(playerid, TD_RepFam);
