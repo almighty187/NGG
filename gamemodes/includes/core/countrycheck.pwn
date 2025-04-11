@@ -1,4 +1,4 @@
-new bool:cCheck = false;
+/*new bool:cCheck = false;
 CMD:togcountrycheck(playerid, params[])
 {
 	if(PlayerInfo[playerid][pAdmin] < 1337) return 0;
@@ -7,7 +7,7 @@ CMD:togcountrycheck(playerid, params[])
 	else
 		cCheck = true, SendClientMessageEx(playerid, -1, "Enabled");
 	return 1;
-}
+}*/
 
 CountryCheck(playerid)
 {

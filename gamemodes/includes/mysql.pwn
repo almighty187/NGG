@@ -878,13 +878,24 @@ public OnQueryFinish(resultid, extraid, handleid)
 			g_mysql_LoadAccount(extraid);
 			return 1;
 		}
-		case REGISTER_THREAD:
+		/*case REGISTER_THREAD:
 		{
 			if(IsPlayerConnected(extraid))
 			{
 				AdvanceTutorial(extraid);
 				g_mysql_AccountLoginCheck(extraid);
 				format(szMiscArray, sizeof(szMiscArray), "WARNING: %s (ID: %d) has registered from %s", GetPlayerNameEx(extraid), extraid, GetPlayerCountry(extraid));
+				ABroadCast(COLOR_LIGHTRED, szMiscArray, 2);
+				TotalRegister++;
+			}
+		}*/
+		case REGISTER_THREAD:
+		{
+			if(IsPlayerConnected(extraid))
+			{
+				AdvanceTutorial(extraid);
+				g_mysql_AccountLoginCheck(extraid);
+				format(szMiscArray, sizeof(szMiscArray), "WARNING: %s (ID: %d) has registered an account", GetPlayerNameEx(extraid), extraid);
 				ABroadCast(COLOR_LIGHTRED, szMiscArray, 2);
 				TotalRegister++;
 			}
