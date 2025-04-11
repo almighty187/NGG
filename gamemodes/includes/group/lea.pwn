@@ -993,7 +993,7 @@ CMD:vticket(playerid, params[])
 					CrateVehicle[veh][cvTickets] += amount;
 					PlayerInfo[playerid][pTicketTime] = 60;
 					SendClientMessageEx(playerid, COLOR_WHITE, "You have issued a $%s ticket on the %s.", number_format(amount), VehicleName[CrateVehicle[veh][cvModel] - 400]);
-					format(string, sizeof(string), "[VTICKET] Officer %s has ticketed %s's %s (%d) for $%s.", GetPlayerNameEx(playerid), arrGroupData[CrateVehicle[veh][cvGroupID]][g_szGroupName], VehicleName[CrateVehicle[veh][cvModel] - 400], CrateVehicle[veh][cvId], number_format(amount));
+					format(string, sizeof(string), "[VTICKET] Officer %s has ticketed %s's %s (%d) for $%s.", GetPlayerNameEx(playerid), arrGroupData[CrateVehicle[veh][cvGroupID]][g_szGroupName], VehicleName[CrateVehicle[veh][cvModel] - 400], CrateVehicle[veh][cvModel], number_format(amount));
 					GroupLog(PlayerInfo[playerid][pMember], string);
 					SaveCrateVehicle(veh);
 				} else veh = -1;

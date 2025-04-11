@@ -3941,40 +3941,50 @@ CMD:dvrespawnall(playerid, params[])
 	return 1;
 }
 
-CMD:freedvrespawn(playerid, params[]) return cmd_dvrespawn(playerid, "1");
 CMD:dvrespawn(playerid, params[])
 {
-	new szString[128],
-		iGroupID = PlayerInfo[playerid][pMember];
+    new szString[128];
+    new iGroupID = PlayerInfo[playerid][pLeader];
 
-    if(PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 1 || PlayerInfo[playerid][pGangModerator] >= 1)
+    if (PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 1 || PlayerInfo[playerid][pGangModerator] >= 1)
     {
-		if((0 <= iGroupID <= MAX_GROUPS))
-		{
-			for(new i; i < MAX_DYNAMIC_VEHICLES; i++)
-			{
-			    new iModelID = DynVehicleInfo[i][gv_iModel];
-			    if(400 <= iModelID < 612 && DynVehicleInfo[i][gv_igID] == iGroupID)
-			    {
-					if(!IsVehicleOccupied(DynVehicleInfo[i][gv_iSpawnedID]))
-					{
-						if(strval(params) == 1) DynVeh_Spawn(i, 1); else DynVeh_Spawn(i);
-					}
-			    }
-			}
-			format(szString, sizeof(szString), "** Respawning all dynamic group vehicles%s...",(strval(params) == 1)?(" at no charge"):(""));
-			foreach(new i: Player)
-			{
-				if(PlayerInfo[i][pMember] == iGroupID)
-				{
-					SendClientMessageEx(i, arrGroupData[iGroupID][g_hRadioColour] * 256 + 255, szString);
-				}
-			}
-            format(szString, sizeof(szString), "%s has respawned group ID %d dynamic group vehicles.", GetPlayerNameEx(playerid), iGroupID+1);
-   			Log("logs/group.log", szString);
-		}
-	}
-	return 1;
+        Group_ListGroups(playerid, DIALOG_DVSPAWN);
+    }
+    else if (iGroupID >= 0 && iGroupID < MAX_GROUPS)
+    {
+        for (new i = 0; i < MAX_DYNAMIC_VEHICLES; i++)
+        {
+            new iModelID = DynVehicleInfo[i][gv_iModel];
+            if (iModelID >= 400 && iModelID < 612 && DynVehicleInfo[i][gv_igID] == iGroupID)
+            {
+                if (!IsVehicleOccupied(DynVehicleInfo[i][gv_iSpawnedID]))
+                {
+                    if (strval(params) == 1) 
+                        DynVeh_Spawn(i, 1); 
+                    else 
+                        DynVeh_Spawn(i);
+                }
+            }
+        }
+
+        format(szString, sizeof(szString), "** Respawning all dynamic group vehicles%s...", (strval(params) == 1) ? (" at no charge") : (""));
+        foreach (new i : Player)
+        {
+            if (PlayerInfo[i][pMember] == iGroupID || PlayerInfo[i][pLeader] == iGroupID)
+            {
+                SendClientMessageEx(i, arrGroupData[iGroupID][g_hRadioColour] * 256 + 255, szString);
+            }
+        }
+
+        format(szString, sizeof(szString), "%s has respawned group ID %d dynamic group vehicles.", GetPlayerNameEx(playerid), iGroupID + 1);
+        Log("logs/group.log", szString);
+    }
+    else
+    {
+        SendClientMessage(playerid, -1, "You do not have permission to use this command or you are not a group leader.");
+    }
+
+    return 1;
 }
 
 CMD:dvedit(playerid, params[])

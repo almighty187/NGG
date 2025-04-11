@@ -1323,6 +1323,9 @@ native IsValidVehicle(vehicleid);
 
 #define 		DIALOG_MAINTENANCE				8034
 #define 		DIALOG_HORSE_RACE				8035
+
+#define			DIALOG_DVSPAWN					8103
+
 // GangTags
 #define 			GANGTAG_TIME				60000
 

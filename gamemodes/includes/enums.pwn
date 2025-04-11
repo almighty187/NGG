@@ -464,8 +464,8 @@ enum crateFacInfo
 }
 
 enum CrateVehInfo {
+	bool:cvSlotUsed,
 	cvSpawnID,
-	cvId,
 	cvModel,
 	cvColor[2],
 	cvGroupID,

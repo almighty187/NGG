@@ -8199,7 +8199,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 		PlayerInfo[playerid][pRank] = Group_GetMaxRank(iGroupID);
 		PlayerInfo[playerid][pLeader] = -1;
 	}
-
 	else if (dialogid == DIALOG_MAKELEADER && response)
 	{
 		if (PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 2)
@@ -8220,6 +8219,43 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			SendClientMessageEx(playerid, COLOR_LIGHTBLUE, string);
 			format(string, sizeof(string), "%s (%d) has made %s (%d) the leader of the %s.", GetPlayerNameEx(playerid), GetPlayerSQLId(playerid), GetPlayerNameEx(iTargetID), GetPlayerSQLId(iTargetID), arrGroupData[iGroupID][g_szGroupName]);
 			GroupLog(iGroupID, string);
+		}
+		else SendClientMessageEx(playerid, COLOR_GRAD2, "You do not have access to this.");
+	}
+	else if (dialogid == DIALOG_DVSPAWN && response)
+	{
+		if (PlayerInfo[playerid][pAdmin] >= 3 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 2)
+		{
+			new
+				iGroupID = listitem,
+				szString[256];
+
+			if(!arrGroupData[iGroupID][g_szGroupName][0]) { return SendClientMessageEx(playerid, COLOR_GREY, "This group has not been properly set up yet."); }
+			if((0 <= iGroupID <= MAX_GROUPS))
+			{
+				for(new i; i < MAX_DYNAMIC_VEHICLES; i++)
+				{
+					new iModelID = DynVehicleInfo[i][gv_iModel];
+					if(400 <= iModelID < 612 && DynVehicleInfo[i][gv_igID] == iGroupID)
+					{
+						if(!IsVehicleOccupied(DynVehicleInfo[i][gv_iSpawnedID]))
+						{
+							DynVeh_Spawn(i);
+						}
+					}
+				}
+				format(szString, sizeof(szString), "** Respawning all dynamic group vehicles");
+				foreach(new i: Player)
+				{
+					if(PlayerInfo[i][pMember] == iGroupID)
+					{
+						SendClientMessageEx(i, arrGroupData[iGroupID][g_hRadioColour] * 256 + 255, szString);
+					}
+				}
+				SendClientMessageEx(playerid, COLOR_WHITE, "Respawned all dynamic group vehicles.");
+				format(szString, sizeof(szString), "%s has respawned group ID %d dynamic group vehicles.", GetPlayerNameEx(playerid), iGroupID+1);
+				Log("logs/group.log", szString);
+			}
 		}
 		else SendClientMessageEx(playerid, COLOR_GRAD2, "You do not have access to this.");
 	}

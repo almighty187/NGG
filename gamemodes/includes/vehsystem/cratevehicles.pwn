@@ -49,9 +49,9 @@ new VehDelivering[MAX_CRATE_VEHCILES];
 hook OnGameModeInit() {
 	for(new i = 0; i < MAX_CRATE_VEHCILES; ++i) {
 		VehDelivering[i] = 0;
+		CrateVehicle[i][cvSlotUsed] = false;
 		CrateVehicle[i][cvForkObject] = -1;
 		CrateVehicle[i][cvSpawnID] = INVALID_VEHICLE_ID;
-		CrateVehicle[i][cvId] = -1;
 		CrateVehicle[i][cvModel] = 0;
 		CrateVehicle[i][cvColor][0] = 0;
 		CrateVehicle[i][cvColor][1] = 0;
@@ -105,22 +105,32 @@ hook OnPlayerStateChange(playerid, newstate, oldstate) {
 	return 1;
 }
 
-hook OnPlayerEnterVehicle(playerid, vehicleid, ispassenger) {
+hook OnPlayerEnterVehicle(playerid, vehicleid, ispassenger) 
+{
 	new carid;
-	if(!ispassenger) {
-		if((carid = IsDynamicCrateVehicle(vehicleid)) != -1) {
+	if(!ispassenger) 
+	{
+		if((carid = IsDynamicCrateVehicle(vehicleid)) != -1) 
+		{
 			new Float:pos[3];
-			if(PlayerInfo[playerid][pAdmin] < 4 && PlayerInfo[playerid][pASM] < 1 && PlayerInfo[playerid][pFactionModerator] < 5) {
+			if(PlayerInfo[playerid][pAdmin] < 4 && PlayerInfo[playerid][pASM] < 1 && PlayerInfo[playerid][pFactionModerator] < 5) 
+			{
 				if(ValidGroup(CrateVehicle[carid][cvGroupID])) {
-					if(PlayerInfo[playerid][pMember] != CrateVehicle[carid][cvGroupID]) {
+					if(PlayerInfo[playerid][pMember] != CrateVehicle[carid][cvGroupID]) 
+					{
 						GetPlayerPos(playerid, pos[0], pos[1], pos[2]);
 						SetPlayerPos(playerid, pos[0], pos[1], pos[2]+1.3);
 						PlayerPlaySound(playerid, 1130, pos[0], pos[1], pos[2]+1.3);
 						SendClientMessageEx(playerid, COLOR_GREY, "You need to be apart of %s to use this vehicle!", arrGroupData[CrateVehicle[carid][cvGroupID]][g_szGroupName]);
 						return 1;
 					}
+					else 
+					{
+						SendClientMessageEx(playerid, COLOR_GREY, "You have entered a crate vehicle. /crate for crate commands");
+					}
 				}
-				if(!ValidGroup(CrateVehicle[carid][cvGroupID]) && !ValidGroup(PlayerInfo[playerid][pMember])) {
+				if(!ValidGroup(CrateVehicle[carid][cvGroupID]) && !ValidGroup(PlayerInfo[playerid][pMember])) 
+				{
 					GetPlayerPos(playerid, pos[0], pos[1], pos[2]);
 					SetPlayerPos(playerid, pos[0], pos[1], pos[2]+1.3);
 					PlayerPlaySound(playerid, 1130, pos[0], pos[1], pos[2]+1.3);
@@ -182,33 +192,34 @@ public OnLoadDynamicCrateVehciles() {
 	while(i < rows)
 	{
 		cache_get_value_name_int(i, "id", sqlid);
-		if(i < MAX_CRATE_VEHCILES) {
-			CrateVehicle[i][cvId] = sqlid;
-			cache_get_value_name_int(i, "vModel", CrateVehicle[i][cvModel]);
-			cache_get_value_name_int(i, "vColor1", CrateVehicle[i][cvColor][0]);
-			cache_get_value_name_int(i, "vColor2", CrateVehicle[i][cvColor][1]);
-			cache_get_value_name_int(i, "vGroup", CrateVehicle[i][cvGroupID]);
-			cache_get_value_name_int(i, "vRank", CrateVehicle[i][cvRank]);
-			cache_get_value_name_int(i, "vSpawned", CrateVehicle[i][cvSpawned]);
-			cache_get_value_name_int(i, "vDisabled", CrateVehicle[i][cvDisabled]);
-			cache_get_value_name_int(i, "vImpound", CrateVehicle[i][cvImpound]);
-			cache_get_value_name_int(i, "vTickets", CrateVehicle[i][cvTickets]);
-			cache_get_value_name_float(i, "vMaxHealth", CrateVehicle[i][cvMaxHealth]);
-			cache_get_value_name_float(i, "vHealth", CrateVehicle[i][cvHealth]);
-			cache_get_value_name_float(i, "vFuel", CrateVehicle[i][cvFuel]);
-			cache_get_value_name_int(i, "vType", CrateVehicle[i][cvType]);
-			cache_get_value_name_float(i, "vPosX", CrateVehicle[i][cvPos][0]);
-			cache_get_value_name_float(i, "vPosY", CrateVehicle[i][cvPos][1]);
-			cache_get_value_name_float(i, "vPosZ", CrateVehicle[i][cvPos][2]);
-			cache_get_value_name_float(i, "vRotZ", CrateVehicle[i][cvPos][3]);
-			cache_get_value_name_int(i, "vInt", CrateVehicle[i][cvInt]);
-			cache_get_value_name_int(i, "vVw", CrateVehicle[i][cvVw]);
-			cache_get_value_name_int(i, "vCrateMax", CrateVehicle[i][cvCrateMax]);
-			cache_get_value_name_int(i, "vCrate", CrateVehicle[i][cvCrate]);
-			cache_get_value_name_int(i, "FirstDrop", CrateVehicle[i][cvCrateLoad]);
-			if(400 <= CrateVehicle[i][cvModel] < 612) {
-				if(!IsWeaponizedVehicle(CrateVehicle[i][cvModel])) {
-					SpawnCrateVeh(i);
+		if(i > MAX_CRATE_VEHCILES) break;
+		if((0 <= sqlid <= MAX_CRATE_VEHCILES)) {
+			cache_get_value_name_int(i, "vModel", CrateVehicle[sqlid][cvModel]);
+			cache_get_value_name_int(i, "vColor1", CrateVehicle[sqlid][cvColor][0]);
+			cache_get_value_name_int(i, "vColor2", CrateVehicle[sqlid][cvColor][1]);
+			cache_get_value_name_int(i, "vGroup", CrateVehicle[sqlid][cvGroupID]);
+			cache_get_value_name_int(i, "vRank", CrateVehicle[sqlid][cvRank]);
+			cache_get_value_name_int(i, "vSpawned", CrateVehicle[sqlid][cvSpawned]);
+			cache_get_value_name_int(i, "vDisabled", CrateVehicle[sqlid][cvDisabled]);
+			cache_get_value_name_int(i, "vImpound", CrateVehicle[sqlid][cvImpound]);
+			cache_get_value_name_int(i, "vTickets", CrateVehicle[sqlid][cvTickets]);
+			cache_get_value_name_float(i, "vMaxHealth", CrateVehicle[sqlid][cvMaxHealth]);
+			cache_get_value_name_float(i, "vHealth", CrateVehicle[sqlid][cvHealth]);
+			cache_get_value_name_float(i, "vFuel", CrateVehicle[sqlid][cvFuel]);
+			cache_get_value_name_int(i, "vType", CrateVehicle[sqlid][cvType]);
+			cache_get_value_name_float(i, "vPosX", CrateVehicle[sqlid][cvPos][0]);
+			cache_get_value_name_float(i, "vPosY", CrateVehicle[sqlid][cvPos][1]);
+			cache_get_value_name_float(i, "vPosZ", CrateVehicle[sqlid][cvPos][2]);
+			cache_get_value_name_float(i, "vRotZ", CrateVehicle[sqlid][cvPos][3]);
+			cache_get_value_name_int(i, "vInt", CrateVehicle[sqlid][cvInt]);
+			cache_get_value_name_int(i, "vVw", CrateVehicle[sqlid][cvVw]);
+			cache_get_value_name_int(i, "vCrateMax", CrateVehicle[sqlid][cvCrateMax]);
+			cache_get_value_name_int(i, "vCrate", CrateVehicle[sqlid][cvCrate]);
+			cache_get_value_name_int(i, "FirstDrop", CrateVehicle[sqlid][cvCrateLoad]);
+			CrateVehicle[sqlid][cvSlotUsed] = true;
+			if(400 <= CrateVehicle[sqlid][cvModel] < 612) {
+				if(!IsWeaponizedVehicle(CrateVehicle[sqlid][cvModel])) {
+					SpawnCrateVeh(sqlid);
 				}
 			}
 			++CrateVehTotal;
@@ -225,6 +236,9 @@ public OnLoadDynamicCrateVehciles() {
 }
 
 stock SaveCrateVehicle(id) {
+	if(!(0 <= id <= MAX_CRATE_VEHCILES)) return 1;
+	if(!CrateVehicle[id][cvSlotUsed]) return 1;
+
 	new query[2048];
 
 	if(CrateVehicle[id][cvSpawnID] != INVALID_VEHICLE_ID) {
@@ -233,28 +247,28 @@ stock SaveCrateVehicle(id) {
 		CrateVehicle[id][cvFuel] = VehicleFuel[CrateVehicle[id][cvSpawnID]];
 	}
 	format(query, 2048, "UPDATE `crate_vehicles` SET ");
-	SaveInteger(query, "crate_vehicles", id+1, "vModel", CrateVehicle[id][cvModel]);
-	SaveInteger(query, "crate_vehicles", id+1, "vColor1", CrateVehicle[id][cvColor][0]);
-	SaveInteger(query, "crate_vehicles", id+1, "vColor2", CrateVehicle[id][cvColor][1]);
-	SaveInteger(query, "crate_vehicles", id+1, "vGroup", CrateVehicle[id][cvGroupID]);
-	SaveInteger(query, "crate_vehicles", id+1, "vRank", CrateVehicle[id][cvRank]);
-	SaveInteger(query, "crate_vehicles", id+1, "vSpawned", CrateVehicle[id][cvSpawned]);
-	SaveInteger(query, "crate_vehicles", id+1, "vDisabled", CrateVehicle[id][cvDisabled]);
-	SaveInteger(query, "crate_vehicles", id+1, "vImpound", CrateVehicle[id][cvImpound]);
-	SaveInteger(query, "crate_vehicles", id+1, "vTickets", CrateVehicle[id][cvTickets]);
-	SaveFloat(query, "crate_vehicles", id+1, "vMaxHealth", CrateVehicle[id][cvMaxHealth]);
-	SaveFloat(query, "crate_vehicles", id+1, "vHealth", CrateVehicle[id][cvHealth]);
-	SaveFloat(query, "crate_vehicles", id+1, "vFuel", CrateVehicle[id][cvFuel]);
-	SaveFloat(query, "crate_vehicles", id+1, "vPosX", CrateVehicle[id][cvPos][0]);
-	SaveFloat(query, "crate_vehicles", id+1, "vPosY", CrateVehicle[id][cvPos][1]);
-	SaveFloat(query, "crate_vehicles", id+1, "vPosZ", CrateVehicle[id][cvPos][2]);
-	SaveFloat(query, "crate_vehicles", id+1, "vRotZ", CrateVehicle[id][cvPos][3]);
-	SaveInteger(query, "crate_vehicles", id+1, "vInt", CrateVehicle[id][cvInt]);
-	SaveInteger(query, "crate_vehicles", id+1, "vVw", CrateVehicle[id][cvVw]);
-	SaveInteger(query, "crate_vehicles", id+1, "vCrateMax", CrateVehicle[id][cvCrateMax]);
-	SaveInteger(query, "crate_vehicles", id+1, "vCrate", CrateVehicle[id][cvCrate]);
-	SaveInteger(query, "crate_vehicles", id+1, "FirstDrop", CrateVehicle[id][cvCrateLoad]);
-	SQLUpdateFinish(query, "crate_vehicles", id+1);
+	SaveInteger(query, "crate_vehicles", id, "vModel", CrateVehicle[id][cvModel]);
+	SaveInteger(query, "crate_vehicles", id, "vColor1", CrateVehicle[id][cvColor][0]);
+	SaveInteger(query, "crate_vehicles", id, "vColor2", CrateVehicle[id][cvColor][1]);
+	SaveInteger(query, "crate_vehicles", id, "vGroup", CrateVehicle[id][cvGroupID]);
+	SaveInteger(query, "crate_vehicles", id, "vRank", CrateVehicle[id][cvRank]);
+	SaveInteger(query, "crate_vehicles", id, "vSpawned", CrateVehicle[id][cvSpawned]);
+	SaveInteger(query, "crate_vehicles", id, "vDisabled", CrateVehicle[id][cvDisabled]);
+	SaveInteger(query, "crate_vehicles", id, "vImpound", CrateVehicle[id][cvImpound]);
+	SaveInteger(query, "crate_vehicles", id, "vTickets", CrateVehicle[id][cvTickets]);
+	SaveFloat(query, "crate_vehicles", id, "vMaxHealth", CrateVehicle[id][cvMaxHealth]);
+	SaveFloat(query, "crate_vehicles", id, "vHealth", CrateVehicle[id][cvHealth]);
+	SaveFloat(query, "crate_vehicles", id, "vFuel", CrateVehicle[id][cvFuel]);
+	SaveFloat(query, "crate_vehicles", id, "vPosX", CrateVehicle[id][cvPos][0]);
+	SaveFloat(query, "crate_vehicles", id, "vPosY", CrateVehicle[id][cvPos][1]);
+	SaveFloat(query, "crate_vehicles", id, "vPosZ", CrateVehicle[id][cvPos][2]);
+	SaveFloat(query, "crate_vehicles", id, "vRotZ", CrateVehicle[id][cvPos][3]);
+	SaveInteger(query, "crate_vehicles", id, "vInt", CrateVehicle[id][cvInt]);
+	SaveInteger(query, "crate_vehicles", id, "vVw", CrateVehicle[id][cvVw]);
+	SaveInteger(query, "crate_vehicles", id, "vCrateMax", CrateVehicle[id][cvCrateMax]);
+	SaveInteger(query, "crate_vehicles", id, "vCrate", CrateVehicle[id][cvCrate]);
+	SaveInteger(query, "crate_vehicles", id, "FirstDrop", CrateVehicle[id][cvCrateLoad]);
+	SQLUpdateFinish(query, "crate_vehicles", id);
 	return 1;
 }
 
@@ -269,11 +283,14 @@ public SpawnCrateVeh(vehid) {
 		CrateVehicle[vehid][cvSpawnID] = INVALID_VEHICLE_ID;
 	}
 	CrateVehCheck(vehid);
+
+	if(!CrateVehicle[vehid][cvSlotUsed]) return 1;
 	if(!CrateVehicle[vehid][cvSpawned] || CrateVehicle[vehid][cvDisabled] || CrateVehicle[vehid][cvImpound]) return 1;
 	CrateVehicle[vehid][cvSpawnID] = CreateVehicle(CrateVehicle[vehid][cvModel], CrateVehicle[vehid][cvPos][0], CrateVehicle[vehid][cvPos][1], CrateVehicle[vehid][cvPos][2], CrateVehicle[vehid][cvPos][3], CrateVehicle[vehid][cvColor][0], CrateVehicle[vehid][cvColor][1], -1, 0);
 	if(CrateVehicle[vehid][cvHealth] > CrateVehicle[vehid][cvMaxHealth]) CrateVehicle[vehid][cvHealth] = CrateVehicle[vehid][cvMaxHealth];
 	if(CrateVehicle[vehid][cvHealth] < 350) CrateVehicle[vehid][cvHealth] = 350;
 	SetVehicleHealth(CrateVehicle[vehid][cvSpawnID], CrateVehicle[vehid][cvHealth]);
+
 	SetVehicleVirtualWorld(CrateVehicle[vehid][cvSpawnID], CrateVehicle[vehid][cvVw]);
 	LinkVehicleToInterior(CrateVehicle[vehid][cvSpawnID], CrateVehicle[vehid][cvInt]);
 	if(CrateVehicle[vehid][cvFuel] > 100) CrateVehicle[vehid][cvFuel] = 100;
@@ -284,6 +301,7 @@ public SpawnCrateVeh(vehid) {
 
 forward CrateVehCheck(vehid);
 public CrateVehCheck(vehid) {
+
 	new box;
 	if(IsValidDynamicObject(CrateVehicle[vehid][cvForkObject])) DestroyDynamicObject(CrateVehicle[vehid][cvForkObject]), CrateVehicle[vehid][cvForkObject] = -1;
 	CheckCrateInVeh(vehid);
@@ -293,6 +311,7 @@ public CrateVehCheck(vehid) {
 		CrateVehicle[vehid][cvCrate] = -1;
 		return 1;
 	}
+
 	if(CrateBox[box][cbOnVeh] != vehid) {
 		CrateVehicle[vehid][cvCrate] = -1;
 		DestroyCrate(box);
@@ -355,8 +374,8 @@ CMD:cvcreate(playerid, params[]) {
 	GetPlayerPos(playerid, vpos[0], vpos[1], vpos[2]);
 	GetPlayerFacingAngle(playerid, vpos[3]);
 	for(new i = 0; i < MAX_CRATE_VEHCILES; i++) {
-		if(CrateVehicle[i][cvModel] == 0) {
-	        mysql_format(MainPipeline, szMiscArray, sizeof(szMiscArray), "INSERT INTO `crate_vehicles` (`vModel`, `vColor1`, `vColor2`, `vPosX`, `vPosY`, `vPosZ`, `vRotZ`) VALUES (%d, %d, %d, %0.5f, %0.5f, %0.5f, %0.5f)", iVehicle, iColors[0], iColors[1], vpos[0], vpos[1], vpos[2], vpos[3]);
+		if(!CrateVehicle[i][cvSlotUsed]) {
+	        mysql_format(MainPipeline, szMiscArray, sizeof(szMiscArray), "INSERT INTO `crate_vehicles` (`id`, `vModel`, `vColor1`, `vColor2`, `vPosX`, `vPosY`, `vPosZ`, `vRotZ`) VALUES (%d, %d, %d, %d, %0.5f, %0.5f, %0.5f, %0.5f)", i, iVehicle, iColors[0], iColors[1], vpos[0], vpos[1], vpos[2], vpos[3]);
 			//mysql_tquery(MainPipeline, szMiscArray, false, "OnQueryFinish", "i", SENDDATA_THREAD);
 			mysql_tquery(MainPipeline, szMiscArray, "OnCrateVehicle", "iiiffffii", playerid, i, iVehicle, vpos[0], vpos[1], vpos[2], vpos[3], iColors[0], iColors[1]);
 			/*CrateVehicle[i][cvModel] = iVehicle;
@@ -380,7 +399,8 @@ CMD:cvcreate(playerid, params[]) {
 
 forward OnCrateVehicle(playerid, i, veh, Float:pos1, Float:pos2, Float:pos3, Float:pos4, color1, color2);
 public OnCrateVehicle(playerid, i, veh, Float:pos1, Float:pos2, Float:pos3, Float:pos4, color1, color2) {
-	CrateVehicle[i][cvId] = cache_insert_id();
+	//CrateVehicle[i][cvId] = cache_insert_id();
+	CrateVehicle[i][cvSlotUsed] = true;
 	CrateVehicle[i][cvModel] = veh;
 	CrateVehicle[i][cvPos][0] = pos1;
 	CrateVehicle[i][cvPos][1] = pos2;
@@ -758,13 +778,12 @@ stock DeleteCrateVehicle(playerid, veh) {
 	else SendClientMessageEx(playerid, COLOR_YELLOW, "You have deleted the vehicle %s. (Not Owned)", VehicleName[CrateVehicle[veh][cvModel] - 400]), format(szMiscArray, sizeof(szMiscArray), "%s has deleted vehicle %s (Veh id: %d | Owner: N/A)", GetPlayerNameEx(playerid), VehicleName[CrateVehicle[veh][cvModel] - 400], CrateVehicle[veh][cvModel]);
 	Log("logs/cratevehicle.log", szMiscArray);
 
-    mysql_format(MainPipeline, szMiscArray, sizeof(szMiscArray), "DELETE FROM `crate_vehicles` WHERE `id` = %d", CrateVehicle[veh][cvId]);
+    mysql_format(MainPipeline, szMiscArray, sizeof(szMiscArray), "DELETE FROM `crate_vehicles` WHERE `id` = %d", veh);
 	mysql_tquery(MainPipeline, szMiscArray, "OnQueryFinish", "i", SENDDATA_THREAD);
 
 	VehDelivering[veh] = 0;
 	CrateVehicle[veh][cvForkObject] = -1;
 	CrateVehicle[veh][cvSpawnID] = INVALID_VEHICLE_ID;
-	CrateVehicle[veh][cvId] = -1;
 	CrateVehicle[veh][cvModel] = 0;
 	CrateVehicle[veh][cvColor][0] = 0;
 	CrateVehicle[veh][cvColor][1] = 0;
@@ -978,6 +997,8 @@ CMD:cvrespawn(playerid, params[]) {
 			for(new v = 0; v < MAX_CRATE_VEHCILES; v++) {
 				if(CrateVehicle[v][cvSpawnID] != INVALID_VEHICLE_ID) {
 					if(!IsVehicleOccupied(CrateVehicle[v][cvSpawnID]) && !CreateCount(v)) {
+						CrateVehicle[v][cvHealth] = CrateVehicle[v][cvMaxHealth];
+						CrateVehicle[v][cvFuel] = 100;
 						SpawnCrateVeh(v);
 					}
 				}
