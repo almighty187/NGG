@@ -708,12 +708,26 @@ stock Help_ListCat(playerid, dialogid = DIALOG_HELPCATMAIN, response = 0, listit
 				j++;
 				format(szMiscArray, sizeof(szMiscArray), "%sFamed Commissioner\n", szMiscArray);
 			}
+			if(Help_Perm(playerid, 3, 5, 5))
+			{
+				format(string, sizeof(string), "HelpResultCat%i", j);
+				SetPVarInt(playerid, string, 5);
+				j++;
+				format(szMiscArray, sizeof(szMiscArray), "%sFamed Moderator\n", szMiscArray);
+			}
 			if(Help_Perm(playerid, 3, 6, 6))
 			{
 				format(string, sizeof(string), "HelpResultCat%i", j);
 				SetPVarInt(playerid, string, 6);
 				j++;
 				format(szMiscArray, sizeof(szMiscArray), "%sFamed Vice-Chairman\n", szMiscArray);
+			}
+			if(Help_Perm(playerid, 3, 7, 7))
+			{
+				format(string, sizeof(string), "HelpResultCat%i", j);
+				SetPVarInt(playerid, string, 7);
+				j++;
+				format(szMiscArray, sizeof(szMiscArray), "%sFamed Chairman\n", szMiscArray);
 			}
 			Help_GenerateCMDList(playerid, 3, j, 3, 0);
 			if(!isnull(szMiscArray)) ShowPlayerDialogEx(playerid, DIALOG_HELPCATFAMED, DIALOG_STYLE_LIST, "Help System", szMiscArray, "Select", "Cancel");
@@ -1033,6 +1047,13 @@ stock Help_ListCat(playerid, dialogid = DIALOG_HELPCATMAIN, response = 0, listit
 				j++;
 				format(szMiscArray, sizeof(szMiscArray), "VIP Moderator\n");
 			}
+			if(Help_Perm(playerid, 13, 6, 1))
+			{
+				format(string, sizeof(string), "HelpResultCat%i", j);
+				SetPVarInt(playerid, string, 6);
+				j++;
+				format(szMiscArray, sizeof(szMiscArray), "%sSenior VIP Moderator\n", szMiscArray);
+			}
 			if(Help_Perm(playerid, 13, 2, 1))
 			{
 				format(string, sizeof(string), "HelpResultCat%i", j);
@@ -1347,8 +1368,12 @@ stock Help_Perm(playerid, type, subtype, level)
 		else if(subtype == 3 && PlayerInfo[playerid][pFamed] >= level) return 1;
 		// Famed Commissioner
 		else if(subtype == 4 && PlayerInfo[playerid][pFamed] >= level) return 1;
+		// Famed Moderator
+		else if(subtype == 5 && PlayerInfo[playerid][pFamed] >= level) return 1;
 		// Famed Vice-Chairman
 		else if(subtype == 6 && PlayerInfo[playerid][pFamed] >= level) return 1;
+		// Famed Chairman
+		else if(subtype == 7 && PlayerInfo[playerid][pFamed] >= level) return 1;
 	}
 	// Newbie
 	else if(type == 4)
@@ -1401,7 +1426,6 @@ stock Help_Perm(playerid, type, subtype, level)
 			if(subtype > 0)
 			{
 				if(arrGroupData[PlayerInfo[playerid][pLeader]][g_iGroupType] == subtype) return 1;
-				//if(PlayerInfo[playerid][pLeader] == subtype) return 1;
 				else return 0;
 			}
 			return 1;
@@ -1431,6 +1455,8 @@ stock Help_Perm(playerid, type, subtype, level)
 		else if(subtype == 4 && PlayerInfo[playerid][pDonateRank] >= level) return 1;
 		// VIP Moderator
 		else if(subtype == 5 && PlayerInfo[playerid][pVIPMod] >= level) return 1;
+		// Senior VIP Moderator
+		else if(subtype == 6 && PlayerInfo[playerid][pVIPMod] >= level) return 1;
 	}
 	// Other
 	else if(type == 14)
