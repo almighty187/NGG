@@ -231,7 +231,7 @@ public SaveGroup(iGroupID) {
 
 	for(i = 0; i != MAX_GROUP_RIVALS; ++i) {
 		format(szMiscArray, sizeof(szMiscArray), "gRival%i", i);
-		SaveString(query, "groups", iGroupID+1, szMiscArray, arrGroupData[iGroupID][g_iRivals][i]);
+		SaveInteger(query, "groups", iGroupID+1, szMiscArray, arrGroupData[iGroupID][g_iRivals][i]);
 	}
 	for(i = 0; i != MAX_GROUP_RANKS; ++i) {
 		format(szMiscArray, sizeof(szMiscArray), "GClothes%i", i);
