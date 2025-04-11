@@ -92,7 +92,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			else ShowPlayerDialogEx(playerid, REGISTERSEX, DIALOG_STYLE_LIST, "{FF0000}Is your character male or female?", "Male\nFemale", "Submit", "");
 		}
 	}
-	if(RegistrationStep[playerid] != 0 || strcmp(PlayerInfo[playerid][pBirthDate], "0000-00-00", true) == 0)
+	if(RegistrationStep[playerid] != 0 || strcmp(PlayerInfo[playerid][pBirthDate], "1970-01-01", true) == 0)
 	{
 		if(dialogid == REGISTERMONTH)
 		{
@@ -3077,7 +3077,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			mysql_tquery(MainPipeline, szQuery, "OnPlayerChangePass", "i", playerid);
 			SendClientMessageEx(playerid, COLOR_YELLOW, "Processing your request...");
 
-			if(strcmp(PlayerInfo[playerid][pBirthDate], "0000-00-00", true) == 0 && PlayerInfo[playerid][pTut] != 0) ShowLoginDialogs(playerid, 1);
+			if(strcmp(PlayerInfo[playerid][pBirthDate], "1970-01-01", true) == 0 && PlayerInfo[playerid][pTut] != 0) ShowLoginDialogs(playerid, 1);
 			else if(pMOTD[0] && GetPVarInt(playerid, "ViewedPMOTD") != 1) ShowLoginDialogs(playerid, 4);
 			else if(PlayerInfo[playerid][pReceivedCredits] != 0) ShowLoginDialogs(playerid, 5);
 		}

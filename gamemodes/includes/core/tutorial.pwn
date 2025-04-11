@@ -632,7 +632,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 						return ShowPlayerDialogEx(playerid, DIALOG_REGISTER_SEX, DIALOG_STYLE_LIST, "NG:RP Character Creation | Skin Model", "Male\nFemale", "Select", "<<");
 
 					}
-					if(strcmp(PlayerInfo[playerid][pBirthDate], "0000-00-00") == 0)
+					if(strcmp(PlayerInfo[playerid][pBirthDate], "1970-01-01") == 0)
 					{
 						SendClientMessage(playerid, COLOR_YELLOW, "Please specify your birthdate.");
 						return ShowPlayerDialogEx(playerid, DIALOG_REGISTER_MONTH, DIALOG_STYLE_LIST, "{FF0000}Which month was your character born?", "January\nFebruary\nMarch\nApril\nMay\nJune\nJuly\nAugust\nSeptember\nOctober\nNovember\nDecember", "Select", "<<");
