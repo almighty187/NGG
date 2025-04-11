@@ -3382,64 +3382,41 @@ CMD:listbugs(playerid, params[])
 }
 
 CMD:online(playerid, params[]) {
-    if (PlayerInfo[playerid][pLeader] >= 0 || PlayerInfo[playerid][pAdmin] >= 3 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 1 || IsACriminal(playerid)) 
-    {
-        if (PlayerInfo[playerid][pMember] == INVALID_GROUP_ID) 
-            return SendClientMessageEx(playerid, -1, "You are not a member of any group!");
-
-        szMiscArray[0] = 0;
-        new badge[11], rank[32], division[32];
-
-        foreach (new i: Player) 
-        {
-            if (PlayerInfo[i][pAdmin] >= 2 && PlayerInfo[i][pTogReports] == 0) 
-                continue;
-
-            if (strcmp(PlayerInfo[i][pBadge], "None", true) != 0) 
-                format(badge, sizeof(badge), "[%s] ", PlayerInfo[i][pBadge]);
-            else 
-                format(badge, sizeof(badge), "");
-
-            format(rank, sizeof(rank), "%s (%d)", arrGroupRanks[PlayerInfo[i][pMember]][PlayerInfo[i][pRank]], PlayerInfo[i][pRank]);
-            format(division, sizeof(division), "%s", PlayerInfo[i][pDivision] != INVALID_DIVISION ? arrGroupDivisions[PlayerInfo[i][pMember]][PlayerInfo[i][pDivision]] : "N/A");
-
-            if (IsAnFTSDriver(playerid) && IsAnFTSDriver(i)) 
-            {
-                format(szMiscArray, sizeof(szMiscArray), "%s\n* %s%s | Rank: %s | Division: %s | %s duty | Calls Accepted: %d", 
-                    szMiscArray, badge, GetPlayerNameEx(i), rank, division, TransportDuty[i] ? "On" : "Off", PlayerInfo[i][pCallsAccepted]);
-            } 
-            else if (IsAMedic(playerid) && IsAMedic(i) && (arrGroupData[PlayerInfo[playerid][pMember]][g_iAllegiance] == arrGroupData[PlayerInfo[i][pMember]][g_iAllegiance])) 
-            {
-                format(szMiscArray, sizeof(szMiscArray), "%s\n* %s%s | Rank: %s | Division: %s | %s duty | Calls: %d | Patients: %d", 
-                    szMiscArray, badge, GetPlayerNameEx(i), rank, division, PlayerInfo[i][pDuty] ? "On" : "Off", PlayerInfo[i][pCallsAccepted], PlayerInfo[i][pPatientsDelivered]);
-            } 
-            else if (IsACriminal(playerid) && PlayerInfo[i][pMember] == PlayerInfo[playerid][pMember]) 
-            {
-                format(szMiscArray, sizeof(szMiscArray), "%s\n* %s%s | Rank: %s | Division: %s", 
-                    szMiscArray, badge, GetPlayerNameEx(i), rank, division);
-            } 
-            else if (PlayerInfo[i][pMember] == PlayerInfo[playerid][pMember]) 
-            {
-                format(szMiscArray, sizeof(szMiscArray), "%s\n* %s%s | Rank: %s | Division: %s | %s duty", 
-                    szMiscArray, badge, GetPlayerNameEx(i), rank, division, PlayerInfo[i][pDuty] ? "On" : "Off");
-            }
-        }
-
-        if (!isnull(szMiscArray)) 
-        {
-            strdel(szMiscArray, 0, 1);
-            ShowPlayerDialogEx(playerid, 0, DIALOG_STYLE_LIST, "Online Members", szMiscArray, "Select", "Cancel");
-        } 
-        else 
-        {
-            SendClientMessageEx(playerid, COLOR_GREY, "No members are online at this time.");
-        }
-    } 
-    else 
-    {
-        SendClientMessageEx(playerid, COLOR_GREY, "Only group leaders may use this command.");
-    }
-    return 1;
+	if(PlayerInfo[playerid][pLeader] >= 0 || PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 1 || IsACriminal(playerid))
+	{
+		if(PlayerInfo[playerid][pMember] == INVALID_GROUP_ID) return SendClientMessageEx(playerid, -1, "You are not a member of any group!");
+		szMiscArray[0] = 0;
+		new badge[11];
+		foreach(new i: Player)
+		{
+			if(PlayerInfo[i][pAdmin] >= 2 && PlayerInfo[i][pTogReports] == 0) goto end;
+			if(strcmp(PlayerInfo[i][pBadge], "None", true) != 0) format(badge, sizeof(badge), "[%s] ", PlayerInfo[i][pBadge]);
+			else format(badge, sizeof(badge), "");
+			if(IsAnFTSDriver(playerid) && IsAnFTSDriver(i)) switch(TransportDuty[i]) {
+				case 1: format(szMiscArray, sizeof(szMiscArray), "%s\n* %s%s (on duty), %i calls accepted", szMiscArray, badge, GetPlayerNameEx(i), PlayerInfo[i][pCallsAccepted]);
+				default: format(szMiscArray, sizeof(szMiscArray), "%s\n* %s%s (off duty), %i calls accepted", szMiscArray, badge, GetPlayerNameEx(i), PlayerInfo[i][pCallsAccepted]);
+			}
+			else if(IsAMedic(playerid) && IsAMedic(i) && (arrGroupData[PlayerInfo[playerid][pMember]][g_iAllegiance] == arrGroupData[PlayerInfo[i][pMember]][g_iAllegiance])) switch(PlayerInfo[i][pDuty]) {
+				case 1: format(szMiscArray, sizeof(szMiscArray), "%s\n* %s%s (on duty), %i calls accepted, %i patients delivered.", szMiscArray, badge, GetPlayerNameEx(i), PlayerInfo[i][pCallsAccepted], PlayerInfo[i][pPatientsDelivered]);
+				default: format(szMiscArray, sizeof(szMiscArray), "%s\n* %s%s (off duty), %i calls accepted, %i patients delivered.", szMiscArray, badge, GetPlayerNameEx(i), PlayerInfo[i][pCallsAccepted], PlayerInfo[i][pPatientsDelivered]);
+			}
+			else if(IsACriminal(playerid) && PlayerInfo[i][pMember] == PlayerInfo[playerid][pMember]) {
+				format(szMiscArray, sizeof(szMiscArray), "* %s | Rank: %s (%d) | Division: %s", GetPlayerNameEx(i), arrGroupRanks[PlayerInfo[i][pMember]][PlayerInfo[i][pRank]], PlayerInfo[i][pRank], PlayerInfo[i][pDivision] != INVALID_DIVISION ? arrGroupDivisions[PlayerInfo[i][pMember]][PlayerInfo[i][pDivision]] : ("N/A"));
+				SendClientMessageEx(playerid, -1, szMiscArray);
+			}
+			else if(PlayerInfo[i][pMember] == PlayerInfo[playerid][pMember]) switch(PlayerInfo[i][pDuty]) {
+				case 1: format(szMiscArray, sizeof(szMiscArray), "%s\n* %s%s (on duty)", szMiscArray, badge, GetPlayerNameEx(i));
+				default: format(szMiscArray, sizeof(szMiscArray), "%s\n* %s%s (off duty)", szMiscArray, badge, GetPlayerNameEx(i));
+			}
+			end:
+		}
+		if(!isnull(szMiscArray)) {
+			if(!IsACriminal(playerid)) strdel(szMiscArray, 0, 1), ShowPlayerDialogEx(playerid, 0, DIALOG_STYLE_LIST, "Online Members", szMiscArray, "Select", "Cancel");
+		}
+		else SendClientMessageEx(playerid, COLOR_GREY, "No members are online at this time.");
+	}
+	else SendClientMessageEx(playerid, COLOR_GREY, "Only group leaders may use this command.");
+	return 1;
 }
 
 CMD:badge(playerid, params[]) {

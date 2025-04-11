@@ -106,7 +106,7 @@
 		8) Towing
 		9) Criminal/Gang
 		10) Racing
-	11) Group Leader
+	11) Group Leadership
 		1) LEA/Cops
 		2) Hitman
 		3) Medic
@@ -117,7 +117,7 @@
 		8) Towing
 		9) Criminal/Gang
 		10) Racing
-	11) Business
+	12) Business
 		1) Gas Station
 		2) Clothing
 		3) Restaurant
@@ -131,12 +131,12 @@
 		11) Sex Shop
 		12) Gym
 		13) Casino
-	12) VIP
+	13) VIP
 		2) Silver VIP
 		3) Gold VIP
 		4) Platinum VIP
 		5) VIP Moderator
-	13) Other
+	14) Other
 		1) Animation
 		2) Backpack
 		3) Car
@@ -224,7 +224,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					case 8: Help_ListCat(playerid, DIALOG_HELPCATSHOP, response, listitem);
 					case 9: Help_ListCat(playerid, DIALOG_HELPCATJOB, response, listitem);
 					case 10: Help_ListCat(playerid, DIALOG_HELPCATGROUP, response, listitem);
-					case 12: Help_ListCat(playerid, DIALOG_HELPCATBUSINESS, response, listitem);
+					case 11: Help_ListCat(playerid, DIALOG_HELPCATBUSINESS, response, listitem);
 					case 13: Help_ListCat(playerid, DIALOG_HELPCATVIP, response, listitem);
 					case 14: Help_ListCat(playerid, DIALOG_HELPCATOTHER, response, listitem);
 				}
@@ -1400,7 +1400,8 @@ stock Help_Perm(playerid, type, subtype, level)
 		{
 			if(subtype > 0)
 			{
-				if(arrGroupData[PlayerInfo[playerid][pLeader]][g_iGroupType] == subtype) return 1;
+  				if(arrGroupData[PlayerInfo[playerid][pLeader]][g_iGroupType] == subtype) return 1;
+				//if(PlayerInfo[playerid][pLeader] == subtype) return 1;
 				else return 0;
 			}
 			return 1;

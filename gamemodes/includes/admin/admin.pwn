@@ -4565,7 +4565,7 @@ CMD:gotoid(playerid, params[])
 				SendClientMessageEx(playerid, COLOR_GRAD2, "You can not do this while spectating.");
 				return 1;
 			}
-			if(PlayerInfo[giveplayerid][pAdmin] >= 1337 && !GetPVarType(giveplayerid, "EATeleportable")) return SendClientMessageEx(playerid, COLOR_WHITE, "You cannot teleport to them");
+			if(PlayerInfo[giveplayerid][pAdmin] >= 99999 && !GetPVarType(giveplayerid, "EATeleportable")) return SendClientMessageEx(playerid, COLOR_WHITE, "You cannot teleport to them");
 			GetPlayerPos(giveplayerid, plocx, plocy, plocz);
 			SetPlayerVirtualWorld(playerid, PlayerInfo[giveplayerid][pVW]);
 			Streamer_UpdateEx(playerid, plocx, plocy, plocz);
