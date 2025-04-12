@@ -37,7 +37,7 @@
 hook OnGameModeInit()
 {
 	print("[DCC] Trying to connect to Discord. Please wait...");
-	DCC_Connect("MzU2OTE5NDM0MDE2OTgwOTky.DJiWpA.jerF-D52iupykTvIjYpuiqLDANA");
+	DCC_Connect("MTM2MDUwNTAyMzg4MDEwMTkzOA.GMJwBs.WCVNNX_g6Ra7tCUVANgroHVWN082F-htoMvMro");
 	print("[DCC] Successfully connected to Discord!");
 	return 1;
 }
@@ -50,25 +50,25 @@ stock SendDiscordMessage(channel, message[])
 			// #admin
 			case 0:
 			{
-				g_AdminChannelId = DCC_FindChannelById("251802213913985024");
+				g_AdminChannelId = DCC_FindChannelById("1360504707851747429");
 				DCC_SendChannelMessage(g_AdminChannelId, message);
 			}
 			// #admin-warnings
 			case 1:
 			{
-				g_AdminWarningsChannelId = DCC_FindChannelById("252214716544450560");
+				g_AdminWarningsChannelId = DCC_FindChannelById("1360504741741990029");
 				DCC_SendChannelMessage(g_AdminWarningsChannelId, message);
 			}
 			// #headadmin
 			case 2:
 			{
-				g_HeadAdminChannelId = DCC_FindChannelById("251802276677681162");
+				g_HeadAdminChannelId = DCC_FindChannelById("1360504760041476217");
 				DCC_SendChannelMessage(g_HeadAdminChannelId, message);
 			}
 			// #server-errors
 			case 3:
 			{
-				g_ServerErrorsChannelId = DCC_FindChannelById("252214813818617866");
+				g_ServerErrorsChannelId = DCC_FindChannelById("1360504778718711870");
 				DCC_SendChannelMessage(g_ServerErrorsChannelId, message);
 			}
 		}
@@ -78,7 +78,7 @@ stock SendDiscordMessage(channel, message[])
 			// #server-errors
 			case 3:
 			{
-				g_ServerErrorsChannelId = DCC_FindChannelById("252214813818617866");
+				g_ServerErrorsChannelId = DCC_FindChannelById("1360504778718711870");
 				DCC_SendChannelMessage(g_ServerErrorsChannelId, message);
 			}
 			default: {}
@@ -93,15 +93,15 @@ public DCC_OnChannelMessage(DCC_Channel:channel, const author[], const message[]
 		new channel_name[32], szMessage[128];
 		DCC_GetChannelName(channel, channel_name);
 		printf("[DCC] OnChannelMessage (Channel %s): Author %s sent message: %s", channel_name, author, message);
-		if(!strcmp(channel_name, "admin", true) && strcmp(author, "SAMP-Bot", true))
+		if(!strcmp(channel_name, "admin", true) && strcmp(author, "NGRP-Bot", true))
 		{
 			format(szMessage, sizeof(szMessage), "* [Discord] Administrator %s: %s", author, message);
-			ABroadCast(COLOR_YELLOW, szMessage, 2, true, true);
+			ABroadCast(COLOR_YELLOW, szMessage, 2, true);
 		}
-		else if(!strcmp(channel_name, "headadmin", true) && strcmp(author, "SAMP-Bot", true))
+		else if(!strcmp(channel_name, "headadmin", true) && strcmp(author, "NGRP-Bot", true))
 		{
 			format(szMessage, sizeof(szMessage), "(PRIVATE) [Discord] Administrator %s: %s", author, message);
-			ABroadCast(COLOR_GREEN, szMessage, 1337, true, true);
+			ABroadCast(COLOR_GREEN, szMessage, 1337, true);
 		}
 	}
 	return 1;
