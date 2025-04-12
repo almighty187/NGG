@@ -68,7 +68,7 @@ stock ABroadCast(hColor, szMessage[], iLevel, bool: bUndercover = false)
 	if(strfind(szMessage, "AdmWarning", false) != -1)
 	{
 		StripColorEmbedding(szMessage);
-		//SendDiscordMessage(1, szMessage); // Route AdmWarnings to Discord
+		SendDiscordMessage(1, szMessage); // Route AdmWarnings to Discord
 	}
 	return 1;
 }
@@ -2124,7 +2124,7 @@ CMD:admin(playerid, params[])  {
 			}
 
 			format(szMessage, sizeof(szMessage), "%s %s: %s", GetAdminRankName(PlayerInfo[playerid][pAdmin]), GetPlayerNameEx(playerid), params);
-			//SendDiscordMessage(0, szMessage);
+			SendDiscordMessage(0, szMessage);
 		}
 		else SendClientMessageEx(playerid, COLOR_GREY, "USAGE: (/a)dmin [admin chat]");
 	}
@@ -2152,7 +2152,7 @@ CMD:headadmin(playerid, params[])  {
 			}
 
 			format(szMessage, sizeof(szMessage), "%s %s: %s", GetAdminRankName(PlayerInfo[playerid][pAdmin]), GetPlayerNameEx(playerid), params);
-			//SendDiscordMessage(2, szMessage);
+			SendDiscordMessage(2, szMessage);
 		}
 		else SendClientMessageEx(playerid, COLOR_GREY, "USAGE: (/ha)eadmin [Head admin+ chat]");
 	}
