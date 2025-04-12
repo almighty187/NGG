@@ -530,7 +530,7 @@ CMD:jarrest(playerid, params[])
 {
     if(IsAJudge(playerid))
 	{
- 		if(!IsAtArrestPoint(playerid, 4))
+ 		if(!IsAtArrestPoint(playerid, 3))
 		{
   			SendClientMessageEx(playerid, COLOR_GREY, "You aren't at the arrest point.");
 	    	return 1;
@@ -710,7 +710,7 @@ CMD:warrantarrest(playerid, params[])
     if(IsACop(playerid))
 	{
 	    if(JudgeOnlineCheck() == 0) return SendClientMessageEx(playerid, COLOR_GRAD4, "There must be at least one judge online to do this!");
-        if(!IsAtArrestPoint(playerid, 3))
+        if(!IsAtArrestPoint(playerid, 2))
 		{
   			SendClientMessageEx(playerid, COLOR_GREY, "You aren't at a warrant arrest point.");
 	    	return 1;
