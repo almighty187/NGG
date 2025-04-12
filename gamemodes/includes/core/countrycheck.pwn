@@ -1,4 +1,4 @@
-/*new bool:cCheck = false;
+new bool:cCheck = false;
 CMD:togcountrycheck(playerid, params[])
 {
 	if(PlayerInfo[playerid][pAdmin] < 1337) return 0;
@@ -7,13 +7,13 @@ CMD:togcountrycheck(playerid, params[])
 	else
 		cCheck = true, SendClientMessageEx(playerid, -1, "Enabled");
 	return 1;
-}*/
+}
 
 CountryCheck(playerid)
 {
-	new ccGetUrl[128], ip[16];
-	GetPlayerIp(playerid, ip, sizeof(ip));
-	format(ccGetUrl, sizeof(ccGetUrl), "http://ip-api.com/json/%s", ip);
+	if(cCheck == false) return 1;
+	new ccGetUrl[68];
+	format(ccGetUrl, sizeof(ccGetUrl), "samp.nlvl.tools/ngg/geocheck.php?ip=%s&id=%d", PlayerInfo[playerid][pIP], PlayerInfo[playerid][pId]);
 	HTTP(playerid, HTTP_GET, ccGetUrl, "", "CountryCheckResponse");
 	return 1;
 }
