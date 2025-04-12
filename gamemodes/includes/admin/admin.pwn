@@ -1940,7 +1940,7 @@ CMD:removepvehicle(playerid, params[])
 
 CMD:makeadmin(playerid, params[])  {
 
-	if(PlayerInfo[playerid][pAdmin] >= 1337 || PlayerInfo[playerid][pAP] >= 2 || PlayerInfo[playerid][pHR] >= 3) {
+	if(PlayerInfo[playerid][pAdmin] >= 99999 || PlayerInfo[playerid][pAP] >= 2 || PlayerInfo[playerid][pHR] >= 3) {
 
 		new
 			iAdminValue,
@@ -3157,11 +3157,28 @@ CMD:serverstats(playerid, params[])
 
 CMD:payday(playerid, params[])
 {
-	if (PlayerInfo[playerid][pAdmin] >= 1337) {
-	    PlayerInfo[playerid][pConnectSeconds] = 3600;
-		PayDay(playerid);
-	}
-	return 1;
+    if (PlayerInfo[playerid][pAdmin] >= 1337) {
+
+        new iTargetID;
+
+        if (sscanf(params, "u", iTargetID)) {
+            SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /payday [playerid]");
+        }
+        else if (IsPlayerConnected(iTargetID)) {
+            PlayerInfo[iTargetID][pConnectSeconds] = 3600;
+            PayDay(iTargetID);
+
+            SendClientMessage(playerid, COLOR_WHITE, "You have given a payday to the player.");
+            SendClientMessage(iTargetID, COLOR_WHITE, "You have received a payday.");
+        } 
+        else {
+            SendClientMessageEx(playerid, COLOR_GRAD1, "Invalid player specified.");
+        }
+    } 
+    else {
+        SendClientMessageEx(playerid, COLOR_GRAD1, "You do not have permission to use this command.");
+    }
+    return 1;
 }
 
 CMD:ofine(playerid, params[])
@@ -3258,7 +3275,7 @@ CMD:mole(playerid, params[])
 
 CMD:togspec(playerid, params[])
 {
-	if(PlayerInfo[playerid][pAdmin] >= 1337)
+	if(PlayerInfo[playerid][pAdmin] >= 99999)
 	{
 	    if(GetPVarType(playerid, "EASpecable"))
 	    {
@@ -3276,7 +3293,7 @@ CMD:togspec(playerid, params[])
 
 CMD:togtp(playerid, params[])
 {
-	if(PlayerInfo[playerid][pAdmin] >= 1337)
+	if(PlayerInfo[playerid][pAdmin] >= 99999)
 	{
 	    if(GetPVarType(playerid, "EATeleportable"))
 	    {
@@ -4233,8 +4250,9 @@ CMD:setmystat(playerid, params[])
 
 		}
 
-		if((PlayerInfo[playerid][pUndercover] >= 1 && PlayerInfo[playerid][pAdmin] < 4 && PlayerInfo[playerid][pASM] < 1) && statcode != 1 && statcode != 6 && statcode != 26 && statcode != 33
-				&& statcode != 34 && statcode != 37 && statcode != 52) return 1;
+		if((PlayerInfo[playerid][pUndercover] >= 1 && ((PlayerInfo[playerid][pAdmin] < 4 && PlayerInfo[playerid][pASM] < 1) || PlayerInfo[playerid][pAdmin] >= 1337)) 
+			&& statcode != 1 && statcode != 6 && statcode != 26 && statcode != 33
+			&& statcode != 34 && statcode != 37 && statcode != 52) return 1;
 
 		switch (statcode)
 		{

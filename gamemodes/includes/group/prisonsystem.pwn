@@ -829,7 +829,7 @@ CMD:bail(playerid, params[])
 CMD:docarrest(playerid, params[])
 {
 	if(!IsACop(playerid)) SendClientMessageEx(playerid, COLOR_GREY, "You are not part of a LEO faction. ");
-	else if(!IsAtArrestPoint(playerid, 2)) SendClientMessageEx(playerid, COLOR_GREY, "You are not at the DoC Prison arrest point." );
+	else if(!IsAtArrestPoint(playerid, 1)) SendClientMessageEx(playerid, COLOR_GREY, "You are not at the DoC Prison arrest point." );
 
 	else
 	{

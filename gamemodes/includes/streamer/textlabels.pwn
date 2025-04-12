@@ -18,6 +18,7 @@ hook OnGameModeInit() {
     CreateDynamic3DTextLabel("To change your number type /vipnum",COLOR_YELLOW,2549.548095, 1404.047729, 7699.584472+0.6,4.0);//
     CreateDynamic3DTextLabel("To change your number type /vipnum",COLOR_YELLOW,1832.6000, 1375.1700, 1464.4600+0.6,4.0);//
     CreateDynamic3DTextLabel("Type /travel\nTo exit the VIP garage with your vehicle",COLOR_YELLOW,-4429.944824, 905.032470, 987.078186+0.5,13.0);// VIP garage travel
+    CreateDynamic3DTextLabel("Type /travel\nTo exit the Famed garage with your vehicle",COLOR_YELLOW,2492.6348,2397.7351,4.2109+0.5,13.0);// Famed garage travel
     CreateDynamic3DTextLabel("/viplocker\nTo open the VIP locker.",COLOR_YELLOW,2555.747314, 1404.106079, 7699.584472+0.6,4.0);/// LS VIP locker room
 	CreateDynamic3DTextLabel("/viplocker\nTo open the VIP locker.",COLOR_YELLOW,1832.0533, 1380.7281, 1464.3822+0.6,4.0);/// LV Main VIP locker room
     CreateDynamic3DTextLabel("/viplocker\nTo open the VIP locker.",COLOR_YELLOW,772.4844, 1715.7213, 1938.0391+0.6,4.0);/// LV Plat VIP locker room

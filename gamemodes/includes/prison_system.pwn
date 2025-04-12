@@ -1032,7 +1032,7 @@ CMD:docarrest(playerid, params[])
 {
 	new giveplayerid, time, fine;
 	if(!IsACop(playerid)) SendClientMessageEx(playerid, COLOR_GREY, "You are not part of a LEO faction. ");
-	else if(!IsAtArrestPoint(playerid, 2)) SendClientMessageEx(playerid, COLOR_GREY, "You are not at the DoC Prison arrest point." );
+	else if(!IsAtArrestPoint(playerid, 1)) SendClientMessageEx(playerid, COLOR_GREY, "You are not at the DoC Prison arrest point." );
 	else if(sscanf(params, "udd", giveplayerid, time, fine))
 	{
 		SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /docarrest [playerid] [time] [fine]");
@@ -1077,7 +1077,7 @@ CMD:arrest(playerid, params[])
 	if(!IsACop(playerid)) {
 	    SendClientMessageEx(playerid, COLOR_GREY, "You are not part of a LEO faction. ");
 	}
-	else if(!IsAtArrestPoint(playerid, 0) && !IsAtArrestPoint(playerid, 1)) {
+	else if(!IsAtArrestPoint(playerid, 0)) {
  		SendClientMessageEx(playerid, COLOR_GREY, "You are not at a arrest point." );
  	} else if(sscanf(params, "udd", giveplayerid, time, fine))
 	{

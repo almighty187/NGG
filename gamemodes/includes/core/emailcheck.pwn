@@ -1,12 +1,12 @@
 #include <YSI\y_hooks>
 
-CMD:togemailcheck(playerid, params[])
+/*CMD:togemailcheck(playerid, params[])
 {
 	if(PlayerInfo[playerid][pAdmin] < 1337) return 1;
 	SendClientMessageEx(playerid, -1, emailcheck ? ("Email checks disabled"):("Email checks enabled"));
 	emailcheck = !emailcheck;
 	return 1;
-}
+}*/
 
 InvalidEmailCheck(playerid, email[], task)
 {
