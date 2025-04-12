@@ -85,7 +85,7 @@
 /*  ---------------- SCRIPT REVISION ----------------- */
 
 // Do not forget to change this everytime you commit - it's mandatory!
-#define SERVER_GM_TEXT "NG:RP v3.0.460"
+#define SERVER_GM_TEXT "NG:RP v3.0.461"
 
 //#define AREA_DEBUG
 //#define TEXTLABEL_DEBUG
@@ -102,7 +102,7 @@
 #include <YSI\y_utils>
 #include <mSelection>
 #include <gvar>
-//#include <discord-connector>
+#include <discord-connector>
 #include <geo_ip>
 #include <easyDialog>
 #include <callbacks>
@@ -125,7 +125,7 @@
 #include "./includes/textdraws.pwn"
 #include "./includes/streamer.pwn"
 #include "./includes/OnDialogResponse.pwn"
-//#include "./includes/discord.pwn"
+#include "./includes/discord.pwn"
 #include "./includes/walkstyle.pwn"
 
 #if defined AREA_DEBUG
@@ -357,10 +357,6 @@
 
 // Jason WIP
 //#include "./includes/core/interact.pwn"
-
-
-// 187
-//#include "./includes/187/insurance.pwn"
 
 main(){}
 
