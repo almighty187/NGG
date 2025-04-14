@@ -19,6 +19,7 @@
 
 								**  Development Staff:
 									187
+									Winters
 				Past Developers:
 								*** Director of SA:MP Development:
 									Dom
@@ -85,7 +86,7 @@
 /*  ---------------- SCRIPT REVISION ----------------- */
 
 // Do not forget to change this everytime you commit - it's mandatory!
-#define SERVER_GM_TEXT "NG:RP v3.0.462"
+#define SERVER_GM_TEXT "NG:RP v3.0.463"
 
 //#define AREA_DEBUG
 //#define TEXTLABEL_DEBUG
@@ -260,6 +261,7 @@
 #include "./includes/events/xmas.pwn"
 #include "./includes/events/zombies.pwn"
 #include "./includes/events/valentine.pwn"
+#include "./includes/events/quest.pwn"
 //#include "./includes/events/festival.pwn"
 //#include "./includes/events/stpatricks.pwn"
 //#include "./includes/events/memorial.pwn"

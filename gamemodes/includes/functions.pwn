@@ -887,6 +887,126 @@ public Disconnect(playerid)
 	return 1;
 }
 
+stock GenerateQuestPickups(playerid) {
+	// Check if player is on cooldown
+	if(gettime() - QuestLastTime[playerid] < 86400) { // 86400 seconds = 24 hours
+        return 0; // Don't generate pickups if on cooldown
+    }
+
+    // List of possible pickup locations (x, y, z coordinates)
+    new Float:PickupLocations[][3] = {
+        {1380.0,-1616.0,14.0},
+		{1406.0,-1300.0,14.0},
+		{1504.0,-1338.0,14.0},
+		{1603.0,-1203.0,20.0},
+		{1677.0,-1000.0,24.0},
+		{1901.0,-886.0,82.0},
+		{2417.0,-1046.0,52.0}, 
+		{2622.0,-1350.0,35.0},
+		{2539.0,-1351.0,31.0},
+		{2395.0,-1475.0,24.0},
+		{2297.0,-1441.0,24.0},
+		{2168.0,-1506.0,24.0},
+		{2114.0,-1344.0,24.0},
+		{1913.0,-1179.0,23.0},
+		{2042.0,-1237.0,24.0},
+		{2122.0,-2081.0,14.0},
+		{2265.0,-2437.0,14.0},
+		{2372.0,-2542.0,3.0},
+		{2551.0,-2344.0,14.0}
+        // Add more locations as needed
+    };
+
+    // Shuffle the locations array
+    new size = sizeof(PickupLocations);
+    for(new i = size-1; i > 0; i--) {
+        new j = random(i+1);
+        new Float:temp[3];
+        temp[0] = PickupLocations[i][0];
+        temp[1] = PickupLocations[i][1];
+        temp[2] = PickupLocations[i][2];
+        PickupLocations[i][0] = PickupLocations[j][0];
+        PickupLocations[i][1] = PickupLocations[j][1];
+        PickupLocations[i][2] = PickupLocations[j][2];
+        PickupLocations[j][0] = temp[0];
+        PickupLocations[j][1] = temp[1];
+        PickupLocations[j][2] = temp[2];
+    }
+
+	// Before creating new pickups, load existing progress
+    QuestProgress[playerid] = PlayerInfo[playerid][pQuestProgress];
+
+    // Only create pickups for remaining uncollected points
+    for(new i = 0; i < 10; i++) {
+        if(i >= PlayerInfo[playerid][pObjectsAcquired]) { // Only create remaining pickups
+            // Delete existing pickup if it exists
+            if(QuestPickups[i] != 0) {
+                DestroyDynamicPickup(QuestPickups[i]);
+                RemovePlayerMapIcon(playerid, 70+i);
+            }
+
+            // Create new pickup and map icon
+            QuestPickups[i] = CreateDynamicPickup(1239, 23, PickupLocations[i][0], PickupLocations[i][1], PickupLocations[i][2], -1, -1, -1, 100.0);
+            SetPlayerMapIcon(playerid, 70+i, PickupLocations[i][0], PickupLocations[i][1], PickupLocations[i][2], 0, COLOR_YELLOW, MAPICON_GLOBAL);
+            PlayerInfo[playerid][pQuestObjects][i] = QuestPickups[i];
+        }
+    }
+	return 1;
+}
+
+stock LoadPlayerQuest(playerid) {
+    // Load saved quest data
+    QuestLastTime[playerid] = PlayerInfo[playerid][pQuestLastTime];
+    
+    // If player was in the middle of a quest
+    if(PlayerInfo[playerid][pObjectsAcquired] > 0 && PlayerInfo[playerid][pObjectsAcquired] < 10) {
+        GenerateQuestPickups(playerid); // Regenerate remaining pickups
+        SendClientMessageEx(playerid, COLOR_YELLOW2, "Quest progress restored: (%d/10)", PlayerInfo[playerid][pObjectsAcquired]);
+    }
+}
+
+// Add this function to clean up quest pickups
+stock CleanupQuestPickups(playerid) {
+    for(new i = 0; i < 10; i++) {
+        if(QuestPickups[i] != 0) {
+            DestroyDynamicPickup(QuestPickups[i]);
+            RemovePlayerMapIcon(playerid, 70+i);
+            QuestPickups[i] = 0;
+        }
+        PlayerInfo[playerid][pQuestObjects][i] = 0;
+    }
+    PlayerInfo[playerid][pObjectsAcquired] = 0;
+    return 1;
+}
+
+stock CheckQuestObjectives(playerid) {
+    if(PlayerInfo[playerid][pObjectsAcquired] == 10) {
+        // Calculate random rewards
+        new money = 10000 + random(10000); // Random money between 10k-20k
+        new credits = 2;
+        
+        // Send reward messages
+        SendClientMessageEx(playerid, COLOR_YELLOW2, "Congratulations! You have finished the daily quest and you have received:");
+        SendClientMessageEx(playerid, -1, "- %s cash", number_format(money));
+        SendClientMessageEx(playerid, -1, "- %d credits", credits);
+        
+        // Give rewards
+        GivePlayerCash(playerid, money);
+        GivePlayerCredits(playerid, credits, 1);
+        
+        // Cleanup pickups and reset progress
+        CleanupQuestPickups(playerid);
+        
+        // Record completion time for 24h cooldown
+        QuestLastTime[playerid] = gettime();
+		// Reset quest progress
+    	PlayerInfo[playerid][pObjectsAcquired] = 0;
+        
+        return 1;
+    }
+    return 0;
+}
+
 forward GetColorCode(clr[]);
 public GetColorCode(clr[])
 {
@@ -1220,6 +1340,26 @@ public OnPlayerPickUpDynamicPickup(playerid, pickupid)
 			}
 		}
 	}
+	for(new i; i < 10; i++) {
+        if(pickupid == QuestPickups[i]) {
+            PlayerInfo[playerid][pObjectsAcquired]++;
+            PlayerInfo[playerid][pQuestProgress] = PlayerInfo[playerid][pObjectsAcquired]; // Save progress
+            PlayerInfo[playerid][pQuestLastTime] = QuestLastTime[playerid]; // Save last quest time
+            
+            SendClientMessageEx(playerid, COLOR_GREY, "Quest progress: (%d/10)", PlayerInfo[playerid][pObjectsAcquired]);
+            
+            // Remove the pickup and map icon
+            DestroyDynamicPickup(QuestPickups[i]);
+            RemovePlayerMapIcon(playerid, 70+i);
+            QuestPickups[i] = 0;
+            
+            // Save to database
+            OnPlayerStatsUpdate(playerid);
+            
+            CheckQuestObjectives(playerid);
+            break;
+        }
+    }
 	return 1;
 }
 

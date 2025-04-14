@@ -1212,7 +1212,14 @@ public OnPlayerConnect(playerid)
 	}
 
 //	RemoveVendingMachines(playerid);
-
+	
+	if(gettime() - PlayerInfo[playerid][pQuestLastTime] >= 86400) { 
+        SendClientMessageEx(playerid, COLOR_YELLOW2, "A daily quest is available! Use /startquest to begin.");
+    }
+    else if(PlayerInfo[playerid][pObjectsAcquired] > 0 && PlayerInfo[playerid][pObjectsAcquired] < 10) {
+        LoadPlayerQuest(playerid); // Restore quest progress
+	}
+	
 	SetPlayerSkillLevel(playerid, WEAPONSKILL_PISTOL, 1);
 	SetPlayerSkillLevel(playerid, WEAPONSKILL_MICRO_UZI, 1);
 	SetPlayerSkillLevel(playerid, WEAPONSKILL_SAWNOFF_SHOTGUN, 1);

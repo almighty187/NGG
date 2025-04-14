@@ -2789,3 +2789,7 @@ new
 
 new
 	bool:BuddyInvite = true;
+
+new QuestPickups[10];
+new QuestLastTime[MAX_PLAYERS];
+new QuestProgress[MAX_PLAYERS]; // Tracks how many quest points collected
