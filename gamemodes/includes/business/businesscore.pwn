@@ -43,6 +43,7 @@ hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 		if(IsAt247(playerid)) return cmd_buy(playerid, "");
 		else if(IsAtRestaurant(playerid)) return cmd_buyfood(playerid, "");
 		else if(IsAtClothingStore(playerid)) return cmd_buyclothes(playerid, "");
+		else if(IsAtGunshop(playerid)) return cmd_buygun(playerid, "");
 	}
 	return 1;
 }
@@ -364,6 +365,12 @@ stock IsAtGym(playerid)
 {
 	new iBusiness = InBusiness(playerid);
 	return (iBusiness != INVALID_BUSINESS_ID && Businesses[iBusiness][bType] == BUSINESS_TYPE_GYM);
+}
+
+stock IsAtGunshop(playerid)
+{
+	new iBusiness = InBusiness(playerid);
+	return (iBusiness != INVALID_BUSINESS_ID && Businesses[iBusiness][bType] == BUSINESS_TYPE_GUNSHOP);
 }
 
 stock StopRefueling(playerid, iBusinessID, iPumpID)

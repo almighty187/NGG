@@ -324,7 +324,7 @@ public ReleaseFromHospital(playerid, iHospital, iBed)
 
 			switch(iHospital) {
 				case 3, 4, 7, 8, 16: {
-					TRTax += HospitalSpawnInfo[iHospital][1]; // NE Hospitals
+					TRTax += HospitalSpawnInfo[iHospital][1]; // NR Hospitals
 					format(string, sizeof(string), "%s has paid their medical fees, adding $%d to the vault.", GetPlayerNameEx(playerid), HospitalSpawnInfo[iHospital][0]);
 					GroupPayLog(8, string);
 				}
@@ -531,7 +531,7 @@ CMD:buyinsurance(playerid, params[])
 		GivePlayerCash(playerid, - HospitalSpawnInfo[iHospitalVW][1]);
 		switch(iHospitalVW) {
 
-			case 3, 17: TRTax += HospitalSpawnInfo[iHospitalVW][1]; // NE Hospitals
+			case 3, 17: TRTax += HospitalSpawnInfo[iHospitalVW][1]; // NR Hospitals
 			default: Tax += HospitalSpawnInfo[iHospitalVW][1]; // SA Hospitals
 		}
 		format(string, sizeof(string), "%s has purchased their medical insurance for $%d", GetPlayerNameEx(playerid), HospitalSpawnInfo[iHospitalVW][0]);
@@ -669,7 +669,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 						GivePlayerCash(playerid, - HospitalSpawnInfo[iHospitalVW][1]);
 						switch(iHospitalVW) {
 
-							case 3, 17: TRTax += HospitalSpawnInfo[iHospitalVW][1]; // NE Hospitals
+							case 3, 17: TRTax += HospitalSpawnInfo[iHospitalVW][1]; // NR Hospitals
 							default: Tax += HospitalSpawnInfo[iHospitalVW][1]; // SA Hospitals
 						}
 						format(szMiscArray, sizeof(szMiscArray), "%s has purchased their medical insurance for $%d", GetPlayerNameEx(playerid), HospitalSpawnInfo[iHospitalVW][0]);

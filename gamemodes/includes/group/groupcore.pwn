@@ -866,7 +866,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 					else if(arrGroupData[iGroupID][g_iLockerCostType] != 0) SetArmour(playerid, 150.0);
 					else {
 						SendClientMessageEx(playerid, COLOR_RED, "The locker doesn't have the stock for your armor vest.");
-						SendClientMessageEx(playerid, COLOR_GRAD2, "Contact your supervisor or the STAG and organize a crate delivery.");
+						SendClientMessageEx(playerid, COLOR_GRAD2, "Contact your supervisor or SAAS and organize a crate delivery.");
 					}
 					PlayerInfo[playerid][pDuty] = 1;
 					SetPlayerToTeamColor(playerid);
@@ -1228,23 +1228,23 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				}
 				case 3:
 				{
-					if(arrGroupData[iGroupID][g_iJCount] == 0)
+					new szDialog[2500];
+					
+					// Always add the option to add jurisdictions
+					strcat(szDialog, "Add Jurisdiction");
+					
+					// Add existing jurisdictions if any
+					for(new i; i < arrGroupData[iGroupID][g_iJCount]; ++i)
 					{
-						format(string, sizeof(string), "%s doesn't have any jurisdiction. Add it via /groupaddjurisdiction", arrGroupData[iGroupID][g_szGroupName]);
-						SendClientMessage(playerid, COLOR_GRAD2, string);
-						return Group_DisplayDialog(playerid, iGroupID);
+						strcat(szDialog, "\n"), strcat(szDialog, arrGroupJurisdictions[iGroupID][i][g_iAreaName]);
 					}
-					else
-					{
-						new szDialog[2500];
-
-						for(new i; i < arrGroupData[iGroupID][g_iJCount]; ++i)
-						{
-							strcat(szDialog, "\n"), strcat(szDialog, arrGroupJurisdictions[iGroupID][i][g_iAreaName]);
-						}
-
-						format(szTitle, sizeof szTitle, "Edit Group Jurisdiction {%s}(%s)", Group_NumToDialogHex(arrGroupData[iGroupID][g_hDutyColour]), arrGroupData[iGroupID][g_szGroupName]);
-						ShowPlayerDialogEx(playerid, DIALOG_GROUP_JURISDICTION_LIST, DIALOG_STYLE_LIST, szTitle, szDialog, "Remove", "Go Back");
+					
+					format(szTitle, sizeof szTitle, "Edit Group Jurisdiction {%s}(%s)", Group_NumToDialogHex(arrGroupData[iGroupID][g_hDutyColour]), arrGroupData[iGroupID][g_szGroupName]);
+					
+					if(arrGroupData[iGroupID][g_iJCount] > 0) {
+						ShowPlayerDialogEx(playerid, DIALOG_GROUP_JURISDICTION_LIST, DIALOG_STYLE_LIST, szTitle, szDialog, "Select", "Go Back");
+					} else {
+						ShowPlayerDialogEx(playerid, DIALOG_GROUP_JURISDICTION_LIST, DIALOG_STYLE_LIST, szTitle, szDialog, "Add", "Go Back");
 					}
 				}
 				case 4: {
@@ -1606,11 +1606,20 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			new iGroupID = GetPVarInt(playerid, "Group_EditID");
 			if(response)
 			{
-				new szTitle[128], szDialog[128];
-				format(szTitle, sizeof(szTitle), "%s's Jurisdiction", arrGroupData[iGroupID][g_szGroupName]);
-				format(szDialog, sizeof(szDialog), "Are you sure you want to remove %s from the %s?", arrGroupJurisdictions[iGroupID][listitem][g_iAreaName], arrGroupData[iGroupID][g_szGroupName]);
-				SetPVarInt(playerid, "JurisdictionRemoval", listitem);
-				return ShowPlayerDialogEx(playerid, DIALOG_GROUP_JURISDICTION_REMOVE, DIALOG_STYLE_MSGBOX, szTitle, szDialog, "Confirm", "Cancel");
+				if(listitem == 0) // "Add Jurisdiction" option
+				{
+					Group_ListGroups(playerid, DIALOG_GROUP_JURISDICTION_ADD);
+					return 1;
+				}
+				else if(arrGroupData[iGroupID][g_iJCount] > 0) // Only show remove option if jurisdictions exist
+				{
+					new actualItem = listitem - 1;
+					new szTitle[128], szDialog[128];
+					format(szTitle, sizeof(szTitle), "%s's Jurisdiction", arrGroupData[iGroupID][g_szGroupName]);
+					format(szDialog, sizeof(szDialog), "Are you sure you want to remove %s from the %s?", arrGroupJurisdictions[iGroupID][actualItem][g_iAreaName], arrGroupData[iGroupID][g_szGroupName]);
+					SetPVarInt(playerid, "JurisdictionRemoval", actualItem);
+					return ShowPlayerDialogEx(playerid, DIALOG_GROUP_JURISDICTION_REMOVE, DIALOG_STYLE_MSGBOX, szTitle, szDialog, "Confirm", "Cancel");
+				}
 			}
 			else return Group_DisplayDialog(playerid, iGroupID);
 		}
@@ -2219,7 +2228,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 					DestroyDynamic3DTextLabel(arrGroupLockers[iGroupID][iLocker][g_tLocker3DLabel]);
 					DestroyDynamicArea(arrGroupLockers[iGroupID][iLocker][g_iLockerAreaID]);
 
-					format(szMiscArray, sizeof szMiscArray, "%s Locker\n{1FBDFF}Press ~k~~CONVERSATION_YES~ {FFFF00} to use\n ID: %i", arrGroupData[iGroupID][g_szGroupName], arrGroupLockers[iGroupID][iLocker]);
+					format(szMiscArray, sizeof szMiscArray, "%s Locker\n{1FBDFF}Press ~k~~CONVERSATION_YES~{FFFF00} to use\n ID: %i", arrGroupData[iGroupID][g_szGroupName], arrGroupLockers[iGroupID][iLocker]);
 					arrGroupLockers[iGroupID][iLocker][g_tLocker3DLabel] = CreateDynamic3DTextLabel(szMiscArray, arrGroupData[iGroupID][g_hDutyColour] * 256 + 0xFF, arrGroupLockers[iGroupID][iLocker][g_fLockerPos][0], arrGroupLockers[iGroupID][iLocker][g_fLockerPos][1], arrGroupLockers[iGroupID][iLocker][g_fLockerPos][2], 15.0, .testlos = 1, .worldid = arrGroupLockers[iGroupID][iLocker][g_iLockerVW]);
 					arrGroupLockers[iGroupID][iLocker][g_iLockerAreaID] = CreateDynamicSphere(arrGroupLockers[iGroupID][iLocker][g_fLockerPos][0], arrGroupLockers[iGroupID][iLocker][g_fLockerPos][1], arrGroupLockers[iGroupID][iLocker][g_fLockerPos][2], 3.0, .worldid = arrGroupLockers[iGroupID][iLocker][g_iLockerVW]);
 
@@ -2336,7 +2345,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 
 				if(arrGroupData[iGroupID][g_iGroupType] == GROUP_TYPE_CRIMINAL)
 				{
-					format(szText, sizeof(szText), "%s Shipment Delivery Point\n{1FBDFF}/gdelivercrate", arrGroupData[iGroupID][g_szGroupName]);
+					format(szText, sizeof(szText), "%s Shipment Delivery Point\n{1FBDFF}/delivercrate", arrGroupData[iGroupID][g_szGroupName]);
 				}
 				else
 				{
@@ -3817,7 +3826,7 @@ CMD:dvadjust(playerid, params[])
 	}
 	else if(strcmp(opt, "div", true) == 0)
 	{
-		if(rank > 9 || rank < 0) return SendClientMessageEx(playerid, COLOR_GREY, "Divisions can't go below 0 or above 9!");
+		if(rank > 10 || rank < 0) return SendClientMessageEx(playerid, COLOR_GREY, "Divisions can't go below 0 or above 10!");
 		DynVehicleInfo[iDvSlotID][gv_igDivID] = rank;
 		new string[128];
 		format(string, sizeof(string), "You have adjusted the division of this vehicle to %s (%d).", arrGroupDivisions[DynVehicleInfo[iDvSlotID][gv_igID]][rank - 1], rank);

@@ -182,6 +182,11 @@ stock SetPlayerWalkingStyle(playerid, styleid)
 
 hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 {
+	if(GetPVarInt(playerid, "Injured") == 1)
+    {
+        return 0;
+    }
+	
     new animlib[32], animname[32], Float:x, Float:y, Float:z;
 	GetPlayerVelocity(playerid, x, y, z);
     GetAnimationName(GetPlayerAnimationIndex(playerid), animlib, sizeof(animlib), animname, sizeof(animname));

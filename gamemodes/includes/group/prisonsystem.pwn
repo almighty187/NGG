@@ -1339,7 +1339,7 @@ CMD:docjudgecharge(playerid, params[])
 		}
 		else if(arrGroupData[PlayerInfo[playerid][pMember]][g_iAllegiance] == 2)
 		{
-			format(szCountry, sizeof(szCountry), "[NE] ");
+			format(szCountry, sizeof(szCountry), "[NR] ");
 		}
 		strcat(szCrime, szCountry);
 		strcat(szCrime, szReason);

@@ -2085,6 +2085,7 @@ CMD:aduty(playerid, params[])
 			Log("logs/aduty.log", string);
 
 	   		PlayerInfo[playerid][pAdmin] = 1;
+        	if(PlayerInfo[playerid][pAdminLevel] >= ADMIN_HEAD) PlayerInfo[playerid][pSMod] = 1;
 	        DeletePVar(playerid, "AdminDuty");
 		}
 		else
@@ -3883,7 +3884,7 @@ CMD:setstat(playerid, params[])
 		{
 			SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /setstat [player] [statcode] [amount]");
 			SendClientMessageEx(playerid, COLOR_GRAD4, "|1 Level |2 ArmorUpgrade |3 UpgradePoints |4 Model |5 BankAccount |6 PhoneNumber |7 RespectPoints |8 House1 |9 House2 |10 House3");
-			SendClientMessageEx(playerid, COLOR_GRAD2, "|11 Not Used |12 Det |13 Lawyer |14 Fixer |17 Drug |18 Sex |19 Box |20 Arms |21 Materials |22 Pot |23 Crack");
+			SendClientMessageEx(playerid, COLOR_GRAD2, "|11 Trucker |12 Det |13 Lawyer |14 Fixer |17 Drug |18 Sex |19 Box |20 Arms |21 Materials |22 Pot |23 Crack");
 			SendClientMessageEx(playerid, COLOR_GRAD2, "|24 Fishing |25 Job |26 Rank |27 Packages |28 Crates |29 Smuggler |30 Insurance |31 Warnings |32 Screwdriver");
 			SendClientMessageEx(playerid, COLOR_GRAD1, "|33 Age |34 Gender |35 NMute |36 AdMute |37 Faction |38 Restricted Weapon Time |39 Gang Warns |40 RMute |41 Reward Hours");
 			SendClientMessageEx(playerid, COLOR_GRAD1, "|42 Playing Hours |43 Gold Box Tokens |44 Computer Drawings |45 Papers |46 Business |47 BusinessRank | 48 Spraycan");
@@ -3963,7 +3964,8 @@ CMD:setstat(playerid, params[])
 				}
 				case 11:
 				{
-					return SendClientMessageEx(playerid, COLOR_WHITE, "Family system has been merged to group system!");
+					PlayerInfo[giveplayerid][pTruckSkill] = amount;
+					format(string, sizeof(string), "   %s's(%d) Shipment contractor Skill has been set to %d.", GetPlayerNameEx(giveplayerid), GetPlayerSQLId(giveplayerid), amount);
 				}
 				case 12:
 				{
@@ -4234,7 +4236,7 @@ CMD:setmystat(playerid, params[])
 			if(PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1) {
 				SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /setmystat [statcode] [amount]");
 				SendClientMessageEx(playerid, COLOR_GRAD4, "|1 Level |2 ArmorUpgrade |3 UpgradePoints |4 Model |5 BankAccount |6 PhoneNumber |7 RespectPoints |8 House1 |9 House2 |10 House3");
-				SendClientMessageEx(playerid, COLOR_GRAD2, "|11 Not Used |12 Det |13 Lawyer |14 Fixer |17 Drug |18 Sex |19 Box |20 Arms |21 Materials |22 Cannabis |23 Crack");
+				SendClientMessageEx(playerid, COLOR_GRAD2, "|11 Trucker |12 Det |13 Lawyer |14 Fixer |17 Drug |18 Sex |19 Box |20 Arms |21 Materials |22 Cannabis |23 Crack");
 				SendClientMessageEx(playerid, COLOR_GRAD2, "|24 Fishing |25 Job |26 Rank |27 Packages |28 Crates |29 Smuggler |30 Insurance |31 Warnings |32 Screwdriver");
 				SendClientMessageEx(playerid, COLOR_GRAD1, "|33 Age |34 Gender |35 NMute |36 AdMute |37 Faction |38 Restricted Weapon Time |39 Gang Warns |40 RMute |41 Reward Hours");
 				SendClientMessageEx(playerid, COLOR_GRAD1, "|42 Playing Hours |43 Gold Box Tokens |44 Computer Drawings |45 Papers |46 Business |47 BusinessRank | 48 Spraycan");
@@ -4323,7 +4325,8 @@ CMD:setmystat(playerid, params[])
 			}
 		case 11:
 			{
-				SendClientMessageEx(playerid, COLOR_WHITE, "Family system has been merged to group system!");
+				PlayerInfo[playerid][pTruckSkill] = amount;
+				format(string, sizeof(string), "   %s's Trucker Skill has been set to %d.", GetPlayerNameEx(playerid), amount);
 			}
 		case 12:
 			{

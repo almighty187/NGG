@@ -615,7 +615,7 @@ stock GiftPlayer(playerid, giveplayerid, gtype = 2) // Default is the normal gif
 						if(dgVar[dgCustomToy][0] == 0) return GiftPlayer(playerid, giveplayerid, 1);
 						if(dgVar[dgCustomToy][3] == 0) return GiftPlayer(playerid, giveplayerid, 1);
 						
-						/*new icount = GetPlayerToySlots(giveplayerid), success = 0;
+						new icount = GetPlayerToySlots(giveplayerid), success = 0;
 						for(new v = 0; v < icount; v++)
 						{
 							if(PlayerToyInfo[giveplayerid][v][ptModelID] == 0)
@@ -666,7 +666,7 @@ stock GiftPlayer(playerid, giveplayerid, gtype = 2) // Default is the normal gif
 									break;
 								}	
 							}
-						}*/
+						}
 
 						AddFlag(giveplayerid, INVALID_PLAYER_ID, "[GIFTBOX] 1x Custom Toy");
 					

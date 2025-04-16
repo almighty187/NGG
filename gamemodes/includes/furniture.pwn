@@ -714,7 +714,7 @@ GetMaxFurnitureSlots(playerid) {
 	}
 	iMaxSlots += PlayerInfo[playerid][pFurnitureSlots];
 	if(iMaxSlots >= MAX_FURNITURE_SLOTS) iMaxSlots = MAX_FURNITURE_SLOTS-1;
-	if(IsAdminLevel(playerid, ADMIN_SENIOR, 0)) iMaxSlots = MAX_FURNITURE_SLOTS-1;
+	if(IsAdminLevel(playerid, ADMIN_HEAD, 0)) iMaxSlots = MAX_FURNITURE_SLOTS-1;
 	return iMaxSlots;
 }
 
@@ -845,7 +845,7 @@ HousePermissionCheck(playerid, iHouseID) {
 	if(PlayerInfo[playerid][pPhousekey2] == iHouseID) return 1;
 	if(PlayerInfo[playerid][pPhousekey3] == iHouseID) return 1;
 	if(PlayerInfo[playerid][pHouseBuilder] == iHouseID) return 1;
-	if(IsAdminLevel(playerid, ADMIN_SENIOR, 0)) return 1;
+	if(IsAdminLevel(playerid, ADMIN_HEAD, 0)) return 1;
 	return 0;
 }
 
@@ -2044,13 +2044,13 @@ CMD:furniturehelp(playerid, params[]) {
 	SendClientMessageEx(playerid, COLOR_YELLOW, "[Furniture] {CCCCCC}/unfurnishhouse (remove default GTA:SA furniture) | /furnishhouse (add default GTA:SA furniture)");
 	SendClientMessageEx(playerid, COLOR_YELLOW, "[Furniture] {CCCCCC}Blue House = Buy Furniture | Hammer = Build Mode (wrench = position, bucket = painting). | !-icon = Panic Button.");
 	SendClientMessageEx(playerid, COLOR_YELLOW, "[Furniture] {CCCCCC}Dollar Icon = Sell Furniture | Green House = List of your furniture. | Red Puppets = Assign Build Permissions to Player.");
-	if(IsAdminLevel(playerid, ADMIN_GENERAL, 0)) SendClientMessageEx(playerid, COLOR_YELLOW, "[Furniture] {FFFF00}/destroyfuniture | /destroyallfurniture | /rehashcatalog");
+	if(IsAdminLevel(playerid, ADMIN_HEAD, 0)) SendClientMessageEx(playerid, COLOR_YELLOW, "[Furniture] {FFFF00}/destroyfuniture | /destroyallfurniture | /rehashcatalog");
 	return 1;
 }
 
 CMD:furnituresystem(playerid, params[]) {
 
-	if(!IsAdminLevel(playerid, ADMIN_SENIOR, 1)) return 1;
+	if(!IsAdminLevel(playerid, ADMIN_HEAD, 1)) return 1;
 
 	if(FurnitureSystem) {
 		FurnitureSystem = 0;
@@ -2347,7 +2347,7 @@ CMD:destroyfurniture(playerid, params[]) {
 	new iHouseID = GetHouseID(playerid),
 		iSlotID;
 
-	if(!IsAdminLevel(playerid, ADMIN_GENERAL, 1)) return 1;
+	if(!IsAdminLevel(playerid, ADMIN_HEAD, 1)) return 1;
 	if(iHouseID == INVALID_HOUSE_ID) return SendClientMessageEx(playerid, COLOR_GRAD1, "You are not in a house");
 	if(sscanf(params, "d", iSlotID)) return SendClientMessageEx(playerid, COLOR_GREY, "Usage: /destroyfurniture [slot].");
 	if(!IsValidFurniture(iHouseID, iSlotID, 1)) return SendClientMessageEx(playerid, COLOR_GRAD1, "You specified an invalid slot.");
