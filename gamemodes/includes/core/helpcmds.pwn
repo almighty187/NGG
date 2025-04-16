@@ -1505,7 +1505,7 @@ CMD:rules(playerid, params[])
 	return 1;
 }
 
-CMD:help(playerid, params[])
+/*CMD:help(playerid, params[])
 {
 	return Help_ListCat(playerid, DIALOG_HELPCATMAIN);
 }
@@ -1515,9 +1515,9 @@ CMD:reloadhelp(playerid, params[])
 	if(PlayerInfo[playerid][pAdmin] < 1337) return SendClientMessageEx(playerid, COLOR_GRAD1, "You are not authorized to use that command.");
 	SendClientMessageEx(playerid, COLOR_WHITE, "Reloading all help entries...");
 	return RehashHelp();
-}
+}*/
 
-CMD:ohelp(playerid, params[])
+CMD:help(playerid, params[])
 {
 	new string[512];
 	if(PlayerInfo[playerid][pLevel] <= 3)
