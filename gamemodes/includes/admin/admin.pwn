@@ -1762,9 +1762,8 @@ CMD:setseclevel(playerid, params[])
 {
 	if(PlayerInfo[playerid][pAdmin] >= 1337 || PlayerInfo[playerid][pHR] >= 2 || PlayerInfo[playerid][pAP] >= 2 || PlayerInfo[playerid][pSecurity] >= 2)
 	{
-
-	    new giveplayerid, task[8], string[128], level;
-	    if(sscanf(params, "us[8]d", giveplayerid, task, level))
+		new giveplayerid, task[8], string[128], level;
+		if(sscanf(params, "us[8]d", giveplayerid, task, level))
 		{
 			SendClientMessage(playerid, COLOR_GREY, "USAGE: /setseclevel [playerid] [secondary task] [level]");
 			SendClientMessage(playerid, COLOR_GRAD6, "Secondary Tasks: FMod, GMod, SO, BA, ST, PR, HR, BM");
@@ -1776,13 +1775,13 @@ CMD:setseclevel(playerid, params[])
 			{
 				if(strcmp(task, "fmod", true) == 0)
 				{
-				    if(level < 3)
-				    {
+					if(level < 3)
+					{
 						PlayerInfo[giveplayerid][pFactionModerator] = level;
 						format(string, sizeof(string), "You have been set to level %d Faction Moderator by %s.", level, GetPlayerNameEx(playerid));
-						SendClientMessage(playerid, COLOR_GREY, string);
+						SendClientMessageEx(giveplayerid, COLOR_GREY, string);
 						format(string, sizeof(string), "You have given %s level %d Faction Moderator.", GetPlayerNameEx(giveplayerid), level);
-						SendClientMessage(giveplayerid, COLOR_GREY, string);
+						SendClientMessageEx(playerid, COLOR_GREY, string);
 						format(string, sizeof(string), "%s has given Faction Moderator Level %d to %s", GetPlayerNameEx(playerid), level, GetPlayerNameEx(giveplayerid));
 						Log("logs/admin.log", string);
 						DBLog(playerid, giveplayerid, "Admin", "issued faction moderator");
@@ -1791,13 +1790,13 @@ CMD:setseclevel(playerid, params[])
 				}
 				else if(strcmp(task, "gmod", true) == 0)
 				{
-				    if(level < 3)
-				    {
+					if(level < 3)
+					{
 						PlayerInfo[giveplayerid][pGangModerator] = level;
 						format(string, sizeof(string), "You have been set to level %d Gang Moderator by %s.", level, GetPlayerNameEx(playerid));
-						SendClientMessage(playerid, COLOR_GREY, string);
+						SendClientMessageEx(giveplayerid, COLOR_GREY, string);
 						format(string, sizeof(string), "You have given %s level %d Gang Moderator.", GetPlayerNameEx(giveplayerid), level);
-						SendClientMessage(giveplayerid, COLOR_GREY, string);
+						SendClientMessageEx(playerid, COLOR_GREY, string);
 						format(string, sizeof(string), "%s has given Gang Moderator Level %d to %s", GetPlayerNameEx(playerid), level, GetPlayerNameEx(giveplayerid));
 						Log("logs/admin.log", string);
 						DBLog(playerid, giveplayerid, "Admin", "issued gang moderator");
@@ -1806,13 +1805,13 @@ CMD:setseclevel(playerid, params[])
 				}
 				else if(strcmp(task, "so", true) == 0)
 				{
-	  				if(level < 3)
-	  				{
+					if(level < 3)
+					{
 						PlayerInfo[giveplayerid][pUndercover] = level;
 						format(string, sizeof(string), "You have been set to level %d Spec Ops by %s.", level, GetPlayerNameEx(playerid));
-						SendClientMessage(playerid, COLOR_GREY, string);
+						SendClientMessageEx(giveplayerid, COLOR_GREY, string);
 						format(string, sizeof(string), "You have given %s level %d Spec Ops.", GetPlayerNameEx(giveplayerid), level);
-						SendClientMessage(giveplayerid, COLOR_GREY, string);
+						SendClientMessageEx(playerid, COLOR_GREY, string);
 						format(string, sizeof(string), "%s has given Spec Ops Level %d to %s", GetPlayerNameEx(playerid), level, GetPlayerNameEx(giveplayerid));
 						Log("logs/admin.log", string);
 						DBLog(playerid, giveplayerid, "Admin", "issued special ops");
@@ -1821,43 +1820,43 @@ CMD:setseclevel(playerid, params[])
 				}
 				else if(strcmp(task, "ba", true) == 0)
 				{
-				   	if(level < 3)
-				   	{
+					if(level < 3)
+					{
 						PlayerInfo[giveplayerid][pBanAppealer] = level;
 						format(string, sizeof(string), "You have been set to level %d Ban Appealer by %s.", level, GetPlayerNameEx(playerid));
-						SendClientMessage(playerid, COLOR_GREY, string);
+						SendClientMessageEx(giveplayerid, COLOR_GREY, string);
 						format(string, sizeof(string), "You have given %s level %d Ban Appealer.", GetPlayerNameEx(giveplayerid), level);
-						SendClientMessage(giveplayerid, COLOR_GREY, string);
+						SendClientMessageEx(playerid, COLOR_GREY, string);
 						format(string, sizeof(string), "%s has given Ban Appealer Level %d to %s", GetPlayerNameEx(playerid), level, GetPlayerNameEx(giveplayerid));
 						Log("logs/admin.log", string);
 						DBLog(playerid, giveplayerid, "Admin", "issued ban appealer");
- 					}
+					}
 					else return SendClientMessageEx(playerid, COLOR_GREY, "You can't set someone higher than DoCI.");
 				}
 				else if(strcmp(task, "st", true) == 0)
 				{
-				    if(level < 4)
-				    {
+					if(level < 4)
+					{
 						PlayerInfo[giveplayerid][pShopTech] = level;
 						format(string, sizeof(string), "You have been set to level %d Shop Tech by %s.", level, GetPlayerNameEx(playerid));
-						SendClientMessage(playerid, COLOR_GREY, string);
+						SendClientMessageEx(giveplayerid, COLOR_GREY, string);
 						format(string, sizeof(string), "You have given %s level %d Shop Tech.", GetPlayerNameEx(giveplayerid), level);
-						SendClientMessage(giveplayerid, COLOR_GREY, string);
+						SendClientMessageEx(playerid, COLOR_GREY, string);
 						format(string, sizeof(string), "%s has given Shop Technician to %s", GetPlayerNameEx(playerid), GetPlayerNameEx(giveplayerid));
 						Log("logs/admin.log", string);
 						DBLog(playerid, giveplayerid, "Admin", "issued shop tech");
- 					}
+					}
 					else return SendClientMessageEx(playerid, COLOR_GREY, "You can't set someone higher than DoCR.");
 				}
 				else if(strcmp(task, "pr", true) == 0)
 				{
-				    if(level < 3)
-				    {
+					if(level < 3)
+					{
 						PlayerInfo[giveplayerid][pPR] = level;
 						format(string, sizeof(string), "You have been set to level %d Public Relations by %s.", level, GetPlayerNameEx(playerid));
-						SendClientMessage(playerid, COLOR_GREY, string);
+						SendClientMessageEx(giveplayerid, COLOR_GREY, string);
 						format(string, sizeof(string), "You have given %s level %d Public Relations.", GetPlayerNameEx(giveplayerid), level);
-						SendClientMessage(giveplayerid, COLOR_GREY, string);
+						SendClientMessageEx(playerid, COLOR_GREY, string);
 						format(string, sizeof(string), "%s has given Public Relations permissions to %s", GetPlayerNameEx(playerid), GetPlayerNameEx(giveplayerid));
 						Log("logs/admin.log", string);
 						DBLog(playerid, giveplayerid, "Admin", "issued public relations");
@@ -1870,9 +1869,9 @@ CMD:setseclevel(playerid, params[])
 					{
 						PlayerInfo[giveplayerid][pHR] = level;
 						format(string, sizeof(string), "You have been set to level %d HR by %s.", level, GetPlayerNameEx(playerid));
-						SendClientMessage(playerid, COLOR_GREY, string);
+						SendClientMessageEx(giveplayerid, COLOR_GREY, string);
 						format(string, sizeof(string), "You have given %s level %d HR.", GetPlayerNameEx(giveplayerid), level);
-						SendClientMessage(giveplayerid, COLOR_GREY, string);
+						SendClientMessageEx(playerid, COLOR_GREY, string);
 						format(string, sizeof(string), "%s has given Human Resources permissions to %s", GetPlayerNameEx(playerid), GetPlayerNameEx(giveplayerid));
 						Log("logs/admin.log", string);
 						DBLog(playerid, giveplayerid, "Admin", "issued human resources");
@@ -1881,13 +1880,13 @@ CMD:setseclevel(playerid, params[])
 				}
 				else if(strcmp(task, "bm", true) == 0)
 				{
-				    if(level < 3)
-				    {
+					if(level < 3)
+					{
 						PlayerInfo[giveplayerid][pBM] = level;
 						format(string, sizeof(string), "You have been set to level %d Business Moderator by %s.", level, GetPlayerNameEx(playerid));
-						SendClientMessage(playerid, COLOR_GREY, string);
+						SendClientMessageEx(giveplayerid, COLOR_GREY, string);
 						format(string, sizeof(string), "You have given %s level %d Business Moderator.", GetPlayerNameEx(giveplayerid), level);
-						SendClientMessage(giveplayerid, COLOR_GREY, string);
+						SendClientMessageEx(playerid, COLOR_GREY, string);
 						format(string, sizeof(string), "%s has given Business Moderator permissions to %s", GetPlayerNameEx(playerid), GetPlayerNameEx(giveplayerid));
 						Log("logs/admin.log", string);
 						DBLog(playerid, giveplayerid, "Admin", "issued business moderator");
@@ -1895,7 +1894,7 @@ CMD:setseclevel(playerid, params[])
 					else return SendClientMessageEx(playerid, COLOR_GREY, "You can't set someone higher than DoBM.");
 				}
 			}
-			else SendClientMessage(playerid, COLOR_GRAD2, "They are not an admin!");
+			else SendClientMessageEx(playerid, COLOR_GRAD2, "They are not an admin!");
 		}
 		else SendClientMessageEx(playerid, COLOR_GRAD2, "That person is not connected.");
 	}
@@ -2104,6 +2103,55 @@ CMD:aduty(playerid, params[])
     }
 	return 1;
 }
+
+CMD:forceaduty(playerid, params[])
+{
+    if(PlayerInfo[playerid][pAdminLevel] < 1337)
+        return SendClientMessageEx(playerid, COLOR_GRAD1, "You're not authorized to use this command!");
+        
+    new targetid, string[128];
+    if(sscanf(params, "u", targetid))
+        return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /forceaduty [playerid]");
+        
+    if(!IsPlayerConnected(targetid))
+        return SendClientMessageEx(playerid, COLOR_GREY, "Invalid player specified!");
+        
+    if(PlayerInfo[targetid][pAdminLevel] < ADMIN_JUNIOR)
+        return SendClientMessageEx(playerid, COLOR_GREY, "That player is not an admin!");
+        
+    if(GetPVarType(targetid, "AdminDuty") == 1)
+    {
+        format(string, sizeof(string), "* %s %s is now {FF0000}off duty{FFFFFF}. (Forced by %s)", GetStaffRank(targetid), GetPlayerNameEx(targetid), GetPlayerNameEx(playerid));
+        foreach(new i: Player)
+        {
+            if(PlayerInfo[i][pAdminLevel] >= 2) SendClientMessage(i, COLOR_WHITE, string);
+        }
+        format(string, sizeof(string), "%s forced %s off duty from a %s.", GetPlayerNameEx(playerid), GetPlayerNameEx(targetid), GetAdminRankName(targetid));
+        Log("logs/aduty.log", string);
+
+        PlayerInfo[targetid][pAdmin] = 1;
+        if(PlayerInfo[targetid][pAdminLevel] >= ADMIN_HEAD) PlayerInfo[targetid][pSMod] = 1;
+        DeletePVar(targetid, "AdminDuty");
+        SendClientMessageEx(targetid, COLOR_WHITE, "Your admin duty status has been toggled by a Head Admin.");
+    }
+    else
+    {
+        PlayerInfo[targetid][pAdmin] = PlayerInfo[targetid][pAdminLevel];
+        SetPVarInt(targetid, "AdminDuty", 1);
+
+        format(string, sizeof(string), "* %s %s is now {00FF00}on duty{FFFFFF}. (Forced by %s)", GetStaffRank(targetid), GetPlayerNameEx(targetid), GetPlayerNameEx(playerid));
+        foreach(new i: Player)
+        {
+            if(PlayerInfo[i][pAdminLevel] >= 2) SendClientMessage(i, COLOR_WHITE, string);
+        }
+        format(string, sizeof(string), "%s forced %s on duty as a %s.", GetPlayerNameEx(playerid), GetPlayerNameEx(targetid), GetAdminRankName(targetid));
+        Log("logs/aduty.log", string);
+        SendClientMessageEx(targetid, COLOR_WHITE, "Your admin duty status has been toggled by a Head Admin.");
+    }
+    
+    return 1;
+}
+
 CMD:a(playerid, params[]) {
 	return cmd_admin(playerid, params);
 }
@@ -2275,13 +2323,13 @@ CMD:cnnn(playerid, params[]) {
 	return 1;
 }
 
-CMD:gotopveh(playerid, params[]) {
+CMD:gotopvehicle(playerid, params[]) {
     if(PlayerInfo[playerid][pAdmin] >= 2) {
 
         new iTargetID;
 
         if(sscanf(params, "u", iTargetID)) {
-			SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /gotopveh [player]");
+			SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /gotopvehicle [player]");
 		}
 		else if(IsPlayerConnected(iTargetID)) {
 
@@ -2314,6 +2362,11 @@ CMD:gotopveh(playerid, params[]) {
 		}
   	}
 	return 1;
+}
+
+CMD:gotopveh(playerid, params[])
+{
+	return cmd_gotopvehicle(playerid, params);
 }
 
 CMD:reloadpvehicles(playerid, params[])
@@ -2548,7 +2601,20 @@ CMD:setmyname(playerid, params[])
 
 	if (PlayerInfo[playerid][pUndercover] >= 1 || PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 4)
 	{
-		if(GetPVarInt(playerid, "TempName") == 0)
+		if(PlayerInfo[playerid][pAdmin] >= 1337)
+		{
+			if(strlen(params) > MAX_PLAYER_NAME)
+			{
+				format(string, sizeof(string), "You can't select a name that's above %d characters.", MAX_PLAYER_NAME);
+				return SendClientMessageEx(playerid, COLOR_WHITE, string);
+			}
+			
+			SetPlayerName(playerid, params);
+			format(string, sizeof(string), "You changed your name to %s.", params);
+			SendClientMessageEx(playerid, COLOR_YELLOW, string);
+			return 1;
+		}
+		else if(GetPVarInt(playerid, "TempName") == 0)
 		{
 		    if(strlen(params) > MAX_PLAYER_NAME)
 			{
@@ -5091,6 +5157,36 @@ CMD:slap(playerid, params[])
 			PlayerPlaySound(giveplayerid, 1130, posx, posy, posz+5);
 			if(giveplayerid != playerid) {
 				format(szString, sizeof(szString), "AdmCmd: %s was slapped by %s.", GetPlayerNameEx(giveplayerid), GetPlayerNameEx(playerid));
+				ABroadCast(COLOR_LIGHTRED, szString, 2);
+			}
+		}
+	}
+	else return SendClientMessageEx(playerid, COLOR_GRAD1, "You're not authorized to use this command!");
+	return 1;
+}
+
+CMD:downslap(playerid, params[])
+{
+	if(PlayerInfo[playerid][pAdmin] >= 2 || PlayerInfo[playerid][pWatchdog] == 2)
+	{
+	    new szString[128], giveplayerid, Float:posx, Float:posy, Float:posz, Float:shealth;
+	    if(sscanf(params, "u", giveplayerid)) return SendClientMessageEx(playerid, COLOR_GREY, "Usage: /downslap [player]");
+	    if(!IsPlayerConnected(giveplayerid)) return SendClientMessageEx(playerid, COLOR_GREY, "Invalid player specified.");
+	    if((PlayerInfo[giveplayerid][pAdmin] && PlayerInfo[giveplayerid][pAdmin] >= PlayerInfo[playerid][pAdmin]) && giveplayerid != playerid) {
+			format(szString, sizeof(szString), "AdmCmd: %s has tried to downslap you!", GetPlayerNameEx(playerid));
+			SendClientMessageEx(giveplayerid, COLOR_YELLOW, szString);
+			SendClientMessageEx(playerid, COLOR_GREY, "You cannot use this command on a the same/greater level admin than you!");
+			PlayerPlaySound(giveplayerid, 1130, posx, posy, posz);
+			return 1;
+		}
+		else {
+		    GetHealth(giveplayerid, shealth);
+			SetHealth(giveplayerid, shealth-5);
+			GetPlayerPos(giveplayerid, posx, posy, posz);
+			SetPlayerPos(giveplayerid, posx, posy, posz-2);
+			PlayerPlaySound(giveplayerid, 1130, posx, posy, posz-2);
+			if(giveplayerid != playerid) {
+				format(szString, sizeof(szString), "AdmCmd: %s was downslapped by %s.", GetPlayerNameEx(giveplayerid), GetPlayerNameEx(playerid));
 				ABroadCast(COLOR_LIGHTRED, szString, 2);
 			}
 		}

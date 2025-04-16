@@ -156,8 +156,8 @@ CMD:bugreport(playerid, params[]) {
 CMD:changes(playerid, params[])
 {
 	SendClientMessageEx(playerid, COLOR_WHITE, "-------------------------------------------------------------------");
-	SendClientMessageEx(playerid, COLOR_ORANGE,"New Generation Roleplay - Updates ("SERVER_GM_TEXT")");
-	SendClientMessageEx(playerid, COLOR_WHITE, "* Added admin duty system framework (Thomas).");
+	SendClientMessageEx(playerid, COLOR_ORANGE,"Next Generation Roleplay - Updates ("SERVER_GM_TEXT")");
+	SendClientMessageEx(playerid, COLOR_WHITE, "");
 	SendClientMessageEx(playerid, COLOR_WHITE, "-------------------------------------------------------------------");
 	return 1;
 }

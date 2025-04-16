@@ -446,9 +446,6 @@ new
 	iRewardObj,
 	iRewardBox;
 
-// Editing Objects
-//new EditingObject[MAX_PLAYERS] = INVALID_OBJECT_ID;
-
 //Kill Spoof Detecting
 new SpoofKill[MAX_PLAYERS];
 new KillTime[MAX_PLAYERS];
@@ -482,18 +479,10 @@ new audiourlurl[256];
 new audiourlid;
 new Float:audiourlparams[4];
 
-/* SAAS */
-/*
-new backlift;
-new sidelift;
-new backhatch;
-*/
-
 new TempNumber[MAX_PLAYERS];
 
 new Carrier[17];
 
-new CrateLoad[2];
 new AdminWarning;
 
 new Price[MAX_ITEMS];
@@ -515,8 +504,6 @@ new CrateFacility[MAX_CRATE_FACILITY][crateFacInfo];
 // Vehicle Properties (Replicate from the crate vehicle).
 new VehInfo[MAX_VEHICLES][vehProp];
 
-//new IslandThreatElimTimer;
-
 new IsRim[17] = { 1073, 1074, 1075, 1076, 1077, 1078, 1079, 1080, 1081, 1082, 1083, 1084, 1085, 1096, 1097, 1098, 1025 };
 
 new TextSpamTimes[MAX_PLAYERS];
@@ -526,11 +513,6 @@ new CommandSpamUnmute[MAX_PLAYERS];
 
 new control[MAX_PLAYERS];
 new ControlTimer[MAX_PLAYERS];
-
-/*
-new controlspeed[MAX_PLAYERS];
-new controldistance[MAX_PLAYERS];
-*/
 
 new Rocket[MAX_PLAYERS];
 new RocketLight[MAX_PLAYERS];
@@ -1054,16 +1036,17 @@ new Float:DMVRelease[4][3] = {
 {2540.8123, 104.9197, 26.5442}
 };*/
 
-
 /*new Float:LSPDJail[4][3] = {
 {227.46, 110.0, 999.02},
 {223.15, 110.0, 999.02},
 {219.25, 110.0, 999.02},
 {216.39, 110.0, 999.02}
 }; */
+
 new Float:WarrantJail[1][3] = {
 {1496.8030,-1547.1371,1127.0251}
 };
+
 /*new Float:ICPrisonSpawns[3][3] = {
 {-284.5741,1871.2554,29.8929},
 {-292.8077,1871.3717,29.8929},
@@ -1075,6 +1058,7 @@ new Float:WarrantJail[1][3] = {
 {-295.9042,1894.9121,29.8929},
 {-287.1133,1894.6259,29.8929}
 };*/
+
 new Float:OOCPrisonSpawns[20][3] = {
 {-1169.8495,2907.1541,9993.1318},
 {-1161.5973,2907.2935,9993.1318},
@@ -1201,6 +1185,7 @@ new mItemName[MAX_MICROITEMS][] = {
 	{"Antibiotic Injection"},
 	{"Survivor Kits"}
 };
+
 /*new ShopMsg[11][] = {
 	{"Need to get a job quick?~n~Get a Job Change to change your job instantly!~n~~b~~h~~h~/microshop"},
 	{"Do you want the level 5 perks of your job right now?~n~Purchase a Job Boost!~n~~b~~h~~h~/microshop"},
@@ -2631,27 +2616,6 @@ new Float:HospitalDeliveryPoints[MAX_DELIVERY_POINTS][3] = {
 	{-579.727905, -1031.585083, 35.166545} //Flint Rooftop
 };
 
-/*new HospitalDeliveryPointsInfo[MAX_DELIVERY_POINTS] = {
-{HOSPITAL_ALLSAINTS},
-{HOSPITAL_ALLSAINTS},
-{HOSPITAL_COUNTYGEN},
-{HOSPITAL_COUNTYGEN},
-{HOSPITAL_REDCOUNTY},
-{HOSPITAL_REDCOUNTY},
-{HOSPITAL_FORTCARSON},
-{HOSPITAL_FORTCARSON},
-{HOSPITAL_SANFIERRO},
-{HOSPITAL_SANFIERRO},
-{HOSPITAL_ELQUEBRADOS},
-{HOSPITAL_FLINT},
-{HOSPITAL_DEMORGAN},
-{HOSPITAL_LASVENTURAS},
-{0},
-{0}
-};*/
-
-// 1D - Hospital Spawn Price 2D - insurance purchase price
-// edit to however you like
 new HospitalSpawnInfo[MAX_HOSPITALS][2] = {
 {3000,2500},
 {3000,2500},
@@ -2685,8 +2649,6 @@ new Text:txtAnimHelper;
 new bool:PlayerIsDead[MAX_PLAYERS];
 
 /* Buttons */
-
-
 new eastin, eastout, lockerin, lockerout, cctvin, cctvout, roofkey, elevator, garagekey, chiefout, chiefin, westin, westout;
 new eastlobby1, eastlobby2, westlobby1, westlobby2, cctv1, cctv2, locker1, locker2, chief1, chief2, sasdbtn1, sasdbtn2, sasdbtn3, sasdbtn4, sasdbtn5, sasd1A, sasd2A, sasd3A, sasd4A, sasd5A, sasd1B, sasd2B, sasd3B, sasd4B, sasd5B;
 new FBILobbyLeft, FBILobbyLeftBTN[2], FBILobbyRight, FBILobbyRightBTN[2], FBIPrivate[2], FBIPrivateBTN[2];
@@ -2773,9 +2735,6 @@ new ROB_MAX_PERCENTAGE = 30,
 */
 
 //new Text3D:PlayerLabel[MAX_PLAYERS];
-
-//new DCC_Channel:g_AdminChannelId, DCC_Channel:g_AdminWarningsChannelId, DCC_Channel:g_HeadAdminChannelId, DCC_Channel:g_ServerErrorsChannelId;
-
 
 // Crate System.
 new 
