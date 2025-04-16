@@ -3268,9 +3268,9 @@ public OnPlayerEnterCheckpoint(playerid)
 		gPlayerCheckpointStatus[playerid] = CHECKPOINT_RETURNTRUCK;
 		if(!IsABoat(vehicleid))
 		{
-			SetPlayerCheckpoint(playerid, -1548.087524, 123.590423, 3.554687, 5);
-			GameTextForPlayer(playerid, "~w~Waypoint set ~r~San Fierro Docks", 5000, 1);
-			SendClientMessageEx(playerid, COLOR_WHITE, "HINT: Return to the San Fierro Docks (see checkpoint on radar).");
+			SetPlayerCheckpoint(playerid, 2451.7603, -2598.5278, 13.6564, 5);
+			GameTextForPlayer(playerid, "~w~Waypoint set ~r~Los Santos Docks", 5000, 1);
+			SendClientMessageEx(playerid, COLOR_WHITE, "HINT: Return to the Los Santos Docks (see checkpoint on radar).");
 		}
 		else
 		{
@@ -3311,7 +3311,7 @@ public OnPlayerEnterCheckpoint(playerid)
 		}
 
 		new string[128];
-		format(string, sizeof(string), "* You have delivered %s to %s. Return the truck to the San Fierro Docks to collect your pay.", GetInventoryType(business), Businesses[business][bName]);
+		format(string, sizeof(string), "* You have delivered %s to %s. Return the truck to the Los Santos Docks to collect your pay.", GetInventoryType(business), Businesses[business][bName]);
 		SendClientMessageEx(playerid, COLOR_LIGHTBLUE, string);
 
 		Businesses[business][bOrderState] = 3;
@@ -3345,9 +3345,9 @@ public OnPlayerEnterCheckpoint(playerid)
 		DisablePlayerCheckpoint(playerid);
 
 		gPlayerCheckpointStatus[playerid] = CHECKPOINT_RETURNTRUCK;
-		SetPlayerCheckpoint(playerid, -1548.087524, 123.590423, 3.554687, 5);
-		GameTextForPlayer(playerid, "~w~Waypoint set ~r~San Fierro Docks", 5000, 1);
-		SendClientMessageEx(playerid, COLOR_WHITE, "HINT: Return to the San Fierro Docks (see checkpoint on radar).");
+		SetPlayerCheckpoint(playerid, 2451.7603, -2598.5278, 13.6564, 5);
+		GameTextForPlayer(playerid, "~w~Waypoint set ~r~Los Santos Docks", 5000, 1);
+		SendClientMessageEx(playerid, COLOR_WHITE, "HINT: Return to the Los Santos Docks (see checkpoint on radar).");
 
 		//SetPVarInt(playerid, "tpTruckRunTimer", 30);
 		//SetTimerEx("OtherTimerEx", 1000, false, "ii", playerid, TYPE_TPTRUCKRUNTIMER);
@@ -3444,7 +3444,7 @@ public OnPlayerEnterCheckpoint(playerid)
 			}
 			case CHECKPOINT_LOADTRUCK:
 			{
-			    if(IsPlayerInRangeOfPoint(playerid, 6, -1572.767822, 81.137527, 3.554687) || IsPlayerInRangeOfPoint(playerid, 6, 2098.6543,-104.3568,-0.4820))
+			    if(IsPlayerInRangeOfPoint(playerid, 6, 2451.7603, -2598.5278, 13.6564) || IsPlayerInRangeOfPoint(playerid, 6, 2098.6543,-104.3568,-0.4820))
 			    {
 				    new vehicleid = GetPlayerVehicleID(playerid);
 	   				if(IsATruckerCar(vehicleid) && GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
@@ -3461,7 +3461,7 @@ public OnPlayerEnterCheckpoint(playerid)
 			}
 			case CHECKPOINT_RETURNTRUCK:
 			{
-			    if(!IsPlayerInRangeOfPoint(playerid, 6, -1548.087524, 123.590423, 3.554687) && !IsPlayerInRangeOfPoint(playerid, 6, 2098.6543,-104.3568,-0.4820))
+			    if(!IsPlayerInRangeOfPoint(playerid, 6, 2451.7603, -2598.5278, 13.6564) && !IsPlayerInRangeOfPoint(playerid, 6, 2098.6543,-104.3568,-0.4820))
 			    {// In the case the person finds a way to exploit the checkpoint to different location
                     CancelTruckDelivery(playerid);
                     SendClientMessageEx(playerid, COLOR_REALRED, "ERROR: Wrong checkpoint entered. Truck delivery canceled completely.");
@@ -3508,7 +3508,7 @@ public OnPlayerEnterCheckpoint(playerid)
 				}
 				else
 				{
-				    distancepay = floatmul(GetDistanceBetweenPoints(-1572.767822, 81.137527, 3.554687, TruckerDropoffs[route][PosX], TruckerDropoffs[route][PosY], TruckerDropoffs[route][PosZ]), 1.5);
+				    distancepay = floatmul(GetDistanceBetweenPoints(2451.7603, -2598.5278, 13.6564, TruckerDropoffs[route][PosX], TruckerDropoffs[route][PosY], TruckerDropoffs[route][PosZ]), 1.5);
 				}
 				payment += floatround(distancepay);
 				if(TruckDeliveringTo[vehicleid] != INVALID_BUSINESS_ID) {
@@ -3643,7 +3643,7 @@ public OnPlayerEnterCheckpoint(playerid)
 				new mypoint = -1;
 				for (new i=0; i<MAX_POINTS; i++)
 				{
-					if(strcmp(Points[i][Name], "San Fierro Docks", true) == 0)
+					if(strcmp(Points[i][Name], "Los Santos Docks", true) == 0)
 					{
 						mypoint = i;
 					}

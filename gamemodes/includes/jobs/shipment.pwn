@@ -570,9 +570,9 @@ CMD:hijackcargo(playerid, params[])
 				    SendClientMessageEx(playerid, COLOR_WHITE, "This Truck is empty, it does not contain any goods!");
 				    return 1;
 				}
-				if(IsPlayerInRangeOfPoint(playerid, 65, -1572.767822, 81.137527, 3.554687))
+				if(IsPlayerInRangeOfPoint(playerid, 65, 2451.7603, -2598.5278, 13.6564))
 				{
-				    SendClientMessageEx(playerid, COLOR_WHITE, "You can not hijack when that close to the San Fierro Docks!");
+				    SendClientMessageEx(playerid, COLOR_WHITE, "You can not hijack when that close to the Los Santos Docks!");
 					return 1;
 				}
 				if(!IsABoat(vehicleid))
@@ -645,9 +645,9 @@ CMD:loadshipment(playerid, params[])
 				}
 	            if(!IsABoat(vehicleid))
 	            {
-		            SetPlayerCheckpoint(playerid,-1572.767822, 81.137527, 3.554687, 4);
-		            GameTextForPlayer(playerid, "~w~Waypoint set ~r~San Fierro Docks", 5000, 1);
-		            SendClientMessageEx(playerid, COLOR_LIGHTBLUE, "* Pick up some goods to transport with your Truck at San Fierro Docks (see checkpoint on radar).");
+		            SetPlayerCheckpoint(playerid, 2451.7603, -2598.5278, 13.6564, 4);
+		            GameTextForPlayer(playerid, "~w~Waypoint set ~r~Los Santos Docks", 5000, 1);
+		            SendClientMessageEx(playerid, COLOR_LIGHTBLUE, "* Pick up some goods to transport with your Truck at Los Santos Docks (see checkpoint on radar).");
 				}
 				else
 				{
