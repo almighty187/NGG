@@ -117,7 +117,7 @@
 		8) Towing
 		9) Criminal/Gang
 		10) Racing
-	11) Business
+	12) Business
 		1) Gas Station
 		2) Clothing
 		3) Restaurant
@@ -131,12 +131,12 @@
 		11) Sex Shop
 		12) Gym
 		13) Casino
-	12) VIP
+	13) VIP
 		2) Silver VIP
 		3) Gold VIP
 		4) Platinum VIP
 		5) VIP Moderator
-	13) Other
+	14) Other
 		1) Animation
 		2) Backpack
 		3) Car

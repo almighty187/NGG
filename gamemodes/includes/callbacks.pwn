@@ -5378,18 +5378,6 @@ public OnPlayerText(playerid, text[])
 		new str[128];
 		foreach(new i: Player)
 		{
-			new playerVeh = GetPlayerVehicleID(playerid);
-
-			if (IsPlayerInAnyVehicle(playerid))
-			{
-				// If the other player is in the same vehicle
-				if (GetPlayerVehicleID(i) == playerVeh)
-				{
-					format(string, sizeof(string), "[CAR] %s%s says: %s", accent, sendername, text);
-					SendClientMessageEx(i, COLOR_FADE1, string);
-				}
-				continue; // Skip rest of checks, only send to people in same vehicle
-			}
 			if((InsidePlane[playerid] == GetPlayerVehicleID(i) && GetPlayerState(i) == 2) || (InsidePlane[i] == GetPlayerVehicleID(playerid) && GetPlayerState(playerid) == 2) || (InsidePlane[playerid] != INVALID_VEHICLE_ID && InsidePlane[playerid] == InsidePlane[i])) {
 				//if(PlayerInfo[playerid][pDuty] || IsAHitman(playerid)) format(string, sizeof(string), "%s{%06x}%s{E6E6E6} says: %s", accent, GetPlayerColor(playerid), sendername, text);
 				format(string, sizeof(string), "%s%s says: %s", accent, sendername, text);
@@ -5443,10 +5431,7 @@ public OnPlayerText(playerid, text[])
 			}
 		}
 	}
-	if (!IsPlayerInAnyVehicle(playerid))
-	{
-		SetPlayerChatBubble(playerid, text, COLOR_WHITE, 20.0, 5000);
-	}
+	SetPlayerChatBubble(playerid, text, COLOR_WHITE, 20.0, 5000);
 
 	format(string, sizeof(string), "(BE) %s: %s", GetPlayerNameEx(playerid), text);
 	foreach(new i: Player)
