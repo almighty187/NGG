@@ -2039,12 +2039,20 @@ GetFurnitureColorCode(id) {
 }
 
 CMD:furniturehelp(playerid, params[]) {
+	SendClientMessageEx(playerid, COLOR_YELLOW, "[Furniture] {CCCCCC}/furniture | /myslots | /furnitureresetpos | /permitbuilder | /revokebuilders");
+	SendClientMessageEx(playerid, COLOR_YELLOW, "[Furniture] {CCCCCC}/destroyallfurniture | {FF2222}Press ~k~~PED_LOOKBEHIND~ (twice) to toggle the mouse cursor.");
 
-	SendClientMessageEx(playerid, COLOR_YELLOW, "[Furniture] {CCCCCC}/furniture | /myslots | /furnitureresetpos | /permitbuilder | /revokebuilders | /destroyallfurniture | {FF2222}Press ~k~~PED_LOOKBEHIND~ (twice) to toggle the mouse cursor.");
-	SendClientMessageEx(playerid, COLOR_YELLOW, "[Furniture] {CCCCCC}/unfurnishhouse (remove default GTA:SA furniture) | /furnishhouse (add default GTA:SA furniture)");
-	SendClientMessageEx(playerid, COLOR_YELLOW, "[Furniture] {CCCCCC}Blue House = Buy Furniture | Hammer = Build Mode (wrench = position, bucket = painting). | !-icon = Panic Button.");
-	SendClientMessageEx(playerid, COLOR_YELLOW, "[Furniture] {CCCCCC}Dollar Icon = Sell Furniture | Green House = List of your furniture. | Red Puppets = Assign Build Permissions to Player.");
+	SendClientMessageEx(playerid, COLOR_YELLOW, "[Furniture] {CCCCCC}/unfurnishhouse (remove default GTA:SA furniture)");
+	SendClientMessageEx(playerid, COLOR_YELLOW, "[Furniture] {CCCCCC}/furnishhouse (add default GTA:SA furniture)");
+
+	SendClientMessageEx(playerid, COLOR_YELLOW, "[Furniture] {CCCCCC}Blue House = Buy Furniture | Hammer = Build Mode");
+	SendClientMessageEx(playerid, COLOR_YELLOW, "[Furniture] {CCCCCC}Wrench = Position | Bucket = Painting | !-icon = Panic Button");
+
+	SendClientMessageEx(playerid, COLOR_YELLOW, "[Furniture] {CCCCCC}Dollar Icon = Sell Furniture | Green House = Your Furniture List");
+	SendClientMessageEx(playerid, COLOR_YELLOW, "[Furniture] {CCCCCC}Red Puppets = Assign Build Permissions to Player");
+
 	if(IsAdminLevel(playerid, ADMIN_HEAD, 0)) SendClientMessageEx(playerid, COLOR_YELLOW, "[Furniture] {FFFF00}/destroyfuniture | /destroyallfurniture | /rehashcatalog");
+	
 	return 1;
 }
 
