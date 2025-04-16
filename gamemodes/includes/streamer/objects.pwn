@@ -4,16 +4,12 @@ hook OnGameModeInit() {
 	
 	print("[Streamer] Loading Dynamic Objects...");
 
-	//CrateLoad = CreateDynamicObject(964,-2114.1, -1723.5, 11984.5, 0, 0, 337.994, .worldid = 0, .interiorid = 1, .streamdistance = 200); //object(cj_metal_crate) (1)
-	//CrateLoad = CreateDynamicObject(964, -2136.05, -1573.24, 3550.00,0.00000000,0.00000000,180.00000000, .worldid = 0, .interiorid = 1, .streamdistance = 200); //object(cj_metal_crate) (1)
-	CrateLoad[0] = CreateDynamicObject(964, 2701.17188, -2654.36353, 12.63166,   0.00000, 0.00000, 88.00000, .worldid = 0, .interiorid = 0, .streamdistance = 200); //object(cj_metal_crate) (1)	
-	CrateLoad[1] = CreateDynamicObject(964, 2579.03467, 2811.95459, 9.82230,   0.00000, 0.00000, 176.93890, .worldid = 0, .interiorid = 0, .streamdistance = 200);
-
 	new VIPLogo = CreateDynamicObject(19353, 1803.89, -1593.99, 14.05,   0.00, 0.00, 312.26);
 	SetDynamicObjectMaterialText(VIPLogo, 0, "{842787}VIP LOUNGE", 90, "Impact", 56, 1, 0xFFFFFFFF, 0, 1);
 
 	new FCTS = CreateDynamicObject(19482, -58.9155, -1118.4808, 7.4781, 0.0000, 0.0000, 160.3858);
 	SetDynamicObjectMaterialText(FCTS, 0, "{880000}Flint County Towing Services", 110, "Impact", 40, 1, 0xFF000000, 0, 1);
+	
     /* (ongamemodeinit) - LSPD stuff */
 	eastlobby1 = CreateDynamicObject(1536,253.14941406,110.59960938,1002.21502686,0.00000000,0.00000000,270.00000000,-1,10,-1,100.0); // East lobby door (moves north)
 	eastlobby2 = CreateDynamicObject(1536,253.18457031,107.59960938,1002.21502686,0.00000000,0.00000000,90.00000000,-1,10,-1,100.0); // East lobby door (moves south)
@@ -115,13 +111,6 @@ hook OnGameModeInit() {
 	  						  gFerrisCageOffsets[x][2],
 							  0.0, 0.0, -270.0, 0 );
 	}
-	
-	//FDSA Static object ground
-	CreateObject(8531, 1289.93, -2552.11, 13.34,   0.00, 0.00, 186.04);
-	 
-	//FDSA Static object roof
-	CreateDynamicObject(19377, 1296.63, -2584.18, 16.73,   0.00, 90.00, 6.00, .worldid = 0, .streamdistance = 200);
-	CreateDynamicObject(19377, 1301.41, -2578.00, 16.81,   0.00, 90.00, 6.00, .worldid = 0, .streamdistance = 200);
 	
 	//SFPD
 	SFPDHighCMDDoor[0] = CreateDynamicObject(1536, -1578.19397, 702.29370, 18.64510,   0.00000, 0.00000, 0.00000, .streamdistance = 50); // Chief
