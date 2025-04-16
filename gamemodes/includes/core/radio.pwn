@@ -238,18 +238,19 @@ stock ShowSetStation(playerid, title[] = "Radio Menu")
 	format(string, sizeof(string), "Favorite Station\nGenres\nTop 50 Stations\nSearch\nK-LSR\nRadio New Robada\nNick's Radio\nCustom Audio URL\n%sTurn radio off", ((!isnull(PlayerInfo[playerid][pFavStation])) ? ("Favorite Station Settings\n") : ("")));
 	return ShowPlayerDialogEx(playerid, SETSTATION, DIALOG_STYLE_LIST, title, string, "Select", "Close");
 }*/
-new RadioStations[11][2][] = {
-	{{"http://yp.shoutcast.com/sbin/tunein-station.pls?id=37586"}, {"181.FM - THE BUZZ"}},
-	{{"http://yp.shoutcast.com/sbin/tunein-station.pls?id=297243"}, {"181.FM - HIGHWAY 181"}},
-	{{"http://yp.shoutcast.com/sbin/tunein-station.pls?id=557801"}, {"181.FM - REAL COUNTRY"}},
-	{{"http://yp.shoutcast.com/sbin/tunein-station.pls?id=97102"}, {"DEFJAY.COM - 100% R&B"}},
-	{{"http://www.dubstep.fm/listen.pls"}, {"DUBSTEP.FM"}},
-	{{"http://yp.shoutcast.com/sbin/tunein-station.pls?id=8318"}, {"HOT 108 JAMZ - #1 FOR HIPHOP"}},
-	{{"http://yp.shoutcast.com/sbin/tunein-station.pls?id=221956"}, {"181.FM Kickin' Country"}},
-	{{"http://www.specific.dk/normal.pls"}, {"Specific Radio"}},
-	{{"http://yp.shoutcast.com/sbin/tunein-station.pls?id=57352"}, {"HouseTime.FM - 24/7 House"}},
-	{{"http://yp.shoutcast.com/sbin/tunein-station.pls?id=108251"}, {":: Electro Radio ::"}},
-	{{"http://yp.shoutcast.com/sbin/tunein-station.pls?id=217084"}, {"1.FM - Amsterdam Trance"}}
+new RadioStations[12][2][] = {
+	{{"custom"}, {"Custom URL Station"}} , 
+    {{"https://listen.181fm.com/181-rock_128k.mp3"}, {"181.FM - Rock"}},
+    {{"https://listen.181fm.com/181-country_128k.mp3"}, {"181.FM - Country"}},
+    {{"https://listen.181fm.com/181-power_128k.mp3"}, {"181.FM - Power 181"}},
+    {{"https://streams.ilovemusic.de/iloveradio1.mp3"}, {"I Love Radio - Hits"}}, 
+    {{"https://streams.ilovemusic.de/iloveradio2.mp3"}, {"I Love Radio - Dance"}},
+    {{"https://streams.ilovemusic.de/iloveradio6.mp3"}, {"I Love Radio - Hip Hop"}},
+    {{"https://streams.ilovemusic.de/iloveradio16.mp3"}, {"I Love Radio - Country"}},
+    {{"https://streams.ilovemusic.de/iloveradio3.mp3"}, {"I Love Radio - Pop"}},
+    {{"https://streams.ilovemusic.de/iloveradio5.mp3"}, {"I Love Radio - House"}},
+    {{"https://streams.ilovemusic.de/iloveradio7.mp3"}, {"I Love Radio - EDM"}},
+    {{"https://streams.ilovemusic.de/iloveradio21.mp3"}, {"I Love Radio - Remix"}}
 };
 stock ShowSetStation(playerid, title[] = "{FFFFFF}Radio Menu")
 {
@@ -317,6 +318,10 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 					stationidv[GetPlayerVehicleID(playerid)][0] = 0;
 				}
 			}
+			else if(listitem == 1) // Custom URL option
+				{
+					ShowPlayerDialogEx(playerid, CUSTOM_URLCHOICE, DIALOG_STYLE_INPUT, "Custom URL", "Please insert a valid audio url stream.", "Enter", "Back");
+				}
 			else
 			{
 				if(IsPlayerInAnyVehicle(playerid))
@@ -343,6 +348,51 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 					SetPVarInt(playerid, "MusicIRadio", 1);
 				}
 			}
+		}
+	}	
+	else if(dialogid == CUSTOM_URLCHOICE)
+	{
+		if(response)
+		{
+			if(isnull(inputtext) || IsNumeric(inputtext)) return SendClientMessageEx(playerid, COLOR_GRAD1, "You have not entered a valid URL.");
+			if(IsPlayerInAnyVehicle(playerid))
+			{
+				foreach(new i: Player)
+				{
+					if(GetPlayerVehicleID(i) != 0 && GetPlayerVehicleID(i) == GetPlayerVehicleID(playerid))
+					{
+						PlayAudioStreamForPlayerEx(i, inputtext);
+						Log("logs/radiourl.log", inputtext);
+					}
+				}
+				format(stationidv[GetPlayerVehicleID(playerid)], 64, "%s", inputtext);
+				format(szMiscArray, sizeof(szMiscArray), "* %s changes the radio station.", GetPlayerNameEx(playerid));
+				ProxDetector(10.0, playerid, szMiscArray, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
+				DeletePVar(playerid, "pSelectGenre");
+				DeletePVar(playerid, "pSelectStation");
+			}
+			else if(GetPVarType(playerid, "pBoomBox"))
+			{
+				foreach(new i: Player) 
+				{
+					if(IsPlayerInDynamicArea(i, GetPVarInt(playerid, "pBoomBoxArea")))
+					{
+						PlayAudioStreamForPlayerEx(i, inputtext, GetPVarFloat(playerid, "pBoomBoxX"), GetPVarFloat(playerid, "pBoomBoxY"), GetPVarFloat(playerid, "pBoomBoxZ"), 30.0, 1);
+					}
+				}
+				SetPVarString(playerid, "pBoomBoxStation", inputtext);
+			}
+			else
+			{
+				PlayAudioStreamForPlayerEx(playerid, inputtext);
+				SetPVarInt(playerid, "MusicIRadio", 1);
+				//format(szMiscArray, sizeof(szMiscArray), "You are now playing %s", inputtext);
+				//SendClientMessageEx(playerid, COLOR_GREEN, szMiscArray);
+			}
+		}
+		else
+		{
+			ShowSetStation(playerid);
 		}
 	}		
 	/*
