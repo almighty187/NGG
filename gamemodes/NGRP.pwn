@@ -20,6 +20,7 @@
 								**  Development Staff:
 									187
 									Winters
+									Behemoth
 				Past Developers:
 								*** Director of SA:MP Development:
 									Dom
@@ -51,7 +52,6 @@
 									Kareemtastic
 									Sew Sumi
 									Razbit
-									Behemoth
 									Connor
 									Jingles
 									Westen
@@ -86,7 +86,7 @@
 /*  ---------------- SCRIPT REVISION ----------------- */
 
 // Do not forget to change this everytime you commit - it's mandatory!
-#define SERVER_GM_TEXT "NG:RP v3.0.465"
+#define SERVER_GM_TEXT "NG:RP v3.0.466"
 
 //#define AREA_DEBUG
 //#define TEXTLABEL_DEBUG

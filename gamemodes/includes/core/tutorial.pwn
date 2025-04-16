@@ -397,17 +397,18 @@ ShowTutorialDialog(playerid, stage)
 			strcat(szMiscArray, "\t\t{F69521}Developers{FFFFFF}:\n\
 				\t\t\t187\n\
 				\t\t\tWinters\n\
+				\t\t\tBehemoth\n\n\
 				\t\t{F69500}Past Developers{FFFFFF}:\n\
-				\t\t\tAkatony\tJohn\t\tBrendan\n\
+				\t\t\tAkatony\t\tJohn\t\tBrendan\n\
 				\t\t\tBrian\t\tScott\t\tGhoulSlayer\n\
 				\t\t\tZhao\t\tDonuts\t\tMo Cena\n\
 				\t\t\tCalgon\t\tNeo\t\tThomasJ\n\
 				\t\t\tBeren\t\tKareemtastic\tSew Sumi\n\
 				\t\t\tRazbit\t\tAlexR\t\tAustin\n\
 				\t\t\tDom\t\tRothschild\tWinterfield\n\
-				\t\t\tJingles\tBehemoth\tWesten\n\
-				\t\t\tConnolly\tMiguel\tFarva\n\
-				\t\t\tHector\tThomas\n");
+				\t\t\tJingles\t\tWesten\t\tThomas\n\
+				\t\t\tConnolly\tMiguel\t\tFarva\n\
+				\t\t\tHector\n");
 			strcat(szMiscArray, "\n\n{FFFFFF}_______________________________________________________________________________________________________________________________________________________");
 			ShowPlayerDialogEx(playerid, DIALOG_TUTORIAL, DIALOG_STYLE_MSGBOX, "NG:RP - Developers", szMiscArray, "Continue", "");
 		}
