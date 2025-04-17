@@ -924,7 +924,7 @@ public OnQueryFinish(resultid, extraid, handleid)
 						
 						if(PlayerToyInfo[extraid][i][ptAutoAttach] == -1 || PlayerToyInfo[extraid][i][ptAutoAttach] == GetPlayerSkin(extraid)) AttachToy(extraid, i, 0);
 
-						format(szMiscArray, sizeof(szMiscArray), "[TOYSLOAD] [User: %s(%i)] [Toy Model ID: %d] [Toy ID]", GetPlayerNameEx(extraid), PlayerInfo[extraid][pId], PlayerToyInfo[extraid][i][ptModelID], PlayerToyInfo[extraid][i][ptID]);
+						format(szMiscArray, sizeof(szMiscArray), "[TOYSLOAD] [User: %s(%i)] [Toy Model ID: %d] [Toy ID: %d]", GetPlayerNameEx(extraid), PlayerInfo[extraid][pId], PlayerToyInfo[extraid][i][ptModelID], PlayerToyInfo[extraid][i][ptID]);
 						Log("logs/toydebug.log", szMiscArray);
 					}
 					else
