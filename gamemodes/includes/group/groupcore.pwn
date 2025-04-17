@@ -79,7 +79,7 @@ Group_DisbandGroup(iGroupID) {
 	arrGroupData[iGroupID][g_iDrugs][4] = 0;
 
 	szMiscArray[0] = 0;
-	format(szMiscArray, sizeof(szMiscArray), "UPDATE `gWeaponsNew` SET `1` = '0'");
+	format(szMiscArray, sizeof(szMiscArray), "UPDATE `gweaponsnew` SET `1` = '0'");
 	for(new x = 2; x < 47; x++) format(szMiscArray, sizeof(szMiscArray), "%s, `%d` = '0'", szMiscArray, x);
 	mysql_format(MainPipeline, szMiscArray, sizeof(szMiscArray), "%s WHERE `id` = '%d'", szMiscArray, iGroupID + 1);
 	mysql_tquery(MainPipeline, szMiscArray, "OnQueryFinish", "ii", SENDDATA_THREAD, iGroupID);
@@ -6413,6 +6413,7 @@ CMD:adjustwithdrawrank(playerid, params[])
 	return 1;
 }
 
+CMD:gangs(playerid, params[]) return cmd_families(playerid, params);
 CMD:families(playerid, params[])
 {
 	//if(!IsACriminal(playerid) && PlayerInfo[playerid][pAdmin] < 2) return SendClientMessage(playerid, COLOR_GRAD2, "You need to be in a family / gang to use this command.");
@@ -6420,7 +6421,7 @@ CMD:families(playerid, params[])
 	if(isnull(params))
 	{
 		szMiscArray[0] = 0;
-		SendClientMessage(playerid, COLOR_GRAD2, "USAGE: /families [id]");
+		SendClientMessage(playerid, COLOR_GRAD2, "USAGE: /gangs [id]");
 		for(new i = 0; i < MAX_GROUPS; i++)
 		{
 			if(arrGroupData[i][g_iGroupType] == GROUP_TYPE_CRIMINAL && strlen(arrGroupData[i][g_szGroupName]) > 0)
@@ -6431,8 +6432,8 @@ CMD:families(playerid, params[])
 					if(PlayerInfo[x][pMember] == i) iMemberCount++;
 				}
 
-				format(szMiscArray, sizeof szMiscArray, "** %s (%d) | Total Members: %d | Members Online: %d", arrGroupData[i][g_szGroupName], i, arrGroupData[i][g_iMemberCount], iMemberCount);
-				SendClientMessage(playerid, COLOR_GRAD1, szMiscArray);
+				format(szMiscArray, sizeof szMiscArray, "** {%s}%s {FFFFFF}(%d) | Total Members: %d | Members Online: %d", Group_NumToDialogHex(arrGroupData[i][g_hDutyColour]), arrGroupData[i][g_szGroupName], i, arrGroupData[i][g_iMemberCount], iMemberCount);
+				SendClientMessage(playerid, COLOR_WHITE, szMiscArray);
 			}
 		}
 	}
@@ -6450,7 +6451,7 @@ CMD:families(playerid, params[])
 			if(PlayerInfo[i][pMember] == grp)
 			{
 				format(szMiscArray, sizeof szMiscArray, "** %s (ID: %d) - %s (%d)", GetPlayerNameEx(i), i, arrGroupRanks[grp][PlayerInfo[i][pRank]], PlayerInfo[i][pRank]);
-				SendClientMessage(playerid, COLOR_GRAD1, szMiscArray);
+				SendClientMessage(playerid, COLOR_WHITE, szMiscArray);
 				iCount++;
 			}
 		}
@@ -6460,22 +6461,93 @@ CMD:families(playerid, params[])
 	return 1;
 }
 
-//CMD:families(playerid, params[]) return cmd_orgs(playerid, params);
-CMD:orgs(playerid, params[])
-{
-	szMiscArray[0] = 0;
-	for(new i = 0; i < MAX_GROUPS; i++)
+CMD:factions(playerid, params[])
+{		
+	if(PlayerInfo[playerid][pAdmin] < 2) return SendClientMessage(playerid, COLOR_GRAD2, "You are not authorized to use this command.");
+
+	if(isnull(params))
 	{
-		if(arrGroupData[i][g_iGroupType] == GROUP_TYPE_CRIMINAL && strlen(arrGroupData[i][g_szGroupName]) > 0)
+		szMiscArray[0] = 0;
+		SendClientMessage(playerid, COLOR_GRAD2, "USAGE: /factions [id]");
+		for(new i = 0; i < MAX_GROUPS; i++)
 		{
-			new iMemberCount = 0;
-			foreach(new x: Player)
+			if(arrGroupData[i][g_iGroupType] != GROUP_TYPE_CRIMINAL && strlen(arrGroupData[i][g_szGroupName]) > 0)
 			{
-				if(PlayerInfo[x][pMember] == i) iMemberCount++;
+				new iMemberCount = 0;
+				foreach(new x: Player)
+				{
+					if(PlayerInfo[x][pMember] == i) iMemberCount++;
+				}
+
+				format(szMiscArray, sizeof szMiscArray, "** {%s}%s {FFFFFF}(%d) | Total Members: %d | Members Online: %d", Group_NumToDialogHex(arrGroupData[i][g_hDutyColour]), arrGroupData[i][g_szGroupName], i, arrGroupData[i][g_iMemberCount], iMemberCount);
+				SendClientMessage(playerid, COLOR_WHITE, szMiscArray);
 			}
-			format(szMiscArray, sizeof(szMiscArray), "** %s | Total Members: %d | Members Online: %i", arrGroupData[i][g_szGroupName], arrGroupData[i][g_iMemberCount], iMemberCount);
-			SendClientMessageEx(playerid, COLOR_WHITE, szMiscArray);
 		}
+	}
+	else
+	{
+		new grp = strval(params);
+		if(grp < 0 || grp > MAX_GROUPS || strlen(arrGroupData[grp][g_szGroupName]) == 0) return SendClientMessage(playerid, COLOR_GRAD2, "Invalid group ID specified.");
+
+		if(arrGroupData[grp][g_iGroupType] == GROUP_TYPE_CRIMINAL) return SendClientMessage(playerid, COLOR_GRAD2, "That group is not a faction.");
+
+		new iCount = 0;
+
+		foreach(new i: Player)
+		{
+			if(PlayerInfo[i][pMember] == grp)
+			{
+				format(szMiscArray, sizeof szMiscArray, "** %s (ID: %d) - %s (%d)", GetPlayerNameEx(i), i, arrGroupRanks[grp][PlayerInfo[i][pRank]], PlayerInfo[i][pRank]);
+				SendClientMessage(playerid, COLOR_WHITE, szMiscArray);
+				iCount++;
+			}
+		}
+
+		if(iCount == 0) SendClientMessage(playerid, COLOR_GRAD3, "There are no players online in this faction.");
+	}
+	return 1;
+}
+
+CMD:groups(playerid, params[])
+{
+	if(PlayerInfo[playerid][pAdmin] < 2) return SendClientMessage(playerid, COLOR_GRAD2, "You are not authorized to use this command.");
+
+	if(isnull(params))
+	{
+		szMiscArray[0] = 0;
+		SendClientMessage(playerid, COLOR_GRAD2, "USAGE: /groups [id]");
+		for(new i = 0; i < MAX_GROUPS; i++)
+		{
+			if(strlen(arrGroupData[i][g_szGroupName]) > 0)
+			{
+				new iMemberCount = 0;
+				foreach(new x: Player)
+				{
+					if(PlayerInfo[x][pMember] == i) iMemberCount++;
+				}
+
+				format(szMiscArray, sizeof szMiscArray, "** {%s}%s {FFFFFF}(%d) | Total Members: %d | Members Online: %d", Group_NumToDialogHex(arrGroupData[i][g_hDutyColour]), arrGroupData[i][g_szGroupName], i, arrGroupData[i][g_iMemberCount], iMemberCount);
+				SendClientMessageEx(playerid, COLOR_WHITE, szMiscArray);
+			}
+		}
+	}
+	else
+	{
+		new grp = strval(params);
+		if(grp < 0 || grp > MAX_GROUPS || strlen(arrGroupData[grp][g_szGroupName]) == 0) return SendClientMessage(playerid, COLOR_GRAD2, "Invalid group ID specified.");
+		new iCount = 0;
+
+		foreach(new i: Player)
+		{
+			if(PlayerInfo[i][pMember] == grp)
+			{
+				format(szMiscArray, sizeof szMiscArray, "** %s (ID: %d) - %s (%d)", GetPlayerNameEx(i), i, arrGroupRanks[grp][PlayerInfo[i][pRank]], PlayerInfo[i][pRank]);
+				SendClientMessageEx(playerid, COLOR_WHITE, szMiscArray);
+				iCount++;
+			}
+		}
+
+		if(iCount == 0) SendClientMessageEx(playerid, COLOR_GRAD3, "There are no players online in this gang.");
 	}
 	return 1;
 }
@@ -6607,7 +6679,7 @@ WithdrawGroupSafeWeapon(playerid, iGroupID, iWeaponID, iAmount = 1) {
 
 	if(PlayerInfo[playerid][pRank] < arrGroupData[iGroupID][g_iWithdrawRank][3] && playerid != INVALID_PLAYER_ID) return SendClientMessageEx(playerid, COLOR_WHITE, "You are not authorized to withdraw weapons from the locker!");
 
-	mysql_format(MainPipeline, szMiscArray, sizeof(szMiscArray), "UPDATE `gWeaponsNew` SET `%d` = `%d` - %d WHERE `id` = '%d'", iWeaponID, iWeaponID, iAmount, iGroupID+1);
+	mysql_format(MainPipeline, szMiscArray, sizeof(szMiscArray), "UPDATE `gweaponsnew` SET `%d` = `%d` - %d WHERE `id` = '%d'", iWeaponID, iWeaponID, iAmount, iGroupID+1);
 
 	//format(szMiscArray, sizeof(szMiscArray), "DELETE FROM `gWeapons` WHERE `Group_ID` = '%d' AND `Weapon_ID` = '%d' LIMIT 1", iGroupID, iWeaponID);
 	mysql_tquery(MainPipeline, szMiscArray, "OnWithdrawGroupWeapons", "iiii", playerid, iGroupID+1, iWeaponID, iAmount);
@@ -6646,7 +6718,7 @@ AddGroupSafeWeapon(playerid, iGroupID, iWeaponID, iAmount = 1) {
 
 	if(playerid != INVALID_PLAYER_ID && PlayerInfo[playerid][pGuns][GetWeaponSlot(iWeaponID)] == 0) return 1;
 
-	mysql_format(MainPipeline, szMiscArray, sizeof(szMiscArray), "UPDATE `gWeaponsNew` SET `%d` = `%d` + %d WHERE `id` = '%d'", iWeaponID, iWeaponID, iAmount, iGroupID+1);
+	mysql_format(MainPipeline, szMiscArray, sizeof(szMiscArray), "UPDATE `gweaponsnew` SET `%d` = `%d` + %d WHERE `id` = '%d'", iWeaponID, iWeaponID, iAmount, iGroupID+1);
 	//mysql_format(MainPipeline, szMiscArray, sizeof(szMiscArray), "INSERT INTO `gWeapons` (`Group_ID`, `Weapon_ID`) VALUES ('%d', '%d') ", iGroupID, iWeaponID);
 	mysql_tquery(MainPipeline, szMiscArray, "OnAddGroupSafeWeapon", "iiii", playerid, iGroupID+1, iWeaponID, iAmount);
 	return 1;

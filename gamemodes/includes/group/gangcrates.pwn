@@ -534,7 +534,7 @@ TransferItemToCrate(playerid, itemid, iAmount, iCrateID) {
 			if(iLoad +1 > MAX_CRATE_GUNS) return SendClientMessageEx(playerid, COLOR_GRAD2, "You cannot store anymore guns in this crate.");
 
 			SetGVarInt("GCrateLoad", iLoad+1, iCrateID);
-			format(szMiscArray, sizeof(szMiscArray), "SELECT `%d` FROM `gWeaponsNew` WHERE `Group_ID` = '%d'", iWeaponID, iGroupID+1);
+			format(szMiscArray, sizeof(szMiscArray), "SELECT `%d` FROM `gweaponsnew` WHERE `Group_ID` = '%d'", iWeaponID, iGroupID+1);
 			mysql_tquery(MainPipeline, szMiscArray, true, "OnPlayerCountLockerGuns", "iiiiii", playerid, iGroupID, iWeaponID, iAmount, itemid, iCrateID);
 		}
 		case 13: { // Pot
