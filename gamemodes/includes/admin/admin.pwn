@@ -5641,14 +5641,14 @@ CMD:ahelp(playerid, params[]) {
 	return cmd_ah(playerid, params);
 }
 
-/*CMD:ah(playerid, params[]) { // "NEW" help system with dialogs (trash)
+CMD:nah(playerid, params[]) { // "NEW" help system with dialogs (trash)
 	if(PlayerInfo[playerid][pAdmin] >= 1) Help_ListCat(playerid, DIALOG_HELPCATADMIN);
 	return 1;
-}*/
+}
 
-/*CMD:oahelp(playerid, params[]) {
-	return cmd_oah(playerid, params);
-}*/
+CMD:nahelp(playerid, params[]) {
+	return cmd_nah(playerid, params);
+}
 
 CMD:ah(playerid, params[])
 {
