@@ -11941,7 +11941,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			if(PlayerInfo[playerid][pRimMod] == 0)
 				return SendClientMessageEx(playerid, COLOR_GREY, "You don't have any rim modification kits.");
 
-			if(IsRestrictedVehicle(GetVehicleModel(GetPlayerVehicleID(playerid)))) return SendClientMessageEx(playerid, COLOR_GREY, "This vehicle cannot have rims applied to it");
+			//if(IsRestrictedVehicle(GetVehicleModel(GetPlayerVehicleID(playerid)))) return SendClientMessageEx(playerid, COLOR_GREY, "This vehicle cannot have rims applied to it");
 
 			if(InvalidModCheck(GetVehicleModel(GetPlayerVehicleID(playerid)), 1025))
 			{
