@@ -36,6 +36,9 @@
 			
 #if defined zombiemode
 
+//forward bool:IsNearSpike(Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2, Float:radius, Float:zTolerance);
+forward Float:GetDistance2D(Float:x1, Float:y1, Float:x2, Float:y2);
+
 Float:GetPointDistanceToPoint(Float:x1,Float:y1,Float:z1,Float:x2,Float:y2,Float:z2)
 {
   new Float:x, Float:y, Float:z;
@@ -318,6 +321,17 @@ String_Count(arrCount[][], iMax = sizeof arrCount) {
 }
 
 			/*  ---------------- PUBLIC FUNCTIONS -----------------  */
+
+stock Float:GetDistance2D(Float:x1, Float:y1, Float:x2, Float:y2)
+{
+    return floatsqroot(floatpower(x1 - x2, 2.0) + floatpower(y1 - y2, 2.0));
+}
+
+stock bool:IsNearSpike(Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2, Float:radius = 4.5, Float:zTolerance = 3.0)
+{
+    return (GetDistance2D(x1, y1, x2, y2) <= radius && floatabs(z1 - z2) <= zTolerance);
+}
+
 forward HideReportText(playerid);
 public HideReportText(playerid)
 {
@@ -1075,7 +1089,7 @@ public OnPlayerPickUpDynamicPickup(playerid, pickupid)
 	new vehicleid = GetPlayerVehicleID(playerid);
 	for(new iGroup; iGroup < MAX_GROUPS; iGroup++)
 	{
-		for(new x = 0; x < MAX_SPIKES; ++x)
+		/*for(new x = 0; x < MAX_SPIKES; ++x)
 		{
 			if(SpikeStrips[iGroup][x][sX] != 0 && pickupid == SpikeStrips[iGroup][x][sPickupID])
 			{
@@ -1096,7 +1110,26 @@ public OnPlayerPickUpDynamicPickup(playerid, pickupid)
 					}
 				}
 			}	
+		}*/
+
+		for (new x = 0; x < MAX_SPIKES; ++x)
+		{
+			if (SpikeStrips[iGroup][x][sX] != 0 && pickupid == SpikeStrips[iGroup][x][sPickupID])
+			{
+				DestroyDynamicPickup(SpikeStrips[iGroup][x][sPickupID]);
+				SpikeStrips[iGroup][x][sPickupID] = CreateDynamicPickup(19300, 14, SpikeStrips[iGroup][x][sX], SpikeStrips[iGroup][x][sY], SpikeStrips[iGroup][x][sZ]);
+
+				new Float:vx, Float:vy, Float:vz;
+				GetVehiclePos(vehicleid, vx, vy, vz);
+
+				if (IsNearSpike(vx, vy, vz, SpikeStrips[iGroup][x][sX], SpikeStrips[iGroup][x][sY], SpikeStrips[iGroup][x][sZ], 4.5, 2.0))
+				{
+					SetVehicleTireState(vehicleid, 0, 0, 0, 0);
+				}
+
+			}
 		}
+
 	}
 	if (GetPVarInt(playerid, "_BikeParkourStage") > 0)
 	{
