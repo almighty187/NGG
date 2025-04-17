@@ -67,14 +67,14 @@ IncreaseFishingLevel(playerid) {
     return 1;
 }
 
-CMD:fishhelp(playerid, params[])
+CMD:nfishhelp(playerid, params[])
 {
 	SetPVarInt(playerid, "HelpResultCat0", 5);
 	Help_ListCat(playerid, DIALOG_HELPCATOTHER1);
 	return 1;
 }
 
-CMD:ofishhelp(playerid, params[])
+CMD:fishhelp(playerid, params[])
 {
     SendClientMessageEx(playerid, COLOR_GREEN,"_______________________________________");
     SendClientMessageEx(playerid, COLOR_WHITE,"*** FISH HELP *** - type a command for more infomation.");

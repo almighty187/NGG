@@ -83,14 +83,14 @@ public RingTonerRev()
 	return 1;
 }
 
-CMD:cellphonehelp(playerid, params[])
+CMD:ncellphonehelp(playerid, params[])
 {
 	SetPVarInt(playerid, "HelpResultCat0", 4);
 	Help_ListCat(playerid, DIALOG_HELPCATOTHER1);
 	return 1;
 }
 
-CMD:ocellphonehelp(playerid, params[])
+CMD:cellphonehelp(playerid, params[])
 {
     SendClientMessageEx(playerid, COLOR_GREEN,"_______________________________________");
     if (PlayerInfo[playerid][pPnumber] != 0) {

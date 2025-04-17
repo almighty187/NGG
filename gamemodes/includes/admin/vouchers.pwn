@@ -776,14 +776,14 @@ CMD:denyvoucher(playerid, params[])
 	return 1;
 }		
 
-CMD:voucherhelp(playerid, params[])
+CMD:nvoucherhelp(playerid, params[])
 {
 	SetPVarInt(playerid, "HelpResultCat0", 10);
 	Help_ListCat(playerid, DIALOG_HELPCATOTHER1);
 	return 1;
 }
 
-CMD:ovoucherhelp(playerid, params[])
+CMD:voucherhelp(playerid, params[])
 {
 	SendClientMessageEx(playerid, COLOR_GRAD1, "** Player Commands: /myvouchers /denyvoucher /accept voucher");
 	if(PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1)

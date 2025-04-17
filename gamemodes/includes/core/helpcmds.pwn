@@ -1505,7 +1505,7 @@ CMD:rules(playerid, params[])
 	return 1;
 }
 
-/*CMD:help(playerid, params[])
+CMD:nhelp(playerid, params[])
 {
 	return Help_ListCat(playerid, DIALOG_HELPCATMAIN);
 }
@@ -1515,7 +1515,7 @@ CMD:reloadhelp(playerid, params[])
 	if(PlayerInfo[playerid][pAdmin] < 1337) return SendClientMessageEx(playerid, COLOR_GRAD1, "You are not authorized to use that command.");
 	SendClientMessageEx(playerid, COLOR_WHITE, "Reloading all help entries...");
 	return RehashHelp();
-}*/
+}
 
 CMD:help(playerid, params[])
 {
@@ -1524,13 +1524,13 @@ CMD:help(playerid, params[])
 	{
 		SendClientMessageEx(playerid, TEAM_AZTECAS_COLOR,"*** HELP *** /report /requesthelp (/newb)ie /tog newbie");
 	}
-	SendClientMessageEx(playerid, COLOR_WHITE,"*** ACCOUNT *** /(net)stats /inventory /quickstats /myguns /buylevel /upgrade /changepass /killcheckpoint /resetupgrades(100k)");
+	SendClientMessageEx(playerid, COLOR_WHITE,"*** ACCOUNT *** /(net)stats /inventory /quickstats /myguns /upgrade /changepass /killcheckpoint /resetupgrades(100k)");
 	SendClientMessageEx(playerid, COLOR_WHITE,"*** CHAT *** /w(hisper) /o(oc) /s(hout) /l(ow) /b /ad(vertisement)s /f(amily) /togooc /tognews /togfam /cancelcall");
 	SendClientMessageEx(playerid, COLOR_WHITE,"*** CHAT *** /me /ame /lme /do /ldo /se(texamine) /examine");
-	SendClientMessageEx(playerid, COLOR_WHITE,"*** GENERAL *** /pay /writecheck /charity /time /buy /(check)id /music /showlicenses /clothes /mywarrants");
-	SendClientMessageEx(playerid, COLOR_WHITE,"*** GENERAL *** /apply /skill /stopani /kill /buyclothes /droplicense /calculate /refuel /car /seatbelt /checkbelt, /defendtime");
-	SendClientMessageEx(playerid, COLOR_WHITE,"*** GENERAL *** /cancel /accept /eject /contract /service /families /joinevent /nextpaycheck, /nextgift, /pointtime");
-	SendClientMessageEx(playerid, COLOR_WHITE,"*** GENERAL *** /speedo /speedopos /viewmotd /pickveh /cracktrunk /backpackhelp /nextnamechange");
+	SendClientMessageEx(playerid, COLOR_WHITE,"*** GENERAL *** /pay /writecheck /charity /time /buy /(check)id /music /showlicenses /mywarrants");
+	SendClientMessageEx(playerid, COLOR_WHITE,"*** GENERAL *** /apply /skills /stopani /kill /buyclothes /droplicense /calculate /refuel /car /seatbelt /checkbelt /defendtime");
+	SendClientMessageEx(playerid, COLOR_WHITE,"*** GENERAL *** /cancel /accept /eject /contract /service /gangs /joinevent /nextpaycheck /nextgift /pointtime");
+	SendClientMessageEx(playerid, COLOR_WHITE,"*** GENERAL *** /speedo /speedopos /viewmotd /nextnamechange");
 	SendClientMessageEx(playerid, COLOR_WHITE,"*** SHOP *** /shophelp /credits /sellcredits /microshop /activeitems /cooldowns");
 
 	switch(PlayerInfo[playerid][pJob])
@@ -1538,15 +1538,15 @@ CMD:help(playerid, params[])
 		case 1: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /trace");
 		case 2: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /lawyerduty /free /defend /wanted /offerappeal /finishappeal");
 		case 3: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /sex");
-		case 4: cmd_odrughelp(playerid, "");
+		case 4: cmd_drughelp(playerid, "");
 		case 5: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /dropcar");
 		case 7: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /fix /nos /hyd /repair /refill /mechduty");
 		case 8: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /guard /frisk");
 		case 9: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /getmats /sell /sellgun");
-		case 10: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /sellnewcar");
+		case 10: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** ");
 		case 12: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /fight");
-		case 14: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /getcrate");
-		// case 15: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /papers /bring /deliver");
+		case 14: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /getdrugs");
+		// case 15: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** ");
 		case 17: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /fare");
 		case 18: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /getmats /sell /craft");
 		case 19: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /selldrink");
@@ -1557,43 +1557,43 @@ CMD:help(playerid, params[])
 	switch(PlayerInfo[playerid][pJob2])
 	{
 		case 1: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /trace");
-		case 2: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /lawyerduty /free /defend /wanted");
+		case 2: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /lawyerduty /free /defend /wanted /offerappeal /finishappeal");
 		case 3: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /sex");
-		case 4: cmd_odrughelp(playerid, "");
+		case 4: cmd_drughelp(playerid, "");
 		case 5: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /dropcar");
 		case 7: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /fix /nos /hyd /repair /refill /mechduty");
 		case 8: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /guard /frisk");
 		case 9: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /getmats /sell /sellgun");
-		case 10: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /sellnewcar");
+		case 10: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** ");
 		case 12: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /fight");
-		case 14: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /getcrate");
-		// case 15: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /papers /bring /deliver");
+		case 14: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /getdrugs");
+		// case 15: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** ");
 		case 17: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /fare");
 		case 18: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /getmats /sell /craft");
 		case 19: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /selldrink");
 		case 20: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /loadshipment /checkcargo /hijackcargo");
-		case 21: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /getpizza");
+		case 21: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /getpizza*");
 		case 27: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /garbagerun");
 	}
 	switch(PlayerInfo[playerid][pJob3])
 	{
 		case 1: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /trace");
-		case 2: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /lawyerduty /free /defend /wanted");
+		case 2: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /lawyerduty /free /defend /wanted /offerappeal /finishappeal");
 		case 3: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /sex");
-		case 4: cmd_odrughelp(playerid, "");
+		case 4: cmd_drughelp(playerid, "");
 		case 5: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /dropcar");
 		case 7: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /fix /nos /hyd /repair /refill /mechduty");
 		case 8: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /guard /frisk");
 		case 9: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /getmats /sell /sellgun");
-		case 10: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /sellnewcar");
+		case 10: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** ");
 		case 12: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /fight");
-		case 14: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /getcrate");
-		// case 15: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /papers /bring /deliver");
+		case 14: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /getdrugs");
+		// case 15: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** ");
 		case 17: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /fare");
 		case 18: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /getmats /sell /craft");
 		case 19: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /selldrink");
 		case 20: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /loadshipment /checkcargo /hijackcargo");
-		case 21: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /getpizza");
+		case 21: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /getpizza*");
 		case 27: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /garbagerun");
 	}
 	new iGroupID = PlayerInfo[playerid][pMember];
@@ -1605,7 +1605,7 @@ CMD:help(playerid, params[])
 			{
 			    format(string, sizeof(string), "*** %s *** (/r)adio /dept (/m)egaphone (/su)spect /locker /mdc /detain /arrest /warrantarrest /wanted /cuff /tazer", arrGroupData[PlayerInfo[playerid][pMember]][g_szGroupName]);
 				SendClientMessageEx(playerid, COLOR_WHITE, string);
-				format(string, sizeof(string), "*** %s ***  /frisk /take /ticket (/gov)ernment /clothes /ram /invite /giverank /deploy /destroy", arrGroupData[PlayerInfo[playerid][pMember]][g_szGroupName]);
+				format(string, sizeof(string), "*** %s ***  /frisk /take /ticket (/gov)ernment /clothes /ram /deploy /destroy", arrGroupData[PlayerInfo[playerid][pMember]][g_szGroupName]);
                 SendClientMessageEx(playerid, COLOR_WHITE, string);
 				format(string, sizeof(string), "*** %s ***  /spikes /revokelicense /vcheck /vmdc /vticket /tow /untow /impound /gdonate /togradio /togdept", arrGroupData[PlayerInfo[playerid][pMember]][g_szGroupName]);
 				SendClientMessageEx(playerid, COLOR_WHITE, string);
@@ -1613,10 +1613,10 @@ CMD:help(playerid, params[])
 				if(PlayerInfo[playerid][pRank] >= arrGroupData[PlayerInfo[playerid][pMember]][g_iBugAccess]) format(string, sizeof(string), "%s /bug /listbugs /clearbugs",string);
 				if(PlayerInfo[playerid][pRank] >= arrGroupData[PlayerInfo[playerid][pMember]][g_iFindAccess]) format(string, sizeof(string), "%s /hfind",string);
 				SendClientMessageEx(playerid, COLOR_WHITE, string);
-				if(arrGroupData[PlayerInfo[playerid][pMember]][g_iCrateIsland] != INVALID_RANK) {
+				/*if(arrGroupData[PlayerInfo[playerid][pMember]][g_iCrateIsland] != INVALID_RANK) {
                     format(string, sizeof(string), "*** %s ***  /cratelimit /viewcrateorders", arrGroupData[PlayerInfo[playerid][pMember]][g_szGroupName]);
 					SendClientMessageEx(playerid, COLOR_WHITE, string);
-				}
+				}*/
 				format(string, sizeof(string), "*** %s ***  /placekit /usekit /backup (code2) /backupall /backupint /calls /a(ccept)c(all) /i(gnore)c(all) /wheelclamp", arrGroupData[PlayerInfo[playerid][pMember]][g_szGroupName]);
 				SendClientMessageEx(playerid, COLOR_WHITE, string);
 
@@ -1630,14 +1630,14 @@ CMD:help(playerid, params[])
 			}
 			case 3:
 			{
-				format(string, sizeof(string), "*** %s ***  (/r)adio /dept (/m)egaphone /heal /clothes /invite /giverank /locker /gdonate", arrGroupData[PlayerInfo[playerid][pMember]][g_szGroupName]);
+				format(string, sizeof(string), "*** %s ***  (/r)adio /dept (/m)egaphone /heal /clothes /locker /gdonate", arrGroupData[PlayerInfo[playerid][pMember]][g_szGroupName]);
                 SendClientMessageEx(playerid, COLOR_WHITE, string);
 				format(string, sizeof(string), "*** %s ***  /getpt /movept /loadpt /deliverpt /destroyplant /calls /a(ccept)c(all) /i(gnore)c(all)", arrGroupData[PlayerInfo[playerid][pMember]][g_szGroupName]);
                 SendClientMessageEx(playerid, COLOR_WHITE, string);
 			}
 			case 4:
 			{
-				SendClientMessageEx(playerid, COLOR_WHITE, "*** NEWS AGENCY *** /live /news [text] /broadcast /cameraangle /clothes /invite /giverank /liveban");
+				SendClientMessageEx(playerid, COLOR_WHITE, "*** NEWS AGENCY *** /live /news [text] /broadcast /cameraangle /clothes /liveban");
    			}
 			case 5:
 			{
@@ -1647,8 +1647,8 @@ CMD:help(playerid, params[])
 				}
 				else
 				{
-					SendClientMessageEx(playerid, COLOR_WHITE, "*** GOVERNMENT *** (/r)adio /dept /locker /settax /checktax /taxwithdraw /invite /giverank (/gov)ernment (/su)spect");
-					SendClientMessageEx(playerid, COLOR_WHITE, "*** GOVERNMENT *** /mdc /detain /arrest /wanted /cuff /tazer /frisk /take /ticket /clothes /ram /invite /giverank /setbudget");
+					SendClientMessageEx(playerid, COLOR_WHITE, "*** GOVERNMENT *** (/r)adio /dept /locker /settax /checktax /taxwithdraw (/gov)ernment (/su)spect");
+					SendClientMessageEx(playerid, COLOR_WHITE, "*** GOVERNMENT *** /mdc /detain /arrest /wanted /cuff /tazer /frisk /take /ticket /clothes /ram");
 					SendClientMessageEx(playerid, COLOR_WHITE, "*** GOVERNMENT *** /spikes /destroyplant /radargun /warrantarrest /pardon /commute /wants /deploy /destroy");
 				}
 			}
@@ -1660,7 +1660,7 @@ CMD:help(playerid, params[])
 			}
 			case 7:
 			{
-				SendClientMessageEx(playerid, COLOR_WHITE, "*** TRANSPORT *** /fare /ataxi /r /invite /giverank /eba /gdonate");
+				SendClientMessageEx(playerid, COLOR_WHITE, "*** TRANSPORT *** /fare /ataxi /r /eba /gdonate");
 			}
 			case 8:
 			{
@@ -1668,7 +1668,7 @@ CMD:help(playerid, params[])
 			}
 			case 9:
 			{
-				SendClientMessageEx(playerid, COLOR_WHITE, "*** FAMILY *** (/f)amily /locker /gate /clothes /repfam /repcheck /myrivals /grouptoy /drughelp");
+				SendClientMessageEx(playerid, COLOR_WHITE, "*** FAMILY *** (/r)adio (/f)amily /locker /gate /clothes /repfam /repcheck /claimturf /cpature /myrivals /grouptoy");
 			}
 		}
 		if(arrGroupData[iGroupID][g_iCrimeType] == GROUP_CRIMINAL_TYPE_RACE) SendClientMessageEx(playerid, COLOR_WHITE, "*** URL *** /countdown");
@@ -1681,11 +1681,11 @@ CMD:help(playerid, params[])
 			}
 			else if(arrGroupData[iGroupID][g_iGroupType] == GROUP_TYPE_GOV)
 			{
-			    SendClientMessageEx(playerid, COLOR_LIGHTBLUE, "*** GROUP LEADER *** /checkapps /deport");
+			    SendClientMessageEx(playerid, COLOR_LIGHTBLUE, "*** GROUP LEADER *** /checkapps /deport /setbudget");
 			}
 			else if(arrGroupData[iGroupID][g_iGroupType] == GROUP_TYPE_CRIMINAL)
 			{
-				SendClientMessageEx(playerid, COLOR_LIGHTBLUE, "*** GROUP LEADER *** /adjustwithdrawrank /myrivals");
+				SendClientMessageEx(playerid, COLOR_LIGHTBLUE, "*** GROUP LEADER *** /adjustweprank /allow");
 			}
 		}
 	}
@@ -1711,12 +1711,12 @@ CMD:help(playerid, params[])
 		SendClientMessageEx(playerid, COLOR_PURPLE, "*** VIP Moderator *** /vipparty /vto /vtoreset /vmute /vsuspend /vipm");
 	}
 	SendClientMessageEx(playerid, COLOR_WHITE,"*** OTHER *** /cellphonehelp /carhelp /househelp /toyhelp /renthelp /jobhelp /animhelp /fishhelp");
-	SendClientMessageEx(playerid, COLOR_WHITE,"*** OTHER *** /mailhelp /businesshelp /voucherhelp /backpackhelp");
+	SendClientMessageEx(playerid, COLOR_WHITE,"*** OTHER *** /mailhelp /businesshelp /voucherhelp /backpackhelp /drughelp");
 
 	//Start of Famed Commands
 	if(PlayerInfo[playerid][pFamed] >= 1)
 	{
-	    SendClientMessageEx(playerid, COLOR_WHITE, "*** Old-School *** /fc /famedlocker /togfamed /famedplate [os/removed] /travel famed");
+	    SendClientMessageEx(playerid, COLOR_WHITE, "*** Old-School *** /fc /famedlocker /tog famed /famedplate [os/removed] /travel famed");
 	}
 	if(PlayerInfo[playerid][pFamed] >= 2)
 	{
@@ -1728,7 +1728,7 @@ CMD:help(playerid, params[])
 	}
 	if(PlayerInfo[playerid][pFamed] >= 4)
 	{
-	    SendClientMessageEx(playerid, COLOR_WHITE, "*** Famed Commissioner *** /fmute /funmute, /fmembers");
+	    SendClientMessageEx(playerid, COLOR_WHITE, "*** Famed Commissioner *** /fmute /funmute /fmembers");
 	}
 	if(PlayerInfo[playerid][pFamed] >= 6)
 	{

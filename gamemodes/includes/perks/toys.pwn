@@ -577,14 +577,14 @@ CMD:buytoys(playerid, params[])
 	return 1;
 }
 
-CMD:toyhelp(playerid, params[])
+CMD:ntoyhelp(playerid, params[])
 {
 	SetPVarInt(playerid, "HelpResultCat0", 9);
 	Help_ListCat(playerid, DIALOG_HELPCATOTHER1);
 	return 1;
 }
 
-CMD:otoyhelp(playerid, params[])
+CMD:toyhelp(playerid, params[])
 {
 	SendClientMessageEx(playerid, COLOR_GREEN,"_______________________________________");
 	SendClientMessageEx(playerid, COLOR_WHITE,"*** TOY HELP ***");

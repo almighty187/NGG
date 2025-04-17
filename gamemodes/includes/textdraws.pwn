@@ -613,7 +613,7 @@ public LoadTextDraws() {
     TextDrawSetShadow(BFText,1);
 
 	// WristWatch
-	WristWatch = TextDrawCreate(577.000000, 50.000000, " ");
+	WristWatch = TextDrawCreate(577.000000, 32.000000, " ");
 	TextDrawAlignment(WristWatch, 2);
 	TextDrawBackgroundColor(WristWatch, 255);
 	TextDrawFont(WristWatch, 3);

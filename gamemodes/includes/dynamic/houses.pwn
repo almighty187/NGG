@@ -594,14 +594,14 @@ stock RehashHouses()
 	//LoadHouses();
 }
 
-CMD:househelp(playerid, params[])
+CMD:nhousehelp(playerid, params[])
 {
 	SetPVarInt(playerid, "HelpResultCat0", 6);
 	Help_ListCat(playerid, DIALOG_HELPCATOTHER1);
 	return 1;
 }
 
-CMD:ohousehelp(playerid, params[])
+CMD:househelp(playerid, params[])
 {
     SendClientMessageEx(playerid, COLOR_GREEN,"_______________________________________");
     SendClientMessageEx(playerid, COLOR_WHITE,"*** HOUSE HELP *** - type a command for more infomation.");
@@ -612,14 +612,14 @@ CMD:ohousehelp(playerid, params[])
     return 1;
 }
 
-CMD:renthelp(playerid, params[])
+CMD:nrenthelp(playerid, params[])
 {
 	SetPVarInt(playerid, "HelpResultCat0", 8);
 	Help_ListCat(playerid, DIALOG_HELPCATOTHER1);
 	return 1;
 }
 
-CMD:orenthelp(playerid, params[])
+CMD:renthelp(playerid, params[])
 {
     SendClientMessageEx(playerid, COLOR_GREEN,"_______________________________________");
     SendClientMessageEx(playerid, COLOR_WHITE,"*** RENTING HELP *** - type a command for more infomation.");
