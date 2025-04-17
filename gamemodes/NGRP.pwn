@@ -21,6 +21,7 @@
 									187
 									Winters
 									Behemoth
+				
 				Past Developers:
 								*** Director of SA:MP Development:
 									Dom
@@ -85,7 +86,7 @@
 /*  ---------------- SCRIPT REVISION ----------------- */
 
 // Do not forget to change this everytime you commit - it's mandatory!
-#define SERVER_GM_TEXT "NG:RP v3.0.472"
+#define SERVER_GM_TEXT "NG:RP v3.0.473"
 
 //#define AREA_DEBUG
 //#define TEXTLABEL_DEBUG
@@ -213,6 +214,7 @@
 //#include "./includes/core/nametags.pwn"
 #include "./includes/core/vending.pwn"
 #include "./includes/core/globalchat.pwn"
+#include "./includes/core/fpslimit.pwn"
 
 // #tryinclude "./includes/core/inactive.pwn"
 
@@ -343,7 +345,6 @@
 #include "./includes/vehsystem/vehauto.pwn"
 #include "./includes/DBLog.pwn"
 #include "./includes/core/Player_Interact.pwn"
-
 
 // Jingles WIP
 #include "./includes/core/minigame.pwn"
