@@ -998,8 +998,8 @@ foreach(new i: Player)
 		if(1 <= GetPlayerState(i) <= 3) {
 			if(playerTabbed[i] >= 1) {
 				if(++playerTabbed[i] >= 1200 && PlayerInfo[i][pAdmin] < 2) {
-					SendClientMessageEx(i, COLOR_WHITE, "You have been automatically kicked for alt-tabbing.");
-					return Disconnect(i);
+				SendClientMessageEx(i, COLOR_WHITE, "You have been automatically kicked for alt-tabbing.");
+				return Disconnect(i);
 				}
 			}
 			else if(++playerSeconds[i] < iTick && playerTabbed[i] == 0) {
@@ -1007,8 +1007,9 @@ foreach(new i: Player)
 			}
 			else if((IsPlayerInRangeOfPoint(i, 2.0, PlayerPos[i][0], PlayerPos[i][1], PlayerPos[i][2]) || InsidePlane[i] != INVALID_PLAYER_ID) && ++playerLastTyped[i] >= 10) {
 				if(++playerAFK[i] >= 1200 && PlayerInfo[i][pAdmin] < 2) {
-					SendClientMessageEx(i, COLOR_WHITE, "You have been automatically kicked for idling.");
-					return Disconnect(i);
+				// Disable idle kick
+				//	SendClientMessageEx(i, COLOR_WHITE, "You have been automatically kicked for idling.");
+				//	return Disconnect(i);
 				}
 			}
 			else playerAFK[i] = 0;
