@@ -244,55 +244,67 @@ CMD:shakehand(playerid, params[])
 
 CMD:time(playerid, params[])
 {
-	if(GetPVarInt(playerid, "Injured") != 0 || PlayerCuffed[playerid] != 0 || GetPVarInt(playerid, "pBagged") >= 1 || PlayerInfo[playerid][pHospital] != 0) return SendClientMessageEx(playerid, COLOR_GRAD2, "You can't do that right now.");
-	
-	new string[128], mtext[20], thour, suffix[3], year, month,day;
-    getdate(year, month, day);
-    if(month == 1) { mtext = "January"; }
-    else if(month == 2) { mtext = "February"; }
-    else if(month == 3) { mtext = "March"; }
-    else if(month == 4) { mtext = "April"; }
-    else if(month == 5) { mtext = "May"; }
-    else if(month == 6) { mtext = "June"; }
-    else if(month == 7) { mtext = "July"; }
-    else if(month == 8) { mtext = "August"; }
-    else if(month == 9) { mtext = "September"; }
-    else if(month == 10) { mtext = "October"; }
-    else if(month == 11) { mtext = "November"; }
-    else if(month == 12) { mtext = "December"; }
-	if(hour > 12 && hour < 24)
-	{
-		thour = hour - 12;
-		suffix = "PM";
-	}
-	else if(hour == 12)
-	{
-		thour = 12;
-		suffix = "PM";
-	}
-	else if(hour > 0 && hour < 12)
-	{
-		thour = hour;
-		suffix = "AM";
-	}
-	else if(hour == 0)
-	{
-		thour = 12;
-		suffix = "AM";
-	}
+    if(GetPVarInt(playerid, "Injured") != 0 || PlayerCuffed[playerid] != 0 || GetPVarInt(playerid, "pBagged") >= 1 || PlayerInfo[playerid][pHospital] != 0)
+        return SendClientMessageEx(playerid, COLOR_GRAD2, "You can't do that right now.");
 
-	if (PlayerInfo[playerid][pJailTime] > 0)
-	{
-		format(string, sizeof(string), "~y~%s, %s %d, %d~n~~g~|~w~%d:%02d~g~%s|~n~~w~Jail Time Left: ~r~%s", GetWeekday(1), mtext, day, year, thour, minuite, suffix, TimeConvert(PlayerInfo[playerid][pJailTime]));
-	}
-	else
-	{
-		format(string, sizeof(string), "~y~%s, %s %d, %d~n~~g~|~w~%d:%02d~g~%s|", GetWeekday(1), mtext, day, year, thour, minuite, suffix);
-	}
-	if(!IsPlayerInAnyVehicle(playerid))
-	{
-		ApplyAnimation(playerid,"COP_AMBIENT","Coplook_watch", 4.0, 0, 0, 0, 0, 0, 1);
-	}
+    new string[128], mtext[20], thour, suffix[3], year, month, day;
+    new inGameHour, inGameMinute;
+
+    CalculateWorldGameTime(inGameHour, inGameMinute);
+    getdate(year, month, day);
+
+    // Month text
+    if(month == 1) mtext = "January";
+    else if(month == 2) mtext = "February";
+    else if(month == 3) mtext = "March";
+    else if(month == 4) mtext = "April";
+    else if(month == 5) mtext = "May";
+    else if(month == 6) mtext = "June";
+    else if(month == 7) mtext = "July";
+    else if(month == 8) mtext = "August";
+    else if(month == 9) mtext = "September";
+    else if(month == 10) mtext = "October";
+    else if(month == 11) mtext = "November";
+    else if(month == 12) mtext = "December";
+
+    // Convert to 12-hour time
+    if(inGameHour == 0)
+    {
+        thour = 12;
+        suffix = "AM";
+    }
+    else if(inGameHour < 12)
+    {
+        thour = inGameHour;
+        suffix = "AM";
+    }
+    else if(inGameHour == 12)
+    {
+        thour = 12;
+        suffix = "PM";
+    }
+    else
+    {
+        thour = inGameHour - 12;
+        suffix = "PM";
+    }
+
+    if(PlayerInfo[playerid][pJailTime] > 0)
+    {
+        format(string, sizeof(string), "~y~%s, %s %d, %d~n~~g~|~w~%d:%02d~g~%s|~n~~w~Jail Time Left: ~r~%s",
+            GetWeekday(1), mtext, day, year, thour, inGameMinute, suffix, TimeConvert(PlayerInfo[playerid][pJailTime]));
+    }
+    else
+    {
+        format(string, sizeof(string), "~y~%s, %s %d, %d~n~~g~|~w~%d:%02d~g~%s|",
+            GetWeekday(1), mtext, day, year, thour, inGameMinute, suffix);
+    }
+
+    if(!IsPlayerInAnyVehicle(playerid))
+    {
+        ApplyAnimation(playerid, "COP_AMBIENT", "Coplook_watch", 4.0, 0, 0, 0, 0, 0, 1);
+    }
+
     GameTextForPlayer(playerid, string, 5000, 1);
     return 1;
 }
