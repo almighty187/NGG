@@ -289,6 +289,7 @@ CMD:setautoreply(playerid, params[])
 		format(PlayerInfo[playerid][pAutoTextReply], 64, "%s", params);
 		format(string, sizeof(string), "You have changed your autotext response to: %s", params);
 		SendClientMessageEx(playerid, COLOR_WHITE, string);
+		printf("[DEBUG] AutoReply of %d: '%s'", playerid, PlayerInfo[playerid][pAutoTextReply]);
 	}
 	else
 	{
@@ -621,10 +622,11 @@ CMD:sms(playerid, params[])
 					//SendAudioToPlayer(giveplayerid, 47, 100);
 					Mobile[playerid] = INVALID_PLAYER_ID;
 
-					if(strcmp(PlayerInfo[giveplayerid][pAutoTextReply], "Nothing", true) != 0)
+					if(!isnull(PlayerInfo[giveplayerid][pAutoTextReply])) 
 					{
 						format(szMiscArray, sizeof(szMiscArray), "SMS: %s, Sender: %d [automated response]", PlayerInfo[giveplayerid][pAutoTextReply], PlayerInfo[giveplayerid][pPnumber]);
 						ChatTrafficProcess(playerid, COLOR_YELLOW, szMiscArray, 7);
+						printf("[DEBUG] AutoReply of %d: '%s'", giveplayerid, PlayerInfo[giveplayerid][pAutoTextReply]);
 					}
 
 					return 1;
