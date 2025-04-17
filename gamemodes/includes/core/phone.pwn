@@ -643,18 +643,19 @@ CMD:p(playerid, params[]) {
 CMD:pickup(playerid, params[])
 {
 	new string[128];
+	if(PhoneOnline[playerid] == 0)
+	    return SendClientMessageEx(playerid, COLOR_GRAD2, "Your phone is turned off.");
+
 	if(Mobile[playerid] != INVALID_PLAYER_ID)
 	{
-		SendClientMessageEx(playerid, COLOR_GRAD2, "  You are already on a call...");
+		SendClientMessageEx(playerid, COLOR_GRAD2, "You are already on a call.");
 		return 1;
 	}
 	if(GetPVarType(playerid, "PlayerCuffed") || GetPVarInt(playerid, "pBagged") >= 1 || GetPVarType(playerid, "Injured") || GetPVarType(playerid, "IsFrozen") || PlayerInfo[playerid][pHospital] > 0) {
    		return SendClientMessage(playerid, COLOR_GRAD2, "You can't do that at this time!");
 	}
 	if(GetPVarType(playerid, "PayPhone")) {
-
 		new x = GetPVarInt(playerid, "PayPhone");
-
 		if(arrPayPhoneData[x][pp_iCallerID] != INVALID_PLAYER_ID) {
 
 			if(arrPayPhoneData[x][pp_iCallerID] == playerid) return SendClientMessageEx(playerid, COLOR_GRAD1, "You cannot answer the pay phone you're dialing.");
@@ -666,8 +667,6 @@ CMD:pickup(playerid, params[])
 				}
 			}
 			foreach(new i: Player) 	{
-
-
 				if(i == arrPayPhoneData[x][pp_iCallerID])
 				{
 					Mobile[playerid] = i;
