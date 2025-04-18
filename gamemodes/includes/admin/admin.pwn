@@ -2764,7 +2764,7 @@ CMD:givenos(playerid, params[])
 	return 1;
 }
 
-CMD:countdown(playerid, params[])
+/*CMD:countdown(playerid, params[])
 {
 	if(IsARacer(playerid) && PlayerInfo[playerid][pTogReports] == 1 && PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pTogReports] == 1 && PlayerInfo[playerid][pASM] >= 1) {
 	    if(CountDown == 0) {
@@ -2786,6 +2786,60 @@ CMD:countdown(playerid, params[])
         } else {
             SendClientMessageEx(playerid, COLOR_WHITE, "There is already a countdown currently started.");
         }
+    }
+    return 1;
+}*/
+
+CMD:countdown(playerid, params[])
+{
+    new seconds;
+    if (sscanf(params, "d", seconds)) return SendClientMessage(playerid, COLOR_GREY, "Usage: /countdown [1-10]");
+    if (seconds < 1 || seconds > 10) return SendClientMessage(playerid, COLOR_GREY, "Countdown must be between 1 and 10 seconds.");
+
+    if ((IsARacer(playerid) && PlayerInfo[playerid][pTogReports] == 1 && (PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1))
+        || IsARacer(playerid)
+        || (PlayerInfo[playerid][pAdmin] >= 3 && PlayerInfo[playerid][pTogReports] == 0))
+    {
+        if (CountDown == 0)
+        {
+            PlayerInfo[playerid][pCountdown] = seconds;
+            CountDown = 1; // Flag it as active
+            SetTimerEx("Countdown", 1000, false, "i", playerid);
+			SendClientMessage(playerid, COLOR_LIGHTRED, "Use /cancelcountdown to stop the countdown");
+        }
+        else
+        {
+            SendClientMessageEx(playerid, COLOR_WHITE, "There is already a countdown currently started.");
+        }
+    }
+    else
+    {
+        SendClientMessageEx(playerid, COLOR_WHITE, "You are not authorized to use this command.");
+    }
+
+    return 1;
+}
+
+CMD:cancelcountdown(playerid, params[])
+{
+    if ((PlayerInfo[playerid][pAdmin] >= 3 && PlayerInfo[playerid][pTogReports] == 0) ||
+        (IsARacer(playerid) && PlayerInfo[playerid][pTogReports] == 1 && (PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1)))
+    {
+        if (CountDown > 0)
+        {
+            PlayerInfo[playerid][pCountdown] = 0;
+            CountDown = 0;
+
+            SendClientMessageToAll(COLOR_LIGHTBLUE, "** Countdown has been cancelled.");
+        }
+        else
+        {
+            SendClientMessage(playerid, COLOR_GREY, "There is no countdown currently running.");
+        }
+    }
+    else
+    {
+        SendClientMessage(playerid, COLOR_WHITE, "You are not authorized to use this command.");
     }
     return 1;
 }

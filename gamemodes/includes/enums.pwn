@@ -1298,7 +1298,8 @@ enum pInfo
 	pWalkStyle,
 	pFlagCredits,
 	pFlagClaimed,
-	pHorse
+	pHorse,
+	pCountdown
 };
 
 enum pvInfo
