@@ -1766,7 +1766,7 @@ CMD:setseclevel(playerid, params[])
 		if(sscanf(params, "us[8]d", giveplayerid, task, level))
 		{
 			SendClientMessage(playerid, COLOR_GREY, "USAGE: /setseclevel [playerid] [secondary task] [level]");
-			SendClientMessage(playerid, COLOR_GRAD6, "Secondary Tasks: FMod, GMod, SO, BA, ST, PR, HR, BM");
+			SendClientMessage(playerid, COLOR_GRAD6, "Secondary Tasks: FMod, GMod, SO, BA, ST, PR, HR, BM, AP");
 			return 1;
 		}
 		if(giveplayerid != INVALID_PLAYER_ID)
@@ -1890,6 +1890,21 @@ CMD:setseclevel(playerid, params[])
 						format(string, sizeof(string), "%s has given Business Moderator permissions to %s", GetPlayerNameEx(playerid), GetPlayerNameEx(giveplayerid));
 						Log("logs/admin.log", string);
 						DBLog(playerid, giveplayerid, "Admin", "issued business moderator");
+					}
+					else return SendClientMessageEx(playerid, COLOR_GREY, "You can't set someone higher than DoBM.");
+				}
+				else if(strcmp(task, "ap", true) == 0)
+				{
+					if(level < 3)
+					{
+						PlayerInfo[giveplayerid][pAP] = level;
+						format(string, sizeof(string), "You have been set to level %d Admin Personnel by %s.", level, GetPlayerNameEx(playerid));
+						SendClientMessageEx(giveplayerid, COLOR_GREY, string);
+						format(string, sizeof(string), "You have given %s level %d Admin Personnel.", GetPlayerNameEx(giveplayerid), level);
+						SendClientMessageEx(playerid, COLOR_GREY, string);
+						format(string, sizeof(string), "%s has given Admin Personnel permissions to %s", GetPlayerNameEx(playerid), GetPlayerNameEx(giveplayerid));
+						Log("logs/admin.log", string);
+						DBLog(playerid, giveplayerid, "Admin", "issued Admin Personnel");
 					}
 					else return SendClientMessageEx(playerid, COLOR_GREY, "You can't set someone higher than DoBM.");
 				}

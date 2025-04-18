@@ -142,7 +142,7 @@ CMD:fc(playerid, params[]) {
 			SendClientMessageEx(playerid, COLOR_GREY, szMessage);
 		}
 		else if(PlayerInfo[playerid][pToggledChats][8] == 1) {
-		    SendClientMessageEx(playerid, COLOR_GREY, "You have the famed chat toggled - /togfamed to enable it.");
+		    SendClientMessageEx(playerid, COLOR_GREY, "You have the famed chat toggled - /tog famed to enable it.");
 		}
 		else if(PlayerInfo[playerid][pFMuted] != 0) {
 			SendClientMessageEx(playerid, COLOR_GREY, "You are muted from the famed chat channel.");
