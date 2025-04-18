@@ -1,4 +1,4 @@
-forward Countdown(playerid);
+/*forward Countdown(playerid);
 public Countdown(playerid)
 {
 	if(PlayerInfo[playerid][pAdmin] >= 3 && PlayerInfo[playerid][pTogReports] == 0) {
@@ -56,4 +56,63 @@ public Countdown(playerid)
 		}
 	}
 	return 1;
+}*/
+
+forward Countdown(playerid);
+public Countdown(playerid)
+{
+    new count = PlayerInfo[playerid][pCountdown];
+    new message[48];
+
+    if (count > 0)
+    {
+        if (count == 1)
+        {
+            if (PlayerInfo[playerid][pAdmin] >= 3 && PlayerInfo[playerid][pTogReports] == 0)
+            {
+                SendClientMessageToAll(COLOR_LIGHTBLUE, "** 1");
+            }
+            else if (IsARacer(playerid))
+            {
+                ProxDetector(30.0, playerid, "** [Racer Countdown] 1 **", 0xEB41000, 0xEB41000, 0xEB41000, 0xEB41000, 0xEB41000);
+            }
+
+            PlayerInfo[playerid][pCountdown]--;
+            SetTimerEx("Countdown", 1000, false, "i", playerid);
+        }
+        else
+        {
+            if (PlayerInfo[playerid][pAdmin] >= 3 && PlayerInfo[playerid][pTogReports] == 0)
+            {
+                format(message, sizeof(message), "** %d", count);
+                SendClientMessageToAll(COLOR_LIGHTBLUE, message);
+            }
+            else if (IsARacer(playerid))
+            {
+                format(message, sizeof(message), "** [Racer Countdown] %d **", count);
+                ProxDetector(30.0, playerid, message, 0xEB41000, 0xEB41000, 0xEB41000, 0xEB41000, 0xEB41000);
+            }
+
+            PlayerInfo[playerid][pCountdown]--;
+            SetTimerEx("Countdown", 1000, false, "i", playerid);
+        }
+    }
+    else 
+    {
+        if (PlayerInfo[playerid][pAdmin] >= 3 && PlayerInfo[playerid][pTogReports] == 0)
+        {
+            SendClientMessageToAll(COLOR_LIGHTBLUE, "** Go Go Go!");
+        }
+        else if (IsARacer(playerid))
+        {
+            ProxDetector(30.0, playerid, "** [Racer Countdown] Go Go Go! **", 0xEB41000, 0xEB41000, 0xEB41000, 0xEB41000, 0xEB41000);
+        }
+
+        CountDown = 0;
+    }
+
+    return 1;
 }
+
+
+
