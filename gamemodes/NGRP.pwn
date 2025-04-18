@@ -108,7 +108,6 @@
 #include <easyDialog>
 #include <callbacks>
 #include <attachments>
-//#include <profiler>
 
 #if defined SOCKET_ENABLED
 #include <socket>
@@ -209,14 +208,10 @@
 #include "./includes/core/streamprep.pwn"
 #include "./includes/core/emailcheck.pwn"
 #include "./includes/core/AccountSettings.pwn"
-//#include "./includes/core/tutorial_new.pwn"
 #include "./includes/core/deluxegps.pwn"
-//#include "./includes/core/nametags.pwn"
 #include "./includes/core/vending.pwn"
 #include "./includes/core/globalchat.pwn"
 #include "./includes/core/fpslimit.pwn"
-
-// #tryinclude "./includes/core/inactive.pwn"
 
 //dynamic core includes
 #include "./includes/dynamic/doors.pwn"
@@ -250,7 +245,6 @@
 #include "./includes/vehsystem/cratevehicles.pwn"
 
 //event kernels includes
-//#include "./includes/events/bday.pwn"
 #include "./includes/events/event.pwn"
 #include "./includes/events/eventpoints.pwn"
 #include "./includes/events/fif.pwn"
@@ -269,9 +263,7 @@
 
 //dynamic group system includes
 #include "./includes/group/citizenship.pwn"
-//#include "./includes/group/contract.pwn"
 #include "./includes/group/hitman.pwn"
-//#include "./includes/group/fires.pwn"
 #include "./includes/group/gov.pwn"
 #include "./includes/group/groupcore.pwn"
 #include "./includes/group/judicial.pwn"
@@ -279,21 +271,15 @@
 #include "./includes/group/medic.pwn"
 #include "./includes/group/news.pwn"
 #include "./includes/prison_system.pwn"
-#include "./includes/group/racing.pwn"
 #include "./includes/group/taxi.pwn"
 #include "./includes/group/towing.pwn"
 #include "./includes/group/turfs.pwn"
 #include "./includes/group/cratesystem.pwn"
 #include "./includes/group/callsystem.pwn"
-//#include "./includes/group/gangshipment.pwn"
-//#include "./includes/group/gangcrates.pwn"
-//#include "./includes/group/gangrobbery.pwn"
 #include "./includes/group/GovArms.pwn"
 #include "./includes/group/grouppay.pwn"
 #include "./includes/group/gangtags.pwn"
 #include "./includes/group/GunLicense.pwn"
-//#include "./includes/group/URLrace.pwn"
-//#include "./includes/group/spraytags.pwn"
 #include "./includes/group/sanews.pwn"
 #include "./includes/group/casefile.pwn"
 #include "./includes/group/groupweapons.pwn"
@@ -313,11 +299,9 @@
 #include "./includes/jobs/mechanic.pwn"
 #include "./includes/jobs/pizzaboy.pwn"
 #include "./includes/jobs/shipment.pwn"
-#include "./includes/jobs/taxi.pwn"
 #include "./includes/jobs/treasure.pwn"
 #include "./includes/jobs/whore.pwn"
 #include "./includes/jobs/armsdealer.pwn"
-//#include "./includes/jobs/newshipment.pwn" - not supposed to be in yet! Don't forget to uncomment the reset, line 1975 in callbacks.pwn
 #include "./includes/core/drugcore.pwn"
 
 //perk system includes
@@ -333,12 +317,10 @@
 #include "./includes/perks/casino.pwn"
 #include "./includes/perks/horsey.pwn"
 
-//#include "./includes/core/ammo.pwn"
 #include "./includes/core/phone_new.pwn"
 #include "./includes/core/payphones.pwn"
 #include "./includes/group/rivalry.pwn"
 
-// WIP
 #include "./includes/core/ATMs.pwn"
 #include "./includes/core/Banks.pwn"
 #include "./includes/core/entexit.pwn"
@@ -346,19 +328,10 @@
 #include "./includes/DBLog.pwn"
 #include "./includes/core/Player_Interact.pwn"
 
-// Jingles WIP
 #include "./includes/core/minigame.pwn"
-//#include "./includes/anticheat2.pwn"
 #include "./includes/furnituretextures.pwn"
 #include "./includes/furniture.pwn"
 #include "./includes/group/elections.pwn"
-//#include "./includes/events/naturaldisaster.pwn"
-
-// Westen WIP
-//#include "./includes/dynamic/dynpolls2.pwn"
-
-// Jason WIP
-//#include "./includes/core/interact.pwn"
 
 main(){}
 
