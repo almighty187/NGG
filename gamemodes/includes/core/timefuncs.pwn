@@ -1,7 +1,3 @@
-new g_GameStartTimestamp;
-new g_GameBaseHour;
-new g_GameBaseMinute;
-
 stock ConvertToTwelveHour(tHour)
 {
 	new string[56], suffix[3], cHour;
@@ -29,20 +25,6 @@ stock ConvertToTwelveHour(tHour)
 	return string;
 }
 
-stock SetGameWorldTime(gameHour, gameMinute)
-{
-    g_GameStartTimestamp = gettime();
-    g_GameBaseHour = gameHour;
-    g_GameBaseMinute = gameMinute;
-}
-
-hook OnGameModeInit(){
-	new h, m, s;
-    gettime(h, m, s);
-    SetGameWorldTime(h, m);
-	return 1;
-}
-
 forward FixServerTime();
 public FixServerTime()
 {
@@ -57,10 +39,8 @@ public FixServerTime()
 	FixHour(tmphour);
 	tmphour = shifthour;
 	
-	new h, m;
-	CalculateWorldGameTime(h, m);
-	//printf("[DEBUG] SetWorldTime called with hour: %d", h);
-	SetWorldTime(h);
+	new iTempHour = CalculateWorldGameTime(hour, minuite);
+	SetWorldTime(iTempHour);
 	print("Adjusted the server time...");
 	return 1;
 }	
@@ -264,59 +244,67 @@ public SyncPlayerTime(playerid)
 {
 	if(zombieevent == 0)
 	{
-		new gameHour, gameMinute;
-		CalculateWorldGameTime(gameHour, gameMinute);
-		SetPlayerTime(playerid, gameHour, gameMinute);
-	}
+		new
+		iTempHour = CalculateWorldGameTime(hour, minuite),
+		iTempMinute = CalculateGameMinute(minuite, second);
 
+		SetPlayerTime(playerid, iTempHour, iTempMinute);
+	}
 	else SetPlayerTime(playerid, 0, 0);
 	return 1;
 }
+
 forward SyncMinTime(i);
 public SyncMinTime(i)
 {
-    if(GetPlayerVirtualWorld(i) == 133769)
-    {
-        SetPlayerWeather(i, 45);
-        SetPlayerTime(i, 0, 0);
-    }
-    else
-    {
-        if(zombieevent == 0) 
-        {
-            new gameHour, gameMinute;
-            CalculateWorldGameTime(gameHour, gameMinute);
-            SetPlayerTime(i, gameHour, gameMinute);
-        }
-        else SetPlayerTime(i, 0, 0);
-    }
-    return 1;
+	if(GetPlayerVirtualWorld(i) == 133769)
+	{
+		SetPlayerWeather(i, 45);
+		SetPlayerTime(i, 0, 0);
+	}
+	else
+	{
+		if(zombieevent == 0) 
+		{
+			new
+			iTempHour = CalculateWorldGameTime(hour, minuite),
+			iTempMinute = CalculateGameMinute(minuite, second);
+
+			SetPlayerTime(i, iTempHour, iTempMinute);
+		}
+    	else SetPlayerTime(i, 0, 0);
+	}
+	return 1;
 }
 #else
 forward SyncPlayerTime(playerid);
 public SyncPlayerTime(playerid)
 {
-    new gameHour, gameMinute;
-    CalculateWorldGameTime(gameHour, gameMinute);
-    SetPlayerTime(playerid, gameHour, gameMinute);
-    return 1;
+	new
+		iTempHour = CalculateWorldGameTime(hour, minuite),
+		iTempMinute = CalculateGameMinute(minuite, second);
+
+	SetPlayerTime(playerid, iTempHour, iTempMinute);
+	return 1;
 }
 
 forward SyncMinTime(i);
 public SyncMinTime(i)
 {
-    if(GetPlayerVirtualWorld(i) == 133769)
-    {
-        SetPlayerWeather(i, 45);
-        SetPlayerTime(i, 0, 0);
-    }
-    else
-    {
-        new gameHour, gameMinute;
-        CalculateWorldGameTime(gameHour, gameMinute);
-        SetPlayerTime(i, gameHour, gameMinute);
-    }	
-    return 1;
+	new
+		iTempHour = CalculateWorldGameTime(hour, minuite),
+		iTempMinute = CalculateGameMinute(minuite, second);
+
+	if(GetPlayerVirtualWorld(i) == 133769)
+	{
+		SetPlayerWeather(i, 45);
+		SetPlayerTime(i, 0, 0);
+	}
+	else
+	{
+		SetPlayerTime(i, iTempHour, iTempMinute);
+	}	
+	return 1;
 }
 #endif
 
@@ -369,48 +357,29 @@ stock date( timestamp, _form=0 )
     return returnstring;
 }
 
-stock CalculateWorldGameTime(&gameHour, &gameMinute)
+CalculateWorldGameTime(iTempSVHour, iTempSVMinute)
 {
-    new now = gettime();
-    new elapsedSeconds = now - g_GameStartTimestamp;
-
-    new totalGameMinutes = (g_GameBaseHour * 60 + g_GameBaseMinute) + (elapsedSeconds / 60); // 2x speed
-
-    totalGameMinutes %= (24 * 60); // Keep within 24 hours
-
-    gameHour = totalGameMinutes / 60;
-    gameMinute = totalGameMinutes % 60;
-    return 1;
-}
-
-CMD:settime(playerid, params[])
-{
-
-	if(PlayerInfo[playerid][pAdmin] < 4) return SendClientMessageEx(playerid, COLOR_GREY, "You are not authorized to use this command");
-
-    new gameHour, gameMinute;
-    if(sscanf(params, "ii", gameHour, gameMinute))
-        return SendClientMessageEx(playerid, COLOR_GREY, "Usage: /settime <hour 0-23> <minute 0-59>");
-
-    if(gameHour < 0 || gameHour > 23 || gameMinute < 0 || gameMinute > 59)
-        return SendClientMessageEx(playerid, COLOR_GREY, "Invalid time. Hour must be 0–23, minute 0–59.");
-
-    SetGameWorldTime(gameHour, gameMinute);
-
-    SetWorldTime(gameHour);
-
-    new msg[144];
-    format(msg, sizeof(msg), "You have set the in-game time to %02d:%02d.", gameHour, gameMinute);
-    SendClientMessageEx(playerid, COLOR_LIGHTBLUE, msg);
-	foreach(new i: Player)
+	// Note that 1 hour in-game time is equivalent to half an hour server-time. By logic this means the clock 
+	// advances 2x as fast as it should.
+	new iTime = 0; 
+	switch(iTempSVHour)
 	{
-		if(PlayerInfo[i][pAdmin] >= 2)
-		{
-			format(msg, sizeof(msg), "{AA3333}AdmWarning{FFFF00}: %s has set the in-game time to %02d:%02d.", GetPlayerNameEx(playerid), gameHour, gameMinute);
-			SendClientMessage(i, 0xAA3333FF, msg);
-		}
+		case 0, 12: iTime = 0; // 00:00
+		case 1, 13: iTime = 2; // 02:00
+		case 2, 14: iTime = 4; // 04:00
+		case 3, 15: iTime = 6; // 06:00
+		case 4, 16: iTime = 8; // 08:00
+		case 5, 17: iTime = 10; // 10:00
+		case 6, 18: iTime = 12; // 12:00
+		case 7, 19: iTime = 14; // 14:00 
+		case 8, 20: iTime = 16; // 16:00
+		case 9, 21: iTime = 18; // 18:00
+		case 10, 22: iTime = 20; // 20:00
+		case 11, 23: iTime = 22;// 22:00
 	}
-    return 1;
+	if(iTempSVMinute >= 30) iTime +=1;
+
+	return iTime;
 }
 
 /*CalculateGameMinute(iTempSVSec)
@@ -424,7 +393,7 @@ CMD:settime(playerid, params[])
 	return iTime;
 }*/
 
-/*CalculateGameMinute(iMinute, iSecond)
+CalculateGameMinute(iMinute, iSecond)
 {
 	new iTime = 0;
 	if(iMinute == 0 || iMinute == 30) iTime = 0;

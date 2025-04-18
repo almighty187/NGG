@@ -1689,7 +1689,7 @@ CMD:ohelp(playerid, params[])
 	//Start of Famed Commands
 	if(PlayerInfo[playerid][pFamed] >= 1)
 	{
-	    SendClientMessageEx(playerid, COLOR_WHITE, "*** Old-School *** /fc /famedlocker /togfamed /famedplate [os/removed] /travel famed");
+	    SendClientMessageEx(playerid, COLOR_WHITE, "*** Old-School *** /fc /famedlocker /tog famed /famedplate [os/removed] /travel famed");
 	}
 	if(PlayerInfo[playerid][pFamed] >= 2)
 	{

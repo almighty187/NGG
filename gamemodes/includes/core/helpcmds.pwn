@@ -1605,11 +1605,13 @@ CMD:help(playerid, params[])
 			{
 			    format(string, sizeof(string), "*** %s *** (/r)adio /dept (/m)egaphone (/su)spect /locker /mdc /detain /arrest /warrantarrest /wanted /cuff /tazer", arrGroupData[PlayerInfo[playerid][pMember]][g_szGroupName]);
 				SendClientMessageEx(playerid, COLOR_WHITE, string);
-				format(string, sizeof(string), "*** %s ***  /frisk /take /ticket (/gov)ernment /clothes /ram /deploy /destroy", arrGroupData[PlayerInfo[playerid][pMember]][g_szGroupName]);
+				format(string, sizeof(string), "*** %s ***  /frisk /take /ticket (/gov)ernment /clothes /ram /deploy /destroy /turnout", arrGroupData[PlayerInfo[playerid][pMember]][g_szGroupName]);
                 SendClientMessageEx(playerid, COLOR_WHITE, string);
 				format(string, sizeof(string), "*** %s ***  /spikes /revokelicense /vcheck /vmdc /vticket /tow /untow /impound /gdonate /togradio /togdept", arrGroupData[PlayerInfo[playerid][pMember]][g_szGroupName]);
 				SendClientMessageEx(playerid, COLOR_WHITE, string);
 				format(string, sizeof(string), "*** %s ***  /flares /cones /wants /docarrest /siren /destroyplant /radargun /searchcar /vradar /copdestroy (furniture)", arrGroupData[PlayerInfo[playerid][pMember]][g_szGroupName]);
+				SendClientMessageEx(playerid, COLOR_WHITE, string);
+				format(string, sizeof(string), "*** %s ***  /dvtrackcar /grepocars /gvbuyback", arrGroupData[PlayerInfo[playerid][pMember]][g_szGroupName]);
 				if(PlayerInfo[playerid][pRank] >= arrGroupData[PlayerInfo[playerid][pMember]][g_iBugAccess]) format(string, sizeof(string), "%s /bug /listbugs /clearbugs",string);
 				if(PlayerInfo[playerid][pRank] >= arrGroupData[PlayerInfo[playerid][pMember]][g_iFindAccess]) format(string, sizeof(string), "%s /hfind",string);
 				SendClientMessageEx(playerid, COLOR_WHITE, string);
@@ -1630,25 +1632,27 @@ CMD:help(playerid, params[])
 			}
 			case 3:
 			{
-				format(string, sizeof(string), "*** %s ***  (/r)adio /dept (/m)egaphone /heal /clothes /locker /gdonate", arrGroupData[PlayerInfo[playerid][pMember]][g_szGroupName]);
+				format(string, sizeof(string), "*** %s ***  (/r)adio /dept (/m)egaphone /heal /clothes /locker /turnout /gdonate /dvtrackcar /grepocars /siren /deploy", arrGroupData[PlayerInfo[playerid][pMember]][g_szGroupName]);
                 SendClientMessageEx(playerid, COLOR_WHITE, string);
-				format(string, sizeof(string), "*** %s ***  /getpt /movept /loadpt /deliverpt /destroyplant /calls /a(ccept)c(all) /i(gnore)c(all)", arrGroupData[PlayerInfo[playerid][pMember]][g_szGroupName]);
+				format(string, sizeof(string), "*** %s ***  /getpt /movept /loadpt /deliverpt /destroyplant /calls /a(ccept)c(all) /i(gnore)c(all) /gvbuyback", arrGroupData[PlayerInfo[playerid][pMember]][g_szGroupName]);
                 SendClientMessageEx(playerid, COLOR_WHITE, string);
 			}
 			case 4:
 			{
-				SendClientMessageEx(playerid, COLOR_WHITE, "*** NEWS AGENCY *** /live /news [text] /broadcast /cameraangle /clothes /liveban");
+				SendClientMessageEx(playerid, COLOR_WHITE, "*** NEWS AGENCY *** /live /news [text] /broadcast /cameraangle /clothes /liveban /gdonate /dvtrackcar /grepocars");
+				SendClientMessageEx(playerid, COLOR_WHITE, "*** NEWS AGENCY *** /gvbuyback /deploy");
    			}
 			case 5:
 			{
 				if(PlayerInfo[playerid][pRank] < 3)
 				{
-					SendClientMessageEx(playerid, COLOR_WHITE, "*** GOVERNMENT *** (/r)adio /dept /locker /mdc /deploy /destroy /spikes /tazer /frisk /cuff");
+					SendClientMessageEx(playerid, COLOR_WHITE, "*** GOVERNMENT *** (/r)adio /dept /locker /mdc /deploy /destroy /spikes /tazer /frisk /cuff /gdonate /dvtrackcar");
+					SendClientMessageEx(playerid, COLOR_WHITE, "*** GOVERNMENT *** /grepocars gvbuyback");
 				}
 				else
 				{
-					SendClientMessageEx(playerid, COLOR_WHITE, "*** GOVERNMENT *** (/r)adio /dept /locker /settax /checktax /taxwithdraw (/gov)ernment (/su)spect");
-					SendClientMessageEx(playerid, COLOR_WHITE, "*** GOVERNMENT *** /mdc /detain /arrest /wanted /cuff /tazer /frisk /take /ticket /clothes /ram");
+					SendClientMessageEx(playerid, COLOR_WHITE, "*** GOVERNMENT *** (/r)adio /dept /gdonate /locker /settax /checktax /taxwithdraw (/gov)ernment (/su)spect");
+					SendClientMessageEx(playerid, COLOR_WHITE, "*** GOVERNMENT *** /mdc /detain /arrest /wanted /cuff /tazer /frisk /take /ticket /clothes /ram /siren");
 					SendClientMessageEx(playerid, COLOR_WHITE, "*** GOVERNMENT *** /spikes /destroyplant /radargun /warrantarrest /pardon /commute /wants /deploy /destroy");
 				}
 			}
@@ -1656,36 +1660,41 @@ CMD:help(playerid, params[])
 			{
 				SendClientMessageEx(playerid, COLOR_WHITE, "*** JUDICIAL SYSTEM *** (/r)adio /dept /warrant /warrantwd /judgefine /judgejail /judgeprison /probation /wants /subpoena");
 				SendClientMessageEx(playerid, COLOR_WHITE, "*** JUDICIAL SYSTEM *** /invite /uninvite /giverank /trial /adjourn /sentence /reward /checkjudgements /reversejudgement");
-				SendClientMessageEx(playerid, COLOR_WHITE, "*** JUDICIAL SYSTEM *** /present /freezebank /freezeassets /probation /gdonate /viewassets");
+				SendClientMessageEx(playerid, COLOR_WHITE, "*** JUDICIAL SYSTEM *** /present /freezebank /freezeassets /probation /gdonate /viewassets /dvtrackcar /grepocars");
+				SendClientMessageEx(playerid, COLOR_WHITE, "*** JUDICIAL SYSTEM *** /gvbuyback /deploy");
 			}
 			case 7:
 			{
-				SendClientMessageEx(playerid, COLOR_WHITE, "*** TRANSPORT *** /fare /ataxi /r /eba /gdonate");
+				SendClientMessageEx(playerid, COLOR_WHITE, "*** TRANSPORT *** /fare /ataxi /r /eba /gdonate /dvtrackcar /grepocars /gvbuyback /deploy");
 			}
 			case 8:
 			{
 				SendClientMessageEx(playerid, COLOR_WHITE, "*** TOWING *** (/r)adio /dept /locker /(un)tow /impound /vcheck /vmdc /vticket /gdonate /calls /a(ccept)c(all) /i(gnore)c(all)");
+				SendClientMessageEx(playerid, COLOR_WHITE, "*** TOWING *** /dvtrackcar /grepocars /gvbuyback /deploy");
 			}
 			case 9:
 			{
-				SendClientMessageEx(playerid, COLOR_WHITE, "*** FAMILY *** (/r)adio (/f)amily /locker /gate /clothes /repfam /repcheck /claimturf /cpature /myrivals /grouptoy");
+				SendClientMessageEx(playerid, COLOR_WHITE, "*** FAMILY *** (/r)adio (/f)amily /locker /gate /clothes /repfam /repcheck /claimturf /capture /myrivals /grouptoy");
+				SendClientMessageEx(playerid, COLOR_WHITE, "*** FAMILY *** /online /dvtrackcar");
 			}
 		}
 		if(arrGroupData[iGroupID][g_iCrimeType] == GROUP_CRIMINAL_TYPE_RACE) SendClientMessageEx(playerid, COLOR_WHITE, "*** URL *** /countdown");
 		if (0 <= PlayerInfo[playerid][pLeader] < MAX_GROUPS)
 		{
-			SendClientMessageEx(playerid, COLOR_WHITE, "*** GROUP LEADER *** /invite /uninvite /ouninvite /setdiv /giverank /online /setbadge /setdivname /dvadjust");
+			SendClientMessageEx(playerid, COLOR_LIGHTBLUE, "*** GROUP LEADER *** /invite /uninvite /ouninvite /setdiv /giverank /gmotd /online /setbadge /setdivname /dvadjust");
+			SendClientMessageEx(playerid, COLOR_LIGHTBLUE, "*** GROUP LEADER *** /viewbudget /dvpark /dvrespawn");
 			if(arrGroupData[iGroupID][g_iGroupType] == GROUP_TYPE_LEA || arrGroupData[iGroupID][g_iGroupType] == GROUP_TYPE_MEDIC || arrGroupData[iGroupID][g_iGroupType] == GROUP_TYPE_JUDICIAL || arrGroupData[iGroupID][g_iGroupType] == GROUP_TYPE_TAXI || arrGroupData[iGroupID][g_iGroupType] == GROUP_TYPE_GOV || arrGroupData[iGroupID][g_iGroupType] == GROUP_TYPE_NEWS || arrGroupData[iGroupID][g_iGroupType] == GROUP_TYPE_TOWING)
 			{
 			    SendClientMessageEx(playerid, COLOR_LIGHTBLUE, "*** GROUP LEADER *** /viewbudget /grepocars /gvbuyback /gdonate /ordercrates /dvtrackcar /gwithdraw /dvstorage");
+			    SendClientMessageEx(playerid, COLOR_LIGHTBLUE, "*** GROUP LEADER *** /clearbugs /listbugs /gwithdraw");
 			}
 			else if(arrGroupData[iGroupID][g_iGroupType] == GROUP_TYPE_GOV)
 			{
-			    SendClientMessageEx(playerid, COLOR_LIGHTBLUE, "*** GROUP LEADER *** /checkapps /deport /setbudget");
+			    SendClientMessageEx(playerid, COLOR_LIGHTBLUE, "*** GROUP LEADER *** /checkapps /deport /setbudget /gwithdraw");
 			}
 			else if(arrGroupData[iGroupID][g_iGroupType] == GROUP_TYPE_CRIMINAL)
 			{
-				SendClientMessageEx(playerid, COLOR_LIGHTBLUE, "*** GROUP LEADER *** /adjustweprank /allow");
+				SendClientMessageEx(playerid, COLOR_LIGHTBLUE, "*** GROUP LEADER *** /adjustwithdrawrank /allow");
 			}
 		}
 	}

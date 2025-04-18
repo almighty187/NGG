@@ -230,11 +230,6 @@ task TurfWarsUpdate[1000]()
 // TickRate: 60 Secs
 task SyncTime[60000]()
 {
-	new gameHour, gameMinute;
-	CalculateWorldGameTime(gameHour, gameMinute);
-	// printf("[DEBUG] SetWorldTime called with hour: %d", gameHour);
-	SetWorldTime(gameHour); 
-
 	PlantTimer();
 
 	new reports, priority;
@@ -430,15 +425,10 @@ task SyncTime[60000]()
 		new year, month, day;
 		getdate(year, month, day);
 
-		new gameTimeStr[16];
-		format(gameTimeStr, sizeof(gameTimeStr), "%d:%02d %s",
-			(gameHour % 12 == 0) ? 12 : gameHour % 12,
-			gameMinute,
-			(gameHour >= 12) ? ("PM") : ("AM"));
+		new ttTime = CalculateWorldGameTime(hour, minuite);
 
-		format(szMiscArray, sizeof(szMiscArray), "The time is now %s. ((ST: %s))", gameTimeStr, ConvertToTwelveHour(tmphour));
+		format(szMiscArray, sizeof(szMiscArray), "The time is now %s. ((ST: %s))", ConvertToTwelveHour(ttTime), ConvertToTwelveHour(tmphour));
 		SendClientMessageToAllEx(COLOR_WHITE, szMiscArray);
-
 		new query[300];
 		mysql_format(MainPipeline, query, sizeof(query), "SELECT b.shift, b.needs_%e, COUNT(DISTINCT s.id) as ShiftCount FROM cp_shift_blocks b LEFT JOIN cp_shifts s ON b.shift_id = s.shift_id AND s.date = '%d-%02d-%02d' AND s.status >= 2 AND s.type = 1 WHERE b.time_start = '%02d:00:00' AND b.type = 1 GROUP BY b.shift, b.needs_%e", GetWeekday(), year, month, day, tmphour, GetWeekday());
 		mysql_tquery(MainPipeline, query, "GetShiftInfo", "is", INVALID_PLAYER_ID, szMiscArray);
@@ -488,6 +478,9 @@ task SyncTime[60000]()
 				}
 			}
 		}
+		new iTempHour = CalculateWorldGameTime(hour, minuite);
+		SetWorldTime(iTempHour);
+
 		if(tmphour == 0) CountCitizens();
 
 		for(new x = 0; x < MAX_POINTS; x++)
