@@ -621,7 +621,7 @@ CMD:sms(playerid, params[])
 					//SendAudioToPlayer(giveplayerid, 47, 100);
 					Mobile[playerid] = INVALID_PLAYER_ID;
 
-					if(strcmp(PlayerInfo[giveplayerid][pAutoTextReply], "Nothing", true) != 0)
+					if(!isnull(PlayerInfo[giveplayerid][pAutoTextReply]))
 					{
 						format(szMiscArray, sizeof(szMiscArray), "SMS: %s, Sender: %d [automated response]", PlayerInfo[giveplayerid][pAutoTextReply], PlayerInfo[giveplayerid][pPnumber]);
 						ChatTrafficProcess(playerid, COLOR_YELLOW, szMiscArray, 7);
@@ -643,6 +643,9 @@ CMD:p(playerid, params[]) {
 CMD:pickup(playerid, params[])
 {
 	new string[128];
+	if(PhoneOnline[playerid] == 0)
+	    return SendClientMessageEx(playerid, COLOR_GRAD2, "Your phone is turned off.");
+		
 	if(Mobile[playerid] != INVALID_PLAYER_ID)
 	{
 		SendClientMessageEx(playerid, COLOR_GRAD2, "  You are already on a call...");

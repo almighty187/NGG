@@ -302,8 +302,22 @@ CMD:tog(playerid, params[]) {
         PlayerInfo[playerid][pToggledChats][iChatID] = 1;
         switch(iChatID) {
  
-            case 6: PhoneOnline[playerid] = 1;
-            case 15: advisorchat[playerid] = 0;
+            case 6: {
+				PhoneOnline[playerid] = 1;
+				if(Mobile[playerid] != INVALID_PLAYER_ID) 
+				{
+					new otherid = Mobile[playerid];
+					if(IsPlayerConnected(otherid)) {
+						SendClientMessageEx(otherid, COLOR_GRAD2, "The person you were calling has turned off their phone.");
+					}
+
+					Phone_HangupCall(playerid, otherid); 
+					Phone_HangupCall(otherid, playerid); 
+				}
+				RingTone[playerid] = 0; 
+				Mobile[playerid] = INVALID_PLAYER_ID; 
+			}            
+			case 15: advisorchat[playerid] = 0;
             case 19: for(new i; i < sizeof(TD_ChatBox); ++i) PlayerTextDrawHide(playerid, TD_ChatBox[i]);
             case 23: TextDrawHideForPlayer(playerid, TD_RepFam);
            

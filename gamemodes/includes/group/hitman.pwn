@@ -799,7 +799,7 @@ CMD:hmahelp(playerid, params[])
 
 		SendClientMessageEx(playerid, COLOR_GREEN,"_______________________________________");
 	}
-	else if(PlayerInfo[playerid][pAdmin] >= 1337 || PlayerInfo[playerid][pFactionModerator] != 0 && PlayerInfo[playerid][pAdmin] >= 4)
+	else if(PlayerInfo[playerid][pAdmin] >= 99999 || PlayerInfo[playerid][pFactionModerator] != 0 && PlayerInfo[playerid][pAdmin] >= 4)
 	{
 		SendClientMessageEx(playerid, COLOR_GREEN,"_______________________________________");
 		SendClientMessageEx(playerid, COLOR_GRAD3, "*** Administrator Commands *** /makehitmanleader, /removehitmanleader, /oremovehitmanleader");
@@ -885,6 +885,7 @@ CMD:unblacklist(playerid, params[])
 	else return 0;
 	return 1;
 }
+
 /*
 CMD:oblacklist(playerid, params[])
 {
@@ -950,8 +951,6 @@ CMD:oremovehitmanleader(playerid, params[])
 	return 1;
 }
 */
-
-
 
 /****** Query Related Functions ******/
 forward ShowBlacklistedPlayers(playerid);
