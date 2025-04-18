@@ -86,7 +86,7 @@
 /*  ---------------- SCRIPT REVISION ----------------- */
 
 // Do not forget to change this everytime you commit - it's mandatory!
-#define SERVER_GM_TEXT "NG:RP v3.0.478"
+#define SERVER_GM_TEXT "NG:RP v3.0.479"
 
 //#define AREA_DEBUG
 //#define TEXTLABEL_DEBUG
@@ -211,7 +211,7 @@
 #include "./includes/core/deluxegps.pwn"
 #include "./includes/core/vending.pwn"
 #include "./includes/core/globalchat.pwn"
-#include "./includes/core/fpslimit.pwn"
+//#include "./includes/core/fpslimit.pwn"
 
 //dynamic core includes
 #include "./includes/dynamic/doors.pwn"

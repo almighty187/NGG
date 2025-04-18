@@ -36,6 +36,49 @@ stock ExecuteHackerAction( playerid, weaponid )
 	return 1;
 }
 
+#define MAX_VEHICLE_ENTRIES 3
+#define VEHICLE_ENTRY_INTERVAL 5000 
+
+new g_VehicleEntryCount[MAX_PLAYERS];
+new g_LastVehicleEntryTime[MAX_PLAYERS];
+
+hook OnPlayerStateChange(playerid, newstate, oldstate) {
+    if (newstate == PLAYER_STATE_DRIVER || newstate == PLAYER_STATE_PASSENGER)
+    {
+        new currentTime = GetTickCount();
+
+        if (currentTime - g_LastVehicleEntryTime[playerid] > VEHICLE_ENTRY_INTERVAL)
+        {
+            g_VehicleEntryCount[playerid] = 1;
+        }
+        else
+        {
+            g_VehicleEntryCount[playerid]++;
+        }
+
+        g_LastVehicleEntryTime[playerid] = currentTime;
+
+        if (g_VehicleEntryCount[playerid] >= MAX_VEHICLE_ENTRIES)
+        {
+			new String[128];
+            format( String, sizeof( String ), "{AA3333}AdmWarning{FFFF00}: %s (ID %d) may possibly be warp hacking.", GetPlayerNameEx(playerid), playerid);
+			ABroadCast( COLOR_YELLOW, String, 2 );
+			format(String, sizeof(String), "%s(%d) (ID %d) may possibly be warp hacking", GetPlayerNameEx(playerid), GetPlayerSQLId(playerid), playerid);
+			Log("logs/hack.log", String);
+			KickEx(playerid); 
+        }
+	}
+	return 1;
+}
+
+hook OnPlayerConnect(playerid)
+{
+    g_VehicleEntryCount[playerid] = 0;
+    g_LastVehicleEntryTime[playerid] = 0;
+    return 1;
+}
+
+
 forward sobeitCheck(playerid);
 public sobeitCheck(playerid)
 {
