@@ -2853,6 +2853,7 @@ public OnPlayerSpawn(playerid)
 			        if(PlayerInfo[playerid][pHospital] == 0)
 			        {
 					    sobeitCheckIsDone[playerid] = 1;
+						g_NopCheckReadyTime[playerid] = gettime() + 10;
 					    SetTimerEx("sobeitCheck", 10000, 0, "i", playerid);
 						TogglePlayerControllable(playerid, false);
 					}

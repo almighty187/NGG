@@ -136,6 +136,10 @@ stock SafeLogin(playerid, type)
 		}
 		case 2: // No Account Exists
 		{
+			if (!registrationEnabled)	{
+				SendClientMessage(playerid, COLOR_RED, "Registration is currently disabled. Please try again later.");
+				SetTimerEx("KickEx", 3000, 0, "i", playerid);
+			}
 			if(betaserver == 0 || betaserver == 2)
 			{
 				if(!IsValidName(GetPlayerNameExt(playerid)))

@@ -193,6 +193,23 @@ stock GetAdminRank(playerid)
 	return szMiscArray;
 }
 
+CMD:togregistration(playerid, params[])
+{
+	if(PlayerInfo[playerid][pAdmin] >= 1337)
+	{
+		registrationEnabled = !registrationEnabled;
+		new status[16];
+		format(status, sizeof(status), registrationEnabled ? "ENABLED" : "DISABLED");
+		new msg[144];
+		format(msg, sizeof(msg), "%s %s has %s new player registration.", GetAdminRankName(PlayerInfo[playerid][pAdmin]), GetPlayerNameEx(playerid), status);
+		ABroadCast(COLOR_RED, msg, 2);
+
+	}
+	else return SendClientMessageEx(playerid, COLOR_GRAD1, "You are not authorized to use that command.");
+    return 1;
+}
+
+
 CMD:resetvw(playerid, params[])
 {
 	if(GetPVarType(playerid, "IsInArena")) return 1;
