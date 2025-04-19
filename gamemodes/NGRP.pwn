@@ -86,7 +86,7 @@
 /*  ---------------- SCRIPT REVISION ----------------- */
 
 // Do not forget to change this everytime you commit - it's mandatory!
-#define SERVER_GM_TEXT "NG:RP v3.0.480_beta"
+#define SERVER_GM_TEXT "NG:RP v3.0.481_beta"
 
 //#define AREA_DEBUG
 //#define TEXTLABEL_DEBUG
@@ -114,6 +114,7 @@
 #endif
 
 new g_NopCheckReadyTime[MAX_PLAYERS];
+new bool:registrationEnabled = true;
 
 #include "./includes/defines.pwn"
 #include "./includes/enums.pwn"

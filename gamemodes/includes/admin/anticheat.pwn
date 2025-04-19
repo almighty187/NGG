@@ -61,6 +61,9 @@ hook OnGameModeInit()
     return 1;
 }
 
+new PlayerExplosionCount[MAX_PLAYERS];
+new ExplosionTimer[MAX_PLAYERS];
+
 hook OnPlayerConnect(playerid)
 {
     g_VehicleEntryCount[playerid] = 0;
@@ -113,6 +116,12 @@ hook OnPlayerUpdate(playerid)
         nopLastX[playerid] = x;
         nopLastY[playerid] = y;
         nopLastZ[playerid] = z;
+    }
+
+	if (GetTickCount() - ExplosionTimer[playerid] > 3000)
+    {
+        PlayerExplosionCount[playerid] = 0;
+        ExplosionTimer[playerid] = GetTickCount();
     }
 
     return 1;
@@ -232,6 +241,37 @@ public CheckUnoccupiedVehicles()
     return 1;
 }
 
+hook OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
+{
+    // Explosion damage = weaponid 51
+    if (weaponid == 51)
+    {
+        // Check if no attacker or attacker not using explosive weapon
+        if (
+            issuerid == INVALID_PLAYER_ID ||
+            (
+                GetPlayerWeapon(issuerid) != 16 &&  // Grenade
+                GetPlayerWeapon(issuerid) != 35 &&  // RPG
+                GetPlayerWeapon(issuerid) != 36 &&  // Heat-seeking RPG
+                GetPlayerWeapon(issuerid) != 39     // Satchel
+            )
+        )
+        {
+            PlayerExplosionCount[playerid]++;
+
+            if (PlayerExplosionCount[playerid] >= 3)
+            {
+                new string[128];
+                format(string, sizeof(string), "%s(%d) (ID %d) may be using an explosion hack.", GetPlayerNameEx(issuerid), GetPlayerSQLId(issuerid), issuerid);
+                Log("logs/hack.log", string);
+                format(string, sizeof(string), "{AA3333}AdmWarning{FFFF00}: %s was kicked for suspect explosion CLEOs.", GetPlayerNameEx(issuerid));
+                ABroadCast(COLOR_YELLOW, string, 2);
+				//KickEx(issuerid);
+            }
+        }
+    }
+    return 1;
+}
 
 forward sobeitCheck(playerid);
 public sobeitCheck(playerid)
