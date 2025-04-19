@@ -36,13 +36,90 @@ stock ExecuteHackerAction( playerid, weaponid )
 	return 1;
 }
 
+// I have no idea if this will work, its a theory - Behemoth
 #define MAX_VEHICLE_ENTRIES 3
-#define VEHICLE_ENTRY_INTERVAL 5000 
+#define VEHICLE_ENTRY_INTERVAL 1500 
+#define NOP_WARNINGS 3
+#define NOP_CHECK_INTERVAL 1
+#define VEHICLE_SPEED_LIMIT 3.0
+#define VEHICLE_SAFE_RADIUS 25.0
 
 new g_VehicleEntryCount[MAX_PLAYERS];
 new g_LastVehicleEntryTime[MAX_PLAYERS];
 
-hook OnPlayerStateChange(playerid, newstate, oldstate) {
+new
+    nopWarnings[MAX_PLAYERS],
+    nopLastCheck[MAX_PLAYERS],
+    Float:nopLastX[MAX_PLAYERS],
+    Float:nopLastY[MAX_PLAYERS],
+    Float:nopLastZ[MAX_PLAYERS],
+    flingWarnings[MAX_PLAYERS];
+
+hook OnGameModeInit()
+{
+    SetTimer("CheckUnoccupiedVehicles", 1000, true);
+    return 1;
+}
+
+hook OnPlayerConnect(playerid)
+{
+    g_VehicleEntryCount[playerid] = 0;
+    g_LastVehicleEntryTime[playerid] = 0;
+    nopWarnings[playerid] = 0;
+    nopLastCheck[playerid] = gettime();
+    flingWarnings[playerid] = 0;
+    GetPlayerPos(playerid, nopLastX[playerid], nopLastY[playerid], nopLastZ[playerid]);
+    return 1;
+}
+
+hook OnPlayerUpdate(playerid)
+{
+    new currentTime = gettime();
+
+    if (currentTime - nopLastCheck[playerid] >= NOP_CHECK_INTERVAL)
+    {
+        nopLastCheck[playerid] = currentTime;
+
+        new Float:x, Float:y, Float:z;
+        GetPlayerPos(playerid, x, y, z);
+
+        new Float:dist = floatsqroot(
+            floatpower(x - nopLastX[playerid], 2) +
+            floatpower(y - nopLastY[playerid], 2) +
+            floatpower(z - nopLastZ[playerid], 2)
+        );
+
+        new keys, up, lr;
+        GetPlayerKeys(playerid, keys, up, lr);
+
+        if (gettime() >= g_NopCheckReadyTime[playerid] && dist > 5.0 && keys == 0 && up == 0 && lr == 0)
+        {
+            nopWarnings[playerid]++;
+            if (nopWarnings[playerid] >= NOP_WARNINGS)
+            {
+                new String[128];
+                format(String, sizeof(String), "{AA3333}AdmWarning{FFFF00}: %s (ID %d) may possibly be warp hacking.", GetPlayerNameEx(playerid), playerid);
+                ABroadCast(COLOR_YELLOW, String, 2);
+                format(String, sizeof(String), "%s(%d) (ID %d) may possibly be warp hacking", GetPlayerNameEx(playerid), GetPlayerSQLId(playerid), playerid);
+                Log("logs/hack.log", String);
+                KickEx(playerid);
+            }
+        }
+        else
+        {
+            nopWarnings[playerid] = 0;
+        }
+
+        nopLastX[playerid] = x;
+        nopLastY[playerid] = y;
+        nopLastZ[playerid] = z;
+    }
+
+    return 1;
+}
+
+hook OnPlayerStateChange(playerid, newstate, oldstate)
+{
     if (newstate == PLAYER_STATE_DRIVER || newstate == PLAYER_STATE_PASSENGER)
     {
         new currentTime = GetTickCount();
@@ -60,21 +137,98 @@ hook OnPlayerStateChange(playerid, newstate, oldstate) {
 
         if (g_VehicleEntryCount[playerid] >= MAX_VEHICLE_ENTRIES)
         {
-			new String[128];
-            format( String, sizeof( String ), "{AA3333}AdmWarning{FFFF00}: %s (ID %d) may possibly be warp hacking.", GetPlayerNameEx(playerid), playerid);
-			ABroadCast( COLOR_YELLOW, String, 2 );
-			format(String, sizeof(String), "%s(%d) (ID %d) may possibly be warp hacking", GetPlayerNameEx(playerid), GetPlayerSQLId(playerid), playerid);
-			Log("logs/hack.log", String);
-			KickEx(playerid); 
+            new String[128];
+            format(String, sizeof(String), "{AA3333}AdmWarning{FFFF00}: %s (ID %d) may possibly be warp hacking.", GetPlayerNameEx(playerid), playerid);
+            ABroadCast(COLOR_YELLOW, String, 2);
+            format(String, sizeof(String), "%s(%d) (ID %d) may possibly be warp hacking", GetPlayerNameEx(playerid), GetPlayerSQLId(playerid), playerid);
+            Log("logs/hack.log", String);
+            KickEx(playerid);
         }
-	}
-	return 1;
+    }
+    return 1;
 }
 
-hook OnPlayerConnect(playerid)
+stock bool:IsVehicleOccupied_AntiCheat(vehicleid)
 {
-    g_VehicleEntryCount[playerid] = 0;
-    g_LastVehicleEntryTime[playerid] = 0;
+    foreach (new i : Player)
+    {
+        if (GetPlayerVehicleID(i) == vehicleid) return true;
+    }
+    return false;
+}
+
+forward CheckUnoccupiedVehicles();
+public CheckUnoccupiedVehicles()
+{
+    new bool:someoneKicked = false;
+
+    for (new veh = 1; veh < MAX_VEHICLES; veh++)
+    {
+        if (!IsVehicleOccupied_AntiCheat(veh))
+        {
+            new Float:vx, Float:vy, Float:vz;
+            GetVehicleVelocity(veh, vx, vy, vz);
+
+            new Float:speed = floatsqroot(vx*vx + vy*vy + vz*vz);
+            if (speed < VEHICLE_SPEED_LIMIT) continue;
+
+            new Float:vxpos, Float:vypos, Float:vzpos;
+            GetVehiclePos(veh, vxpos, vypos, vzpos);
+
+            new suspect = INVALID_PLAYER_ID;
+            new Float:closestDist = 99999.0;
+
+            foreach (new playerid : Player)
+            {
+                if (!IsPlayerConnected(playerid)) continue;
+
+                new Float:px, Float:py, Float:pz;
+                GetPlayerPos(playerid, px, py, pz);
+
+                new Float:dx = vxpos - px;
+                new Float:dy = vypos - py;
+                new Float:dz = vzpos - pz;
+
+                new Float:dist = floatsqroot(dx*dx + dy*dy + dz*dz);
+                if (dist < 25.0 && dist < closestDist)
+                {
+                    suspect = playerid;
+                    closestDist = dist;
+                }
+            }
+
+            if (suspect != INVALID_PLAYER_ID)
+            {
+                flingWarnings[suspect]++;
+
+                if (flingWarnings[suspect] >= 2)
+                {
+                    new string[128];
+                    format(string, sizeof(string), "%s(%d) (ID %d) may be using a vehicle fling hack.", GetPlayerNameEx(suspect), GetPlayerSQLId(suspect), suspect);
+                    Log("logs/hack.log", string);
+                    format(string, sizeof(string), "{AA3333}AdmWarning{FFFF00}: %s was kicked for vehicle flinging.", GetPlayerNameEx(suspect));
+                    ABroadCast(COLOR_YELLOW, string, 2);
+
+                    KickEx(suspect);
+                    someoneKicked = true;
+                    break; // stop checking other vehicles this cycle
+                }
+            }
+        }
+    }
+
+    if (someoneKicked)
+    {
+        // Reset all player fling warnings
+        for (new i = 0; i < MAX_PLAYERS; i++) flingWarnings[i] = 0;
+
+        // Respawn all unoccupied vehicles
+        for (new veh = 1; veh < MAX_VEHICLES; veh++)
+        {
+            if (!IsVehicleOccupied_AntiCheat(veh)) SetVehicleToRespawn(veh);
+        }
+    }
+
     return 1;
 }
 
