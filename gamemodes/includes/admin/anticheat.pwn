@@ -98,7 +98,7 @@ hook OnPlayerUpdate(playerid)
         if (gettime() >= g_NopCheckReadyTime[playerid] && dist > 5.0 && keys == 0 && up == 0 && lr == 0)
         {
             nopWarnings[playerid]++;
-            if (nopWarnings[playerid] >= NOP_WARNINGS && PlayerInfo[playerid][pAdmin] < 2 && !InsideTut[playerid])
+            if (nopWarnings[playerid] >= NOP_WARNINGS && PlayerInfo[playerid][pAdmin] < 2 && !InsideTut[playerid] && PlayerInfo[playerid][pHospital] == 0)
             {
                 new String[128];
                 format(String, sizeof(String), "{AA3333}AdmWarning{FFFF00}: %s (ID %d) may possibly be warp hacking.", GetPlayerNameEx(playerid), playerid);
@@ -144,7 +144,7 @@ hook OnPlayerStateChange(playerid, newstate, oldstate)
 
         g_LastVehicleEntryTime[playerid] = currentTime;
 
-        if (g_VehicleEntryCount[playerid] >= MAX_VEHICLE_ENTRIES && PlayerInfo[playerid][pAdmin] < 2 && !InsideTut[playerid])
+        if (g_VehicleEntryCount[playerid] >= MAX_VEHICLE_ENTRIES && PlayerInfo[playerid][pAdmin] < 2 && !InsideTut[playerid] && PlayerInfo[playerid][pHospital] == 0)
         {
             new String[128];
             format(String, sizeof(String), "{AA3333}AdmWarning{FFFF00}: %s (ID %d) may possibly be warp hacking.", GetPlayerNameEx(playerid), playerid);
