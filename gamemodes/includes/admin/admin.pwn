@@ -193,6 +193,15 @@ stock GetAdminRank(playerid)
 	return szMiscArray;
 }
 
+forward OnMakeAdminOffline(playerid, level, targetName[]);
+public OnMakeAdminOffline(playerid, level, targetName[])
+{
+    new msg[128];
+    format(msg, sizeof(msg), "You have successfully set %s's admin level to %d (offline).", targetName, level);
+    SendClientMessage(playerid, COLOR_GREEN, msg);
+    return 1;
+}
+
 CMD:togregistration(playerid, params[])
 {
 	if(PlayerInfo[playerid][pAdmin] >= 1337)
@@ -2052,6 +2061,24 @@ CMD:makeadmin(playerid, params[])  {
 	}
 	else SendClientMessageEx(playerid, COLOR_GRAD1, "You are not authorized to use that command.");
 	return 1;
+}
+
+CMD:omakeadmin(playerid, params[])
+{
+    if(PlayerInfo[playerid][pAdmin] < 1337)
+    return SendClientMessage(playerid, COLOR_RED, "You don't have permission to use this command.");
+
+    new targetName[MAX_PLAYER_NAME], level;
+    if(sscanf(params, "s[24]i", targetName, level)) 
+    return SendClientMessage(playerid, COLOR_GREY, "Usage: /makeadmin [username] [level]");
+
+    if(level != 1 && level != 2 && level != 3 && level != 4 && level != 1337 && level != 99999)
+    return SendClientMessage(playerid, COLOR_GREY, "Invalid level. Allowed levels: 1, 2, 3, 4, 1337, 99999.");
+
+    new query[256];
+    mysql_format(MainPipeline, query, sizeof(query), "UPDATE `accounts` SET `AdminLevel` = %d WHERE `Username` = '%e'", level, targetName);
+    mysql_tquery(MainPipeline, query, "OnMakeAdminOffline", "iis", playerid, level, targetName);
+    return 1;
 }
 
 CMD:apark(playerid, params[]) {
