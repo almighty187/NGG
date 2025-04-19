@@ -31,124 +31,137 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
- 
- //--------------------------------[ INITIATE/EXIT ]---------------------------
 
-//--------------------------------[DISCORD.PWN]--------------------------------
-#include <YSI\y_hooks>
+//--------------------------------[ INITIATE/EXIT ]---------------------------
 
-// Global channel IDs (cached after bot connects)
-new DCC_Channel:g_AdminChannelId = DCC_INVALID_CHANNEL;
-new DCC_Channel:g_AdminWarningsChannelId = DCC_INVALID_CHANNEL;
-new DCC_Channel:g_HeadAdminChannelId = DCC_INVALID_CHANNEL;
-new DCC_Channel:g_ServerErrorsChannelId = DCC_INVALID_CHANNEL;
 
-new CountingPlayer;
-
-hook OnGameModeInit()
-{
-    print("[DCC] Connecting to Discord...");
-    SetTimer("BotStatus", 1000, true);
-    SetTimer("InitDiscordChannels", 3000, false); // Delay to allow bot to connect
-    return 1;
-}
-
-forward InitDiscordChannels();
-public InitDiscordChannels()
-{
-    g_AdminChannelId = DCC_FindChannelById("1360504707851747429");
-    g_AdminWarningsChannelId = DCC_FindChannelById("1360504741741990029");
-    g_HeadAdminChannelId = DCC_FindChannelById("1360504760041476217");
-    g_ServerErrorsChannelId = DCC_FindChannelById("1360504778718711870");
-    print("[DCC] Discord channel IDs initialized.");
-}
-
-hook OnPlayerConnect(playerid)
-{
-    CountingPlayer++;
-    return 1;
-}
-
-hook OnPlayerDisconnect(playerid, reason)
-{
-    CountingPlayer--;
-    return 1;
-}
-
-forward BotStatus();
-public BotStatus()
-{
-    new string[256];
-    format(string, sizeof(string), "with %d players!", CountingPlayer);
-    DCC_SetBotActivity(string);
-}
-
-// Discord Message Sender
-stock SendDiscordMessage(channel, message[])
-{
-    switch (channel)
-    {
-        case 0: // #admin
-        {
-            if (g_AdminChannelId != DCC_INVALID_CHANNEL)
-                DCC_SendChannelMessage(g_AdminChannelId, message);
-            else
-                print("[DCC] Failed to send message to #admin (channel ID invalid).");
+stock SendDiscordMessage(channel, message[]) {
+    if(!discord) return 1;
+    new DCC_Channel:ChannelId;
+    switch (channel) {
+        // admin-chat
+        case 0:{
+            ChannelId = DCC_FindChannelById("1360504707851747429");
+            DCC_SendChannelMessage(ChannelId, message);
         }
-        case 1: // #admin-warnings
-        {
-            if (g_AdminWarningsChannelId != DCC_INVALID_CHANNEL)
-                DCC_SendChannelMessage(g_AdminWarningsChannelId, message);
-            else
-                print("[DCC] Failed to send message to #admin-warnings (channel ID invalid).");
+        // admin-warnings
+        case 1:{
+            ChannelId = DCC_FindChannelById("1360504741741990029");
+            DCC_SendChannelMessage(ChannelId, message);
         }
-        case 2: // #headadmin
-        {
-            if (g_HeadAdminChannelId != DCC_INVALID_CHANNEL)
-                DCC_SendChannelMessage(g_HeadAdminChannelId, message);
-            else
-                print("[DCC] Failed to send message to #headadmin (channel ID invalid).");
+        // Head Admin
+        case 2:{
+            ChannelId = DCC_FindChannelById("1360504760041476217");
+            DCC_SendChannelMessage(ChannelId, message);
         }
-        case 3: // #server-errors
-        {
-            if (g_ServerErrorsChannelId != DCC_INVALID_CHANNEL)
-                DCC_SendChannelMessage(g_ServerErrorsChannelId, message);
-            else
-                print("[DCC] Failed to send message to #server-errors (channel ID invalid).");
+        // #server-errors
+        case 3:{
+            ChannelId = DCC_FindChannelById("1360504778718711870");
+            DCC_SendChannelMessage(ChannelId, message);
+        }
+        //point timer stuff
+        case 4:{
+            ChannelId = DCC_FindChannelById("1360504778718711870");
+            DCC_SendChannelMessage(ChannelId, message);
         }
     }
     return 1;
 }
 
-public DCC_OnMessageCreate(DCC_Message:message)
-{
-    new realMsg[100], DCC_Channel:channel, DCC_User:author;
-    new channel_name[32], user_name[33], szMessage[128], author_id[21];
-    new bool:IsBot;
+hook DCC_OnMessageCreate(DCC_Message:message) {
+    new DCC_Channel:channel;
+    new DCC_User:author;
 
-    DCC_GetMessageChannel(message, channel);
-    DCC_GetMessageAuthor(message, author);
-    DCC_IsUserBot(author, IsBot); // must come AFTER author is assigned
-
-    if (IsBot) return 1; // Ignore bot messages
-
-    DCC_GetMessageContent(message, realMsg);
+    new channel_name[32], name[46], szMessage[128], msgContent[128];
     DCC_GetChannelName(channel, channel_name);
-    DCC_GetUserName(author, user_name);
-    DCC_GetUserId(author, author_id);
+    DCC_GetUserName(author, name);
+    DCC_GetMessageContent(message, msgContent);
 
-    printf("[DCC] OnChannelMessage (Channel %s): Author %s sent message: %s", channel_name, user_name, realMsg);
-
-    if (channel == g_AdminChannelId && strcmp(user_name, "NGRP-Bot", true))
-    {
-        format(szMessage, sizeof(szMessage), "* [Discord] Administrator %s: %s", user_name, realMsg);
-        ABroadCast(COLOR_YELLOW, szMessage, 2, true);
-    }
-    else if (channel == g_HeadAdminChannelId && strcmp(user_name, "NGRP-Bot", true))
-    {
-        format(szMessage, sizeof(szMessage), "(PRIVATE) [Discord] Administrator %s: %s", user_name, realMsg);
-        ABroadCast(COLOR_GREEN, szMessage, 1337, true);
+    if(strfind(msgContent, "!", true) != -1) {
+        new string[256];
+        new DCC_Channel:logChannel = DCC_FindChannelByName("discord-cmd-logs");
+        format(string, sizeof(string), "%s has executed the following command with args: %s", name, msgContent);
+        DCC_SendChannelMessage(logChannel, string);
     }
 
+    if(!discord) return 1;
+    if(!author) return 1;
+
+    if(!strcmp(channel_name, "admin-chat", true) && strcmp(name, "NGRP-Bot", true)) {
+        format(szMessage, sizeof(szMessage), "* [Discord] %s: %s", name, msgContent);
+        ABroadCast(COLOR_YELLOW, szMessage, 2);
+    }
+
+    return 1;
+}
+forward OnDCCommandPerformed(args[], success);
+public OnDCCommandPerformed(args[], success) {
+    new DCC_Channel:channel = DCC_FindChannelByName("NGRP-Bot");
+    if(!success) return DCC_SendChannelMessage(channel, "```js\nInvalid command..!\n```");
+
+    return 1;
+}
+
+DC_CMD:help(user[], args[]) {
+    new DCC_Channel:channel = DCC_FindChannelByName("NGRP-Bot");
+    new string[256];
+    format(string, sizeof(string), "Available Help Cmds: ```- !players - lists players ig \n- !wip - whitelists an admin.\n- !adminsig - lists all admins ingame. \n- !pwip - whitelists a proxy```");
+    DCC_SendChannelMessage(channel, string);
+    return 1;
+}
+
+DC_CMD:players(user[], args[]) {
+    new DCC_Channel:channel = DCC_FindChannelByName("NGRP-Bot");
+    new count;
+    for (new x = 0; x < MAX_PLAYERS; x++) { //x = MAX_PLAYERS
+        if(IsPlayerConnected(x)) {
+            count++;
+        }
+    }
+    new string[128];
+    format(string, sizeof(string), "%d/500 Players.", count);
+    DCC_SendChannelMessage(channel, string);
+    return 1;
+}
+
+DC_CMD:wip(user, args) {
+    new DCC_Channel:channel = DCC_FindChannelByName("NGRP-Bot");
+
+    new string[128], query[256], giveplayer[MAX_PLAYER_NAME], ip[16];
+    if(sscanf(args, "s[24]s[16]", giveplayer, ip)) {
+        DCC_SendChannelMessage(channel, "USAGE: !wip [admin name] [IP]");
+        return 1;
+    }
+
+    new tmpName[24], tmpIP[16];
+    mysql_escape_string(giveplayer, tmpName);
+    mysql_escape_string(ip, tmpIP);
+
+    mysql_format(MainPipeline, query, sizeof(query), "UPDATE `accounts` SET `SecureIP`='%s' WHERE `Username`='%s'", tmpIP, tmpName);
+    mysql_tquery(MainPipeline, query, "OnIPWhitelistDiscord", "ss", tmpName, tmpIP);
+
+    format(string, sizeof(string), "Attempting to whitelist %s on %s's account...", tmpIP, tmpName);
+    DCC_SendChannelMessage(channel, string);
+    return 1;
+}
+
+DC_CMD:pwip(user, args) {
+    new DCC_Channel:channel = DCC_FindChannelByName("NGRP-Bot");
+
+    new string[128], query[256], giveplayer[MAX_PLAYER_NAME], ip[16];
+    if(sscanf(args, "s[24]s[16]", giveplayer, ip)) {
+        DCC_SendChannelMessage(channel, "USAGE: !pwip [player name] [IP]");
+        return 1;
+    }
+
+    new tmpProxyName[24], tmpProxyIP[16];
+    mysql_escape_string(giveplayer, tmpProxyName);
+    mysql_escape_string(ip, tmpProxyIP);
+
+    mysql_format(MainPipeline, query, sizeof(query), "UPDATE `accounts` SET `ProxyIP`='%s' WHERE `Username`='%s'", tmpProxyIP, tmpProxyName);
+    mysql_tquery(MainPipeline, query, "OnPIPWhitelistDiscord", "ss", tmpProxyIP, tmpProxyName);
+
+    format(string, sizeof(string), "Attempting to proxy whitelist %s on %s's account...", tmpProxyIP, tmpProxyName);
+    DCC_SendChannelMessage(channel, string);
     return 1;
 }

@@ -1,0 +1,6 @@
+C:\Users\benja\Documents\NGG\gamemodes\NGRP.pwn(105) : èäåíòèôèêàòîð íå èñïîëüçóåòñÿ: "help"
+C:\Users\benja\Documents\NGG\gamemodes\NGRP.pwn(113) : èäåíòèôèêàòîð íå èñïîëüçóåòñÿ: "players"
+C:\Users\benja\Documents\NGG\gamemodes\NGRP.pwn(148) : èäåíòèôèêàòîð íå èñïîëüçóåòñÿ: "pwip"
+C:\Users\benja\Documents\NGG\gamemodes\NGRP.pwn(127) : èäåíòèôèêàòîð íå èñïîëüçóåòñÿ: "wip"
+Pawn compiler 3.2.3664	 	 	Copyright (c) 1997-2017, ITB CompuPhase
+

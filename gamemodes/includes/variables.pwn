@@ -37,6 +37,7 @@
 new MySQL: MainPipeline;
 new MySQL: ShopPipeline;
 new ShopToggle = 0;
+new discord;
 
 #if defined zombiemode
 new zombieevent;
