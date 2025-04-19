@@ -36,6 +36,7 @@ stock ExecuteHackerAction( playerid, weaponid )
 	return 1;
 }
 
+
 // I have no idea if this will work, its a theory - Behemoth
 #define MAX_VEHICLE_ENTRIES 3
 #define VEHICLE_ENTRY_INTERVAL 1500 
@@ -62,7 +63,7 @@ hook OnGameModeInit()
 }
 
 new PlayerExplosionCount[MAX_PLAYERS];
-new ExplosionTimer[MAX_PLAYERS];
+//new ExplosionTimer[MAX_PLAYERS];
 
 hook OnPlayerConnect(playerid)
 {
@@ -75,7 +76,7 @@ hook OnPlayerConnect(playerid)
     return 1;
 }
 
-hook OnPlayerUpdate(playerid)
+/*hook OnPlayerUpdate(playerid)
 {
     new currentTime = gettime();
 
@@ -147,15 +148,15 @@ hook OnPlayerStateChange(playerid, newstate, oldstate)
         if (g_VehicleEntryCount[playerid] >= MAX_VEHICLE_ENTRIES && PlayerInfo[playerid][pAdmin] < 2 && !InsideTut[playerid] && PlayerInfo[playerid][pHospital] == 0 && PlayerInfo[playerid][pLevel] < 3)
         {
             new String[128];
-            /*format(String, sizeof(String), "{AA3333}AdmWarning{FFFF00}: %s (ID %d) may possibly be warp hacking.", GetPlayerNameEx(playerid), playerid);
-            ABroadCast(COLOR_YELLOW, String, 2);*/
+            format(String, sizeof(String), "{AA3333}AdmWarning{FFFF00}: %s (ID %d) may possibly be warp hacking.", GetPlayerNameEx(playerid), playerid);
+            ABroadCast(COLOR_YELLOW, String, 2);
             format(String, sizeof(String), "%s(%d) (ID %d) may possibly be warp hacking", GetPlayerNameEx(playerid), GetPlayerSQLId(playerid), playerid);
             Log("logs/hack.log", String);
             //KickEx(playerid);
         }
     }
     return 1;
-}
+}*/
 
 stock bool:IsVehicleOccupied_AntiCheat(vehicleid)
 {
