@@ -956,8 +956,7 @@ public OnPlayerLoad(playerid)
 	    }
 		PlayerInfo[playerid][pWeedObject] = 0;
 	}
-
-	if(PlayerInfo[playerid][pAdmin] < 2 && PlayerInfo[playerid][pWatchdog] == 0 && !IsValidName(GetPlayerNameExt(playerid)))
+	if(PlayerInfo[playerid][pAdmin] < 1 && PlayerInfo[playerid][pWatchdog] == 0 && !IsValidName(GetPlayerNameExt(playerid)))
 	{
 		SendClientMessageEx(playerid, COLOR_WHITE, "You have been kicked for having a Non RP Name.");
 		SetPVarString(playerid, "KickNonRP", GetPlayerNameEx(playerid));
