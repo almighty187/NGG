@@ -874,6 +874,15 @@ CMD:cvedit(playerid, params[]) {
 			SaveCrateVehicle(cveh);
 			SendClientMessageEx(playerid, COLOR_WHITE, "You set the vehicle crate load max to %d", value);
 		}
+		else if(strcmp(choice, "refuel", true) == 0) {
+			if(value < 0 || value > 100) return SendClientMessageEx(playerid, COLOR_GREY, "Fuel must be between 0 and 100.");
+			CrateVehicle[cveh][cvFuel] = float(value);
+			if(CrateVehicle[cveh][cvSpawnID] != INVALID_VEHICLE_ID) {
+				VehicleFuel[CrateVehicle[cveh][cvSpawnID]] = float(value);
+			}
+			SaveCrateVehicle(cveh);
+			SendClientMessageEx(playerid, COLOR_WHITE, "You have set fuel for vehicle ID %d to %.1f.", cveh, float(value));
+		}
 		else if(strcmp(choice, "disable", true) == 0) {
 			new Float:vHealth;
 			if(!CrateVehicle[cveh][cvDisabled]) {

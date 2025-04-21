@@ -132,7 +132,7 @@ CMD:getdrugs(playerid, params[]) {
 	return 1;
 }
 
-CMD:pointtime(playerid, params[])
+/*CMD:pointtime(playerid, params[])
 {
 	new point;
 	if(sscanf(params, "i", point)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /pointtime [pointid]");
@@ -144,6 +144,31 @@ CMD:pointtime(playerid, params[])
 	} else {
 		SendClientMessageEx(playerid, COLOR_GRAD1, "Invalid point ID given - You can only select from 1 - %d!", MAX_POINTS);
 	}
+	return 1;
+}*/
+
+CMD:pointtime(playerid, params[])
+{
+	new
+		iCount,
+		szMessage[128];
+
+	SendClientMessageEx(playerid, COLOR_GREEN, "Point Info:");
+	for(new i; i < MAX_POINTS; i++) {
+		if(DynPoints[i][poCapperGroup] != INVALID_GROUP_ID)  {
+			if(DynPoints[i][poTimeLeft] == 1) {
+				format(szMessage, sizeof(szMessage), "* %s | Capper: %s | Gang: %s | Time left: Less than 1 minute", DynPoints[i][poName], DynPoints[i][poPName], arrGroupData[DynPoints[i][poCapperGroup]][g_szGroupName]);
+				SendClientMessageEx(playerid, COLOR_WHITE, szMessage);
+				iCount++;
+			} else {
+				format(szMessage, sizeof(szMessage), "* %s | Capper: %s | Gang: %s | Time left: %d minutes", DynPoints[i][poName], DynPoints[i][poPName], arrGroupData[DynPoints[i][poCapperGroup]][g_szGroupName], DynPoints[i][poTimeLeft]);
+				SendClientMessageEx(playerid, COLOR_WHITE, szMessage);
+				iCount++;
+			}
+		}
+	}
+	if(iCount == 0)
+		return SendClientMessageEx(playerid, COLOR_GRAD1, "No gang has attempted to capture a point at this time.");
 	return 1;
 }
 

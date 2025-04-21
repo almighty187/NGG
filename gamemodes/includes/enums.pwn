@@ -1299,7 +1299,9 @@ enum pInfo
 	pFlagCredits,
 	pFlagClaimed,
 	pHorse,
-	pCountdown
+	pCountdown,
+	pLastGlobal,
+	pVPN
 };
 
 enum pvInfo

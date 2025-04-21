@@ -176,7 +176,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 	return 0;
 }
 
-CMD:interiors(playerid, params[])
+CMD:houseinteriors(playerid, params[])
 {
 	if(PlayerInfo[playerid][pAdmin] < 2) return SendClientMessageEx(playerid, COLOR_WHITE, "You are not authorized to use this command!");
 	ShowPlayerDialogEx(playerid, DIALOG_LIST_INTERIORS, DIALOG_STYLE_LIST, "Select a category", "Small Interiors\nMedium Interiors\nLarge Interiors", "Select", "Cancel");
