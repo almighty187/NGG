@@ -643,7 +643,7 @@ CMD:p(playerid, params[]) {
 CMD:pickup(playerid, params[])
 {
 	new string[128];
-	if(PhoneOnline[playerid] == 0)
+	if(PhoneOnline[playerid] > 0)
 	    return SendClientMessageEx(playerid, COLOR_GRAD2, "Your phone is turned off.");
 		
 	if(Mobile[playerid] != INVALID_PLAYER_ID)
