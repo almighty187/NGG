@@ -1498,6 +1498,10 @@ CMD:cfedit(playerid, params[]) {
 	return 1;
 }
 
+CMD:nextraid(playerid, params[]) {
+	return SendClientMessageEx(playerid, COLOR_YELLOW, "%s facility will be raidable on %s", CrateFacility[0][cfName], date(CrateFacility[0][cfCooldown], 1));
+}
+
 stock DeleteOrder(facility, reason[]) {
 	szMiscArray[0] = 0;
 	for(new g = 0; g < MAX_GROUPS; g++) {

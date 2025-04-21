@@ -142,59 +142,60 @@ CMD:g(playerid, params[])
 	if(gcOoc[playerid]) return SendClientMessageEx(playerid, COLOR_GREY, "You have disabled global Chat, re-enable with /toggc!");
 	if(PlayerInfo[playerid][pVMuted] > 0) return SendClientMessageEx(playerid, COLOR_GREY, "You are muted from the global chat channel.");
 
-	//if(PlayerInfo[playerid][pGlobalMuted]) return SendClientMessageEx(playerid, COLOR_GREY, "You are muted from speaking in this channel.");
-	//if(gettime() - PlayerInfo[playerid][pLastGlobal] < 5) return SendClientMessageEx(playerid, COLOR_GREY, 
-	//"You must wait  %i seconds before speaking again in this channel.", 5 - (gettime() - PlayerInfo[playerid][pLastGlobal]));
+	if(PlayerInfo[playerid][pAdmin] < 2)
+	{
+		new currentTime = gettime();
+		if(currentTime - PlayerInfo[playerid][pLastGlobal] < 3)
+		{
+			new secondsLeft = 3 - (currentTime - PlayerInfo[playerid][pLastGlobal]);
+			return SendClientMessageEx(playerid, COLOR_GREY, 
+				"You must wait %i more second%s before using global chat again.", secondsLeft, secondsLeft == 1 ? "" : "s");
+		}
+	}
 
-	
 	if(isnull(params)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /g [global chat]");
-	
 
 	if(PlayerInfo[playerid][pAdmin] >= 2 && !GetPVarType(playerid, "Undercover")){
 		new string[128];
 		format(string, sizeof(string), "(( %s %s: %s ))", GetAdminRankName(PlayerInfo[playerid][pAdmin]), GetPlayerNameEx(playerid), params);
-		gcOOCOff(0x3399FF00,string);
+		gcOOCOff(0x73BAFF00,string);
 	}
 	else if(PlayerInfo[playerid][pAdmin] == 1 || PlayerInfo[playerid][pSMod] == 1)
 	{
 		new string[128], rank[20];
-		
+
 		if(PlayerInfo[playerid][pSMod] == 1)
 			rank = "Senior Moderator";
 		else
 			rank = "Moderator";
 
 		format(string, sizeof(string), "(( %s %s: %s ))", rank, GetPlayerNameEx(playerid), params);
-		gcOOCOff(0x3399FF00, string);
+		gcOOCOff(0x73BAFF00, string);
 	}
 	else if(PlayerInfo[playerid][pHelper] >= 1){
 		new string[128];
 		format(string, sizeof(string), "(( %s %s: %s ))", GetAdvisorRankName(PlayerInfo[playerid][pHelper]), GetPlayerNameEx(playerid), params);
-		gcOOCOff(0x3399FF00,string);
+		gcOOCOff(0x73BAFF00,string);
 	}
 	else if(PlayerInfo[playerid][pDonateRank] > 0 || GetPVarType(playerid, "Undercover")) {
 		new string[128];
 	    format(string, sizeof(string), "(( %s %s: %s ))", GetVIPRankName(PlayerInfo[playerid][pDonateRank]), GetPlayerNameEx(playerid), params);
-		gcOOCOff(0x3399FF00,string);
+		gcOOCOff(0x73BAFF00,string);
 	}
 	else if(PlayerInfo[playerid][pFamed] > 0 || GetPVarType(playerid, "Undercover")) {
 		new string[128];
 	    format(string, sizeof(string), "(( %s %s: %s ))", GetFamedRankName(PlayerInfo[playerid][pFamed]), GetPlayerNameEx(playerid), params);
-		gcOOCOff(0x3399FF00,string);
+		gcOOCOff(0x73BAFF00,string);
 	}
 	else if(PlayerInfo[playerid][pLevel] >= 1) {
 		new string[128];
 	    format(string, sizeof(string), "(( Level %i Player %s: %s ))", PlayerInfo[playerid][pLevel], GetPlayerNameEx(playerid), params);
-		gcOOCOff(0x3399FF00,string);
+		gcOOCOff(0x73BAFF00,string);
 	}
-	/*else {
-	    new string[128];
-	    format(string, sizeof(string), "(( Newbie %s: %s ))", GetPlayerNameEx(playerid), params);
-		gcOOCOff(0x3399FF00,string);
-	}*/
-	/*if(PlayerInfo[playerid][pAdmin] < 2)
- 	{
- 		PlayerInfo[playerid][pLastGlobal] = gettime();
- 	}*/
+
+	if(PlayerInfo[playerid][pAdmin] < 2)
+	{
+		PlayerInfo[playerid][pLastGlobal] = gettime();
+	}
 	return 1;
 }
