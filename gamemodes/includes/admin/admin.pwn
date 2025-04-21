@@ -2129,47 +2129,37 @@ CMD:apark(playerid, params[]) {
 
 CMD:aduty(playerid, params[])
 {
-	if(PlayerInfo[playerid][pAdminLevel] >= ADMIN_JUNIOR)
+    if(PlayerInfo[playerid][pAdminLevel] >= ADMIN_JUNIOR)
 	{
 	    new string[128];
 	    if(GetPVarType(playerid, "AdminDuty") == 1)
 	    {
-			format(string, sizeof(string), "* %s %s is now {FF0000}off duty{FFFFFF}.", GetStaffRank(playerid), GetPlayerNameEx(playerid));
+	       	format(string, sizeof(string), "* %s %s is now {FF0000}off duty{FFFFFF}.", GetStaffRank(playerid), GetPlayerNameEx(playerid));
 			foreach(new i: Player)
 			{
 				if(PlayerInfo[i][pAdminLevel] >= 2) SendClientMessage(i, COLOR_WHITE, string);
 			}
-			format(string, sizeof(string), "%s went off duty as a %s.", GetPlayerNameEx(playerid), GetAdminRankName(playerid));
+	        format(string, sizeof(string), "%s went off duty as a %s.", GetPlayerNameEx(playerid), GetAdminRankName(playerid));
 			Log("logs/aduty.log", string);
 
-			PlayerInfo[playerid][pAdmin] = 1;
-			if(PlayerInfo[playerid][pAdminLevel] >= ADMIN_HEAD) PlayerInfo[playerid][pSMod] = 1;
-
-			new Float:health, Float:armor;
-			health = GetPVarFloat(playerid, "pPreGodHealth");
-			SetHealth(playerid, health);
-			armor = GetPVarFloat(playerid, "pPreGodArmor");
-			SetArmour(playerid, armor);
-			DeletePVar(playerid, "pGodMode");
-			DeletePVar(playerid, "pPreGodHealth");
-			DeletePVar(playerid, "pPreGodArmor");
-
-			DeletePVar(playerid, "AdminDuty");
+	   		PlayerInfo[playerid][pAdmin] = 1;
+        	if(PlayerInfo[playerid][pAdminLevel] >= ADMIN_HEAD) PlayerInfo[playerid][pSMod] = 1;
+	        DeletePVar(playerid, "AdminDuty");
 		}
 		else
 		{
 			PlayerInfo[playerid][pAdmin] = PlayerInfo[playerid][pAdminLevel];
-			SetPVarInt(playerid, "AdminDuty", 1);
+		    SetPVarInt(playerid, "AdminDuty", 1);
 
-			format(string, sizeof(string), "* %s %s is now {00FF00}on duty{FFFFFF}.", GetStaffRank(playerid), GetPlayerNameEx(playerid));
+	        format(string, sizeof(string), "* %s %s is now {00FF00}on duty{FFFFFF}.", GetStaffRank(playerid), GetPlayerNameEx(playerid));
 			foreach(new i: Player)
 			{
 				if(PlayerInfo[i][pAdminLevel] >= 2) SendClientMessage(i, COLOR_WHITE, string);
 			}
-			format(string, sizeof(string), "%s went on duty as a %s.", GetPlayerNameEx(playerid), GetAdminRankName(playerid));
+	        format(string, sizeof(string), "%s went on duty as a %s.", GetPlayerNameEx(playerid), GetAdminRankName(playerid));
 			Log("logs/aduty.log", string);
 		}
-	}
+    }
 	return 1;
 }
 
