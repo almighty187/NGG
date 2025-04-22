@@ -1178,3 +1178,79 @@ CMD:ts(playerid, params[])
 	}
 	return 1;
 }
+
+CMD:stic(playerid, params[])
+{
+	if(PlayerInfo[playerid][pAdmin] >= 2)
+	{
+		new string[128], reportid;
+		if(sscanf(params, "d", reportid)) return SendClientMessageEx(playerid, COLOR_WHITE,"USAGE: /stic [reportid]");
+		if(reportid < 0 || reportid > 999) return SendClientMessageEx(playerid, COLOR_GREY, "   Report ID not below 0 or above 999!");
+		if(Reports[reportid][BeingUsed] == 0) return SendClientMessageEx(playerid, COLOR_GREY, "   That report ID is not being used!");
+		if(!IsPlayerConnected(Reports[reportid][ReportFrom]))
+		{
+			SendClientMessageEx(playerid, COLOR_GREY, "   The reporter has disconnected !");
+			Reports[reportid][ReportFrom] = INVALID_PLAYER_ID;
+			Reports[reportid][BeingUsed] = 0;
+			return 1;
+		}
+		if(GetPVarInt(Reports[reportid][ReportFrom], "RequestingAdP") == 1) return SendClientMessageEx(playerid, COLOR_GRAD1, "You cannot trash this advertisement, you must accept it with /ar.");
+		if(GetPVarType(Reports[reportid][ReportFrom], "AlertedThisPlayer"))
+		{
+			DeletePVar(Reports[reportid][ReportFrom], "AlertedThisPlayer");
+			DeletePVar(Reports[reportid][ReportFrom], "AlertType");
+			if(AlertTime[Reports[reportid][ReportFrom]] != 0) AlertTime[Reports[reportid][ReportFrom]] = 0;
+		}
+		format(string, sizeof(string), "AdmCmd: %s has cleared report from %s (RID: %d) due to it being an in-character issue.", GetPlayerNameEx(playerid), GetPlayerNameEx(Reports[reportid][ReportFrom]), reportid);
+		ABroadCast(COLOR_ORANGE, string, 2);
+		Log("logs/report.log", string);
+		format(string, sizeof(string), "%s has reviewed your report and determined this report is an (IC) in-character issue.", GetPlayerNameEx(playerid));
+		SendClientMessageEx(Reports[reportid][ReportFrom], COLOR_WHITE, string);
+        DeletePVar(Reports[reportid][ReportFrom], "HasReport");
+		DeletePVar(Reports[reportid][ReportFrom], "_rAutoM");
+		DeletePVar(Reports[reportid][ReportFrom], "_rRepID");
+		Reports[reportid][ReportFrom] = INVALID_PLAYER_ID;
+		Reports[reportid][BeingUsed] = 0;
+		Reports[reportid][TimeToExpire] = 0;
+		strmid(Reports[reportid][Report], "None", 0, 4, 4);
+	}
+	return 1;
+}
+
+CMD:disc(playerid, params[])
+{
+	if(PlayerInfo[playerid][pAdmin] >= 2)
+	{
+		new string[128], reportid;
+		if(sscanf(params, "d", reportid)) return SendClientMessageEx(playerid, COLOR_WHITE,"USAGE: /disc [reportid]");
+		if(reportid < 0 || reportid > 999) return SendClientMessageEx(playerid, COLOR_GREY, "   Report ID not below 0 or above 999!");
+		if(Reports[reportid][BeingUsed] == 0) return SendClientMessageEx(playerid, COLOR_GREY, "   That report ID is not being used!");
+		if(!IsPlayerConnected(Reports[reportid][ReportFrom]))
+		{
+			SendClientMessageEx(playerid, COLOR_GREY, "   The reporter has disconnected !");
+			Reports[reportid][ReportFrom] = INVALID_PLAYER_ID;
+			Reports[reportid][BeingUsed] = 0;
+			return 1;
+		}
+		if(GetPVarInt(Reports[reportid][ReportFrom], "RequestingAdP") == 1) return SendClientMessageEx(playerid, COLOR_GRAD1, "You cannot trash this advertisement, you must accept it with /ar.");
+		if(GetPVarType(Reports[reportid][ReportFrom], "AlertedThisPlayer"))
+		{
+			DeletePVar(Reports[reportid][ReportFrom], "AlertedThisPlayer");
+			DeletePVar(Reports[reportid][ReportFrom], "AlertType");
+			if(AlertTime[Reports[reportid][ReportFrom]] != 0) AlertTime[Reports[reportid][ReportFrom]] = 0;
+		}
+		format(string, sizeof(string), "AdmCmd: %s has cleared report from %s (RID: %d) due to it needing to be handled on Discord", GetPlayerNameEx(playerid), GetPlayerNameEx(Reports[reportid][ReportFrom]), reportid);
+		ABroadCast(COLOR_ORANGE, string, 2);
+		Log("logs/report.log", string);
+		format(string, sizeof(string), "%s has reviewed your report and determined this report should be handled on Discord (Support Ticket)", GetPlayerNameEx(playerid));
+		SendClientMessageEx(Reports[reportid][ReportFrom], COLOR_WHITE, string);
+        DeletePVar(Reports[reportid][ReportFrom], "HasReport");
+		DeletePVar(Reports[reportid][ReportFrom], "_rAutoM");
+		DeletePVar(Reports[reportid][ReportFrom], "_rRepID");
+		Reports[reportid][ReportFrom] = INVALID_PLAYER_ID;
+		Reports[reportid][BeingUsed] = 0;
+		Reports[reportid][TimeToExpire] = 0;
+		strmid(Reports[reportid][Report], "None", 0, 4, 4);
+	}
+	return 1;
+}

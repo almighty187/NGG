@@ -570,7 +570,7 @@ CMD:viplocker(playerid, params[]) {
 
 CMD:v(playerid, params[]) {
 	if(PlayerInfo[playerid][pJailTime] && strfind(PlayerInfo[playerid][pPrisonReason], "[OOC]", true) != -1) return SendClientMessageEx(playerid, COLOR_GREY, "OOC prisoners are restricted to only speak in /b");
-	if(PlayerInfo[playerid][pDonateRank] >= 1 || PlayerInfo[playerid][pAdmin] >= 2 || PlayerInfo[playerid][pVIPMod]) {
+	if(PlayerInfo[playerid][pDonateRank] >= 1 || PlayerInfo[playerid][pAdmin] >= 2 || PlayerInfo[playerid][pVIPMod] || PlayerInfo[playerid][pBuddyInvited] == 1) {
 		if(isnull(params)) {
 			SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /v [message]");
 		}
@@ -596,7 +596,7 @@ CMD:v(playerid, params[]) {
 			{
 				format(szMessage, sizeof(szMessage), "** %s %s: %s", GetAdminRankName(PlayerInfo[playerid][pAdmin]), GetPlayerNameEx(playerid), params);
 			}
-			else if(GetPVarType(playerid, "Undercover") || PlayerInfo[playerid][pDonateRank] > 0 || PlayerInfo[playerid][pVIPMod])
+			else if(GetPVarType(playerid, "Undercover") || PlayerInfo[playerid][pDonateRank] > 0 || PlayerInfo[playerid][pVIPMod] || PlayerInfo[playerid][pBuddyInvited] == 1)
 			{
 				if(PlayerInfo[playerid][pVIPMod] == 1) format(szMessage, sizeof(szMessage), "-- VIP Moderator %s: %s", GetPlayerNameEx(playerid), params);
 				else if(PlayerInfo[playerid][pVIPMod] == 2) format(szMessage, sizeof(szMessage), "-- Senior VIP Moderator %s: %s", GetPlayerNameEx(playerid), params);

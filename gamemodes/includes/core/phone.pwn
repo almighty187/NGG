@@ -320,7 +320,7 @@ CMD:call(playerid, params[])
 			SendClientMessageEx(playerid, COLOR_GRAD2, "You don't have a cell phone.");
 			return 1;
 		}
-		if(PhoneOnline[playerid] == 0)
+		if(PhoneOnline[playerid] > 0)
 		{
 			SendClientMessageEx(playerid, COLOR_GREY, "Your phone is off.");
 			return 1;
@@ -520,7 +520,7 @@ CMD:sms(playerid, params[])
 	if(gPlayerLogged{playerid} == 0) return SendClientMessageEx(playerid, COLOR_GREY, "   You haven't logged in yet!");
 	if(PlayerInfo[playerid][pJailTime] && strfind(PlayerInfo[playerid][pPrisonReason], "[OOC]", true) != -1) return SendClientMessageEx(playerid, COLOR_GREY, "OOC prisoners are restricted to only speak in /b");
 	if(PlayerInfo[playerid][pPnumber] == 0) return SendClientMessageEx(playerid, COLOR_GRAD2, "  You don't have a cell phone.");
-	if(PhoneOnline[playerid] == 0) return SendClientMessageEx(playerid, COLOR_GREY, "Your phone is off.");
+	if(PhoneOnline[playerid] > 0) return SendClientMessageEx(playerid, COLOR_GREY, "Your phone is off.");
 	if(GetPVarInt(playerid, "Injured") != 0 || PlayerInfo[playerid][pHospital] != 0) return SendClientMessageEx (playerid, COLOR_GRAD2, "You cannot do this at this time.");
 	if(PlayerTied[playerid] != 0 || PlayerCuffed[playerid] != 0 || GetPVarInt(playerid, "pBagged") >= 1) return SendClientMessageEx(playerid, COLOR_GREY, "You can't use your phone whilist restrained.");
 	if(PlayerInfo[playerid][pJailTime] > 0) return SendClientMessageEx(playerid, COLOR_GREY, "   You can not use your phone while in jail or prison!");
@@ -643,7 +643,7 @@ CMD:p(playerid, params[]) {
 CMD:pickup(playerid, params[])
 {
 	new string[128];
-	if(PhoneOnline[playerid] == 0)
+	if(PhoneOnline[playerid] > 0)
 	    return SendClientMessageEx(playerid, COLOR_GRAD2, "Your phone is turned off.");
 		
 	if(Mobile[playerid] != INVALID_PLAYER_ID)

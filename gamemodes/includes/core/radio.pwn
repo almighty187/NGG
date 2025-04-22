@@ -238,7 +238,7 @@ stock ShowSetStation(playerid, title[] = "Radio Menu")
 	format(string, sizeof(string), "Favorite Station\nGenres\nTop 50 Stations\nSearch\nK-LSR\nRadio New Robada\nNick's Radio\nCustom Audio URL\n%sTurn radio off", ((!isnull(PlayerInfo[playerid][pFavStation])) ? ("Favorite Station Settings\n") : ("")));
 	return ShowPlayerDialogEx(playerid, SETSTATION, DIALOG_STYLE_LIST, title, string, "Select", "Close");
 }*/
-new RadioStations[12][2][] = {
+new RadioStations[15][2][] = {
 	{{"custom"}, {"Custom URL Station"}} , 
     {{"https://listen.181fm.com/181-rock_128k.mp3"}, {"181.FM - Rock"}},
     {{"https://listen.181fm.com/181-country_128k.mp3"}, {"181.FM - Country"}},
@@ -250,7 +250,10 @@ new RadioStations[12][2][] = {
     {{"https://streams.ilovemusic.de/iloveradio3.mp3"}, {"I Love Radio - Pop"}},
     {{"https://streams.ilovemusic.de/iloveradio5.mp3"}, {"I Love Radio - House"}},
     {{"https://streams.ilovemusic.de/iloveradio7.mp3"}, {"I Love Radio - EDM"}},
-    {{"https://streams.ilovemusic.de/iloveradio21.mp3"}, {"I Love Radio - Remix"}}
+    {{"https://streams.ilovemusic.de/iloveradio21.mp3"}, {"I Love Radio - Remix"}},
+	{{"https://listen.181fm.com/181-oldschool_128k.mp3"}, {"90s Rap"}},
+	{{"https://stream.zeno.fm/d11naiqefuivv.pls"}, {"Hut Shutz | Trinibad/Dancehall"}},
+	{{"https://stream.zeno.fm/zhtofwcmblmuv.pls"}, {"Top Notch FM | Rap / Drill Rap"}}
 };
 stock ShowSetStation(playerid, title[] = "{FFFFFF}Radio Menu")
 {

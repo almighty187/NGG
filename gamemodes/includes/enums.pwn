@@ -1300,8 +1300,7 @@ enum pInfo
 	pFlagClaimed,
 	pHorse,
 	pCountdown,
-	pLastGlobal,
-	pVPN
+	pLastGlobal
 };
 
 enum pvInfo
