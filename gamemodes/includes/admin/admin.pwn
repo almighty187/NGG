@@ -1111,17 +1111,17 @@ CMD:setwepres(playerid, params[])
 
     if(PlayerInfo[playerid][pAdmin] < 3) return SendClientMessageEx(playerid, COLOR_GREY, "You are not authorized to use this command.");
 
-    if(sscanf(params, "ud", targetid, hours)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /setwepres [playerid] [level]");
+    if(sscanf(params, "ud", targetid, hours)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /setwepres [playerid] [hours]");
 
     if(!IsPlayerConnected(targetid)) return SendClientMessageEx(playerid, COLOR_GREY, "The player specified is disconnected.");
 
     PlayerInfo[targetid][pWRestricted] = hours;
 
     new szMessage[128];
-    format(szMessage, sizeof(szMessage), "** You have been weapon restricted (Level %d) by %s.", hours, GetPlayerNameEx(playerid));
+    format(szMessage, sizeof(szMessage), "** You have been weapon restricted (hours %d) by %s.", hours, GetPlayerNameEx(playerid));
     SendClientMessageEx(targetid, COLOR_LIGHTRED, szMessage);
 
-    format(szMessage, sizeof(szMessage), "AdmCmd: %s has weapon restricted %s (Level %d).", GetPlayerNameEx(playerid), GetPlayerNameEx(targetid), hours);
+    format(szMessage, sizeof(szMessage), "AdmCmd: %s has weapon restricted %s (hours %d).", GetPlayerNameEx(playerid), GetPlayerNameEx(targetid), hours);
 	ABroadCast(COLOR_YELLOW, szMessage, 2);
 
     new szQuery[128];
