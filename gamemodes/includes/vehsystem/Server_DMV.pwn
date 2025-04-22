@@ -448,7 +448,8 @@ ShowDMVMenu(playerid, menu = 0, iTargetID = INVALID_PLAYER_ID) {
 		}
 
 		case 2: {
-			if((0 <= PlayerInfo[playerid][pMember] < MAX_GROUPS) && PlayerInfo[playerid][pRank] >= arrGroupData[PlayerInfo[playerid][pMember]][g_iDMVAccess] && arrGroupData[PlayerInfo[playerid][pMember]][g_iDMVAccess] != INVALID_RANK)
+			if(PlayerInfo[playerid][pMember] >= 0 && PlayerInfo[playerid][pMember] < MAX_GROUPS && PlayerInfo[playerid][pRank] >= arrGroupData[PlayerInfo[playerid][pMember]][g_iDMVAccess] && arrGroupData[PlayerInfo[playerid][pMember]][g_iDMVAccess] != INVALID_RANK)
+
 				return ShowPlayerDialogEx(playerid, DMVRELEASE_TARGET, DIALOG_STYLE_INPUT, "DMV Release Menu", "Enter the person's name whom you wish to release the vehicle for.", "Select", "Cancel");
 			else
 				return SendClientMessageEx(playerid, COLOR_GRAD2, "You are not a Law Enforcement Officer!");

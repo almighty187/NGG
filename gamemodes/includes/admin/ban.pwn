@@ -296,14 +296,14 @@ CMD:ban(playerid, params[]) {
 	if(sscanf(params, "udD(0)s[64]", iTargetID, iLength, iSilentBan, szReason)) {
 
 		SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /ban [playerid] [length in days] [silent(1=yes 2=no)] [reason]");
-		SendClientMessageEx(playerid, COLOR_GREY, "** 1 = Yes, the ban will only broadcast to admins | 2 = No, the ban will be globally broadcasted **");
+		SendClientMessageEx(playerid, COLOR_GREY, "** 1 = Yes, the ban will only broadcast to admins | 0 = No, the ban will be globally broadcasted **");
 		return 1;
 	}
 	if(!IsPlayerConnected(iTargetID)) return SendClientMessageEx(playerid, COLOR_GREY, "That player is not connected");
-	if(!(0 <= iSilentBan < 2)) {
+	if(iSilentBan != 0 && iSilentBan != 1) {
 
 		SendClientMessageEx(playerid, COLOR_GREY, "You must specify a value that is either 0 or 1");
-		SendClientMessageEx(playerid, COLOR_GREY, "** 1 = Yes, the ban will only broadcast to admins | 2 = No, the ban will be globally broadcasted **");
+		SendClientMessageEx(playerid, COLOR_GREY, "** 1 = Yes, the ban will only broadcast to admins | 0 = No, the ban will be globally broadcasted **");
 		return 1;
 	}
 	if(PlayerInfo[playerid][pAdmin] < PlayerInfo[iTargetID][pAdmin]) return SendClientMessageEx(playerid, COLOR_GREY, "That player is a higher ranking admin than you");
@@ -328,10 +328,10 @@ CMD:permban(playerid, params[]) {
 		return 1;
 	}
 	if(!IsPlayerConnected(iTargetID)) return SendClientMessageEx(playerid, COLOR_GREY, "That player is not connected");
-	if(!(0 <= iSilentBan < 2)) {
+	if(iSilentBan != 0 && iSilentBan != 1) {
 
 		SendClientMessageEx(playerid, COLOR_GREY, "You must specify a value that is either 0 or 1");
-		SendClientMessageEx(playerid, COLOR_GREY, "** 1 = Yes, the ban will only broadcast to admins | 2 = No, the ban will be globally broadcasted **");
+		SendClientMessageEx(playerid, COLOR_GREY, "** 1 = Yes, the ban will only broadcast to admins | 0 = No, the ban will be globally broadcasted **");
 		return 1;
 	}
 	if(PlayerInfo[playerid][pAdmin] < PlayerInfo[iTargetID][pAdmin]) return SendClientMessageEx(playerid, COLOR_GREY, "That player is a higher ranking admin than you");

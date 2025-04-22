@@ -1105,6 +1105,32 @@ CMD:wepreset(playerid, params[])
 	return 1;
 }
 
+CMD:setwepres(playerid, params[])
+{
+    new targetid, hours;
+
+    if(PlayerInfo[playerid][pAdmin] < 3) return SendClientMessageEx(playerid, COLOR_GREY, "You are not authorized to use this command.");
+
+    if(sscanf(params, "ud", targetid, hours)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /setwepres [playerid] [hours]");
+
+    if(!IsPlayerConnected(targetid)) return SendClientMessageEx(playerid, COLOR_GREY, "The player specified is disconnected.");
+
+    PlayerInfo[targetid][pWRestricted] = hours;
+
+    new szMessage[128];
+    format(szMessage, sizeof(szMessage), "** You have been weapon restricted (hours %d) by %s.", hours, GetPlayerNameEx(playerid));
+    SendClientMessageEx(targetid, COLOR_LIGHTRED, szMessage);
+
+    format(szMessage, sizeof(szMessage), "AdmCmd: %s has weapon restricted %s (hours %d).", GetPlayerNameEx(playerid), GetPlayerNameEx(targetid), hours);
+	ABroadCast(COLOR_YELLOW, szMessage, 2);
+
+    new szQuery[128];
+    mysql_format(MainPipeline, szQuery, sizeof(szQuery), "UPDATE accounts SET WRestricted = %i WHERE id = %i", PlayerInfo[targetid][pWRestricted], PlayerInfo[targetid][pId]);
+	mysql_tquery(MainPipeline, szQuery);
+
+    return 1;
+}
+
 CMD:bigears(playerid, params[])
 {
     if( PlayerInfo[playerid][pAdmin] >= 2) {
@@ -3452,8 +3478,6 @@ CMD:mole(playerid, params[])
 	return 1;
 }
 
-// Both below were adjusted to Head Admin because of them now being able to roleplay on their admin account. - Winterfield
-
 CMD:togspec(playerid, params[])
 {
 	if(PlayerInfo[playerid][pAdmin] >= 99999)
@@ -5782,17 +5806,18 @@ CMD:ah(playerid, params[])
 	}
 	if (PlayerInfo[playerid][pAdmin] >= 2)
 	{
-		SendClientMessageEx(playerid, COLOR_GRAD2,"--* REPORTS --* /reports /ar /tr /sta /nao /st /post /dmr /ts --* MOVEMENT --* /up /dn /fd /bk /lt /rt /fly");
+		SendClientMessageEx(playerid, COLOR_GRAD2,"--* REPORTS --* /reports /ar /tr /sta /nao /st /post /dmr /ts /stic /disc");
+		SendClientMessageEx(playerid, COLOR_GRAD2,"--* MOVEMENT --* /up /dn /fd /bk /lt /rt /fly");
 		SendClientMessageEx(playerid, COLOR_GRAD2,"--* {00FF00}JUNIOR ADMIN{BFC0C2} --* /kick /ban /prison /freeze /unfreeze /slap /warn /admins /spec /levelones /sendtoid");
 		SendClientMessageEx(playerid, COLOR_GRAD2,"--* {00FF00}JUNIOR ADMIN{BFC0C2} --* /sendto /gotopveh /gotocar /jetpack /god /check /anetstats /ipcheck /ip /nrn /listguns");
 		SendClientMessageEx(playerid, COLOR_GRAD2,"--* {00FF00}JUNIOR ADMIN{BFC0C2} --* /setvw /setint /vehname /gethere /gotoid /hospital /goto /revive /bigears /skick /damagecheck");
-		SendClientMessageEx(playerid, COLOR_GRAD2,"--* {00FF00}JUNIOR ADMIN{BFC0C2} --* /requestevent /watch /mark(2) /n(un)mute /ad(un)mute /checkinv /lastshot");
+		SendClientMessageEx(playerid, COLOR_GRAD2,"--* {00FF00}JUNIOR ADMIN{BFC0C2} --* /disarm /requestevent /watch /mark(2) /n(un)mute /ad(un)mute /checkinv /disarm /lastshot");
 		SendClientMessageEx(playerid, COLOR_GRAD2,"--* {00FF00}JUNIOR ADMIN{BFC0C2} --* /respawncar /watchlist /watchdogs /flag /viewflag /aflag /aviewflag /transferflag /deleteflag");
 	}
 	if (PlayerInfo[playerid][pAdmin] >= 3)
 	{
 		SendClientMessageEx(playerid, COLOR_GRAD3,"--* {00FF00}GENERAL ADMIN{CBCCCE} --* /noooc /nonewbie /fine /pfine /takeadminweapons /prisonaccount /entercar /getcar");
-		SendClientMessageEx(playerid, COLOR_GRAD3,"--* {00FF00}GENERAL ADMIN{CBCCCE} --* /mole /setskin /countdown /release /forcedeath /rto(reset) /metaldetector");
+		SendClientMessageEx(playerid, COLOR_GRAD3,"--* {00FF00}GENERAL ADMIN{CBCCCE} --* /clearchat /mole /setskin /countdown /release /forcedeath /rto(reset) /metaldetector");
 		SendClientMessageEx(playerid, COLOR_GRAD3,"--* {00FF00}GENERAL ADMIN{CBCCCE} --* /gotoco /leaders /wepreset /owarn /ofine /okills /respawncars /resetvw /aviewrivals");
 		SendClientMessageEx(playerid, COLOR_GRAD3,"--* {00FF00}GENERAL ADMIN{CBCCCE} --* /reloadpvehicles /apark /aimpound /dmrmute /createmetaldetector /metdets");
 	}
@@ -5804,7 +5829,7 @@ CMD:ah(playerid, params[])
 		SendClientMessageEx(playerid, COLOR_GRAD4,"--* {EE9A4D}SENIOR ADMIN{D8D8D8} --* /groupban /deletehit /setinsurance /givelicense /adestroyplant /tl(edit/text/status/next)");
 		SendClientMessageEx(playerid, COLOR_GRAD4,"--* {EE9A4D}SENIOR ADMIN{D8D8D8} --* /gotolabel /createpvehicle /destroypvehicle /vto /vtoreset /admingatepw /gotogate");
 		SendClientMessageEx(playerid, COLOR_GRAD4,"--* {EE9A4D}SENIOR ADMIN{D8D8D8} --* /hnext /dmpnext /g(status/near/next/edit) /(goto/goin)door /(goto/goin)house /(create/delete/goto)point");
-		SendClientMessageEx(playerid, COLOR_GRAD4,"--* {EE9A4D}SENIOR ADMIN{D8D8D8} --* /hedit /dd(edit/next/name/pass) /dmpedit /dmpnear /gotomapicon /banaccount");
+		SendClientMessageEx(playerid, COLOR_GRAD4,"--* {EE9A4D}SENIOR ADMIN{D8D8D8} --* /hedit /dd(edit/next/name/pass) /dmpedit /dmpnear /gotomapicon /banaccount /fws");
 		SendClientMessageEx(playerid, COLOR_GRAD4,"--* {EE9A4D}SENIOR ADMIN{D8D8D8} --* /removepvehicle /rcabuse /createmailbox /adestroymailbox /b(edit/next/name) /gotocrate /srelease");
 		SendClientMessageEx(playerid, COLOR_GRAD4,"--* {EE9A4D}SENIOR ADMIN{D8D8D8} --* /(create/edit/delete)gaspump /(goto/goin)biz /dvcreate /dvstatus /dvrespawn /dvedit /dveditslot /dvplate");
 		SendClientMessageEx(playerid, COLOR_GRAD4,"--* {EE9A4D}SENIOR ADMIN{D8D8D8} --* /checkvouchers /ovmute /ovunmute /restrictaccount /unrestrictaccount /wdwhitelist /resetexamine");
@@ -5822,7 +5847,7 @@ CMD:ah(playerid, params[])
 	{
 		SendClientMessageEx(playerid, COLOR_GRAD6,"--* {298EFF}EXECUTIVE ADMIN{F0F0F0} --* /togspec /togtp /kickres /givecredits /setcredits /settotalcredits /setstpay /resetstpay /pmotd");
 		SendClientMessageEx(playerid, COLOR_GRAD6,"--* {298EFF}EXECUTIVE ADMIN{F0F0F0} --* /setcode /togdynamicgift /dgedit /viewgiftbox /togpasscomplexity");
-		SendClientMessageEx(playerid, COLOR_GRAD6,"--* {298EFF}EXECUTIVE ADMIN{F0F0F0} --* /changeuserpassword /changeuserpin");
+		SendClientMessageEx(playerid, COLOR_GRAD6,"--* {298EFF}EXECUTIVE ADMIN{F0F0F0} --* /changeuserpassword /changeuserpin /givesprize /deleteaccount");
 
 	}
 	if (PlayerInfo[playerid][pHR] >= 2)
@@ -5959,7 +5984,7 @@ CMD:mods(playerid, params[])
 
 CMD:givesprize(playerid, params[])
 {
-	if(PlayerInfo[playerid][pAdmin] < 1337 && PlayerInfo[playerid][pHR] < 2) return SendClientMessageEx(playerid, COLOR_GREY, "You are not authorized to use that command.");
+	if(PlayerInfo[playerid][pAdmin] < 99999 && PlayerInfo[playerid][pHR] < 2) return SendClientMessageEx(playerid, COLOR_GREY, "You are not authorized to use that command.");
 	new PName[MAX_PLAYER_NAME], choice[16], amount;
 	if(sscanf(params, "s[24]s[16]d", PName, choice, amount))
 	{
@@ -6753,7 +6778,7 @@ CMD:fws(playerid, params[])
 {
   	new giveplayerid, string[124];
 
-	if(PlayerInfo[playerid][pAdmin] >= 3)
+	if(PlayerInfo[playerid][pAdmin] >= 4)
 	{
 		if(sscanf(params, "ud", giveplayerid))
 		{
@@ -6814,22 +6839,55 @@ CMD:disarm(playerid, params[])
     return 1;
 }
 
-CMD:vpns(playerid, params[]) {
-	if(PlayerInfo[playerid][pAdmin] >= 1)
+CMD:disable(playerid, params[])
+{
+	if(PlayerInfo[playerid][pAdmin] >= 1337)
 	{
-		new
-			szMessage[42 + MAX_PLAYER_NAME];
-		SendClientMessageEx(playerid,COLOR_WHITE,"Listing all vpns...");
-	    foreach(new i: Player)
-	    {
-			if(PlayerInfo[playerid][pVPN] != 0) {
+		new string[128], giveplayerid;
+		if(sscanf(params, "u", giveplayerid)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /disable [player]");
 
-				format(szMessage, sizeof(szMessage), "* %s (ID %d)", GetPlayerNameEx(i), i);
-
-				if(PlayerInfo[i][pAdmin] >= 2) SendClientMessageEx(playerid,COLOR_RED, szMessage);
-				else SendClientMessageEx(playerid,COLOR_GREY, szMessage);
-			}
+		if(IsPlayerConnected(giveplayerid))
+		{
+			format(string, sizeof(string), "AdmCmd: %s(%d) has been disabled by %s.", GetPlayerNameEx(giveplayerid), GetPlayerSQLId(giveplayerid), GetPlayerNameEx(playerid));
+			Log("logs/admin.log", string);
+			DBLog(playerid, giveplayerid, "Admin", "account suspended");
+			format(string, sizeof(string), "AdmCmd: %s has been disabled by %s.", GetPlayerNameEx(giveplayerid), GetPlayerNameEx(playerid));
+			ABroadCast(COLOR_LIGHTRED, string, 2);
+			PlayerInfo[giveplayerid][pDisabled] = 1;
+			Kick(giveplayerid);
 		}
 	}
+	else
+	{
+		SendClientMessageEx(playerid, COLOR_GRAD1, "You are not authorized to use that command.");
+	}
 	return 1;
+}
+
+CMD:undisable(playerid, params[]) {
+    if(PlayerInfo[playerid][pAdmin] >= 1337) {
+        new giveplayerid[MAX_PLAYER_NAME + 1];
+        if(sscanf(params, "s", giveplayerid)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /undisable [player]");
+
+        new szName[MAX_PLAYER_NAME + 1];
+
+        mysql_escape_string(giveplayerid, szName, sizeof(szName));
+        
+        new szQuery[128];
+        mysql_format(MainPipeline, szQuery, sizeof szQuery, "UPDATE `accounts` SET `Disabled` = 0 WHERE `Username` = '%s'", szName);
+        mysql_tquery(MainPipeline, szQuery, "Undisable_QueryFinish", "i", playerid);
+
+        new logMessage[256];
+        format(logMessage, sizeof(logMessage), "AdmCmd: %s has been undisabled by %s.", szName, GetPlayerNameEx(playerid));
+        Log("logs/admin.log", logMessage);
+        format(logMessage, sizeof(logMessage), "AdmCmd: %s has been undisabled by %s.", szName, GetPlayerNameEx(playerid));
+        ABroadCast(COLOR_LIGHTRED, logMessage, 2);
+        
+        PlayerInfo[ReturnUser(giveplayerid)][pDisabled] = 0;
+    } 
+	else 
+	{
+        SendClientMessageEx(playerid, COLOR_GRAD1, "You are not authorized to use that command.");
+    }
+    return 1;
 }
