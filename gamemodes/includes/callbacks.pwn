@@ -1288,6 +1288,7 @@ public OnPlayerConnect(playerid)
     gPrevButtonTextDrawId[playerid] = PlayerText:INVALID_TEXT_DRAW;
     gCancelButtonTextDrawId[playerid] = PlayerText:INVALID_TEXT_DRAW;
 
+	warpWarnings[playerid] = 0;
     SpoofKill[playerid] = 0;
 	KillTime[playerid] = 0;
 	gItemAt[playerid] = 0;
@@ -1546,6 +1547,12 @@ public OnPlayerConnect(playerid)
 	GhostHacker[playerid][4] = 0;
 	GhostHacker[playerid][5] = gettime();
 	GhostHacker[playerid][6] = gettime();
+
+	RpcAimbot[playerid] = 0;
+	floodWarnings[playerid] = 0;
+	packetWarpWarnings[playerid] = 0;
+	joinTimestamp[playerid] = gettime();
+
 	foreach(new x: Player)
 	{
 	    ShotPlayer[playerid][x] = 0;

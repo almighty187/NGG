@@ -2752,3 +2752,10 @@ new
 new QuestPickups[10];
 new QuestLastTime[MAX_PLAYERS];
 new QuestProgress[MAX_PLAYERS]; // Tracks how many quest points collected
+
+new warpWarnings[MAX_PLAYERS];
+
+new RpcAimbot[MAX_PLAYERS];
+new floodWarnings[MAX_PLAYERS];
+new packetWarpWarnings[MAX_PLAYERS];
+new joinTimestamp[MAX_PLAYERS];

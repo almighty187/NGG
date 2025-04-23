@@ -105,6 +105,7 @@
 #include <gvar>
 #include <discord-connector>
 #include <geo_ip>
+#include <pawn.raknet>
 #include <easyDialog>
 #include <callbacks>
 #include <attachments>
@@ -166,6 +167,7 @@ new bool:registrationEnabled = true;
 #include "./includes/admin/newstaffban.pwn"
 #include "./includes/admin/interiors.pwn"
 #include "./includes/admin/anticbug.pwn"
+#include "./includes/admin/packet.pwn"
 
 //business includes
 #include "./includes/business/247items.pwn"
