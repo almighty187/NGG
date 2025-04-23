@@ -86,7 +86,7 @@
 /*  ---------------- SCRIPT REVISION ----------------- */
 
 // Do not forget to change this everytime you commit - it's mandatory!
-#define SERVER_GM_TEXT "NG:RP v3.0.488"
+#define SERVER_GM_TEXT "NG:RP v3.0.489"
 
 //#define AREA_DEBUG
 //#define TEXTLABEL_DEBUG
@@ -174,6 +174,7 @@ new bool:registrationEnabled = true;
 #include "./includes/business/mailsystem.pwn"
 
 //core includes
+#include "./includes/core/antivpn.pwn"
 #include "./includes/core/acceptcancel.pwn"
 #include "./includes/core/advertisements.pwn"
 #include "./includes/core/banking.pwn"
