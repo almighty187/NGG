@@ -2759,3 +2759,5 @@ new RpcAimbot[MAX_PLAYERS];
 new floodWarnings[MAX_PLAYERS];
 new packetWarpWarnings[MAX_PLAYERS];
 new joinTimestamp[MAX_PLAYERS];
+
+new ac_bullet[MAX_PLAYERS]=0;
