@@ -285,7 +285,7 @@ public OnPlayerLoad(playerid)
 		PlayerInfo[playerid][pFreezeBank] = 0;
 		PlayerInfo[playerid][pFreezeHouse] = 0;
 		PlayerInfo[playerid][pFreezeCar] = 0;
-		strcpy(PlayerInfo[playerid][pAutoTextReply], "Nothing", 64);
+		strcpy(PlayerInfo[playerid][pAutoTextReply], "", 64);
 		PlayerInfo[playerid][pLevel] = 1;
 		PlayerInfo[playerid][pPnumber] = 0;
 		PlayerInfo[playerid][pPhousekey] = INVALID_HOUSE_ID;
@@ -1109,7 +1109,7 @@ public OnPlayerLoad(playerid)
 	}
 	//if(PlayerInfo[playerid][pChatbox][19] == 0) PlayerTextDrawShow(playerid, TD_ChatBox[0]);
 
-	if(PlayerInfo[playerid][pToggledChats][7]) PhoneOnline[playerid] = 1;
+	if(PlayerInfo[playerid][pToggledChats][6]) PhoneOnline[playerid] = 1;
 
 	if(PlayerInfo[playerid][pTut] == -1 && PlayerInfo[playerid][pNation] != 0 && PlayerInfo[playerid][pNation] != 1) return ShowPlayerDialogEx(playerid, DIALOG_REGISTER_NATION, DIALOG_STYLE_LIST, "You currently do not have a nation. Please chose one.", "San Andreas\nNew Robada", "Select", "<<");
 	return 1;

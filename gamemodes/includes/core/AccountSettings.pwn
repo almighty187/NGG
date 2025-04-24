@@ -107,6 +107,7 @@ ShowAccountSettings(playerid, menu = 0) {
 				PlayerInfo[playerid][pChatbox][2],
 				PlayerInfo[playerid][pChatbox][3],
 				PlayerInfo[playerid][pChatbox][5],
+				PlayerInfo[playerid][pChatbox][6],
 				PlayerInfo[playerid][pChatbox][7],
 				PlayerInfo[playerid][pChatbox][8],
 				PlayerInfo[playerid][pChatbox][9],
