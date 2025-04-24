@@ -2663,7 +2663,7 @@ CMD:pvlock(playerid, params[])
 		{
             new d = PlayerInfo[playerid][pVehicleKeys];
             if(PlayerVehicleInfo[ownerid][d][pvId] != INVALID_PLAYER_VEHICLE_ID) GetVehiclePos(PlayerVehicleInfo[ownerid][d][pvId], x, y, z);
-            if(IsPlayerInRangeOfPoint(playerid, 3.0, x, y, z))
+            if(IsPlayerInRangeOfPoint(playerid, 4.0, x, y, z))
 			{
                 if(PlayerVehicleInfo[ownerid][d][pvLock] > 0)
 				{
@@ -2703,7 +2703,7 @@ CMD:pvlock(playerid, params[])
     for(new d = 0 ; d < MAX_PLAYERVEHICLES; d++)
     {
         if(PlayerVehicleInfo[playerid][d][pvId] != INVALID_PLAYER_VEHICLE_ID) GetVehiclePos(PlayerVehicleInfo[playerid][d][pvId], x, y, z);
-        if(IsPlayerInRangeOfPoint(playerid, 3.0, x, y, z))
+        if(IsPlayerInRangeOfPoint(playerid, 4.0, x, y, z))
 		{
 			if(PlayerVehicleInfo[playerid][d][pvLocksLeft] <= 0) {
 				SendClientMessageEx(playerid, COLOR_GREY, "The lock has been damaged as result of a lock pick, please buy a new one!");

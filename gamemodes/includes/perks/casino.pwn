@@ -88,7 +88,7 @@ CMD:offerdice(playerid, params[])
 	if(playerid == targetid) return SendClientMessageEx(playerid, COLOR_GREY, "Error: You are cannot roll with yourself.");
 	if(GetPVarInt(playerid, "OfferDiceID") != INVALID_PLAYER_ID) return SendClientMessageEx(playerid, COLOR_GREY, "Error: You are already being offered a dice game. Please accept or deny it.");
 	if(GetPVarInt(playerid, "OfferingDiceID") != INVALID_PLAYER_ID) return SendClientMessageEx(playerid, COLOR_GREY, "Error: You are already offering a dice game. Use /canceldice to cancel it.");
-	if(amount < 5000000) return SendClientMessageEx(playerid, COLOR_GREY, "Error: You can only bet more than $5,000,000.");
+	if(amount < 5000) return SendClientMessageEx(playerid, COLOR_GREY, "Error: You can only bet more than $5,000.");
 	if(rolls < 1 || rolls > 3) return SendClientMessageEx(playerid, COLOR_GREY, "Error: You can only use 1 to 3 rolls.");
 	if(PlayerInfo[playerid][pCash] < amount) return SendClientMessageEx(playerid, COLOR_GREY, "Error: You don't have enough money.");
 	if(PlayerInfo[targetid][pCash] < amount) return SendClientMessageEx(playerid, COLOR_GREY, "Error: The player doesn't have enough money.");
