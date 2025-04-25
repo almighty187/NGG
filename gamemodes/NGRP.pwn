@@ -86,7 +86,7 @@
 /*  ---------------- SCRIPT REVISION ----------------- */
 
 // Do not forget to change this everytime you commit - it's mandatory!
-#define SERVER_GM_TEXT "NG:RP v3.0.490"
+#define SERVER_GM_TEXT "NG:RP v3.0.491"
 
 //#define AREA_DEBUG
 //#define TEXTLABEL_DEBUG
@@ -105,6 +105,7 @@
 #include <gvar>
 #include <discord-connector>
 #include <geo_ip>
+#include <pawn.raknet>
 #include <easyDialog>
 #include <callbacks>
 #include <attachments>
@@ -166,6 +167,7 @@ new bool:registrationEnabled = true;
 #include "./includes/admin/newstaffban.pwn"
 #include "./includes/admin/interiors.pwn"
 #include "./includes/admin/anticbug.pwn"
+#include "./includes/admin/packet.pwn"
 
 //business includes
 #include "./includes/business/247items.pwn"

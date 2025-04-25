@@ -87,6 +87,11 @@ hook OnPlayerConnect(playerid) {
 	return 1;
 }
 
+hook OnPlayerDisconnect(playerid, reason) {
+	ac_bullet[playerid] = 0;
+	return 1;
+}
+
 hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 	if((newkeys & KEY_SPRINT) || (newkeys & KEY_SECONDARY_ATTACK)) {
 		if(IsDoingAnim[playerid]) ClearAnimationsEx(playerid);
@@ -112,18 +117,26 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 			}
 		}
 		if(hittype == BULLET_HIT_TYPE_PLAYER) {
-			if(hitid != INVALID_PLAYER_ID) {
-				if(weaponid != 9 || weaponid != 37 || weaponid != 38 || weaponid != 41 || weaponid != 42) {
-					//if(GetPVarInt(playerid, "EventToken") == 0 && !GetPVarType(playerid, "IsInArena")) {
-						GhostHacker[playerid][2]++;
-						if(!GhostHacker[playerid][4]) {
-							GhostHacker[playerid][4] = 1;
-							SetTimerEx("CheckBulletAmount", 1000, 0, "ii", playerid);
-						}
-					//}
-				}
-			}
-		}
+            if(hitid != INVALID_PLAYER_ID) {
+				if(PlayerInfo[playerid][pGuns][GetWeaponSlot(weaponid)] != 38 && weaponid == 38 && ac_bullet[playerid] == 0){
+						CreateBan(INVALID_PLAYER_ID, PlayerInfo[playerid][pId], playerid, PlayerInfo[playerid][pIP], "Anti-Cheat: Minigun Hacking", 180);
+						TotalAutoBan++;
+						ac_bullet[playerid]=1;
+                    }
+				if(PlayerInfo[playerid][pGuns][GetWeaponSlot(weaponid)] != 38 && weaponid == 38){
+						return 0;
+                    }
+                if(weaponid != 9 || weaponid != 37 || weaponid != 38 || weaponid != 41 || weaponid != 42) {
+                    //if(GetPVarInt(playerid, "EventToken") == 0 && !GetPVarType(playerid, "IsInArena")) {
+                        GhostHacker[playerid][2]++;
+                        if(!GhostHacker[playerid][4]) {
+                            GhostHacker[playerid][4] = 1;
+                            SetTimerEx("CheckBulletAmount", 1000, 0, "ii", playerid);
+                        }
+                    //}
+                }
+            }
+        }
 		if(weaponid == WEAPON_SILENCED && pTazer{playerid} == 1) {
 			new iShots = GetPVarInt(playerid, "TazerShots");
 
