@@ -31395,6 +31395,13 @@ stock RemoveBuildingsFromPlayer(playerid)
 		RemoveBuildingForPlayer(playerid, 3574, 2771.0703, -2372.4453, 15.2188, 0.25);
 		RemoveBuildingForPlayer(playerid, 3574, 2789.2109, -2377.6250, 15.2188, 0.25);
 
+		// mac macman glen park
+		RemoveBuildingForPlayer(playerid, 714, 1906.4141, -1152.2578, 22.0234, 0.25);
+		RemoveBuildingForPlayer(playerid, 620, 1880.1250, -1152.1328, 20.8047, 0.25);
+
+		// taidoe capelli
+		RemoveBuildingForPlayer(playerid, 1283, 1765.0781, -1604.1875, 15.6250, 0.25);
+
 		SetPVarInt(playerid, "BuildingRemoved", 1);
 	}
 	return 1;
