@@ -884,9 +884,9 @@ public OnQueryFinish(resultid, extraid, handleid)
 			{
 				AdvanceTutorial(extraid);
 				g_mysql_AccountLoginCheck(extraid);
-				format(szMiscArray, sizeof(szMiscArray), "WARNING: %s (ID: %d) has registered from %s", GetPlayerNameEx(extraid), extraid, GetPlayerCountry(extraid));
-				ABroadCast(COLOR_LIGHTRED, szMiscArray, 2);
-				TotalRegister++;
+				//format(szMiscArray, sizeof(szMiscArray), "WARNING: %s (ID: %d) has registered from %s", GetPlayerNameEx(extraid), extraid, GetPlayerCountry(extraid));
+				//ABroadCast(COLOR_LIGHTRED, szMiscArray, 2);
+				//TotalRegister++;
 			}
 		}
 		case LOADPTOYS_THREAD:

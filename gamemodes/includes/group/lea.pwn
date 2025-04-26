@@ -2300,3 +2300,4 @@ CMD:wheelclamp(playerid, params[])
 		SendClientMessageEx(playerid, COLOR_WHITE, "You are not authorized to use this command.");
 	return 1;
 }
+

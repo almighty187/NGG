@@ -218,6 +218,8 @@ new bool:registrationEnabled = true;
 #include "./includes/core/deluxegps.pwn"
 #include "./includes/core/vending.pwn"
 #include "./includes/core/globalchat.pwn"
+#include "./includes/core/dropgun.pwn"
+#include "./includes/core/teargas.pwn"
 //#include "./includes/core/fpslimit.pwn"
 
 //dynamic core includes
@@ -289,6 +291,7 @@ new bool:registrationEnabled = true;
 #include "./includes/group/GunLicense.pwn"
 #include "./includes/group/sanews.pwn"
 #include "./includes/group/casefile.pwn"
+#include "./includes/group/callsign.pwn"
 #include "./includes/group/groupweapons.pwn"
 
 //job system includes

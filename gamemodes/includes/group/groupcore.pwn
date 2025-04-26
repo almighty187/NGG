@@ -3391,7 +3391,7 @@ CMD:listbugs(playerid, params[])
 }
 
 CMD:online(playerid, params[]) {
-	if(PlayerInfo[playerid][pLeader] >= 0 || PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 1 || IsACriminal(playerid))
+	if(PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 1 || IsACriminal(playerid) || IsACop(playerid))
 	{
 		if(PlayerInfo[playerid][pMember] == INVALID_GROUP_ID) return SendClientMessageEx(playerid, -1, "You are not a member of any group!");
 		szMiscArray[0] = 0;
@@ -3424,7 +3424,7 @@ CMD:online(playerid, params[]) {
 		}
 		else SendClientMessageEx(playerid, COLOR_GREY, "No members are online at this time.");
 	}
-	else SendClientMessageEx(playerid, COLOR_GREY, "Only group leaders may use this command.");
+	else SendClientMessageEx(playerid, COLOR_GREY, "Only group members may use this command.");
 	return 1;
 }
 

@@ -100,7 +100,7 @@ hook OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
             ABroadCast(COLOR_YELLOW, szMiscArray, 2);
             Log("logs/hack.log", szMiscArray);
             RpcAimbot[playerid] = 0;
-            AddFlag(playerid, INVALID_PLAYER_ID, "Detected using aimbot - RPC");         
+            AddFlag(playerid, INVALID_PLAYER_ID, "Detected using aimbot - RPC",2);         
         }
     }
 
@@ -166,7 +166,7 @@ hook OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
                     ABroadCast(COLOR_YELLOW, szMiscArray, 2);
                     Log("logs/hack.log", szMiscArray);
                     RpcAimbot[playerid] = 0;
-                    AddFlag(playerid, INVALID_PLAYER_ID, "Detected using aimbot - RPC");
+                    AddFlag(playerid, INVALID_PLAYER_ID, "Detected using aimbot - RPC",2);
                 }
             }
         }
@@ -184,7 +184,7 @@ hook OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
                 ABroadCast(COLOR_YELLOW, szMiscArray, 2);
                 Log("logs/hack.log", szMiscArray);
                 RpcAimbot[playerid] = 0;
-                AddFlag(playerid, INVALID_PLAYER_ID, "Detected using aimbot - RPC");
+                AddFlag(playerid, INVALID_PLAYER_ID, "Detected using aimbot - RPC",2);
             }
         }
     }

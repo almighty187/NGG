@@ -803,6 +803,9 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				strmid(PlayerInfo[playerid][pReferredBy], szMiscArray, 0, strlen(szMiscArray), MAX_PLAYER_NAME);
 				PlayerInfo[playerid][pTut] = 14;
 				AdvanceTutorial(playerid);
+				format(szMiscArray, sizeof(szMiscArray), "WARNING: %s (ID: %d) has registered from %s", GetPlayerNameEx(playerid), playerid, GetPlayerCountry(playerid));
+				ABroadCast(COLOR_LIGHTRED, szMiscArray, 2);
+				TotalRegister++;
 				SendClientMessageEx(playerid, COLOR_LIGHTBLUE, "Thanks for filling in all the information!");
 			}
 		}
