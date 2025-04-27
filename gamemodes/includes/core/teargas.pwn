@@ -20,7 +20,7 @@ public InitTGEffect(playerid) {
     {
 	    if(weaponid == 17)
 	    {
-	     	if(IsPlayerInRangeOfPoint(i,23.0, x, y, z) && !playerid)
+	     	if(IsPlayerInRangeOfPoint(i,40.0, x, y, z) && !playerid)
         	{
         		if(TGThrower[i] == 0){
 	        		new Float:health;

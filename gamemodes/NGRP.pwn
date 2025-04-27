@@ -220,6 +220,7 @@ new bool:registrationEnabled = true;
 #include "./includes/core/globalchat.pwn"
 #include "./includes/core/dropgun.pwn"
 #include "./includes/core/teargas.pwn"
+#include "./includes/core/vpnwhitelist.pwn"
 //#include "./includes/core/fpslimit.pwn"
 #include "./includes/core/187.pwn"
 
