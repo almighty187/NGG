@@ -6627,7 +6627,7 @@ CMD:randomnumber(playerid, params[])
 	new iLower, iUpper;
 	if(sscanf(params, "dd", iLower, iUpper)) return SendClientMessage(playerid, COLOR_GRAD2, "USAGE: /randomnumber [minimum] [maximum]");
 
-	if(iLower < 2 || iUpper > 999999) return SendClientMessage(playerid, COLOR_GRAD2, "The minimum value must be 2 or above, and you cannot go above 999,999.");
+	if(iLower < 0 || iUpper > 999999) return SendClientMessage(playerid, COLOR_GRAD2, "The minimum value must be 0 or above, and you cannot go above 999,999.");
 
 	if((iUpper - iLower) < 2) return SendClientMessage(playerid, COLOR_GRAD2, "There must be a difference of at least 2 between the min and max values.");
 
