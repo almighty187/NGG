@@ -1498,9 +1498,26 @@ CMD:cfedit(playerid, params[]) {
 	return 1;
 }
 
-CMD:nextraid(playerid, params[]) {
-	return SendClientMessageEx(playerid, COLOR_YELLOW, "%s facility will be raidable on %s", CrateFacility[0][cfName], date(CrateFacility[0][cfCooldown], 1));
+CMD:nextraid(playerid, params[])
+{
+	if(PlayerBusy(playerid)) return SendClientMessageEx(playerid, COLOR_GRAD2, "You can't do this right now");
+	new string[1024];
+	for(new f = 0; f < MAX_CRATE_FACILITY; f++) {
+		if(CrateFacility[f][cfPos][0] != 0.0) {
+			if(CrateFacility[f][cfCooldown] > gettime())
+			{
+				format(string, sizeof(string), "%s\nFacility: %s | Cooldown: %s", string, CrateFacility[f][cfName], ConvertTimeS(CrateFacility[f][cfCooldown]-gettime()));
+			}
+			else
+			{
+				format(string, sizeof(string), "%s\nFacility: %s | Cooldown: None", string, CrateFacility[f][cfName]);
+			}
+		}
+	}
+	ShowPlayerDialogEx(playerid, DIALOG_NOTHING, DIALOG_STYLE_LIST, "Crate Facilities", string, "OK", "Cancel");
+	return 1;
 }
+
 
 stock DeleteOrder(facility, reason[]) {
 	szMiscArray[0] = 0;
