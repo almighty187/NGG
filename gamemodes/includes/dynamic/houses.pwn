@@ -58,9 +58,9 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 							hInviteHouse[hInviteOfferTo[playerid]] = i;
 							hInviteOffer[hInviteOfferTo[playerid]] = playerid;
 							format(istring, sizeof(istring), "   %s has invited you to their house in %s (type /accept invite).", GetPlayerNameEx(playerid), zone);
-							SendClientMessageEx(hInviteOfferTo[playerid], COLOR_LIGHTBLUE, istring);
+							SendClientMessageEx(hInviteOfferTo[playerid], COLOR_TWLIGHTBLUE, istring);
 							format(istring, sizeof(istring), "   You have invited %s to your house in %s.", GetPlayerNameEx(hInviteOfferTo[playerid]), zone);
-							SendClientMessageEx(playerid, COLOR_LIGHTBLUE, istring);
+							SendClientMessageEx(playerid, COLOR_TWLIGHTBLUE, istring);
 							return 1;
 						}
 						j++;
@@ -476,7 +476,7 @@ stock ReloadHouseText(houseid)
 		else format(string, sizeof(string), "This house is owned by\n%s\nLevel: %d\nID: %d", StripUnderscore(HouseInfo[houseid][hOwnerName]), HouseInfo[houseid][hLevel], houseid);
 	}
 	else format(string, sizeof(string), "This house is\n for sale!\n Description: %s\nCost: $%s\n Level: %d\nID: %d\nTo buy this house type /buyhouse", HouseInfo[houseid][hDescription], number_format(HouseInfo[houseid][hValue]), HouseInfo[houseid][hLevel], houseid);
-	UpdateDynamic3DTextLabelText(HouseInfo[houseid][hTextID], HouseInfo[houseid][hInactive] ? COLOR_LIGHTBLUE : COLOR_GREEN, string);
+	UpdateDynamic3DTextLabelText(HouseInfo[houseid][hTextID], HouseInfo[houseid][hInactive] ? COLOR_TWLIGHTBLUE : COLOR_TWGREEN2, string);
 }
 
 stock ReloadHousePickup(houseid)
@@ -500,7 +500,7 @@ stock ReloadHousePickup(houseid)
 	else
 		format(string, sizeof(string), "This house is\n for sale!\n Description: %s\nCost: $%s\n Level: %d\nID: %d\nTo buy this house type /buyhouse", HouseInfo[houseid][hDescription], number_format(HouseInfo[houseid][hValue]), HouseInfo[houseid][hLevel], houseid);
 
-	HouseInfo[houseid][hTextID] = CreateDynamic3DTextLabel(string, HouseInfo[houseid][hInactive] ? COLOR_LIGHTBLUE : COLOR_GREEN, HouseInfo[houseid][hExteriorX], HouseInfo[houseid][hExteriorY], HouseInfo[houseid][hExteriorZ]+0.5,10.0, .testlos = 1, .worldid = HouseInfo[houseid][hExtVW], .interiorid = HouseInfo[houseid][hExtIW], .streamdistance = 10.0);
+	HouseInfo[houseid][hTextID] = CreateDynamic3DTextLabel(string, HouseInfo[houseid][hInactive] ? COLOR_TWLIGHTBLUE : COLOR_TWGREEN2, HouseInfo[houseid][hExteriorX], HouseInfo[houseid][hExteriorY], HouseInfo[houseid][hExteriorZ]+0.5,10.0, .testlos = 1, .worldid = HouseInfo[houseid][hExtVW], .interiorid = HouseInfo[houseid][hExtIW], .streamdistance = 10.0);
 	HouseInfo[houseid][hPickupID] = CreateDynamicPickup(HouseInfo[houseid][hInactive] ? 1272 : 1273, 23, HouseInfo[houseid][hExteriorX], HouseInfo[houseid][hExteriorY], HouseInfo[houseid][hExteriorZ], .worldid = HouseInfo[houseid][hExtVW], .interiorid = HouseInfo[houseid][hExtIW]);
 	HouseInfo[houseid][hPickupID_int] = CreateDynamicPickup(1559, 23, HouseInfo[houseid][hInteriorX], HouseInfo[houseid][hInteriorY], HouseInfo[houseid][hInteriorZ], .worldid = HouseInfo[houseid][hIntVW], .interiorid = HouseInfo[houseid][hIntIW]);
 	
@@ -853,9 +853,9 @@ CMD:sellmyhouse(playerid, params[])
 						HousePrice[giveplayerid] = price;
 						House[giveplayerid] = i;
 						format(string, sizeof(string), "* You offered %s to buy your house for $%s.", GetPlayerNameEx(giveplayerid), number_format(price));
-						SendClientMessageEx(playerid, COLOR_LIGHTBLUE, string);
+						SendClientMessageEx(playerid, COLOR_TWLIGHTBLUE, string);
 						format(string, sizeof(string), "* %s has offered you their house for $%s, (type /accept house) to buy.", GetPlayerNameEx(playerid), number_format(price));
-						SendClientMessageEx(giveplayerid, COLOR_LIGHTBLUE, string);
+						SendClientMessageEx(giveplayerid, COLOR_TWLIGHTBLUE, string);
 						DeletePVar(playerid, "confirmhousell");
 						return 1;
 					}
@@ -1218,7 +1218,7 @@ CMD:hedit(playerid, params[])
 		if(HouseInfo[houseid][hOwned] ==0)
 		{
 			format(string, sizeof(string), "This home is\n for sale!\n Description: %s\nCost: $%d\n Level: %d\nID: %d\nTo buy this house type /buyhouse",HouseInfo[houseid][hDescription],HouseInfo[houseid][hValue],HouseInfo[houseid][hLevel],houseid);
-			UpdateDynamic3DTextLabelText(HouseInfo[houseid][hTextID], COLOR_GREEN, string);
+			UpdateDynamic3DTextLabelText(HouseInfo[houseid][hTextID], COLOR_TWGREEN2, string);
 		}
 
 		format(string, sizeof(string), "%s has edited HouseID %d's Class to %d.", GetPlayerNameEx(playerid), houseid, amount);
@@ -1325,7 +1325,7 @@ CMD:shophouse(playerid, params[])
 		if(HouseInfo[houseid][hOwned] ==0)
 		{
 			format(string, sizeof(string), "This home is\n for sale!\n Description: %s\nCost: $%d\n Level: %d\nID: %d\nTo buy this house type /buyhouse",HouseInfo[houseid][hDescription],HouseInfo[houseid][hValue],HouseInfo[houseid][hLevel],houseid);
-			UpdateDynamic3DTextLabelText(HouseInfo[houseid][hTextID], COLOR_GREEN, string);
+			UpdateDynamic3DTextLabelText(HouseInfo[houseid][hTextID], COLOR_TWGREEN2, string);
 		}
 	}
 	SaveHouse(houseid);

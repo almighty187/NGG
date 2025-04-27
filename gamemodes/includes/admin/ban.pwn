@@ -295,7 +295,7 @@ CMD:ban(playerid, params[]) {
 	if(PlayerInfo[playerid][pAdmin] < 2) return SendClientMessageEx(playerid, COLOR_GREY, "You are not authorized to use this command");
 	if(sscanf(params, "udD(0)s[64]", iTargetID, iLength, iSilentBan, szReason)) {
 
-		SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /ban [playerid] [length in days] [silent(1=yes 2=no)] [reason]");
+		SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /ban [playerid] [length in days] [silent(1=yes 0=no)] [reason]");
 		SendClientMessageEx(playerid, COLOR_GREY, "** 1 = Yes, the ban will only broadcast to admins | 0 = No, the ban will be globally broadcasted **");
 		return 1;
 	}
@@ -324,7 +324,7 @@ CMD:permban(playerid, params[]) {
 	if(sscanf(params, "us[64]D(0)", iTargetID, szReason, iSilentBan)) {
 
 		SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /permban [playerid] [reason] [silent(optional)]");
-		SendClientMessageEx(playerid, COLOR_GREY, "** Acceptable values for silent are 0=No and 1=Yes, Default is 0 **");
+		SendClientMessageEx(playerid, COLOR_GREY, "** Acceptable values for silent are 1=Yes and 0=No, Default is 0 **");
 		return 1;
 	}
 	if(!IsPlayerConnected(iTargetID)) return SendClientMessageEx(playerid, COLOR_GREY, "That player is not connected");
@@ -336,7 +336,7 @@ CMD:permban(playerid, params[]) {
 	}
 	if(PlayerInfo[playerid][pAdmin] < PlayerInfo[iTargetID][pAdmin]) return SendClientMessageEx(playerid, COLOR_GREY, "That player is a higher ranking admin than you");
 
-	CreateBan(playerid, PlayerInfo[iTargetID][pId], iTargetID, GetPlayerIpEx(iTargetID), szReason, 9999999, iSilentBan, 1);
+	CreateBan(playerid, PlayerInfo[iTargetID][pId], iTargetID, GetPlayerIpEx(iTargetID), szReason, 9999999, iSilentBan, 1); 
 
 	return 1;
 }
@@ -351,14 +351,14 @@ CMD:hackban(playerid, params[]) {
 	if(sscanf(params, "uD(0)", iTargetID, iSilentBan)) {
 
 		SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /hackban [playerid] [silent(optional)]");
-		SendClientMessageEx(playerid, COLOR_GREY, "** Acceptable values for silent are 0=No and 1=Yes, Default is 0 **");
+		SendClientMessageEx(playerid, COLOR_GREY, "** Acceptable values for silent are 1=Yes and 0=No, Default is 0 **");
 		return 1;
 	}
 	if(!IsPlayerConnected(iTargetID)) return SendClientMessageEx(playerid, COLOR_GREY, "That player is not connected");
 	if(!(0 <= iSilentBan < 2)) {
 
 		SendClientMessageEx(playerid, COLOR_GREY, "You must specify a value that is either 0 or 1");
-		SendClientMessageEx(playerid, COLOR_GREY, "** 1 = Yes, the ban will only broadcast to admins | 2 = No, the ban will be globally broadcasted **");
+		SendClientMessageEx(playerid, COLOR_GREY, "** 1 = Yes, the ban will only broadcast to admins | 0 = No, the ban will be globally broadcasted **");
 		return 1;
 	}
 	if(PlayerInfo[playerid][pAdmin] < PlayerInfo[iTargetID][pAdmin]) return SendClientMessageEx(playerid, COLOR_GREY, "That player is a higher ranking admin than you");
@@ -385,7 +385,7 @@ CMD:saban(playerid, params[]) {
 	if(!(0 <= iSilentBan < 2)) {
 
 		SendClientMessageEx(playerid, COLOR_GREY, "You must specify a value that is either 0 or 1");
-		SendClientMessageEx(playerid, COLOR_GREY, "** 1 = Yes, the ban will only broadcast to admins | 2 = No, the ban will be globally broadcasted **");
+		SendClientMessageEx(playerid, COLOR_GREY, "** 1 = Yes, the ban will only broadcast to admins | 0 = No, the ban will be globally broadcasted **");
 		return 1;
 	}
 	if(PlayerInfo[playerid][pAdmin] < PlayerInfo[iTargetID][pAdmin]) return SendClientMessageEx(playerid, COLOR_GREY, "That player is a higher ranking admin than you");

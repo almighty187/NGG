@@ -1697,7 +1697,7 @@ CMD:tazer(playerid, params[])
     #if defined zombiemode
 	if(zombieevent == 1 && GetPVarType(playerid, "pIsZombie")) return SendClientMessageEx(playerid, COLOR_GREY, "Zombies can't use this.");
 	#endif
-	if(IsACop(playerid))
+	if(IsACop(playerid) || IsAGovernment(playerid))
 	{
 		new string[128];
 		if(PlayerInfo[playerid][pConnectHours] < 2 || PlayerInfo[playerid][pWRestricted] > 0) return SendClientMessageEx(playerid, COLOR_GRAD2, "You cannot use this as you are currently restricted from possessing weapons!");
@@ -1878,7 +1878,7 @@ CMD:radargun(playerid, params[])
 
 CMD:cuff(playerid, params[])
 {
-	if(IsACop(playerid))
+	if(IsACop(playerid) || IsAGovernment(playerid))
 	{
 		if(GetPVarInt(playerid, "Injured") == 1 || PlayerCuffed[ playerid ] >= 1 || PlayerInfo[ playerid ][ pJailTime ] > 0 || PlayerInfo[playerid][pHospital] > 0)
 		{
@@ -1958,7 +1958,7 @@ CMD:cuff(playerid, params[])
 
 CMD:uncuff(playerid, params[])
 {
-	if(IsACop(playerid))
+	if(IsACop(playerid) || IsAGovernment(playerid))
 	{
 		if(PlayerCuffed[playerid] == 2) return SendClientMessageEx(playerid, COLOR_GREY, "You cannot uncuff others while being cuffed yourself!");
 		new string[128], giveplayerid;
@@ -2036,7 +2036,7 @@ CMD:uncuff(playerid, params[])
 
 CMD:detain(playerid, params[])
 {
-	if(IsACop(playerid))
+	if(IsACop(playerid) || IsAGovernment(playerid))
 	{
 		if(IsPlayerInAnyVehicle(playerid))
 		{
@@ -2124,7 +2124,7 @@ CMD:detain(playerid, params[])
 
 CMD:drag(playerid, params[])
 {
-	if(IsACop(playerid))
+	if(IsACop(playerid) || IsAGovernment(playerid))
 	{
 		new string[128], giveplayerid;
 		if(sscanf(params, "u", giveplayerid)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /drag [playerid]");

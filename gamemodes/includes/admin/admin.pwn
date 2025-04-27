@@ -2687,20 +2687,7 @@ CMD:setmyname(playerid, params[])
 
 	if (PlayerInfo[playerid][pUndercover] >= 1 || PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 4)
 	{
-		if(PlayerInfo[playerid][pAdmin] >= 1337)
-		{
-			if(strlen(params) > MAX_PLAYER_NAME)
-			{
-				format(string, sizeof(string), "You can't select a name that's above %d characters.", MAX_PLAYER_NAME);
-				return SendClientMessageEx(playerid, COLOR_WHITE, string);
-			}
-			
-			SetPlayerName(playerid, params);
-			format(string, sizeof(string), "You changed your name to %s.", params);
-			SendClientMessageEx(playerid, COLOR_YELLOW, string);
-			return 1;
-		}
-		else if(GetPVarInt(playerid, "TempName") == 0)
+		if(GetPVarInt(playerid, "TempName") == 0)
 		{
 		    if(strlen(params) > MAX_PLAYER_NAME)
 			{
@@ -6736,7 +6723,7 @@ CMD:resetpgifts(playerid, params[])
 
 CMD:deleteaccount(playerid, params[])
 {
-	if(PlayerInfo[playerid][pAdmin] >= 99999)
+	if(PlayerInfo[playerid][pAdmin] < 99999)
 	{
 		SendClientMessageEx(playerid, COLOR_GRAD1, "You are not authorized to use that command.");
 		return 1;
@@ -6889,5 +6876,23 @@ CMD:undisable(playerid, params[]) {
 	{
         SendClientMessageEx(playerid, COLOR_GRAD1, "You are not authorized to use that command.");
     }
+    return 1;
+}
+
+CMD:serial(playerid, params[])
+{
+	if(PlayerInfo[playerid][pAdmin] < 2) 
+	return SendClientMessageEx(playerid, COLOR_GREY, "You are not authorized to use this command.");
+
+    new targetid;
+    if(sscanf(params, "u", targetid))
+	return SendClientMessageEx(playerid, COLOR_GREY, "Usage: /serial [playerid]");
+
+    new serial[41];
+    gpci(targetid, serial, sizeof(serial));
+
+    new string[128];
+    format(string, sizeof(string), "%s's Serial: %s", GetPlayerNameEx(targetid), serial);
+    SendClientMessageEx(playerid, -1, string);
     return 1;
 }

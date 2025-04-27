@@ -66,7 +66,7 @@ DestroyVLPTextDraws(playerid) {
 }
 
 //Vehicle Lock Pick Textdraws
-/*CreateVLPTextDraws(playerid)
+CreateVLPTextDraws(playerid)
 {
 	VLPTextDraws[playerid][0] = CreatePlayerTextDraw(playerid, 638.264770, 390.386749, "Attempting to lock pick vehicle");
 	PlayerTextDrawLetterSize(playerid, VLPTextDraws[playerid][0], 0.449999, 1.600000);
@@ -119,9 +119,9 @@ DestroyVLPTextDraws(playerid) {
 	PlayerTextDrawBackgroundColor(playerid, VLPTextDraws[playerid][3], 51);
 	PlayerTextDrawFont(playerid, VLPTextDraws[playerid][3], 1);
 	PlayerTextDrawSetProportional(playerid, VLPTextDraws[playerid][3], 1);
-}*/
+}
 
-/*ShowVLPTextDraws(playerid, vehicleid, TYPE = 0) {
+ShowVLPTextDraws(playerid, vehicleid, TYPE = 0) {
 	CreateVLPTextDraws(playerid);
 	new tdMessage[9 + MAX_ZONE_NAME], tdCarLocation[MAX_ZONE_NAME], Float:CarPos[3];
 	GetVehiclePos(vehicleid, CarPos[0], CarPos[1], CarPos[2]);
@@ -147,7 +147,7 @@ DestroyVLPTextDraws(playerid) {
 	}
 	for(new i = 0; i < 4; i++)
 		PlayerTextDrawShow(playerid, VLPTextDraws[playerid][i]);
-}*/
+}
 
 CMD:pickvehicle(playerid, params[])
 {
@@ -156,7 +156,6 @@ CMD:pickvehicle(playerid, params[])
 
 CMD:pickveh(playerid, params[])
 {
-	/*
 	new szMessage[150], Float: vehSize[3], Float: Pos[3], Float:a, success;
 
 	if(gettime() < PlayerInfo[playerid][pLockPickTime]) {
@@ -247,14 +246,12 @@ CMD:pickveh(playerid, params[])
 	else {
 		return SendClientMessageEx(playerid, COLOR_WHITE, "You need to be next to the drivers door in order to lock pick it.");
 	}
-	*/
-	SendClientMessageEx(playerid, COLOR_WHITE, "This command has been disabled temporaly disabled due to an unknown issue.");
-	SendClientMessageEx(playerid, COLOR_WHITE, "Please do not report about this being disabled, we are testing something.");
+	//SendClientMessageEx(playerid, COLOR_WHITE, "This command has been disabled temporaly disabled due to an unknown issue.");
+	//SendClientMessageEx(playerid, COLOR_WHITE, "Please do not report about this being disabled, we are testing something.");
 	return 1;
 }
 CMD:cracktrunk(playerid, params[])
 {
-	/*
 	if(PlayerInfo[playerid][pWRestricted] || PlayerInfo[playerid][pConnectHours] < 2) return SendClientMessageEx(playerid, COLOR_GRAD1, "You cannot use this command while having a weapon restriction.");
 	new szMessage[150], Float: x, Float: y, Float: z;
 
@@ -318,9 +315,9 @@ CMD:cracktrunk(playerid, params[])
 	}
 	else {
 		return SendClientMessageEx(playerid, COLOR_WHITE, "You need to be at the back of the car that you lock picked.");
-	}*/
-	SendClientMessageEx(playerid, COLOR_WHITE, "This command has been disabled temporaly disabled due to an unknown issue.");
-	SendClientMessageEx(playerid, COLOR_WHITE, "Please do not report about this being disabled, we are testing something.");
+	}
+	//SendClientMessageEx(playerid, COLOR_WHITE, "This command has been disabled temporaly disabled due to an unknown issue.");
+	//SendClientMessageEx(playerid, COLOR_WHITE, "Please do not report about this being disabled, we are testing something.");
 	return 1;
 }
 

@@ -595,7 +595,7 @@ stock CreateGarage(garageid)
 	if(GarageInfo[garageid][gar_ExteriorX] == 0.0) return 1;
 	new string[128];
 	format(string, sizeof(string), "Garage | Owner: %s\nID: %d", StripUnderscore(GarageInfo[garageid][gar_OwnerName]), garageid);
-	GarageInfo[garageid][gar_TextID] = CreateDynamic3DTextLabel(string, COLOR_YELLOW, GarageInfo[garageid][gar_ExteriorX], GarageInfo[garageid][gar_ExteriorY], GarageInfo[garageid][gar_ExteriorZ]+1,10.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 1, GarageInfo[garageid][gar_ExteriorVW], GarageInfo[garageid][gar_ExteriorInt], -1);
+	GarageInfo[garageid][gar_TextID] = CreateDynamic3DTextLabel(string, COLOR_TWYELLOW, GarageInfo[garageid][gar_ExteriorX], GarageInfo[garageid][gar_ExteriorY], GarageInfo[garageid][gar_ExteriorZ]+1,10.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 1, GarageInfo[garageid][gar_ExteriorVW], GarageInfo[garageid][gar_ExteriorInt], -1);
 
 	if(IsValidDynamicArea(GarageInfo[garageid][gar_AreaID])) DestroyDynamicArea(GarageInfo[garageid][gar_AreaID]);
 	GarageInfo[garageid][gar_AreaID] = CreateDynamicSphere(GarageInfo[garageid][gar_ExteriorX], GarageInfo[garageid][gar_ExteriorY], GarageInfo[garageid][gar_ExteriorZ], 3, .worldid = GarageInfo[garageid][gar_ExteriorVW], .interiorid = GarageInfo[garageid][gar_ExteriorInt]);

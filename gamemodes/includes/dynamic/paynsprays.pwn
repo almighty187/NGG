@@ -120,7 +120,7 @@ CMD:pnsedit(playerid, params[])
 		DestroyDynamic3DTextLabel(PayNSprays[id][pnsTextID]);
 		DestroyDynamicMapIcon(PayNSprays[id][pnsMapIconID]);
 		format(string, sizeof(string), "/repaircar\nRepair Cost -- Regular: $%s | Faction: $%s\nID: %d", number_format(PayNSprays[id][pnsRegCost]), number_format(PayNSprays[id][pnsGroupCost]), id);
-		PayNSprays[id][pnsTextID] = CreateDynamic3DTextLabel(string, COLOR_RED, PayNSprays[id][pnsPosX], PayNSprays[id][pnsPosY], PayNSprays[id][pnsPosZ]+0.5,10.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 1, PayNSprays[id][pnsVW], PayNSprays[id][pnsInt], -1);
+		PayNSprays[id][pnsTextID] = CreateDynamic3DTextLabel(string, COLOR_TWRED, PayNSprays[id][pnsPosX], PayNSprays[id][pnsPosY], PayNSprays[id][pnsPosZ]+0.5,10.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 1, PayNSprays[id][pnsVW], PayNSprays[id][pnsInt], -1);
 		PayNSprays[id][pnsPickupID] = CreateDynamicPickup(1239, 23, PayNSprays[id][pnsPosX], PayNSprays[id][pnsPosY], PayNSprays[id][pnsPosZ], PayNSprays[id][pnsVW]);
 		PayNSprays[id][pnsMapIconID] = CreateDynamicMapIcon(PayNSprays[id][pnsPosX], PayNSprays[id][pnsPosY], PayNSprays[id][pnsPosZ], 63, 0, PayNSprays[id][pnsVW], PayNSprays[id][pnsInt], -1, 500.0);
 		SavePayNSpray(id);
@@ -141,7 +141,7 @@ CMD:pnsedit(playerid, params[])
 		SendClientMessageEx(playerid, COLOR_WHITE, string);
 		DestroyDynamic3DTextLabel(PayNSprays[id][pnsTextID]);
 		format(string, sizeof(string), "/repaircar\nRepair Cost -- Regular: $%s | Faction: $%s\nID: %d", number_format(PayNSprays[id][pnsRegCost]), number_format(PayNSprays[id][pnsGroupCost]), id);
-		PayNSprays[id][pnsTextID] = CreateDynamic3DTextLabel(string, COLOR_RED, PayNSprays[id][pnsPosX], PayNSprays[id][pnsPosY], PayNSprays[id][pnsPosZ]+0.5,10.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 1, PayNSprays[id][pnsVW], PayNSprays[id][pnsInt], -1);
+		PayNSprays[id][pnsTextID] = CreateDynamic3DTextLabel(string, COLOR_TWRED, PayNSprays[id][pnsPosX], PayNSprays[id][pnsPosY], PayNSprays[id][pnsPosZ]+0.5,10.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 1, PayNSprays[id][pnsVW], PayNSprays[id][pnsInt], -1);
 		SavePayNSpray(id);
 		format(string, sizeof(string), "%s has changed the group cost on Pay N' Spray ID %d to $%s.", GetPlayerNameEx(playerid), id, number_format(amount));
 		Log("logs/pnsedit.log", string);
@@ -160,7 +160,7 @@ CMD:pnsedit(playerid, params[])
 		SendClientMessageEx(playerid, COLOR_WHITE, string);
 		DestroyDynamic3DTextLabel(PayNSprays[id][pnsTextID]);
 		format(string, sizeof(string), "/repaircar\nRepair Cost -- Regular: $%s | Faction: $%s\nID: %d", number_format(PayNSprays[id][pnsRegCost]), number_format(PayNSprays[id][pnsGroupCost]), id);
-		PayNSprays[id][pnsTextID] = CreateDynamic3DTextLabel(string, COLOR_RED, PayNSprays[id][pnsPosX], PayNSprays[id][pnsPosY], PayNSprays[id][pnsPosZ]+0.5,10.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 1, PayNSprays[id][pnsVW], PayNSprays[id][pnsInt], -1);
+		PayNSprays[id][pnsTextID] = CreateDynamic3DTextLabel(string, COLOR_TWRED, PayNSprays[id][pnsPosX], PayNSprays[id][pnsPosY], PayNSprays[id][pnsPosZ]+0.5,10.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 1, PayNSprays[id][pnsVW], PayNSprays[id][pnsInt], -1);
 		SavePayNSpray(id);
 		format(string, sizeof(string), "%s has changed the regular cost on Pay N' Spray ID %d to $%s.", GetPlayerNameEx(playerid), id, number_format(amount));
 		Log("logs/pnsedit.log", string);
@@ -395,7 +395,7 @@ public OnLoadPayNSpray(index)
 		if(PayNSprays[index][pnsStatus] > 0)
 		{
 			format(szMiscArray, sizeof(szMiscArray), "/repaircar\nRepair Cost -- Regular: $%s | Faction: $%s\nID: %d", number_format(PayNSprays[index][pnsRegCost]), number_format(PayNSprays[index][pnsGroupCost]), index);
-			PayNSprays[index][pnsTextID] = CreateDynamic3DTextLabel(szMiscArray, COLOR_RED, PayNSprays[index][pnsPosX], PayNSprays[index][pnsPosY], PayNSprays[index][pnsPosZ]+0.5,10.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 1, PayNSprays[index][pnsVW], PayNSprays[index][pnsInt], -1);
+			PayNSprays[index][pnsTextID] = CreateDynamic3DTextLabel(szMiscArray, COLOR_TWRED, PayNSprays[index][pnsPosX], PayNSprays[index][pnsPosY], PayNSprays[index][pnsPosZ]+0.5,10.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 1, PayNSprays[index][pnsVW], PayNSprays[index][pnsInt], -1);
 			PayNSprays[index][pnsPickupID] = CreateDynamicPickup(1239, 23, PayNSprays[index][pnsPosX], PayNSprays[index][pnsPosY], PayNSprays[index][pnsPosZ], PayNSprays[index][pnsVW]);
 			PayNSprays[index][pnsMapIconID] = CreateDynamicMapIcon(PayNSprays[index][pnsPosX], PayNSprays[index][pnsPosY], PayNSprays[index][pnsPosZ], 63, 0, PayNSprays[index][pnsVW], PayNSprays[index][pnsInt], -1, 500.0);
 		}

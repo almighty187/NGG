@@ -62,7 +62,7 @@ CMD:impoundedit(playerid, params[])
 			SendClientMessageEx(playerid, COLOR_WHITE, string);
 			DestroyDynamic3DTextLabel(ImpoundPoints[id][impoundTextID]);
 			format(string, sizeof(string), "Impound Yard #%d\nType /impound to impound a vehicle", id);
-			ImpoundPoints[id][impoundTextID] = CreateDynamic3DTextLabel(string, COLOR_YELLOW, ImpoundPoints[id][impoundPosX], ImpoundPoints[id][impoundPosY], ImpoundPoints[id][impoundPosZ]+0.6, 5.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 1, ImpoundPoints[id][impoundVW], ImpoundPoints[id][impoundInt], -1);
+			ImpoundPoints[id][impoundTextID] = CreateDynamic3DTextLabel(string, COLOR_TWYELLOW, ImpoundPoints[id][impoundPosX], ImpoundPoints[id][impoundPosY], ImpoundPoints[id][impoundPosZ]+0.6, 5.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 1, ImpoundPoints[id][impoundVW], ImpoundPoints[id][impoundInt], -1);
 			SaveImpoundPoint(id);
 			format(string, sizeof(string), "%s has edited Impound Point ID %d's position.", GetPlayerNameEx(playerid), id);
 			Log("logs/impoundedit.log", string);
@@ -254,7 +254,7 @@ public OnLoadImpoundPoint(index)
 		if(ImpoundPoints[index][impoundPosX] != 0)
 		{
 			format(szMiscArray, sizeof(szMiscArray), "Impound Yard #%d\nType /impound to impound a vehicle", index);
-			ImpoundPoints[index][impoundTextID] = CreateDynamic3DTextLabel(szMiscArray, COLOR_YELLOW, ImpoundPoints[index][impoundPosX], ImpoundPoints[index][impoundPosY], ImpoundPoints[index][impoundPosZ]+0.6, 5.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 1, ImpoundPoints[index][impoundVW], ImpoundPoints[index][impoundInt], -1);
+			ImpoundPoints[index][impoundTextID] = CreateDynamic3DTextLabel(szMiscArray, COLOR_TWYELLOW, ImpoundPoints[index][impoundPosX], ImpoundPoints[index][impoundPosY], ImpoundPoints[index][impoundPosZ]+0.6, 5.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 1, ImpoundPoints[index][impoundVW], ImpoundPoints[index][impoundInt], -1);
 		}
 	}
 	return 1;

@@ -42,6 +42,7 @@ new DCC_Channel:g_AdminChannelId = DCC_INVALID_CHANNEL;
 new DCC_Channel:g_AdminWarningsChannelId = DCC_INVALID_CHANNEL;
 new DCC_Channel:g_HeadAdminChannelId = DCC_INVALID_CHANNEL;
 new DCC_Channel:g_ServerErrorsChannelId = DCC_INVALID_CHANNEL;
+new DCC_Channel:g_IpWhiteListChannelId = DCC_INVALID_CHANNEL;
 
 new CountingPlayer;
 
@@ -60,6 +61,7 @@ public InitDiscordChannels()
     g_AdminWarningsChannelId = DCC_FindChannelById("1360504741741990029");
     g_HeadAdminChannelId = DCC_FindChannelById("1360504760041476217");
     g_ServerErrorsChannelId = DCC_FindChannelById("1360504778718711870");
+    g_IpWhiteListChannelId = DCC_FindChannelById("1365977889518125117");
     print("[DCC] Discord channel IDs initialized.");
 }
 
@@ -83,7 +85,25 @@ public BotStatus()
     DCC_SetBotActivity(string);
 }
 
-// Discord Message Sender
+forward OnIPWhitelistDiscord(author_id[], name[]);
+public OnIPWhitelistDiscord(author_id[], name[])
+{
+	new string[128];
+
+	if(cache_affected_rows()) {
+		format(string, sizeof(string), "<@%s> has successfully whitelisted %s's account.", author_id, name);
+		SendDiscordMessage(4, string);
+		format(string, sizeof(string), "[DISCORD] %s has IP Whitelisted %s", author_id, name);
+		Log("logs/whitelist.log", string);
+	}
+	else {
+		format(string, sizeof(string), "<@%s>, there was an issue with whitelisting %s's account.", author_id, name);
+		SendDiscordMessage(9, string);
+	}
+
+	return 1;
+}
+
 stock SendDiscordMessage(channel, message[])
 {
     switch (channel)
@@ -116,6 +136,13 @@ stock SendDiscordMessage(channel, message[])
             else
                 print("[DCC] Failed to send message to #server-errors (channel ID invalid).");
         }
+		case 4: //ipwhitelist
+		{
+			if (g_IpWhiteListChannelId != DCC_INVALID_CHANNEL)
+			DCC_SendChannelMessage(g_IpWhiteListChannelId, message);
+            else
+                print("[DCC] Failed to send message to #server-errors (channel ID invalid).");
+		}
     }
     return 1;
 }
@@ -139,6 +166,56 @@ public DCC_OnMessageCreate(DCC_Message:message)
 
     printf("[DCC] OnChannelMessage (Channel %s): Author %s sent message: %s", channel_name, user_name, realMsg);
 
+	if(!strcmp(channel_name, "admin", true))
+    {
+        if(realMsg[0] == '/')
+        {
+            if(strfind(realMsg, "kick", true, 1) != -1)
+            {
+                new player, reason[128];
+                if(sscanf(realMsg[6], "us[128]", player, reason)) return SendDiscordMessage(0, "USAGE: /kick [player] [reason]");
+                if(!IsPlayerConnected(player)) return SendDiscordMessage(0, "That player is not connected.");
+
+                new string[144];
+                format(string, sizeof(string), "%s (%d) has been kicked from the server by <@%s>.", GetPlayerNameEx(player), player, author_id);
+                SendDiscordMessage(0, string);
+
+                KickEx(player);
+            }
+			
+        }
+    }
+	if(!strcmp(channel_name, "headadmin", true))
+    {
+        if(realMsg[0] == '/')
+        {
+			if(strfind(realMsg, "stopserver", true, 1) != -1)
+            {
+				SendRconCommand("exit");
+                SendDiscordMessage(2, "Server stopped.");
+            }
+        }
+    }
+	if(!strcmp(channel_name, "ip-whitelist", true))
+    {
+        if(realMsg[0] == '/')
+        {
+			if(strfind(realMsg, "ipwhitelist", true, 1) != -1)
+            {
+				new giveplayer[MAX_PLAYER_NAME], ip[16];
+                if(sscanf(realMsg[13], "s[24]s[16]", giveplayer, ip)) return SendDiscordMessage(9, "USAGE: /ipwhitelist [admin name] [IP]");
+                
+
+                new tmpName[24], tmpIP[16], query[256];
+				mysql_escape_string(giveplayer, tmpName);
+				mysql_escape_string(ip, tmpIP);
+				mysql_format(MainPipeline, query, sizeof(query), "UPDATE `accounts` SET `SecureIP`='%s' WHERE `Username`='%s'", tmpIP, tmpName);
+				mysql_tquery(MainPipeline, query, "OnIPWhitelistDiscord", "ss", author_id, tmpName);
+				DCC_DeleteMessage(message);
+				
+            }
+        }
+    }
     if (channel == g_AdminChannelId && strcmp(user_name, "NGRP-Bot", true))
     {
         format(szMessage, sizeof(szMessage), "* [Discord] Administrator %s: %s", user_name, realMsg);

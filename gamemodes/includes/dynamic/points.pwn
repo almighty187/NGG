@@ -277,7 +277,7 @@ public ProgressTimer(id)
 			DynPoints[id][poPickupID] = CreateDynamicPickup(1313, 23, DynPoints[id][poPos][0], DynPoints[id][poPos][1], DynPoints[id][poPos][2], .worldid = DynPoints[id][poVW], .interiorid = DynPoints[id][poInt]);
 		   	format(szMiscArray, sizeof(szMiscArray), "%s has attempted to take control of the %s for %s, it will be theirs in 10 minutes.", DynPoints[id][poPName], DynPoints[id][poName], arrGroupData[fam][g_szGroupName]);
 			SendClientMessageToAllEx(COLOR_YELLOW, szMiscArray);
-			UpdateDynamic3DTextLabelText(DynPoints[id][poTextID], COLOR_YELLOW, szMiscArray);
+			UpdateDynamic3DTextLabelText(DynPoints[id][poTextID], COLOR_TWYELLOW, szMiscArray);
 
 			DynPoints[id][poCapping] = INVALID_PLAYER_ID;
 			DynPoints[id][poTimeCapLeft] = 0;
@@ -300,7 +300,7 @@ public CaptureTimer(id)
 	szMiscArray[0] = 0;
 	if(--DynPoints[id][poTimeLeft] > 0) {
 		format(szMiscArray, sizeof(szMiscArray), "%s has successfully attempted to take over of %s for %s, it will be theirs in %d minutes!", DynPoints[id][poPName], DynPoints[id][poName], arrGroupData[DynPoints[id][poCapperGroup]][g_szGroupName], DynPoints[id][poTimeLeft]);
-		UpdateDynamic3DTextLabelText(DynPoints[id][poTextID], COLOR_YELLOW, szMiscArray);
+		UpdateDynamic3DTextLabelText(DynPoints[id][poTextID], COLOR_TWYELLOW, szMiscArray);
 	} else {
 		format(szMiscArray, sizeof(szMiscArray), "%s has successfully taken control of the %s for %s.", DynPoints[id][poPName], DynPoints[id][poName], arrGroupData[DynPoints[id][poCapperGroup]][g_szGroupName]);
 		SendClientMessageToAllEx(COLOR_YELLOW, szMiscArray);
@@ -797,7 +797,7 @@ stock UpdatePoint(id)
 	if(DynPoints[id][poCapturable] && !DynPoints[id][poLocked]) {
 		format(string, sizeof(string), "%s\n%s has become available for capture! Stand here and /capture it.", string, DynPoints[id][poName]);
 	}
-	DynPoints[id][poTextID] = CreateDynamic3DTextLabel(string, COLOR_YELLOW, DynPoints[id][poPos][0], DynPoints[id][poPos][1], DynPoints[id][poPos][2]+0.6, 10.0, .testlos = 1, .worldid = DynPoints[id][poVW], .interiorid = DynPoints[id][poInt], .streamdistance = 10.0);
+	DynPoints[id][poTextID] = CreateDynamic3DTextLabel(string, COLOR_TWYELLOW, DynPoints[id][poPos][0], DynPoints[id][poPos][1], DynPoints[id][poPos][2]+0.6, 10.0, .testlos = 1, .worldid = DynPoints[id][poVW], .interiorid = DynPoints[id][poInt], .streamdistance = 10.0);
 	return 1;
 }
 
