@@ -97,10 +97,10 @@ hook OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
         {
             szMiscArray[0] = 0;
             format(szMiscArray, sizeof(szMiscArray), "{AA3333}AdmWarning{FFFF00}: %s (ID: %d) has just issued a damage RPC with a suspicious animation (potential aimbot)", GetPlayerNameEx(playerid), playerid);
-            ABroadCast(COLOR_YELLOW, szMiscArray, 2);
+            //ABroadCast(COLOR_YELLOW, szMiscArray, 2);
             Log("logs/hack.log", szMiscArray);
             RpcAimbot[playerid] = 0;
-            AddFlag(playerid, INVALID_PLAYER_ID, "Detected using aimbot - RPC",2);         
+            //AddFlag(playerid, INVALID_PLAYER_ID, "Detected using aimbot - RPC",2);         
         }
     }
 
@@ -162,11 +162,11 @@ hook OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
                 if(RpcAimbot[playerid] >= 15)
                 {
                     szMiscArray[0] = 0;
-                    format(szMiscArray, sizeof(szMiscArray), "{AA3333}AdmWarning{FFFF00}: %s (ID: %d) has just inflicted damage with a dodgy camera mode (potential aimbot)", GetPlayerNameEx(playerid), playerid);
+                    //format(szMiscArray, sizeof(szMiscArray), "{AA3333}AdmWarning{FFFF00}: %s (ID: %d) has just inflicted damage with a dodgy camera mode (potential aimbot)", GetPlayerNameEx(playerid), playerid);
                     ABroadCast(COLOR_YELLOW, szMiscArray, 2);
                     Log("logs/hack.log", szMiscArray);
                     RpcAimbot[playerid] = 0;
-                    AddFlag(playerid, INVALID_PLAYER_ID, "Detected using aimbot - RPC",2);
+                    //AddFlag(playerid, INVALID_PLAYER_ID, "Detected using aimbot - RPC",2);
                 }
             }
         }
@@ -180,11 +180,11 @@ hook OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
             if(RpcAimbot[playerid] >= 15)
             {
                 szMiscArray[0] = 0;
-                format(szMiscArray, sizeof(szMiscArray), "{AA3333}AdmWarning{FFFF00}: %s (ID: %d) has just inflicted damage with a dodgy camera mode (potential aimbot)", GetPlayerNameEx(playerid), playerid);
+                //format(szMiscArray, sizeof(szMiscArray), "{AA3333}AdmWarning{FFFF00}: %s (ID: %d) has just inflicted damage with a dodgy camera mode (potential aimbot)", GetPlayerNameEx(playerid), playerid);
                 ABroadCast(COLOR_YELLOW, szMiscArray, 2);
                 Log("logs/hack.log", szMiscArray);
                 RpcAimbot[playerid] = 0;
-                AddFlag(playerid, INVALID_PLAYER_ID, "Detected using aimbot - RPC",2);
+                //AddFlag(playerid, INVALID_PLAYER_ID, "Detected using aimbot - RPC",2);
             }
         }
     }
@@ -321,7 +321,7 @@ IPacket:PLAYER_SYNC(playerid, BitStream:bs)
     return 1;
 }
 
-IPacket:VEHICLE_SYNC(playerid, BitStream:bs)
+/*IPacket:VEHICLE_SYNC(playerid, BitStream:bs)
 {
     new inCarData[PR_InCarSync];
 
@@ -391,6 +391,36 @@ IPacket:VEHICLE_SYNC(playerid, BitStream:bs)
     }
 
     return 1;
+}*/
+
+IPacket:VEHICLE_SYNC(playerid, BitStream:bs)
+{
+        //if player is level 1, don't log
+        if(PlayerInfo[playerid][pLevel] != 1)
+        {
+            return 1;
+        } 
+
+        new inCarData[PR_InCarSync];
+        BS_IgnoreBits(bs, 8);
+        BS_ReadInCarSync(bs, inCarData);
+
+        activeInCarData[playerid] = inCarData;
+
+        new szMessage[128];
+
+        new Float:vehPos[3];
+        GetVehiclePos(inCarData[PR_vehicleId], vehPos[0], vehPos[1], vehPos[2]);
+        new Float:fDistance = GetPlayerDistanceFromPoint(playerid, vehPos[0], vehPos[1], vehPos[2]);
+
+        if(fDistance > 20)
+        {
+            format(szMessage, sizeof(szMessage), "AdmCmd: %s (%d) VEHICLE SYNC PACKET happend from far distance: %f (VEHICLE: TODO :) ).", GetPlayerNameEx(playerid), playerid, fDistance);
+            ABroadCast(COLOR_YELLOW, szMessage, 2);
+            Log("logs/hack.log", szMessage);
+        }
+
+        return 1;
 }
 
 const ID_RPC = 20;

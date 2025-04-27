@@ -36,7 +36,7 @@
 */
 #include <YSI\y_hooks>
 
-new CASINOPoint[17]; 
+new CASINOPoint[24]; 
 
 // --- Automated Dice System by Thomas ---
 // Stock Functions
@@ -349,6 +349,35 @@ CMD:slots(playerid, params[])
 	return 1;
 }
 
+CMD:orderfood(playerid, params[])
+{
+	if(!IsPlayerInRangeOfPoint(playerid, 5.0, 1629.3779,-1343.0303,4301.1982))
+		return SendClientMessage(playerid, COLOR_GREY, "You are not at the casino food vendor.");
+	if(GetPlayerCash(playerid) < 2000) return SendClientMessage(playerid, COLOR_GREY, "You need $2000 to order food.");
+	SendClientMessageEx(playerid, COLOR_GRAD4, "You have purchased some food for $2000.");
+	GivePlayerCash(playerid, -2000);
+	new Float:health;
+	/*if (PlayerInfo[playerid][pFitness] >= 5) {
+		PlayerInfo[playerid][pFitness] -= 5;
+	}
+	else {
+		PlayerInfo[playerid][pFitness] = 0;
+	}*/
+	GetHealth(playerid, health);
+	if(health < 100) 
+	{
+		if(health > 90) 
+		{
+			SetHealth(playerid, 100);
+		}
+		else 
+		{
+			SetHealth(playerid, health + 10.0);
+		}
+	}
+	return 1;
+}
+
 CalculateCasinoWinning(amount, rand0, rand1, rand2)
 {
 	new prize, calc;
@@ -559,6 +588,14 @@ LoadCASINOPoints()
     CASINOPoint[14] = CreateDynamicSphere(1969.5417,1029.4148,992.4745,5);
     CASINOPoint[15] = CreateDynamicSphere(1942.3467,1014.5384,992.4688,5);
     CASINOPoint[16] = CreateDynamicSphere(1941.8306,1021.7505,992.4688,5);
+	// 
+    CASINOPoint[17] = CreateDynamicSphere(1560.5941,-1346.5587,4301.1963,5);
+    CASINOPoint[18] = CreateDynamicSphere(1566.7980,-1344.5288,4301.1963,5);
+    CASINOPoint[19] = CreateDynamicSphere(1572.4355,-1345.9443,4301.1963,5);
+    CASINOPoint[20] = CreateDynamicSphere(1583.6187,-1345.1256,4301.1924,5);
+    CASINOPoint[21] = CreateDynamicSphere(1583.4268,-1340.1040,4301.1924,5);
+    CASINOPoint[22] = CreateDynamicSphere(1564.3116,-1382.5795,4301.1904,5);
+    CASINOPoint[23] = CreateDynamicSphere(1577.1500,-1382.6755,4301.1924,5);
 }
 
 CasinoPullLoad(playerid)
