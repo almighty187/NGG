@@ -95,6 +95,15 @@ stock Player_KillCheckPoint(playerid) {
 	gPlayerCheckpointStatus[playerid] = CHECKPOINT_NOTHING;
 	ClearCheckpoint(playerid);
 	DisablePlayerCheckpoint(playerid);
+
+	if(MatsAmount[playerid] > 0) {
+		MatsAmount[playerid] = 0;
+		MatDeliver[playerid] = -1;
+		SendClientMessageEx(playerid,COLOR_WHITE, "Your checkpoint has been cleared and your material package has been removed.");
+		return;
+	}
+	
+
 	SendClientMessageEx(playerid,COLOR_WHITE, "All current checkpoints, trackers and accepted fares have been reset.");
 }
 
