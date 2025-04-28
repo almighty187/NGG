@@ -487,7 +487,7 @@ CMD:oldunban(playerid, params[])
 		mysql_escape_string(params, tmpName);
 		SetPVarString(playerid, "OnUnbanPlayer", tmpName);
 
-		mysql_format(MainPipeline, query, sizeof(query), "UPDATE `accounts` SET `Band`=0, `Warnings`=0, `Disabled`=0 WHERE `Username`='%s' AND `PermBand` < 3", tmpName);
+		mysql_format(MainPipeline, query, sizeof(query), "UPDATE `accounts` SET `Band`=0, `Warnings`=0, `Disabled`=0, `PermBand`=0 WHERE `Username`='%s'", tmpName);
 		format(string, sizeof(string), "Attempting to unban %s...", tmpName);
 		SendClientMessageEx(playerid, COLOR_YELLOW, string);
 		mysql_tquery(MainPipeline, query, "OnUnbanPlayer", "i", playerid);
