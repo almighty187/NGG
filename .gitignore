@@ -1,0 +1,10 @@
+logs/
+pawno/
+compiler includes/
+scriptfiles/
+samp-server.exe
+*.7z
+server.cfg
+log
+*.dll
+*.exe

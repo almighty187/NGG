@@ -313,11 +313,11 @@ Player_MaxCapacity(playerid, itemid) {
 	new iTemp = 0;
 
 	switch(itemid) {
-		case ITEM_MATS: iTemp = 1000000;
-		case ITEM_FIREWORK: iTemp = 10;
-		case ITEM_SYRINGES: iTemp = 20;
-		case ITEM_SPRUNKDRINK: iTemp = 1;
-		case ITEM_PBTOKENS: iTemp = 40;
+		case ITEM_MATS: iTemp = 999999999;
+		case ITEM_FIREWORK: iTemp = 1000;
+		case ITEM_SYRINGES: iTemp = 2000;
+		case ITEM_SPRUNKDRINK: iTemp = 1000;
+		case ITEM_PBTOKENS: iTemp = 4000;
 		case ITEM_DRUG: {
 			iTemp = GetMaxDrugsAllowed(GetPVarInt(playerid, "Interact_Drug"));
 		}
@@ -1300,7 +1300,6 @@ Player_DropItem(playerid) {
 }*/
 
 CMD:interact(playerid, params[]) {
-
 
 	if(isnull(params)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /interact [playerid]");
 

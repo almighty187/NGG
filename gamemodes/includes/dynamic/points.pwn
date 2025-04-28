@@ -40,6 +40,10 @@
 
 CMD:getmats(playerid, params[])
 {
+	//check if player has a material package before letting them buy more
+	if(MatsAmount[playerid] > 0) return SendClientMessageEx(playerid, COLOR_RED, "You already have a material package!");
+
+
 	if(PlayerInfo[playerid][pJob] != 9 && PlayerInfo[playerid][pJob2] != 9 && PlayerInfo[playerid][pJob3] != 9 && PlayerInfo[playerid][pJob] != 18 && PlayerInfo[playerid][pJob2] != 18 && PlayerInfo[playerid][pJob3] != 18) return SendClientMessageEx(playerid,COLOR_GREY,"   You are not an Arms Dealer or Craftsman!");
 	if(CheckPointCheck(playerid)) return SendClientMessageEx(playerid, COLOR_WHITE, "Please ensure that your current checkpoint is destroyed first (you either have material packages, or another existing checkpoint).");
 	new point, drank[64], vip = ((0 <= PlayerInfo[playerid][pDonateRank] < 5) ? PlayerInfo[playerid][pDonateRank] : 0);

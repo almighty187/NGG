@@ -60,8 +60,8 @@ CMD:goldgiftbox(playerid, params[]) {
 				szMessage[64];
 
 			GetPlayerPos(playerid, fPos[0], fPos[1], fPos[2]);
-			iRewardObj = CreateDynamicObject(19055, fPos[0], fPos[1], fPos[2], 0.0, 0.0, 0.0, .streamdistance = 100.0);
-			tRewardText = CreateDynamic3DTextLabel("Gold Reward Gift Box\n{FFFFFF}/getrewardgift{F3FF02} to claim your gift!", COLOR_YELLOW, fPos[0], fPos[1], fPos[2], 10.0, .testlos = 1, .streamdistance = 50.0);
+			iRewardObj = CreateDynamicObject(19055, fPos[0], fPos[1], fPos[2]-0.4, 0.0, 0.0, 0.0, .streamdistance = 100.0);
+			tRewardText = CreateDynamic3DTextLabel("Gold Reward Gift Box\n{FFFFFF}/getrewardgift{F3FF02} to claim your gift!", COLOR_YELLOW, fPos[0], fPos[1], fPos[2]+0.25, 10.0, .streamdistance = 50.0);
 			iRewardBox = true;
 
 			format(szMessage, sizeof szMessage, "AdmCmd: %s has placed the reward gift box.", GetPlayerNameEx(playerid));

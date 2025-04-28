@@ -2653,6 +2653,72 @@ CMD:sellmycar(playerid, params[])
     return 1;
 }
 
+CMD:dvlock(playerid, params[])
+{
+	new nearestcar = GetClosestCar(playerid);
+
+	if(DynVeh[nearestcar] != -1)
+	{
+
+		
+		new Float: x, Float: y, Float: z;
+		GetVehiclePos(nearestcar, x, y, z);
+		
+		//is the player near the car
+		if(!IsPlayerInRangeOfPoint(playerid, 4.0, x, y, z)) return SendClientMessageEx(playerid, COLOR_GREY, "You are not near any faction vehicle.");
+
+		new iDvSlotID = DynVeh[nearestcar], iGroupID = DynVehicleInfo[iDvSlotID][gv_igID];
+
+		if(iGroupID == PlayerInfo[playerid][pMember])
+		{
+			//DEBUG INFO
+			//new string[128];
+			//format(string, sizeof(string), "YOU ARE A MEMBER OF THIS FACTION", iGroupID, nearestcar);
+			//SendClientMessageEx(playerid, COLOR_GREEN, string);
+
+			//format(string, sizeof(string), "groupid: %d, nearestcar: %d ", iGroupID, nearestcar);
+			//SendClientMessageEx(playerid, COLOR_GREEN, string);
+
+			new vParamArr[7];
+			GetVehicleParamsEx(nearestcar, vParamArr[0], vParamArr[1], vParamArr[2], vParamArr[3], vParamArr[4], vParamArr[5], vParamArr[6]);
+			
+			new string[255];
+
+
+			if(vParamArr[3] == VEHICLE_PARAMS_OFF) {
+				
+				vehicle_lock_doors(nearestcar);
+				GameTextForPlayer(playerid,"~r~Vehicle Locked!",5000,6);
+				
+				format(string, sizeof(string), "{FF8000}* {C2A2DA}%s presses a button on their key fob to lock their vehicle.", GetPlayerNameEx(playerid));
+				if(PlayerInfo[playerid][pIsolated] != 0) ProxDetector(5.0, playerid, string, COLOR_PURPLE, COLOR_PURPLE, COLOR_PURPLE, COLOR_PURPLE, COLOR_PURPLE);
+				else ProxDetector(30.0, playerid, string, COLOR_PURPLE, COLOR_PURPLE, COLOR_PURPLE, COLOR_PURPLE, COLOR_PURPLE);
+
+			} else {
+				vehicle_unlock_doors(nearestcar);
+				GameTextForPlayer(playerid,"~g~Vehicle Unlocked!",5000,6);
+				
+				format(string, sizeof(string), "{FF8000}* {C2A2DA}%s presses a button on their key fob to unlock their vehicle.", GetPlayerNameEx(playerid));
+				if(PlayerInfo[playerid][pIsolated] != 0) ProxDetector(5.0, playerid, string, COLOR_PURPLE, COLOR_PURPLE, COLOR_PURPLE, COLOR_PURPLE, COLOR_PURPLE);
+				else ProxDetector(30.0, playerid, string, COLOR_PURPLE, COLOR_PURPLE, COLOR_PURPLE, COLOR_PURPLE, COLOR_PURPLE);
+
+			}
+
+			//format(string, sizeof(string), "vParamArr[0]: %d, vParamArr[1]: %d, vParamArr[2]: %d, vParamArr[3]: %d, vParamArr[4]: %d, vParamArr[5]: %d, vParamArr[6]: %d", vParamArr[0], vParamArr[1], vParamArr[2], vParamArr[3], vParamArr[4], vParamArr[5], vParamArr[6]);
+			//SendClientMessageEx(playerid, COLOR_GREEN, string);
+
+
+		} else {
+			SendClientMessageEx(playerid, COLOR_GREY, "You are not a member of this faction.");
+		}
+
+	}//get nearest car
+
+
+	return 1;
+
+}
+
 CMD:pvlock(playerid, params[])
 {
     new Float: x, Float: y, Float: z;
