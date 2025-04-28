@@ -3305,13 +3305,17 @@ CMD:sell(playerid, params[])
     if(sscanf(params, "us[32]dd", giveplayerid, choice, amount, price))
 	{
 		SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /sell [player] [name] [amount] [price]");
-		SendClientMessageEx(playerid, COLOR_GREY, "Available names: Pot, Crack, Materials, Firework, Syringes, Rawopium, Heroin, RimKit, Carvoucher, PVIPVoucher");
+		//I dont see anything for any of these items so I am going to comment
+		//SendClientMessageEx(playerid, COLOR_GREY, "Available names: Pot, Crack, Materials, Firework, Syringes, Rawopium, Heroin, RimKit, Carvoucher, PVIPVoucher");
+		SendClientMessageEx(playerid, COLOR_GREY, "Available names: RimKit, PVIPVoucher");
+		SendClientMessageEx(playerid, COLOR_GREY, "For other items, use /interact [player]");
 		return 1;
 	}
 	if(PlayerCuffed[playerid] >= 1 || GetPVarInt(playerid, "pBagged") >= 1 ||PlayerInfo[playerid][pHospital] > 0) return SendClientMessageEx(playerid, COLOR_WHITE, "You can't do this right now.");
 	if(GetPVarInt(playerid, "WatchingTV")) return SendClientMessageEx(playerid, COLOR_GREY, "You can not do this while watching TV!");
-	if(price < 50000) return SendClientMessageEx(playerid, COLOR_GREY, "Price can't be lower than $50,000. Use /give for deals below the scam limit.");
-	if(price > 500000000) return SendClientMessageEx(playerid, COLOR_GREY, "Price can't be lower than $50,000. Use /give for deals below the scam limit.");
+	if(price < 1) return SendClientMessageEx(playerid, COLOR_GREY, "Price can't be lower than $1.");
+	//they are trying to sell something for 500m who cares
+	//if(price > 500000000) return SendClientMessageEx(playerid, COLOR_GREY, "Price can't be lower than $50,000. Use /give for deals below the scam limit.");
 	if(price > 100000000) 
 	{
 		format(string, sizeof(string), "{AA3333}AdmWarning{FFFF00}: %s is trying to sell %s to %s for $%d.", GetPlayerNameEx(playerid), choice, GetPlayerNameEx(giveplayerid), price);
@@ -3321,6 +3325,7 @@ CMD:sell(playerid, params[])
 	if(!IsPlayerConnected(giveplayerid)) return SendClientMessageEx(playerid, COLOR_GRAD1, "Invalid player specified.");
 	if(playerid == giveplayerid) return SendClientMessageEx(playerid, COLOR_GREY, "You can't sell to yourself!");
 	if(!ProxDetectorS(8.0, playerid, giveplayerid)) return SendClientMessageEx(playerid, COLOR_GREY, "That person isn't near you.");
+
 
     else if (strcmp(choice, "rimkit", true) == 0)
 	{
