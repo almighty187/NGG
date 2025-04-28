@@ -4,7 +4,7 @@ hook OnGameModeInit() {
 
 	print("[Streamer] Loading Dynamic Static Vehicles...");
 
-	TruckerVehicles[0] = AddStaticVehicleEx(414,2471.1816,-2603.7400,13.7541,270.00000000,-1,-1,300); //Mule
+	/*TruckerVehicles[0] = AddStaticVehicleEx(414,2471.1816,-2603.7400,13.7541,270.00000000,-1,-1,300); //Mule
 	TruckerVehicles[1] = AddStaticVehicleEx(414,2471.2510,-2609.2668,13.7493,270.00000000,-1,-1,300); //Mule
 	TruckerVehicles[2] = AddStaticVehicleEx(414,2471.3181,-2613.7419,13.7508,270.00000000,-1,-1,300); //Mule
 	TruckerVehicles[3] = AddStaticVehicleEx(414,2471.3901,-2618.9802,13.7507,270.00000000,-1,-1,300); //Mule
@@ -22,7 +22,7 @@ hook OnGameModeInit() {
 	TruckerVehicles[15] = AddStaticVehicleEx(443,2500.7976,-2626.2476,14.2829,90.00000000,-1,-1,300); //Packer
 	TruckerVehicles[16] = AddStaticVehicleEx(443,2500.5378,-2631.7573,14.2874,90.00000000,-1,-1,300); //Packer
 	TruckerVehicles[17] = AddStaticVehicleEx(514,2498.9641,-2615.3381,14.2331,90.00000000,-1,-1,300); //Tank truck
-	TruckerVehicles[18] = AddStaticVehicleEx(514,2499.2646,-2620.0574,14.2395,90.00000000,-1,-1,300); //Tank truck
+	TruckerVehicles[18] = AddStaticVehicleEx(514,2499.2646,-2620.0574,14.2395,90.00000000,-1,-1,300); //Tank truck*/
 
 	PizzaVehicles[0] = AddStaticVehicleEx(448, 2106.4319, -1784.7222, 12.8745, 0.00000000 ,3,6,300); //Pizzaboy
 	PizzaVehicles[1] = AddStaticVehicleEx(448, 2107.4319, -1784.7222, 12.8745, 0.00000000 ,3,6,300); //Pizzaboy
@@ -36,7 +36,7 @@ hook OnGameModeInit() {
 	PizzaVehicles[9] = AddStaticVehicleEx(448, 2115.4319, -1784.7222, 12.8745, 0.00000000 ,3,6,300); //Pizzaboy
 	PizzaVehicles[10] = AddStaticVehicleEx(448, 2116.4319, -1784.7222, 12.8745, 0.00000000 ,3,6,300); //Pizzaboy
 	PizzaVehicles[11] = AddStaticVehicleEx(448, 2117.4319, -1784.7222, 12.8745, 0.00000000 ,3,6,300); //Pizzaboy
-	PizzaVehicles[12] =	AddStaticVehicleEx(448,-1702.81005859,1378.07958984,6.85771942,45.00000000,3,6,300); //Pizzaboy
+	/*PizzaVehicles[12] =	AddStaticVehicleEx(448,-1702.81005859,1378.07958984,6.85771942,45.00000000,3,6,300); //Pizzaboy
 	PizzaVehicles[13] =	AddStaticVehicleEx(448,-1703.49853516,1377.28295898,6.85771942,45.00000000,3,6,300); //Pizzaboy
 	PizzaVehicles[14] =	AddStaticVehicleEx(448,-1704.31005859,1376.46240234,6.85771942,45.00000000,3,6,300); //Pizzaboy
 	PizzaVehicles[15] =	AddStaticVehicleEx(448,-1705.17895508,1375.72802734,6.85771942,45.00000000,3,6,300); //Pizzaboy
@@ -46,7 +46,7 @@ hook OnGameModeInit() {
 	PizzaVehicles[19] =	AddStaticVehicleEx(448,-1711.57092285,1369.38659668,6.85771942,45.00000000,3,6,300); //Pizzaboy
 	PizzaVehicles[20] =	AddStaticVehicleEx(448,-1712.32312012,1368.69396973,6.85771942,45.00000000,3,6,300); //Pizzaboy
 	PizzaVehicles[21] =	AddStaticVehicleEx(448,-1713.02709961,1367.94238281,6.85771942,45.00000000,3,6,300); //Pizzaboy
-	PizzaVehicles[22] =	AddStaticVehicleEx(448,-1713.83740234,1367.19580078,6.85771942,45.00000000,3,6,300); //Pizzaboy
+	PizzaVehicles[22] =	AddStaticVehicleEx(448,-1713.83740234,1367.19580078,6.85771942,45.00000000,3,6,300); //Pizzaboy*/
 
 	// VIP garage
 	VIPVehicles[0] = AddStaticVehicleEx(411,-4365.93212891,839.28680420,986.18029785,0.00000000,-1,-1,180); //Infernus
@@ -172,7 +172,7 @@ hook OnGameModeInit() {
 	FamedVehicles[37] = AddStaticVehicleEx(468,2513.9478,2351.9365,3.8822,327.8291,-1,-1,180);
 	FamedVehicles[38] = AddStaticVehicleEx(468,2516.2051,2352.1504,3.8789,327.8291,-1,-1,180);
 	
-	AddStaticVehicleEx(509,1702.7448,-1884.2257,13.0817,291.3965,-1,-1,2000); // BIKENEWBIESPAWN1
+	/*AddStaticVehicleEx(509,1702.7448,-1884.2257,13.0817,291.3965,-1,-1,2000); // BIKENEWBIESPAWN1
 	AddStaticVehicleEx(509,1702.6656,-1882.6167,13.0815,298.5609,-1,-1,2000); // BIKENEWBIESPAWN2
 	AddStaticVehicleEx(509,1702.5789,-1881.3337,13.0545,289.8956,-1,-1,2000); // BIKENEWBIESPAWN3
 	AddStaticVehicleEx(509,1702.5829,-1879.5234,13.0822,296.3651,-1,-1,2000); // BIKENEWBIESPAWN4
@@ -181,7 +181,7 @@ hook OnGameModeInit() {
 	AddStaticVehicleEx(481,1727.5376,-1882.7361,13.0772,66.9472,-1,-1,2000); // BIKENEWBIESPAWN7
 	AddStaticVehicleEx(481,1727.2814,-1880.4712,13.0770,65.2958,-1,-1,2000); // BIKENEWBIESPAWN8
 	AddStaticVehicleEx(481,1727.7151,-1877.8586,13.0783,65.9359,-1,-1,2000); // BIKENEWBIESPAWN9
-	AddStaticVehicleEx(481,1727.5710,-1875.3071,13.0782,70.6519,-1,-1,2000); // BIKENEWBIESPAWN10
+	AddStaticVehicleEx(481,1727.5710,-1875.3071,13.0782,70.6519,-1,-1,2000); // BIKENEWBIESPAWN10*/
 
 	AddStaticVehicleEx(538,1700.7551,-1953.6531,14.8756,200.0,-1,-1,2000); //LS passenger
 

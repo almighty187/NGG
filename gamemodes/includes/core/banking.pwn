@@ -871,3 +871,292 @@ CMD:nextpaycheck(playerid, params[])
 	SendClientMessageEx(playerid, COLOR_GRAD2, "Please note that you will not accrue time if your game is paused.");
 	return 1;
 }
+
+CMD:awithdraw(playerid, params[])
+{
+	if(!IsAtATM(playerid))
+	{
+		SendClientMessageEx(playerid, COLOR_GREY, "   You are not at an ATM!");
+		return 1;
+	}
+    if(PlayerInfo[playerid][pFreezeBank] == 1) return SendClientMessageEx(playerid, COLOR_GREY, "Your bank is currently frozen");
+	new string[128], amount;
+	if(sscanf(params, "d", amount))
+	{
+		SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /awithdraw [amount]");
+		format(string, sizeof(string), "  You have $%d in your account.", PlayerInfo[playerid][pAccount]);
+		SendClientMessageEx(playerid, COLOR_GRAD3, string);
+		return 1;
+	}
+
+	if (amount > PlayerInfo[playerid][pAccount] || amount < 1)
+	{
+		SendClientMessageEx(playerid, COLOR_GRAD2, "   You don't have that much!");
+		return 1;
+	}
+	if(PlayerInfo[playerid][pDonateRank] == 0)
+	{
+		new fee;
+		fee = 3*amount/100;
+		PlayerInfo[playerid][pAccount]=PlayerInfo[playerid][pAccount]-fee;
+		format(string, sizeof(string), "-$%d money as a 3 percent fee.", fee);
+		SendClientMessageEx(playerid, COLOR_GRAD2, string);
+	}
+	PlayerInfo[playerid][pAccount]=PlayerInfo[playerid][pAccount]-amount;
+	GivePlayerCash(playerid,amount);
+	format(string, sizeof(string), "  You have withdrawn $%d from your account. Current balance: $%d ", amount,PlayerInfo[playerid][pAccount]);
+	SendClientMessageEx(playerid, COLOR_YELLOW, string);
+	return 1;
+}
+
+CMD:adeposit(playerid, params[])
+{
+	if(!IsAtATM(playerid))
+	{
+		SendClientMessageEx(playerid, COLOR_GREY, "   You are not at an ATM!");
+		return 1;
+	}
+    if(PlayerInfo[playerid][pFreezeBank] == 1) return SendClientMessageEx(playerid, COLOR_GREY, "Your bank is currently frozen");
+	new string[128], amount;
+	if(sscanf(params, "d", amount))
+	{
+		SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /adeposit [amount]");
+		format(string, sizeof(string), "  You have $%d in your account.", PlayerInfo[playerid][pAccount]);
+		SendClientMessageEx(playerid, COLOR_GRAD3, string);
+		return 1;
+	}
+
+	if (amount > GetPlayerCash(playerid) || amount < 1)
+	{
+		SendClientMessageEx(playerid, COLOR_GRAD2, "   You don't have that much.");
+		return 1;
+	}
+	if(PlayerInfo[playerid][pDonateRank] == 0)
+	{
+		new fee;
+		fee = 3*amount/100;
+		PlayerInfo[playerid][pAccount]=PlayerInfo[playerid][pAccount]-fee;
+		format(string, sizeof(string), "-$%d money (3 percent fee).", fee);
+		SendClientMessageEx(playerid, COLOR_GRAD2, string);
+	}
+	GivePlayerCash(playerid,-amount);
+	new curfunds = PlayerInfo[playerid][pAccount];
+	PlayerInfo[playerid][pAccount]=amount+PlayerInfo[playerid][pAccount];
+	SendClientMessageEx(playerid, COLOR_WHITE, "|___ ATM STATMENT ___|");
+	format(string, sizeof(string), "  Old Balance: $%d", curfunds);
+	SendClientMessageEx(playerid, COLOR_GRAD2, string);
+	format(string, sizeof(string), "  Deposit: $%d",amount);
+	SendClientMessageEx(playerid, COLOR_GRAD4, string);
+	SendClientMessageEx(playerid, COLOR_GRAD6, "|-----------------------------------------|");
+	format(string, sizeof(string), "  New Balance: $%d", PlayerInfo[playerid][pAccount]);
+	SendClientMessageEx(playerid, COLOR_WHITE, string);
+	return 1;
+}
+
+CMD:abalance(playerid, params[])
+{
+	if(!IsAtATM(playerid))
+	{
+		SendClientMessageEx(playerid, COLOR_GREY, "   You are not at an ATM!");
+		return 1;
+	}
+    if(PlayerInfo[playerid][pFreezeBank] == 1) return SendClientMessageEx(playerid, COLOR_GREY, "Your bank is currently frozen");
+	new string[128];
+	format(string, sizeof(string), "  You have $%d in your account.",PlayerInfo[playerid][pAccount]);
+	SendClientMessageEx(playerid, COLOR_YELLOW, string);
+	return 1;
+}
+
+CMD:awiretransfer(playerid, params[])
+{
+	if(PlayerInfo[playerid][pLevel] < 3)
+	{
+		SendClientMessageEx(playerid, COLOR_GRAD1, "   You must be at least level 3!");
+		return 1;
+	}
+
+	if(!IsAtATM(playerid))
+	{
+		SendClientMessageEx(playerid, COLOR_GREY, "   You are not at an ATM!");
+		return 1;
+	}
+    if(PlayerInfo[playerid][pFreezeBank] == 1) return SendClientMessageEx(playerid, COLOR_GREY, "Your bank is currently frozen");
+	new string[128], giveplayerid, amount;
+	if(sscanf(params, "ud", giveplayerid, amount)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /awiretransfer [player] [amount]");
+
+	if (IsPlayerConnected(giveplayerid))
+	{
+		if(giveplayerid != INVALID_PLAYER_ID)
+		{
+			new playermoney = PlayerInfo[playerid][pAccount];
+			if (amount > 0 && playermoney >= amount)
+			{
+				if(PlayerInfo[playerid][pDonateRank] == 0)
+				{
+					new fee;
+					fee = 3*amount/100;
+					PlayerInfo[playerid][pAccount]=PlayerInfo[playerid][pAccount]-fee;
+					format(string, sizeof(string), "-$%d money (3 percent fee).", fee);
+					SendClientMessageEx(playerid, COLOR_GRAD2, string);
+				}
+				PlayerInfo[playerid][pAccount] -= amount;
+				PlayerInfo[giveplayerid][pAccount] += amount;
+				format(string, sizeof(string), "   You have transferred $%d to %s's account.", amount, GetPlayerNameEx(giveplayerid),giveplayerid);
+				PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
+				SendClientMessageEx(playerid, COLOR_GRAD1, string);
+				format(string, sizeof(string), "   You have recieved $%d to into your account from %s.", amount, GetPlayerNameEx(playerid), playerid);
+				SendClientMessageEx(giveplayerid, COLOR_GRAD1, string);
+				new ip[32], ipex[32];
+				GetPlayerIp(playerid, ip, sizeof(ip));
+				GetPlayerIp(giveplayerid, ipex, sizeof(ipex));
+				format(string, sizeof(string), "[ATM] %s (IP:%s) has transferred $%d to %s (IP:%s).", GetPlayerNameEx(playerid), ip, amount, GetPlayerNameEx(giveplayerid), ipex);
+				if(amount >= 420000)
+				{
+					ABroadCast(COLOR_YELLOW,string,2);
+				}
+				Log("logs/pay.log", string);
+				PlayerPlaySound(giveplayerid, 1052, 0.0, 0.0, 0.0);
+			}
+			else
+			{
+				SendClientMessageEx(playerid, COLOR_GRAD1, "   Invalid transaction amount.");
+			}
+		}
+	}
+	else SendClientMessageEx(playerid, COLOR_GRAD1, "Invalid player specified.");
+	return 1;
+}
+
+CMD:withdraw(playerid, params[])
+{
+	if(!IsPlayerInRangeOfPoint(playerid, 15.0, 2308.7346, -11.0134, 26.7422))
+	{
+		SendClientMessageEx(playerid, COLOR_GREY, "You are not at the bank!");
+		return 1;
+	}
+    if(PlayerInfo[playerid][pFreezeBank] == 1) return SendClientMessageEx(playerid, COLOR_GREY, "Your bank is currently frozen");
+	new string[128], amount;
+
+	if(sscanf(params, "d", amount))
+	{
+		SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /withdraw [amount]");
+		format(string, sizeof(string), "  You have $%d in your account.", PlayerInfo[playerid][pAccount]);
+		SendClientMessageEx(playerid, COLOR_GRAD3, string);
+		return 1;
+	}
+
+	if (amount > PlayerInfo[playerid][pAccount] || amount < 1)
+	{
+		SendClientMessageEx(playerid, COLOR_GRAD2, "   You don't have that much!");
+		return 1;
+	}
+	GivePlayerCash(playerid,amount);
+	PlayerInfo[playerid][pAccount]=PlayerInfo[playerid][pAccount]-amount;
+	format(string, sizeof(string), "  You have withdrawn $%d from your account. Current balance: $%d ", amount,PlayerInfo[playerid][pAccount]);
+	SendClientMessageEx(playerid, COLOR_YELLOW, string);
+	return 1;
+}
+
+CMD:deposit(playerid, params[])
+{
+	if(!IsPlayerInRangeOfPoint(playerid, 15.0, 2308.7346, -11.0134, 26.7422))
+	{
+		SendClientMessageEx(playerid, COLOR_GREY, "You are not at the bank!");
+		return 1;
+	}
+    if(PlayerInfo[playerid][pFreezeBank] == 1) return SendClientMessageEx(playerid, COLOR_GREY, "Your bank is currently frozen");
+	new string[128], amount;
+
+	if(sscanf(params, "d", amount))
+	{
+		SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /bank [amount]");
+		format(string, sizeof(string), "  You have $%d in your account.", PlayerInfo[playerid][pAccount]);
+		SendClientMessageEx(playerid, COLOR_GRAD3, string);
+		return 1;
+	}
+
+	if (amount > GetPlayerCash(playerid) || amount < 1)
+	{
+		SendClientMessageEx(playerid, COLOR_GRAD2, "   You don't have that much.");
+		return 1;
+	}
+	GivePlayerCash(playerid,-amount);
+	new curfunds = PlayerInfo[playerid][pAccount];
+	PlayerInfo[playerid][pAccount]=amount+PlayerInfo[playerid][pAccount];
+	SendClientMessageEx(playerid, COLOR_WHITE, "|___ BANK STATMENT ___|");
+	format(string, sizeof(string), "  Old Balance: $%d", curfunds);
+	SendClientMessageEx(playerid, COLOR_GRAD2, string);
+	format(string, sizeof(string), "  Deposit: $%d",amount);
+	SendClientMessageEx(playerid, COLOR_GRAD4, string);
+	SendClientMessageEx(playerid, COLOR_GRAD6, "|-----------------------------------------|");
+	format(string, sizeof(string), "  New Balance: $%d", PlayerInfo[playerid][pAccount]);
+	SendClientMessageEx(playerid, COLOR_WHITE, string);
+	return 1;
+}
+
+CMD:balance(playerid, params[])
+{
+	new string[128];
+	if(!IsPlayerInRangeOfPoint(playerid, 15.0, 2308.7346, -11.0134, 26.7422))
+	{
+		SendClientMessageEx(playerid, COLOR_GREY, "You are not at the bank!");
+		return 1;
+	}
+	if(PlayerInfo[playerid][pFreezeBank] == 1) return SendClientMessageEx(playerid, COLOR_GREY, "Your bank is currently frozen");
+	format(string, sizeof(string), "You have $%d in your account.",PlayerInfo[playerid][pAccount]);
+	SendClientMessageEx(playerid, COLOR_YELLOW, string);
+	return 1;
+}
+
+CMD:wiretransfer(playerid, params[])
+{
+	if(PlayerInfo[playerid][pLevel] < 3)
+	{
+		SendClientMessageEx(playerid, COLOR_GRAD1, "   You must be at least level 3!");
+		return 1;
+	}
+	if(!IsPlayerInRangeOfPoint(playerid, 15.0, 2308.7346, -11.0134, 26.7422))
+	{
+		SendClientMessageEx(playerid, COLOR_GREY, "You are not at the bank!");
+		return 1;
+	}
+    if(PlayerInfo[playerid][pFreezeBank] == 1) return SendClientMessageEx(playerid, COLOR_GREY, "Your bank is currently frozen");
+	new string[128], giveplayerid, amount;
+	if(sscanf(params, "ud", giveplayerid, amount)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /wiretransfer [player] [amount]");
+
+
+	if (IsPlayerConnected(giveplayerid))
+	{
+		if(giveplayerid != INVALID_PLAYER_ID)
+		{
+			new playermoney = PlayerInfo[playerid][pAccount] ;
+			if (amount > 0 && playermoney >= amount)
+			{
+				PlayerInfo[playerid][pAccount] -= amount;
+				PlayerInfo[giveplayerid][pAccount] += amount;
+				format(string, sizeof(string), "   You have transferred $%d to %s's account.", amount, GetPlayerNameEx(giveplayerid),giveplayerid);
+				PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
+				SendClientMessageEx(playerid, COLOR_GRAD1, string);
+				format(string, sizeof(string), "   You have recieved $%d to into your account from %s.", amount, GetPlayerNameEx(playerid), playerid);
+				SendClientMessageEx(giveplayerid, COLOR_GRAD1, string);
+				new ip[32], ipex[32];
+				GetPlayerIp(playerid, ip, sizeof(ip));
+				GetPlayerIp(giveplayerid, ipex, sizeof(ipex));
+				format(string, sizeof(string), "[BANK] %s (IP:%s) has transferred $%d to %s (IP:%s).", GetPlayerNameEx(playerid), ip, amount, GetPlayerNameEx(giveplayerid), ipex);
+
+				if(amount >= 500000)
+				{
+					ABroadCast(COLOR_YELLOW,string,2);
+				}
+				Log("logs/pay.log", string);
+				PlayerPlaySound(giveplayerid, 1052, 0.0, 0.0, 0.0);
+			}
+			else
+			{
+				SendClientMessageEx(playerid, COLOR_GRAD1, "   Invalid transaction amount.");
+			}
+		}
+	}
+	else SendClientMessageEx(playerid, COLOR_GRAD1, "Invalid player specified.");
+	return 1;
+}

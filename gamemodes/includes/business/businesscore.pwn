@@ -484,7 +484,7 @@ stock CreateDynamicGasPump(iPlayerID = INVALID_PLAYER_ID, iBusiness, iPump)
 	}
 	new szLabel[148];
 	Businesses[iBusiness][GasPumpObjectID][iPump] = CreateDynamicObject(1676, Businesses[iBusiness][GasPumpPosX][iPump], Businesses[iBusiness][GasPumpPosY][iPump], Businesses[iBusiness][GasPumpPosZ][iPump], 0, 0, Businesses[iBusiness][GasPumpAngle][iPump], .worldid = 0, .streamdistance = 100);
-	format(szLabel, sizeof(szLabel), "{33AA33}Gas Pump\nID: %d\n{FFFF00}Type '/refuel' to refill your vehicle's tank.", iPump);
+	format(szLabel, sizeof(szLabel), "Gas Pump\nID: %d\nType '/refuel' to refill your vehicle's tank.", iPump);
 	Businesses[iBusiness][GasPumpInfoTextID][iPump] = CreateDynamic3DTextLabel(szLabel, COLOR_YELLOW, Businesses[iBusiness][GasPumpPosX][iPump], Businesses[iBusiness][GasPumpPosY][iPump], Businesses[iBusiness][GasPumpPosZ][iPump] - 0.3, 10.00);
 	format(szLabel, sizeof(szLabel), "Price Per Gallon: $%.2f\nThis Sale: $0.00\nGallons: 0.000\nGas Available: %.2f/%.2f gallons", Businesses[iBusiness][bGasPrice], Businesses[iBusiness][GasPumpGallons][iPump], Businesses[iBusiness][GasPumpCapacity][iPump]);
 	Businesses[iBusiness][GasPumpSaleTextID][iPump] = CreateDynamic3DTextLabel(szLabel, COLOR_YELLOW, Businesses[iBusiness][GasPumpPosX][iPump], Businesses[iBusiness][GasPumpPosY][iPump], Businesses[iBusiness][GasPumpPosZ][iPump] + 0.7, 10.00);
@@ -548,7 +548,7 @@ stock RefreshBusinessPickup(i)
 	Streamer_SetIntData(STREAMER_TYPE_AREA, Businesses[i][bAreaID][1], E_STREAMER_EXTRA_ID, i);
 	*/
 
-	format(szMiscArray, sizeof(szMiscArray), "[Business] Created Business: %d | Exterior Area ID: %d | Interior Area ID: %d", i, Businesses[i][bAreaID][0], Businesses[i][bAreaID][1]);
+	//format(szMiscArray, sizeof(szMiscArray), "[Business] Created Business: %d | Exterior Area ID: %d | Interior Area ID: %d", i, Businesses[i][bAreaID][0], Businesses[i][bAreaID][1]);
 	Log("debug/door_business.log", szMiscArray);
 
 }
@@ -740,7 +740,7 @@ public GasPumpSaleTimer(playerid, iBusinessID, iPumpID)
 	Businesses[iBusinessID][GasPumpSalePrice][iPumpID] += fPumpAmount * Businesses[iBusinessID][bGasPrice];
 
 	format(szSaleText,sizeof(szSaleText),"Price Per Gallon: $%.2f\nThis Sale: $%.2f\nGallons: %.3f\nGas Available: %.2f/%.2f gallons", Businesses[iBusinessID][bGasPrice], Businesses[iBusinessID][GasPumpSalePrice][iPumpID], Businesses[iBusinessID][GasPumpSaleGallons][iPumpID], Businesses[iBusinessID][GasPumpGallons][iPumpID], Businesses[iBusinessID][GasPumpCapacity][iPumpID]);
-	UpdateDynamic3DTextLabelText(Businesses[iBusinessID][GasPumpSaleTextID][iPumpID], COLOR_YELLOW, szSaleText);
+	UpdateDynamic3DTextLabelText(Businesses[iBusinessID][GasPumpSaleTextID][iPumpID], COLOR_TWYELLOW, szSaleText);
 	return 1;
 }
 

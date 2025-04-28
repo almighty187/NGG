@@ -453,8 +453,8 @@ new KillTime[MAX_PLAYERS];
 // SHIPMENT CONTRACTOR JOB
 
 // Shipment revamp.
-//new TruckUsedBy[MAX_VEHICLES] = -1;
-//new TruckHolding[MAX_VEHICLES] = 0;
+new TruckUsedBy[MAX_VEHICLES] = -1;
+new TruckHolding[MAX_VEHICLES] = 0;
 
 new TruckUsed[MAX_PLAYERS];
 new TruckDeliveringTo[MAX_VEHICLES];
@@ -523,6 +523,11 @@ new stationidv[MAX_VEHICLES][64];
 new courtjail[MAX_PLAYERS];
 
 new PlayerText: pFPSCounter[MAX_PLAYERS];
+
+new HHcheckUsed = 0;
+new Float:HHcheckFloats[MAX_PLAYERS][6];
+new HHcheckInt[MAX_PLAYERS];
+new HHcheckVW[MAX_PLAYERS];
 
 new TotalLogin, TotalConnect, TotalAutoBan, TotalRegister,MaxPlayersConnected,MPDay,MPMonth,MPYear,PlayerCars,TotalUptime;
 new Float:StopaniFloats[MAX_PLAYERS][3];
@@ -1216,6 +1221,9 @@ new freeweekend,
 	nonvipcredits;
 
 new PlayerHoldingObject[MAX_PLAYERS][10];
+
+new gpsState[MAX_PLAYERS] = 0;
+new wwState[MAX_PLAYERS] = 0;
 
 new turfWarsRadar[MAX_PLAYERS] = 0;
 new turfWarsMiniMap[MAX_PLAYERS] = 0;

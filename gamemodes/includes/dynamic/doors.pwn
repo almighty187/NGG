@@ -137,7 +137,7 @@ stock CreateDynamicDoor(doorid)
 	Streamer_SetIntData(STREAMER_TYPE_AREA, DDoorsInfo[doorid][ddAreaID], E_STREAMER_EXTRA_ID, doorid);
 	Streamer_SetIntData(STREAMER_TYPE_AREA, DDoorsInfo[doorid][ddAreaID_int], E_STREAMER_EXTRA_ID, doorid);
 
-	format(szMiscArray, sizeof(szMiscArray), "[DDoor] Created Door: %d | Exterior Area ID: %d | Interior Area ID: %d", doorid, DDoorsInfo[doorid][ddAreaID], DDoorsInfo[doorid][ddAreaID_int]);
+	//format(szMiscArray, sizeof(szMiscArray), "[DDoor] Created Door: %d | Exterior Area ID: %d | Interior Area ID: %d", doorid, DDoorsInfo[doorid][ddAreaID], DDoorsInfo[doorid][ddAreaID_int]);
 	Log("debug/door_ddoor.log", szMiscArray);
 	return 1;
 }

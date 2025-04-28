@@ -333,7 +333,7 @@ ExtortionTurfsWarsZone(playerid, type, money)
 	return 1;
 }
 
-ShowTurfWarsRadar(playerid)
+/*ShowTurfWarsRadar(playerid)
 {
 	if(turfWarsRadar[playerid] == 1) { return 1; }
 	turfWarsRadar[playerid] = 1;
@@ -351,20 +351,61 @@ HideTurfWarsRadar(playerid)
 	}
 	turfWarsRadar[playerid] = 0;
 	return 1;
+}*/
+
+ShowTurfWarsRadar(playerid, enable)
+{
+
+	for(new i = 0; i < MAX_TURFS; i++)
+	{
+		if(enable)
+		{
+			//SyncTurfWarsRadar(playerid);
+			if(TurfWars[i][twGangZoneId] != -1)
+			{
+				if(TurfWars[i][twOwnerId] >= 0 && TurfWars[i][twOwnerId] < MAX_GROUPS)
+				{
+					GangZoneShowForPlayer(playerid, TurfWars[i][twGangZoneId], arrGroupData[TurfWars[i][twOwnerId]][g_hDutyColour] * 256 + 170);
+				}
+				else
+				{
+					GangZoneShowForPlayer(playerid,TurfWars[i][twGangZoneId],COLOR_BLACK);
+				}
+
+				if(TurfWars[i][twFlash] == 1)
+				{
+					GangZoneFlashForPlayer(playerid, TurfWars[i][twGangZoneId], TurfWars[i][twFlashColor] * 256 + 170);
+				}
+				else
+				{
+					GangZoneStopFlashForPlayer(playerid, TurfWars[i][twGangZoneId]);
+				}
+			}
+		}
+		else
+		{
+			if(TurfWars[i][twGangZoneId] != -1) {
+				GangZoneHideForPlayer(playerid,TurfWars[i][twGangZoneId]);
+			}
+		}
+	}
+
+	turfWarsRadar[playerid] = enable;
 }
 
 SyncTurfWarsRadarToAll()
 {
 	foreach(new i: Player)
 	{
-		SyncTurfWarsRadar(i);
-	}	
+	    SyncTurfWarsRadar(i);
+	}
 }
 
 SyncTurfWarsRadar(playerid)
 {
 	if(turfWarsRadar[playerid] == 0) { return 1; }
-	HideTurfWarsRadar(playerid);
+	//HideTurfWarsRadar(playerid);
+	ShowTurfWarsRadar(playerid, false);
 	turfWarsRadar[playerid] = 1;
 	for(new i = 0; i < MAX_TURFS; i++)
 	{
@@ -381,10 +422,25 @@ SyncTurfWarsRadar(playerid)
 
 	        if(TurfWars[i][twFlash] == 1)
 	        {
+				/*foreach(new x: Player)
+				{
+					if(PlayerInfo[playerid][pMember] != INVALID_GROUP_ID && PlayerInfo[x][pMember] != INVALID_GROUP_ID) {
+						if( IsPlayerInDynamicArea(x, TurfWars[i][twAreaId])&& GetPVarInt(x, "Injured") != 1 && GetPlayerState(x) == PLAYER_STATE_ONFOOT && playerTabbed[x] == 0 ) {
+							SetPlayerMarkerForPlayer( playerid, x, (arrGroupData[PlayerInfo[x][pMember]][g_hDutyColour] * 256 + 255));
+							SetPlayerMarkerForPlayer( x, playerid, (arrGroupData[PlayerInfo[playerid][pMember]][g_hDutyColour] * 256 + 255));
+						}
+					}
+				}*/
 	        	GangZoneFlashForPlayer(playerid, TurfWars[i][twGangZoneId], TurfWars[i][twFlashColor] * 256 + 170);
 	        }
 	        else
 	        {
+				/*foreach(new x: Player)
+				{
+						if( IsPlayerInDynamicArea(x, TurfWars[i][twAreaId]) ) {
+							SetPlayerToTeamColor(x);
+						}
+				}*/
 	            GangZoneStopFlashForPlayer(playerid, TurfWars[i][twGangZoneId]);
 	        }
 	    }
@@ -764,7 +820,7 @@ CMD:twmenu(playerid, params[])
     return 1;
 }
 
-CMD:turfs(playerid, params[])
+/*CMD:turfs(playerid, params[])
 {
     if(turfWarsRadar[playerid] == 0) {
         SendClientMessageEx(playerid, COLOR_WHITE, "You have enabled the Turf Minimap Radar.");
@@ -773,6 +829,19 @@ CMD:turfs(playerid, params[])
     else {
         SendClientMessageEx(playerid, COLOR_WHITE, "You have disabled the Turf Minimap Radar.");
         HideTurfWarsRadar(playerid);
+    }
+    return 1;
+}*/
+
+CMD:turfs(playerid, params[])
+{
+	if(turfWarsRadar[playerid] == 0) {
+        SendClientMessageEx(playerid, COLOR_WHITE, "You have enabled the Turf Minimap Radar.");
+        ShowTurfWarsRadar(playerid, true);
+    }
+    else {
+        SendClientMessageEx(playerid, COLOR_WHITE, "You have disabled the Turf Minimap Radar.");
+        ShowTurfWarsRadar(playerid, false);
     }
     return 1;
 }
@@ -919,6 +988,7 @@ CMD:claimturf(playerid, params[])
 					{
 						if(PlayerInfo[i][pGangModerator] >= 1) {
 							format(string,sizeof(string),"%s has attempted to takeover turf %d for family %s",GetPlayerNameEx(playerid),tw,arrGroupData[family][g_szGroupName]);
+							GroupLog(PlayerInfo[playerid][pMember], string);
 							SendClientMessageEx(i,COLOR_YELLOW,string);
 						}	
                     }
@@ -945,7 +1015,7 @@ CMD:claimturf(playerid, params[])
     }
 
     if(turfWarsRadar[playerid] == 0) {
-        ShowTurfWarsRadar(playerid);
+        ShowTurfWarsRadar(playerid, true);
     }
     return 1;
 }

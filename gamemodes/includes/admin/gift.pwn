@@ -3695,7 +3695,7 @@ CMD:dynamicgift(playerid, params[])
 			GetPlayerPos(playerid, Position[0], Position[1], Position[2]);
 			GetPlayerFacingAngle(playerid, Position[3]);
 			dynamicgift = CreateDynamicObject(19054, Position[0], Position[1], Position[2]-0.4, 0.0, 0.0, Position[3], -1, -1, -1, 200.0);
-			dynamicgift3DText = CreateDynamic3DTextLabel("/getgift\nTo reach inside.",COLOR_YELLOW,Position[0], Position[1], Position[2]+0.25,8.0);
+			dynamicgift3DText = CreateDynamic3DTextLabel("/getgift\nTo reach inside.",COLOR_TWYELLOW,Position[0], Position[1], Position[2]+0.25,8.0);
 			SetPlayerPos(playerid, Position[0], Position[1], Position[2]+3);
 			format(string, sizeof(string), "AdmCmd: %s has placed the dynamic gift.", GetPlayerNameEx(playerid));
 			

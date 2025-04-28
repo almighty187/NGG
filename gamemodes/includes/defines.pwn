@@ -276,10 +276,10 @@ native IsValidVehicle(vehicleid);
 #define 		INVALID_GAS_PUMP 					-1
 #define 		INVALID_STORE_ITEM 					-1
 #define 		BUSINESS_BASE_VW 					100000
-#define 		BUSINESS_OPEN_COLOR 				0x22FF2299
-#define 		BUSINESS_CLOSED_COLOR 				0xFF222299
-#define 		BUSINESS_NAME_COLOR 				0xFFFFFF99
-#define 		BUSINESS_PRICE_COLOR				0x33CCFF88
+#define 		BUSINESS_OPEN_COLOR 				0x22FF22FF	// Green		
+#define 		BUSINESS_CLOSED_COLOR 				0xFF2222FF	// Red
+#define 		BUSINESS_NAME_COLOR 				0xFFFFFFFF	// White
+#define 		BUSINESS_PRICE_COLOR				0x33CCFFFF	// Light Blue
 #define 		BUSINESS_TAX_PERCENT                10
 #define 		BUSINESS_TYPE_GASSTATION 			1
 #define 		BUSINESS_TYPE_CLOTHING 				2

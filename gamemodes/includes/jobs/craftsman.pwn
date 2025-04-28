@@ -278,7 +278,7 @@ CMD:sweep(playerid, params[])
 	return 1;
 }
 
-CMD:gps(playerid, params[])
+/*CMD:gps(playerid, params[])
 {
 	if(PlayerInfo[playerid][pGPS] > 0)
 	{
@@ -304,6 +304,34 @@ CMD:gps(playerid, params[])
 		SendClientMessageEx(playerid, COLOR_GRAD1, "You don't have a GPS!");
 	}
 	return 1;
+}*/
+
+CMD:gps(playerid, params[])
+{
+	if(PlayerInfo[playerid][pGPS] > 0)
+	{
+		new string[128];
+		if(gpsState[playerid] == 0)
+		{
+			format(string, sizeof(string), "* %s turns on their GPS.", GetPlayerNameEx(playerid));
+			ProxDetector(30.0, playerid, string, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
+			gpsState[playerid] = 1;
+			PlayerTextDrawSetString(playerid, GPS[playerid], "Loading...");
+			PlayerTextDrawShow(playerid, GPS[playerid]);
+		}
+		else
+		{
+			format(string, sizeof(string), "* %s turns off their GPS.", GetPlayerNameEx(playerid));
+			ProxDetector(30.0, playerid, string, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
+			gpsState[playerid] = 0;
+			PlayerTextDrawHide(playerid, GPS[playerid]);
+		}
+	}
+	else
+	{
+		SendClientMessageEx(playerid, COLOR_GRAD1, "You don't have a GPS!");
+	}
+	return 1;
 }
 
 CMD:ww(playerid, params[])
@@ -316,9 +344,9 @@ CMD:wristwatch(playerid, params[])
 	if(PlayerInfo[playerid][pWristwatch] > 0)
 	{
 		new string[128];
-		if(GetPVarInt(playerid, "wristwatchonoff") == 0)
+		if(wwState[playerid] == 0)
 		{
-			SetPVarInt(playerid, "wristwatchonoff", 1);
+			wwState[playerid] = 1;
 			TextDrawShowForPlayer(playerid, WristWatch);
 			format(string, sizeof(string), "* %s turns on their wristwatch.", GetPlayerNameEx(playerid));
 			ProxDetector(30.0, playerid, string, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
@@ -327,7 +355,7 @@ CMD:wristwatch(playerid, params[])
 		{
 			KillTimer(GetPVarInt(playerid, "wristwatchtimer"));
 			TextDrawHideForPlayer(playerid, WristWatch);
-			DeletePVar(playerid, "wristwatchonoff");
+			wwState[playerid] = 0;
 			format(string, sizeof(string), "* %s turns off their wristwatch.", GetPlayerNameEx(playerid));
 			ProxDetector(30.0, playerid, string, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
 		}
@@ -633,7 +661,7 @@ CMD:craft(playerid, params[])
 
         else if(strcmp(choice,"metaldetector",true) == 0)
 		{
-			/*if(PlayerInfo[playerid][pMats] >= 12500)
+			if(PlayerInfo[playerid][pMats] >= 12500)
 			{
 				price = 12500;
 				weapon = 14;
@@ -642,8 +670,8 @@ CMD:craft(playerid, params[])
 			{
 				SendClientMessageEx(playerid,COLOR_GREY,"   Not enough Materials for that!");
 				return 1;
-			}*/
-			return SendClientMessageEx(playerid, COLOR_WHITE, "You cannot craft this right now!");
+			}
+			//return SendClientMessageEx(playerid, COLOR_WHITE, "You cannot craft this right now!");
 		}
 
 		else if(strcmp(choice,"mailbox",true) == 0)

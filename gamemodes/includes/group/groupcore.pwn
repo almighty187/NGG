@@ -3390,7 +3390,7 @@ CMD:listbugs(playerid, params[])
 	return SendClientMessageEx(playerid, COLOR_GRAD2, "You're not authorized to use this command.");
 }
 
-/*CMD:online(playerid, params[]) {
+CMD:online(playerid, params[]) {
 	if(PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 1 || IsACriminal(playerid) || IsACop(playerid))
 	{
 		if(PlayerInfo[playerid][pMember] == INVALID_GROUP_ID) return SendClientMessageEx(playerid, -1, "You are not a member of any group!");
@@ -3426,9 +3426,9 @@ CMD:listbugs(playerid, params[])
 	}
 	else SendClientMessageEx(playerid, COLOR_GREY, "Only group members may use this command.");
 	return 1;
-}*/
+}
 
-CMD:online(playerid, params[]) {
+/*CMD:online(playerid, params[]) {
     if (PlayerInfo[playerid][pMember] >= 0 || PlayerInfo[playerid][pAdmin] >= 3 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 1 || IsACriminal(playerid)) 
     {
         if (PlayerInfo[playerid][pMember] == INVALID_GROUP_ID) 
@@ -3487,7 +3487,7 @@ CMD:online(playerid, params[]) {
         SendClientMessageEx(playerid, COLOR_GREY, "Only group leaders may use this command.");
     }
     return 1;
-}
+}*/
 
 CMD:badge(playerid, params[]) {
     if(PlayerInfo[playerid][pMember] >= 0 && arrGroupData[PlayerInfo[playerid][pMember]][g_hDutyColour] != 0xFFFFFF && arrGroupData[PlayerInfo[playerid][pMember]][g_iGroupType] != GROUP_TYPE_CRIMINAL)

@@ -95,11 +95,11 @@ hook OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
         RpcAimbot[playerid]++;
         if(RpcAimbot[playerid] >= 15)
         {
-            szMiscArray[0] = 0;
-            format(szMiscArray, sizeof(szMiscArray), "{AA3333}AdmWarning{FFFF00}: %s (ID: %d) has just issued a damage RPC with a suspicious animation (potential aimbot)", GetPlayerNameEx(playerid), playerid);
+            //szMiscArray[0] = 0;
+            //format(szMiscArray, sizeof(szMiscArray), "{AA3333}AdmWarning{FFFF00}: %s (ID: %d) has just issued a damage RPC with a suspicious animation (potential aimbot)", GetPlayerNameEx(playerid), playerid);
             //ABroadCast(COLOR_YELLOW, szMiscArray, 2);
-            Log("logs/hack.log", szMiscArray);
-            RpcAimbot[playerid] = 0;
+            //Log("logs/hack.log", szMiscArray);
+           // RpcAimbot[playerid] = 0;
             //AddFlag(playerid, INVALID_PLAYER_ID, "Detected using aimbot - RPC",2);         
         }
     }
@@ -120,10 +120,10 @@ hook OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
     // Does the distance between the BULLET_SYNC hit destination match the position of the player they're trying to hit?
     if(hitDistance >= 2.5 && !IsMeleeWeapon(weaponid))
     {
-        szMiscArray[0] = 0;
-        format(szMiscArray, sizeof(szMiscArray), "{AA3333}AdmWarning{FFFF00}: %s (ID: %d) has just issued bullet packets and the destination does not match %s's position (packet spoofing/aimbot)", GetPlayerNameEx(playerid), playerid, GetPlayerNameEx(damagedid));
-        ABroadCast(COLOR_YELLOW, szMiscArray, 2);
-        Log("logs/hack.log", szMiscArray);
+        //szMiscArray[0] = 0;
+        //format(szMiscArray, sizeof(szMiscArray), "{AA3333}AdmWarning{FFFF00}: %s (ID: %d) has just issued bullet packets and the destination does not match %s's position (packet spoofing/aimbot)", GetPlayerNameEx(playerid), playerid, GetPlayerNameEx(damagedid));
+        //ABroadCast(COLOR_YELLOW, szMiscArray, 2);
+        //Log("logs/hack.log", szMiscArray);
         // Invalidate hit
         return 0;
     }
@@ -161,11 +161,11 @@ hook OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
                 RpcAimbot[playerid]++;
                 if(RpcAimbot[playerid] >= 15)
                 {
-                    szMiscArray[0] = 0;
+                    //szMiscArray[0] = 0;
                     //format(szMiscArray, sizeof(szMiscArray), "{AA3333}AdmWarning{FFFF00}: %s (ID: %d) has just inflicted damage with a dodgy camera mode (potential aimbot)", GetPlayerNameEx(playerid), playerid);
-                    ABroadCast(COLOR_YELLOW, szMiscArray, 2);
-                    Log("logs/hack.log", szMiscArray);
-                    RpcAimbot[playerid] = 0;
+                    //ABroadCast(COLOR_YELLOW, szMiscArray, 2);
+                    //Log("logs/hack.log", szMiscArray);
+                    //RpcAimbot[playerid] = 0;
                     //AddFlag(playerid, INVALID_PLAYER_ID, "Detected using aimbot - RPC",2);
                 }
             }
@@ -179,11 +179,11 @@ hook OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
             RpcAimbot[playerid]++;
             if(RpcAimbot[playerid] >= 15)
             {
-                szMiscArray[0] = 0;
+                //szMiscArray[0] = 0;
                 //format(szMiscArray, sizeof(szMiscArray), "{AA3333}AdmWarning{FFFF00}: %s (ID: %d) has just inflicted damage with a dodgy camera mode (potential aimbot)", GetPlayerNameEx(playerid), playerid);
-                ABroadCast(COLOR_YELLOW, szMiscArray, 2);
-                Log("logs/hack.log", szMiscArray);
-                RpcAimbot[playerid] = 0;
+                //ABroadCast(COLOR_YELLOW, szMiscArray, 2);
+                //Log("logs/hack.log", szMiscArray);
+                //RpcAimbot[playerid] = 0;
                 //AddFlag(playerid, INVALID_PLAYER_ID, "Detected using aimbot - RPC",2);
             }
         }
@@ -441,9 +441,9 @@ IRawPacket:ID_RPC(playerid, BitStream:bs)
         // Have they triggered an UpdateScoreAndPing RPC within the same second as finalising the server connection?
         if(joinTimestamp[playerid] == gettime()-3)
         {
-            format(szMiscArray, sizeof(szMiscArray), "{AA3333}AdmWarning{FFFF00}: %s (ID: %d) has triggered a suspicious RPC upon joining (potential rakSAMP user)", GetPlayerNameEx(playerid), playerid);
-            ABroadCast(COLOR_YELLOW, szMiscArray, 2);
-            Log("logs/hack.log", szMiscArray);
+            //format(szMiscArray, sizeof(szMiscArray), "{AA3333}AdmWarning{FFFF00}: %s (ID: %d) has triggered a suspicious RPC upon joining (potential rakSAMP user)", GetPlayerNameEx(playerid), playerid);
+            //ABroadCast(COLOR_YELLOW, szMiscArray, 2);
+            //Log("logs/hack.log", szMiscArray);
         }
     }
 
