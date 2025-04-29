@@ -621,12 +621,12 @@ CMD:goto(playerid, params[])
 			if (GetPlayerState(playerid) == 2)
 			{
 				new tmpcar = GetPlayerVehicleID(playerid);
-				SetVehiclePos(tmpcar, 1811.48, -1891.17, 12.3936);
+				SetVehiclePos(tmpcar, 1715.1705,-1906.9788,15.1174);
 				LinkVehicleToInterior(tmpcar, int);
 				SetVehicleVirtualWorld(tmpcar, vw);
 				fVehSpeed[playerid] = 0.0;
 			}
-			else SetPlayerPos(playerid, 1811.48, -1891.17, 12.3936);
+			else SetPlayerPos(playerid, 1715.1705,-1906.9788,15.1174);
 		}
 		else
 		{
@@ -1661,14 +1661,14 @@ CMD:sendto(playerid, params[])
 			if (GetPlayerState(giveplayerid) == 2)
 			{
 				new tmpcar = GetPlayerVehicleID(giveplayerid);
-				SetVehiclePos(tmpcar, 1811.48, -1891.17, 12.3936);
+				SetVehiclePos(tmpcar, 1715.1705,-1906.9788,15.1174);
 				LinkVehicleToInterior(tmpcar, 0);
 				SetVehicleVirtualWorld(tmpcar, 0);
 				fVehSpeed[giveplayerid] = 0.0;
 			}
 			else
 			{
-				SetPlayerPos(giveplayerid, 1811.48, -1891.17, 12.3936);
+				SetPlayerPos(giveplayerid, 1715.1705,-1906.9788,15.1174);
 			}
 			format(string, sizeof(string), " You have sent %s to Unity Station.", GetPlayerNameEx(giveplayerid));
 			SendClientMessageEx(playerid, COLOR_WHITE, string);

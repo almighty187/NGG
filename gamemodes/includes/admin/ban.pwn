@@ -341,6 +341,47 @@ CMD:permban(playerid, params[]) {
 	return 1;
 }
 
+CMD:permaban(playerid, params[])
+{
+	if (PlayerInfo[playerid][pAdmin] >= 1337)
+	{
+		new string[128], giveplayerid, reason[64];
+		if(sscanf(params, "us[64]", giveplayerid, reason))
+		{
+			SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /permaban [player] [reason]");
+			return 1;
+		}
+
+		if(IsPlayerConnected(giveplayerid))
+		{
+			if(PlayerInfo[giveplayerid][pAdmin] > PlayerInfo[playerid][pAdmin])
+			{
+				format(string, sizeof(string), "AdmCmd: %s was banned, reason: Attempting to ban a higher admin.", GetPlayerNameEx(giveplayerid));
+				SendClientMessageToAllEx(COLOR_LIGHTRED, string);
+				new iTargetID, szReason[64], iSilentBan = 0;
+				CreateBan(playerid, PlayerInfo[iTargetID][pId], iTargetID, GetPlayerIpEx(iTargetID), szReason, 9999999, iSilentBan, 1); 
+				Kick(playerid);
+			}
+			else
+			{
+				new playerip[32];
+				GetPlayerIp(giveplayerid, playerip, sizeof(playerip));
+				format(string, sizeof(string), "AdmCmd: %s(IP:%s) was permanently banned by %s, reason: %s", GetPlayerNameEx(giveplayerid), playerip, GetPlayerNameEx(playerid), reason);
+				Log("logs/ban.log", string);
+				format(string, sizeof(string), "AdmCmd: %s was permanently banned by %s, reason: %s", GetPlayerNameEx(giveplayerid), GetPlayerNameEx(playerid), reason);
+				SendClientMessageToAllEx(COLOR_LIGHTRED, string);
+				new iTargetID, szReason[64], iSilentBan = 0;
+				CreateBan(playerid, PlayerInfo[iTargetID][pId], iTargetID, GetPlayerIpEx(iTargetID), szReason, 9999999, iSilentBan, 1); 
+				Kick(giveplayerid);
+			}
+			return 1;
+		}
+	}
+	else SendClientMessageEx(playerid, COLOR_GRAD1, "Invalid player specified.");
+	return 1;
+}
+
+
 CMD:hackban(playerid, params[]) {
 
 	new

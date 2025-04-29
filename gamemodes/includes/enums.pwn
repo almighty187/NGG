@@ -925,6 +925,8 @@ enum pInfo
 {
 	pId,
 	pOnline,
+	pAdminName[MAX_PLAYER_NAME],
+	pUsername[MAX_PLAYER_NAME],
 	pLevel,
 	pAdmin,
 	pAdminLevel,
@@ -1300,7 +1302,9 @@ enum pInfo
 	pFlagClaimed,
 	pHorse,
 	pCountdown,
-	pLastGlobal
+	pLastGlobal,
+	pShowTurfs
+
 };
 
 enum pvInfo

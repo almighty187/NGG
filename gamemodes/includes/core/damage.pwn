@@ -452,7 +452,7 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 				PlayerPlaySound(playerid, 1085, X, Y, Z);
 				PlayerCuffed[damagedid] = 1;
 				SetPVarInt(damagedid, "PlayerCuffed", 1);
-				PlayerCuffedTime[damagedid] = 16;
+				PlayerCuffedTime[damagedid] = 8;
 				SetPVarInt(damagedid, "IsFrozen", 1);
 				TazerTimeout[playerid] = 12;
 				SetTimerEx("TazerTimer",1000,false,"d",playerid);

@@ -100,7 +100,10 @@ CMD:fix(playerid, params[])
 				}
     			if(level >= 400)
     			{
-    				SetTimerEx("FixVehicle", 2000, false, "ii", playerid, closestcar); // Fixes the crash bug.
+					format(string, sizeof(string), "* %s has began repairing the vehicle.", GetPlayerNameEx(playerid));
+					ProxDetector(30.0, playerid, string, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
+					ApplyAnimation(playerid, "MISC", "Plunger_01", 4.1, 1, 1, 1, 1, 1, 1);
+    				SetPVarInt(playerid, "FixVehicleTimer", SetTimerEx("FixVehicle", 2000, false, "ii", playerid, closestcar));
     			} 
     			else 
     			{
@@ -123,7 +126,6 @@ forward FixVehicle(playerid, vehicleid);
 public FixVehicle(playerid, vehicleid)
 {
 	TogglePlayerControllable(playerid, 1);
-	ApplyAnimation(playerid, "CARRY", "crry_prtial", 4.0, 0, 0, 0, 0, 0, 1);
 	ClearAnimationsEx(playerid);
 	SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
 	PlayerInfo[playerid][pMechTime] = gettime()+60;
@@ -131,7 +133,7 @@ public FixVehicle(playerid, vehicleid)
 	Vehicle_Armor(vehicleid);
 	new engine,lights,alarm,doors,bonnet,boot,objective;
 	GetVehicleParamsEx(vehicleid,engine,lights,alarm,doors,bonnet,boot,objective);
-	if(GetVehicleModel(vehicleid) == 481 && GetVehicleModel(vehicleid) == 509 && GetVehicleModel(vehicleid) == 510)
+	if(GetVehicleModel(vehicleid) == 481 || GetVehicleModel(vehicleid) == 509 || GetVehicleModel(vehicleid) == 510)
 	{
 		SetVehicleParamsEx(vehicleid, VEHICLE_PARAMS_ON,lights,alarm,doors,bonnet,boot,objective);
 		arr_Engine{vehicleid} = 1;

@@ -1217,7 +1217,13 @@ foreach(new i: Player)
 				ResetPlayerMoney(i);
 				GivePlayerMoney(i, PlayerInfo[i][pCash]);
 			}
-			if(PlayerInfo[i][pGPS] > 0 && GetPVarType(i, "gpsonoff"))
+			/*if(PlayerInfo[i][pGPS] > 0 && GetPVarType(i, "gpsonoff"))
+			{
+				new zone[28];
+				GetPlayer3DZone(i, zone, MAX_ZONE_NAME);
+				PlayerTextDrawSetString(i, GPS[i], zone);
+			}*/	
+			if(PlayerInfo[i][pGPS] > 0 && gpsState[i])
 			{
 				new zone[28];
 				GetPlayer3DZone(i, zone, MAX_ZONE_NAME);
@@ -2769,7 +2775,13 @@ ptask PlayerUpdate[1000](i) {
 			ResetPlayerMoney(i);
 			GivePlayerMoney(i, PlayerInfo[i][pCash]);
 		}
-		if(PlayerInfo[i][pGPS] > 0 && GetPVarType(i, "gpsonoff"))
+		/*if(PlayerInfo[i][pGPS] > 0 && GetPVarType(i, "gpsonoff"))
+		{
+			new zone[28];
+			GetPlayer3DZone(i, zone, MAX_ZONE_NAME);
+			PlayerTextDrawSetString(i, GPS[i], zone);
+		}*/		
+		if(PlayerInfo[i][pGPS] > 0 && gpsState[i])
 		{
 			new zone[28];
 			GetPlayer3DZone(i, zone, MAX_ZONE_NAME);
@@ -2792,14 +2804,14 @@ ptask PlayerUpdate[1000](i) {
 						SetPVarInt(i, "GasWarnings", GetPVarInt(i, "GasWarnings") + 1);
 						if(GetPVarInt(i, "GasWarnings") > 10)
 						{
-							CancelTruckDelivery(i);
-							DeletePVar(i, "GasWarnings");
-							SendClientMessageEx(i, COLOR_REALRED, "You have failed your delivery as you lost your load!");
+							//CancelTruckDelivery(i);
+							//DeletePVar(i, "GasWarnings");
+							//SendClientMessageEx(i, COLOR_REALRED, "You have failed your delivery as you lost your load!");
 						}
 					}
 				} else {
-					CancelTruckDelivery(i);
-					SendClientMessageEx(i, COLOR_REALRED, "There was an issue with the delivery unknown bussiness specified.");
+					//CancelTruckDelivery(i);
+					//SendClientMessageEx(i, COLOR_REALRED, "There was an issue with the delivery unknown bussiness specified.");
 				}
 			}
 		}

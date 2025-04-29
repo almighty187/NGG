@@ -307,6 +307,8 @@ public OnQueryFinish(resultid, extraid, handleid)
 					}
 					cache_get_value_name_int(row,  "id", PlayerInfo[extraid][pId]);
 					cache_get_value_name_int(row,  "Online", PlayerInfo[extraid][pOnline]);
+					cache_get_value_name(row, "AdminName", PlayerInfo[extraid][pAdminName]);
+					cache_get_value_name(row, "Username", PlayerInfo[extraid][pUsername]);
 					cache_get_value_name(row,  "Email", PlayerInfo[extraid][pEmail]);
 					cache_get_value_name(row,  "IP", PlayerInfo[extraid][pIP]);
 					cache_get_value_name(row,  "SecureIP", PlayerInfo[extraid][pSecureIP]);
@@ -567,6 +569,9 @@ public OnQueryFinish(resultid, extraid, handleid)
 					cache_get_value_name_int(row,  "GVIPExVoucher", PlayerInfo[extraid][pGVIPExVoucher]);
 					cache_get_value_name_int(row,  "VIPSellable", PlayerInfo[extraid][pVIPSellable]);
 					cache_get_value_name_int(row,  "ReceivedPrize", PlayerInfo[extraid][pReceivedPrize]);
+					cache_get_value_name_int(row,  "gpsState", gpsState[extraid]);
+					cache_get_value_name_int(row,  "wwState", wwState[extraid]);
+					cache_get_value_name_int(row,  "ShowTurfs", turfWarsRadar[extraid]);
 					cache_get_value_name_int(row,  "VIPSpawn", PlayerInfo[extraid][pVIPSpawn]);
 					cache_get_value_name_int(row,  "FreeAdsDay", PlayerInfo[extraid][pFreeAdsDay]);
 					cache_get_value_name_int(row,  "FreeAdsLeft", PlayerInfo[extraid][pFreeAdsLeft]);
@@ -2638,6 +2643,10 @@ stock g_mysql_SaveAccount(playerid)
 	SavePlayerInteger(query, GetPlayerSQLId(playerid), "FlagCredits", PlayerInfo[playerid][pFlagCredits]);
 	SavePlayerInteger(query, GetPlayerSQLId(playerid), "FlagClaimed", PlayerInfo[playerid][pFlagClaimed]);
 
+	SavePlayerInteger(query, GetPlayerSQLId(playerid), "gpsState", gpsState[playerid]);
+	SavePlayerInteger(query, GetPlayerSQLId(playerid), "wwState", wwState[playerid]);
+	SavePlayerInteger(query, GetPlayerSQLId(playerid), "ShowTurfs", turfWarsRadar[playerid]);
+
 	//for(new d; d < sizeof(Drugs); ++d) SavePlayerInteger(query, GetPlayerSQLId(playerid), GetDrugName(d), PlayerInfo[playerid][pDrugs][d]);
 	//for(new d; d < sizeof(szIngredients); ++d) if(d != 9) SavePlayerInteger(query, GetPlayerSQLId(playerid), DS_Ingredients_GetSQLName(d), PlayerInfo[playerid][p_iIngredient][d]);	
 
@@ -2651,6 +2660,13 @@ stock g_mysql_SaveAccount(playerid)
 	MySQLUpdateFinish(query, GetPlayerSQLId(playerid));
 	if(FIFEnabled) g_mysql_SaveFIF(playerid);
 	return 1;
+}
+
+stock SaveTruckerTime(playerid)
+{
+	new query[256];
+	mysql_format(MainPipeline, query, sizeof(query), "INSERT INTO `truckerlogs` (`ID`, `TimeStart`, `TimeEnd`) VALUES (%d, %d, %d)", GetPlayerSQLId(playerid), GetPVarInt(playerid, "DeliveryStartTime"), gettime());
+ 	mysql_tquery(MainPipeline, query, "OnQueryFinish", "ii", SENDDATA_THREAD, playerid);
 }
 
 stock SaveAuction(auction) {

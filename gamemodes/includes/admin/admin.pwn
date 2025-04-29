@@ -2162,7 +2162,7 @@ CMD:apark(playerid, params[]) {
 	return 1;
 }
 
-CMD:aduty(playerid, params[])
+/*CMD:aduty(playerid, params[])
 {
     if(PlayerInfo[playerid][pAdminLevel] >= ADMIN_JUNIOR)
 	{
@@ -2192,6 +2192,67 @@ CMD:aduty(playerid, params[])
 				if(PlayerInfo[i][pAdminLevel] >= 2) SendClientMessage(i, COLOR_WHITE, string);
 			}
 	        format(string, sizeof(string), "%s went on duty as a %s.", GetPlayerNameEx(playerid), GetAdminRankName(playerid));
+			Log("logs/aduty.log", string);
+		}
+    }
+	return 1;
+}*/
+
+CMD:aduty(playerid, params[])
+{
+    if(PlayerInfo[playerid][pAdminLevel] >= ADMIN_JUNIOR)
+	{
+	    new string[128], Float:health, Float:armor;
+	    if(GetPVarType(playerid, "AdminDuty") == 1)
+	    {
+	       	format(string, sizeof(string), "* %s %s is now {FF0000}off duty{FFFFFF}.", GetStaffRank(playerid), PlayerInfo[playerid][pUsername]);
+			foreach(new i: Player)
+			{
+				if(PlayerInfo[i][pAdminLevel] >= 2) SendClientMessageEx(i, COLOR_WHITE, string);
+			}
+	        format(string, sizeof(string), "%s went off duty as a %s.", PlayerInfo[playerid][pUsername], GetAdminRankName(PlayerInfo[playerid][pAdminLevel]));
+			Log("logs/aduty.log", string);
+			
+			health = GetPVarFloat(playerid, "pPreGodHealth");
+			SetHealth(playerid,health);
+			armor = GetPVarFloat(playerid, "pPreGodArmor");
+			SetArmour(playerid, armor);
+			DeletePVar(playerid, "pGodMode");
+			DeletePVar(playerid, "pPreGodHealth");
+			DeletePVar(playerid, "pPreGodArmor");
+			
+	   		PlayerInfo[playerid][pAdmin] = 1;
+			SetPlayerName(playerid, PlayerInfo[playerid][pUsername]);
+        	if(PlayerInfo[playerid][pAdminLevel] >= ADMIN_HEAD) PlayerInfo[playerid][pSMod] = 1;
+	        DeletePVar(playerid, "AdminDuty");
+		}
+		else
+		{
+			PlayerInfo[playerid][pAdmin] = PlayerInfo[playerid][pAdminLevel];
+
+		    SetPVarInt(playerid, "AdminDuty", 1);
+			
+			GetHealth(playerid,health);
+			SetPVarFloat(playerid, "pPreGodHealth", health);
+			GetArmour(playerid,armor);
+			SetPVarFloat(playerid, "pPreGodArmor", armor);
+		    SetHealth(playerid, 0x7FB00000);
+		    SetArmour(playerid, 0x7FB00000);
+		    SetPVarInt(playerid, "pGodMode", 1);
+			
+	        format(string, sizeof(string), "* %s %s is now {00FF00}on duty{FFFFFF}.", GetStaffRank(playerid), PlayerInfo[playerid][pUsername]);
+			foreach(new i: Player)
+			{
+				if(PlayerInfo[i][pAdminLevel] >= 2) SendClientMessageEx(i, COLOR_WHITE, string);
+			}
+			
+			if(strcmp(PlayerInfo[playerid][pAdminName], "None", true) != 0)
+			{
+				SetPlayerName(playerid, PlayerInfo[playerid][pAdminName]);
+			}
+		
+		
+	        format(string, sizeof(string), "%s went on duty as a %s.", PlayerInfo[playerid][pUsername], GetAdminRankName(PlayerInfo[playerid][pAdminLevel]));
 			Log("logs/aduty.log", string);
 		}
     }
@@ -6904,4 +6965,364 @@ CMD:serial(playerid, params[])
     format(string, sizeof(string), "%s's Serial: %s", GetPlayerNameEx(targetid), serial);
     SendClientMessageEx(playerid, -1, string);
     return 1;
+}
+
+CMD:dm(playerid, params[])
+{
+    if( PlayerInfo[playerid][pAdmin] >= 2 || PlayerInfo[playerid][pSMod] == 1)
+	{
+	    new string[128], giveplayerid;
+		if(sscanf(params, "u", giveplayerid)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /dm [player]");
+		if(IsPlayerConnected(giveplayerid))
+		{
+		    if(PlayerInfo[playerid][pAdmin] < 3 && GetPVarInt(playerid, "pWatchdogWatching") != giveplayerid)
+		    {
+		        return SendClientMessageEx(playerid, COLOR_WHITE, "You can only use this command on the person you are watchdog watching!");
+		    }
+		    if(PlayerInfo[giveplayerid][pAdmin] > 1)
+		    {
+		        return SendClientMessageEx(playerid, COLOR_WHITE, "You cannot do this to other administrators!");
+			}
+
+			foreach(new i: Player) if(GetPVarInt(i, "pWatchdogWatching") == giveplayerid) {
+				SendClientMessage(i, COLOR_WHITE, "You have stopped DM Watching.");
+				GettingSpectated[Spectate[i]] = INVALID_PLAYER_ID;
+				Spectating[i] = 0;
+				Spectate[i] = INVALID_PLAYER_ID;
+				SetPVarInt(i, "SpecOff", 1 );
+				TogglePlayerSpectating(i, false);
+				SetCameraBehindPlayer(i);
+				DeletePVar(i, "pWatchdogWatching");
+			}
+
+			PlayerInfo[giveplayerid][pWarns] += 1;
+			if(PlayerInfo[giveplayerid][pWarns] >= 3)
+			{
+				new ip[32], iTargetID, iSilentBan = 0;
+				GetPlayerIp(giveplayerid,ip,sizeof(ip));
+				format(string, sizeof(string), "AdmCmd: %s (IP: %s) was banned by %s (had 3 Warnings), reason: DM", GetPlayerNameEx(giveplayerid), ip, GetPlayerNameEx(playerid));
+				Log("logs/ban.log", string);
+				format(string, sizeof(string), "AdmCmd: %s was banned by %s (had 3 Warnings), reason: DM", GetPlayerNameEx(giveplayerid), GetPlayerNameEx(playerid));
+				SendClientMessageToAllEx(COLOR_LIGHTRED, string);
+				PlayerInfo[giveplayerid][pBanned] = 1;
+				CreateBan(playerid, PlayerInfo[iTargetID][pId], iTargetID, GetPlayerIpEx(iTargetID), "3 Warnings", 180, iSilentBan);
+				Kick(giveplayerid);
+				//MySQLBan(GetPlayerSQLId(giveplayerid),ip,"/DM",GetPlayerSQLId(playerid));
+				return 1;
+			}
+
+			if(GetPVarInt(giveplayerid, "IsInArena") >= 0)
+   			{
+				LeavePaintballArena(giveplayerid, GetPVarInt(giveplayerid, "IsInArena"));
+	   		}
+			GameTextForPlayer(giveplayerid, "~w~Welcome to ~n~~r~Fort DeMorgan", 5000, 3);
+			ResetPlayerWeaponsEx(giveplayerid);
+			format(string, sizeof(string), "AdmCmd: %s has been prisoned by %s, reason: DM ", GetPlayerNameEx(giveplayerid), GetPlayerNameEx(playerid));
+			Log("logs/admin.log", string);
+			format(string, sizeof(string), "AdmCmd: %s has been prisoned by %s, reason: DM", GetPlayerNameEx(giveplayerid), GetPlayerNameEx(playerid));
+    		SendClientMessageToAllEx(COLOR_LIGHTRED, string);
+			PlayerInfo[giveplayerid][pWantedLevel] = 0;
+			SetPlayerWantedLevel(giveplayerid, 0);
+			PlayerInfo[giveplayerid][pJailTime] = 120*60;
+			strcpy(PlayerInfo[giveplayerid][pPrisonReason], "[OOC][PRISON][/DM]", 128);
+			strcpy(PlayerInfo[giveplayerid][pPrisonedBy], GetPlayerNameEx(playerid), MAX_PLAYER_NAME);
+			PhoneOnline[giveplayerid] = 1;
+			SetPlayerInterior(giveplayerid, 1);
+			PlayerInfo[giveplayerid][pInt] = 1;
+			new rand = random(sizeof(OOCPrisonSpawns));
+			Streamer_UpdateEx(giveplayerid, OOCPrisonSpawns[rand][0], OOCPrisonSpawns[rand][1], OOCPrisonSpawns[rand][2]);
+			SetPlayerPos(giveplayerid, OOCPrisonSpawns[rand][0], OOCPrisonSpawns[rand][1], OOCPrisonSpawns[rand][2]);
+			SetPlayerSkin(giveplayerid, 50);
+			SetPlayerColor(giveplayerid, TEAM_APRISON_COLOR);
+			Player_StreamPrep(giveplayerid, OOCPrisonSpawns[rand][0], OOCPrisonSpawns[rand][1], OOCPrisonSpawns[rand][2], FREEZE_TIME);
+
+			PlayerInfo[giveplayerid][pWRestricted] = 4;
+			SendClientMessageEx(giveplayerid, COLOR_LIGHTRED, "You have been prisoned for Death Matching - you will be prisoned for two hours, warned and your weapons restricted for 4 hours.");
+		}
+		else
+		{
+		    SendClientMessageEx(playerid, COLOR_GRAD2, "Invalid player specified.");
+		}
+	}
+	return 1;
+}
+
+CMD:sdm(playerid, params[])
+{
+    if(PlayerInfo[playerid][pAdmin] >= 1337 || PlayerInfo[playerid][pUndercover] == 1)
+	{
+	    new string[128], giveplayerid;
+		if(sscanf(params, "u", giveplayerid)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /sdm [player]");
+		if(IsPlayerConnected(giveplayerid))
+	 	{
+		    if(PlayerInfo[giveplayerid][pAdmin] > 1)
+		    {
+		        SendClientMessageEx(playerid, COLOR_WHITE, "You cannot do this to other administrators!");
+		        return 1;
+			}
+
+			PlayerInfo[giveplayerid][pWarns] += 1;
+			if(PlayerInfo[giveplayerid][pWarns] >= 3)
+			{
+				new ip[32], iTargetID, iSilentBan = 0;
+				GetPlayerIp(giveplayerid,ip,sizeof(ip));
+				format(string, sizeof(string), "AdmCmd: %s (IP: %s) was banned by %s (had 3 Warnings), reason: DM", GetPlayerNameEx(giveplayerid), ip, GetPlayerNameEx(playerid));
+				Log("logs/ban.log", string);
+				format(string, sizeof(string), "AdmCmd: %s was banned by %s (had 3 Warnings), reason: DM", GetPlayerNameEx(giveplayerid), GetPlayerNameEx(playerid));
+				ABroadCast(COLOR_LIGHTRED, string, 2);
+				PlayerInfo[giveplayerid][pBanned] = 1;
+				CreateBan(playerid, PlayerInfo[iTargetID][pId], iTargetID, GetPlayerIpEx(iTargetID), "3 Warnings", 180, iSilentBan);
+				Kick(giveplayerid);
+				//MySQLBan(GetPlayerSQLId(giveplayerid),ip,"/DM",GetPlayerSQLId(playerid));
+				return 1;
+			}
+
+			if(GetPVarInt(giveplayerid, "IsInArena") >= 0)
+    		{
+				LeavePaintballArena(giveplayerid, GetPVarInt(giveplayerid, "IsInArena"));
+	   		}
+			GameTextForPlayer(giveplayerid, "~w~Welcome to ~n~~r~Fort DeMorgan", 5000, 3);
+			ResetPlayerWeaponsEx(giveplayerid);
+			format(string, sizeof(string), "AdmCmd: %s has been silent prisoned (/sdm) by %s, reason: DM ", GetPlayerNameEx(giveplayerid), GetPlayerNameEx(playerid));
+			Log("logs/admin.log", string);
+			format(string, sizeof(string), "AdmCmd: %s has been silent prisoned (/sdm) by %s, reason: DM", GetPlayerNameEx(giveplayerid), GetPlayerNameEx(playerid));
+   			ABroadCast(COLOR_LIGHTRED, string, 2);
+			PlayerInfo[giveplayerid][pWantedLevel] = 0;
+			SetPlayerWantedLevel(giveplayerid, 0);
+			PlayerInfo[giveplayerid][pJailTime] = 120*60;
+			strcpy(PlayerInfo[giveplayerid][pPrisonReason], "[OOC][PRISON][/SDM]", 128);
+			strcpy(PlayerInfo[giveplayerid][pPrisonedBy], GetPlayerNameEx(playerid), MAX_PLAYER_NAME);
+			PhoneOnline[giveplayerid] = 1;
+			SetPlayerInterior(giveplayerid, 1);
+			PlayerInfo[giveplayerid][pInt] = 1;
+			new rand = random(sizeof(OOCPrisonSpawns));
+			Streamer_UpdateEx(giveplayerid, OOCPrisonSpawns[rand][0], OOCPrisonSpawns[rand][1], OOCPrisonSpawns[rand][2]);
+			SetPlayerPos(giveplayerid, OOCPrisonSpawns[rand][0], OOCPrisonSpawns[rand][1], OOCPrisonSpawns[rand][2]);
+			SetPlayerSkin(giveplayerid, 50);
+			SetPlayerColor(giveplayerid, TEAM_APRISON_COLOR);
+			Player_StreamPrep(giveplayerid, OOCPrisonSpawns[rand][0], OOCPrisonSpawns[rand][1], OOCPrisonSpawns[rand][2], FREEZE_TIME);
+
+			PlayerInfo[giveplayerid][pWRestricted] = 4;
+			SendClientMessageEx(giveplayerid, COLOR_LIGHTRED, "You have been prisoned for Death Matching - you will be prisoned for two hours, warned and your weapons restricted for 4 hours.");
+		}
+		else
+		{
+		    SendClientMessageEx(playerid, COLOR_GRAD2, "Invalid player specified.");
+		}
+	}
+	return 1;
+}
+
+CMD:hhc(playerid, params[]) {
+	return cmd_hhcheck(playerid, params);
+}
+
+CMD:hhcheck(playerid, params[])
+{
+	new string[128], giveplayerid;
+	if(sscanf(params, "u", giveplayerid)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /hhcheck [player]");
+
+	if(IsPlayerConnected(giveplayerid))
+	{
+		if(PlayerInfo[playerid][pAdmin] >= 3)
+		{
+		    if(HHcheckFloats[giveplayerid][0] != 0)
+		    {
+		        SendClientMessageEx(playerid, COLOR_WHITE, "That player is currently being checked for health hacks!");
+		        return 1;
+		    }
+			if(PlayerInfo[giveplayerid][pAdmin] >= PlayerInfo[playerid][pAdmin] && giveplayerid != playerid)
+			{
+				SendClientMessageEx(playerid, COLOR_WHITE, "You can't perform this action on an equal or higher level administrator.");
+				return 1;
+			}
+   			if(playerTabbed[giveplayerid] != 0)
+   			{
+      			SendClientMessageEx(playerid, COLOR_WHITE, "That player is currently alt-tabbed!");
+		        return 1;
+   			}
+			if(HHcheckUsed != 0)
+		    {
+		        SendClientMessageEx(playerid, COLOR_WHITE, "The health hack check is being used by another admin, please try again in a moment!");
+		        return 1;
+		    }
+
+   			HHcheckUsed = 1;
+
+        	format(string, sizeof(string), "{AA3333}AdmWarning{FFFF00}: %s has initiated a health hack check on %s.", GetPlayerNameEx(playerid), GetPlayerNameEx(giveplayerid));
+        	ABroadCast(COLOR_YELLOW, string, 2);
+
+  			format(string, sizeof(string), "Checking %s for health hacks, please wait....", GetPlayerNameEx(giveplayerid));
+		    SendClientMessageEx(playerid, COLOR_YELLOW, string);
+
+			GetPlayerHealth(giveplayerid, HHcheckFloats[giveplayerid][0]);
+			GetPlayerArmour(giveplayerid, HHcheckFloats[giveplayerid][1]);
+			GetPlayerPos(giveplayerid, HHcheckFloats[giveplayerid][2], HHcheckFloats[giveplayerid][3], HHcheckFloats[giveplayerid][4]);
+			GetPlayerFacingAngle(giveplayerid, HHcheckFloats[giveplayerid][5]);
+			HHcheckVW[giveplayerid] = GetPlayerVirtualWorld(giveplayerid);
+			HHcheckInt[giveplayerid] = GetPlayerInterior(giveplayerid);
+
+			DeletePVar(giveplayerid, "IsFrozen");
+			TogglePlayerControllable(giveplayerid, 1);
+
+            SetPlayerCameraPos(giveplayerid, 785.1896,1692.6887,5.2813);
+			SetPlayerCameraLookAt(giveplayerid, 785.1896,1692.6887,0);
+            SetPlayerVirtualWorld(giveplayerid, 0);
+		    SetPlayerInterior(giveplayerid, 1);
+		    SetPlayerHealth(giveplayerid, 100);
+		    SetPlayerArmour(giveplayerid, 0);
+			SetPlayerPos(giveplayerid, -1400.994873, 106.899650, 1032.273437);
+			SetPlayerFacingAngle(giveplayerid, 90.66);
+			CreateExplosion(-1400.994873, 106.899650 , 1032.273437, 8, 20);
+
+			SetTimerEx("HealthHackCheck", 1250, 0, "dd", playerid, giveplayerid);
+		}
+		else SendClientMessageEx(playerid, COLOR_GREY, "You are not authorized to use that command.");
+	}
+	else SendClientMessageEx(playerid, COLOR_GRAD1, "Invalid player specified.");
+	return 1;
+}
+
+forward HealthHackCheck(playerid, giveplayerid);
+public HealthHackCheck(playerid, giveplayerid)
+{
+	new string[128];
+ 	if(giveplayerid == INVALID_PLAYER_ID)
+    {
+        SendClientMessageEx(playerid, COLOR_YELLOW, "The health hack check result could not be made, the player logged off.");
+        HHcheckUsed = 0;
+        return 1;
+    }
+	if(playerTabbed[giveplayerid] != 0)
+	{
+		SendClientMessageEx(playerid, COLOR_WHITE, "The health hack check result could not be made, the player alt-tabbed.");
+
+		SetPlayerHealth(giveplayerid, HHcheckFloats[giveplayerid][0]);
+		SetPlayerArmour(giveplayerid, HHcheckFloats[giveplayerid][1]);
+		SetPlayerPos(giveplayerid, HHcheckFloats[giveplayerid][2], HHcheckFloats[giveplayerid][3], HHcheckFloats[giveplayerid][4]);
+		SetPlayerFacingAngle(giveplayerid, HHcheckFloats[giveplayerid][5]);
+		SetCameraBehindPlayer(giveplayerid);
+		SetPlayerVirtualWorld(giveplayerid, HHcheckVW[giveplayerid]);
+ 		SetPlayerInterior(giveplayerid, HHcheckInt[giveplayerid]);
+
+  		for(new i = 0; i < 6; i++)
+		{
+			HHcheckFloats[giveplayerid][i] = 0;
+		}
+		HHcheckVW[giveplayerid] = 0;
+		HHcheckInt[giveplayerid] = 0;
+
+		HHcheckUsed = 0;
+  		return 1;
+	}
+    if(!IsPlayerInRangeOfPoint(giveplayerid,20,-1400.994873, 106.899650, 1032.273437))
+    {
+        SendClientMessageEx(playerid, COLOR_WHITE, "The health hack check result could not be made, the player was probably desynced/lagging.");
+
+		SetPlayerHealth(giveplayerid, HHcheckFloats[giveplayerid][0]);
+		SetPlayerArmour(giveplayerid, HHcheckFloats[giveplayerid][1]);
+		SetPlayerPos(giveplayerid, HHcheckFloats[giveplayerid][2], HHcheckFloats[giveplayerid][3], HHcheckFloats[giveplayerid][4]);
+		SetPlayerFacingAngle(giveplayerid, HHcheckFloats[giveplayerid][5]);
+		SetCameraBehindPlayer(giveplayerid);
+		SetPlayerVirtualWorld(giveplayerid, HHcheckVW[giveplayerid]);
+ 		SetPlayerInterior(giveplayerid, HHcheckInt[giveplayerid]);
+
+  		for(new i = 0; i < 6; i++)
+		{
+			HHcheckFloats[giveplayerid][i] = 0;
+		}
+		HHcheckVW[giveplayerid] = 0;
+		HHcheckInt[giveplayerid] = 0;
+
+        HHcheckUsed = 0;
+		return 1;
+    }
+
+    new Float:health;
+    GetPlayerHealth(giveplayerid, health);
+    if(health == 100)
+	{
+        SendClientMessageEx(playerid, COLOR_GREEN, "____________________ HEALTH HACK CHECK RESULT_______________");
+        format(string, sizeof(string), "The health hack check on %s was {00F70C}positive{FFFFFF}. The player may be health hacking.", GetPlayerNameEx(giveplayerid));
+        SendClientMessageEx(playerid, COLOR_WHITE, string);
+        SendClientMessageEx(playerid, COLOR_WHITE, "Health before check: 100.0");
+        format(string, sizeof(string), "Health after check: %.1f", health);
+        SendClientMessageEx(playerid, COLOR_WHITE, string);
+        SendClientMessageEx(playerid, COLOR_GREEN, "_______________________________________________________________");
+    }
+    else
+	{
+        SendClientMessageEx(playerid, COLOR_GREEN, "____________________ HEALTH HACK CHECK RESULT_______________");
+        format(string, sizeof(string), "The health hack check on %s was {FF0606}negative{FFFFFF}. The player was not health hacking.", GetPlayerNameEx(giveplayerid));
+        SendClientMessageEx(playerid, COLOR_WHITE, string);
+        SendClientMessageEx(playerid, COLOR_WHITE, "Health before check: 100.0");
+        format(string, sizeof(string), "Health after check: %.1f", health);
+        SendClientMessageEx(playerid, COLOR_WHITE, string);
+        SendClientMessageEx(playerid, COLOR_GREEN, "_______________________________________________________________");
+    }
+
+	SetPlayerHealth(giveplayerid, HHcheckFloats[giveplayerid][0]);
+	SetPlayerArmour(giveplayerid, HHcheckFloats[giveplayerid][1]);
+	SetPlayerPos(giveplayerid, HHcheckFloats[giveplayerid][2], HHcheckFloats[giveplayerid][3], HHcheckFloats[giveplayerid][4]);
+	SetPlayerFacingAngle(giveplayerid, HHcheckFloats[giveplayerid][5]);
+	SetCameraBehindPlayer(giveplayerid);
+	SetPlayerVirtualWorld(giveplayerid, HHcheckVW[giveplayerid]);
+ 	SetPlayerInterior(giveplayerid, HHcheckInt[giveplayerid]);
+
+  	for(new i = 0; i < 6; i++)
+	{
+		HHcheckFloats[giveplayerid][i] = 0;
+	}
+	HHcheckVW[giveplayerid] = 0;
+	HHcheckInt[giveplayerid] = 0;
+
+    HHcheckUsed = 0;
+    return 1;
+}
+
+CMD:gr(playerid, params[]) {
+	return cmd_goldrims(playerid, params);
+}
+
+CMD:goldrims(playerid, params[])
+{
+	if(IsPlayerConnected(playerid)) {
+		if(PlayerInfo[playerid][pAdmin] < 1337) {
+			SendClientMessageEx(playerid, COLOR_GRAD1, "You are not authorized to use that command!");
+			return 1;
+		}
+		if(IsPlayerInAnyVehicle(playerid)) {
+			AddVehicleComponent(GetPlayerVehicleID(playerid), 1080);
+			SendClientMessageEx(playerid, COLOR_WHITE, "   Gold Rims Added to Vehicle!");
+		}
+	}
+	return 1;
+}
+
+CMD:adminname(playerid, params[])
+{
+	new query[512], name[MAX_PLAYER_NAME];
+
+    if(PlayerInfo[playerid][pAdmin] < 2)
+	{
+	    return SendClientMessageEx(playerid, COLOR_GREY, "You are not authorized to use this command.");
+	}
+	if(sscanf(params, "s[24]", name))
+	{
+	    return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /adminname [name ('none' to reset)]");
+	}
+
+	strcpy(PlayerInfo[playerid][pAdminName], name, MAX_PLAYER_NAME);
+
+	if(GetPVarType(playerid, "AdminDuty") == 1)
+	{
+	    SetPlayerName(playerid, name);
+	}
+
+	mysql_format(MainPipeline, query, sizeof(query), "UPDATE `accounts` SET `AdminName` = '%e' WHERE `id` = %i", name, GetPlayerSQLId(playerid));
+	mysql_tquery(MainPipeline, query);
+
+	format(query, sizeof(query), "AdmCmd: %s changed their administrator name to %s.", PlayerInfo[playerid][pUsername], name);
+	ABroadCast(COLOR_LIGHTRED, query, 2);
+	return 1;
 }

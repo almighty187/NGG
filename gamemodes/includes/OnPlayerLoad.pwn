@@ -793,6 +793,16 @@ public OnPlayerLoad(playerid)
 		}
 	}
 
+	if(turfWarsRadar[playerid] > 0) ShowTurfWarsRadar(playerid, true);
+
+	if(wwState[playerid] > 0) TextDrawShowForPlayer(playerid, WristWatch);
+	
+	if(gpsState[playerid] > 0) {
+		//SetPVarInt(playerid, "gpsonoff", 1);
+		PlayerTextDrawSetString(playerid, GPS[playerid], "Loading...");
+		PlayerTextDrawShow(playerid, GPS[playerid]);
+	}
+
 	if(PlayerInfo[playerid][pInt] > 0 || PlayerInfo[playerid][pVW] > 0)
 	{
 	    TogglePlayerControllable(playerid, 1);
