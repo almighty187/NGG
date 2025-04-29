@@ -393,6 +393,8 @@ IPacket:PLAYER_SYNC(playerid, BitStream:bs)
     return 1;
 }*/
 
+
+
 IPacket:VEHICLE_SYNC(playerid, BitStream:bs)
 {
         //if player is level 1, don't log
@@ -402,6 +404,7 @@ IPacket:VEHICLE_SYNC(playerid, BitStream:bs)
         } 
 
         new inCarData[PR_InCarSync];
+        new Float:posx, Float:posy, Float:posz;
         BS_IgnoreBits(bs, 8);
         BS_ReadInCarSync(bs, inCarData);
 
@@ -413,11 +416,26 @@ IPacket:VEHICLE_SYNC(playerid, BitStream:bs)
         GetVehiclePos(inCarData[PR_vehicleId], vehPos[0], vehPos[1], vehPos[2]);
         new Float:fDistance = GetPlayerDistanceFromPoint(playerid, vehPos[0], vehPos[1], vehPos[2]);
 
-        if(fDistance > 20)
-        {
-            format(szMessage, sizeof(szMessage), "AdmCmd: %s (%d) VEHICLE SYNC PACKET happend from far distance: %f (VEHICLE: TODO :) ).", GetPlayerNameEx(playerid), playerid, fDistance);
+        if (fDistance > 600) {
+            format(szMessage, sizeof(szMessage), "AdmCmd: %s (%d) teleported from distance: %f Please spectate and report to dev what they are doing.", GetPlayerNameEx(playerid), playerid, fDistance);
             ABroadCast(COLOR_YELLOW, szMessage, 2);
             Log("logs/hack.log", szMessage);
+            return 1;
+        }
+
+        if(fDistance > 60)
+        {
+            
+            GetPlayerPos(playerid, posx, posy, posz);
+            format(szMessage, sizeof(szMessage), "AdmCmd: %s (%d) Warper banned, warped from distance: %f (Car has been reset).", GetPlayerNameEx(playerid), playerid, fDistance);
+            ABroadCast(COLOR_YELLOW, szMessage, 2);
+            GetPlayerPos(playerid, posx, posy, posz);
+            SetPlayerPos(playerid, posx, posy, posz+5);
+			PlayerPlaySound(playerid, 3200, posx, posy, posz+5);
+            CreateBan(INVALID_PLAYER_ID, PlayerInfo[playerid][pId], playerid, PlayerInfo[playerid][pIP], "SYSTEM: Vehicle Warping", 180, 1); 
+            DestroyVehicle(inCarData[PR_vehicleId]);
+            format(szMessage, sizeof(szMessage), "Vehicle respawned: %d ", inCarData[PR_vehicleId]);
+            ABroadCast(COLOR_YELLOW, szMessage, 2);
         }
 
         return 1;
