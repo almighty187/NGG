@@ -86,7 +86,7 @@
 /*  ---------------- SCRIPT REVISION ----------------- */
 
 // Do not forget to change this everytime you commit - it's mandatory!
-#define SERVER_GM_TEXT "NG:RP v3.0.496"
+#define SERVER_GM_TEXT "NG:RP v3.0.497"
 
 //#define AREA_DEBUG
 //#define TEXTLABEL_DEBUG
@@ -295,6 +295,8 @@ new bool:registrationEnabled = true;
 #include "./includes/group/casefile.pwn"
 #include "./includes/group/callsign.pwn"
 #include "./includes/group/groupweapons.pwn"
+#include "./includes/group/bounds.pwn"
+
 
 //job system includes
 #include "./includes/jobs/bartender.pwn"

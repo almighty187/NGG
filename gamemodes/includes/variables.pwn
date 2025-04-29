@@ -1226,6 +1226,7 @@ new gpsState[MAX_PLAYERS] = 0;
 new wwState[MAX_PLAYERS] = 0;
 
 new turfWarsRadar[MAX_PLAYERS] = 0;
+new PointWarsRadar[MAX_PLAYERS] = 0;
 new turfWarsMiniMap[MAX_PLAYERS] = 0;
 
 // Dynamic Gift Box Stuff

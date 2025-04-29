@@ -219,7 +219,7 @@ hook OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
     {
         szMiscArray[0] = 0;
         format(szMiscArray, sizeof(szMiscArray), "{AA3333}AdmWarning{FFFF00}: %s (ID: %d) has just inflicted 200 damage in a single second.", GetPlayerNameEx(playerid), playerid);
-        ABroadCast(COLOR_YELLOW, szMiscArray, 2);
+        //ABroadCast(COLOR_YELLOW, szMiscArray, 2);
         Log("logs/hack.log", szMiscArray);
 
         // Reset everything now theyve been flagged
