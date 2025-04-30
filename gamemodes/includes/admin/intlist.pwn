@@ -95,7 +95,8 @@ ListInteriors(playerid, iType)
 		case INTERIOR_TYPE_SMALL:
 		{
 			format(szMiscArray, sizeof(szMiscArray),
-				"Interior (30)\n\
+				"Interior (29)\n\
+				Interior (30)\n\
 				Interior (31)\n\
 				Interior (32)\n\
 				Interior (33)\n\
@@ -106,25 +107,24 @@ ListInteriors(playerid, iType)
 				Interior (38)\n\
 				Interior (39)\n\
 				Interior (40)\n\
-				Interior (41)\n\
-				Interior (42)\n\
-				Interior (43)"
+				Interior (41)"
 			);
 
 		}
 		case INTERIOR_TYPE_MEDIUM:
 		{
 			format(szMiscArray, sizeof(szMiscArray),
-				"Interior (7)\n\
+				"Interior (6)\n\
+				Interior (7)\n\
 				Interior (8)\n\
 				Interior (9)\n\
-				Interior (10\n\
+				Interior (10)\n\
 				Interior (11)\n\
 				Interior (12)\n\
 				Interior (13)\n\
 				Interior (14)\n\
 				Interior (15)\n\
-				Iterior (16)\n\
+				Interior (16)\n\
 				Interior (17)\n\
 				Interior (18)\n\
 				Interior (19)\n\
@@ -136,19 +136,19 @@ ListInteriors(playerid, iType)
 				Interior (25)\n\
 				Interior (26)\n\
 				Interior (27)\n\
-				Interior (28)\n\
-				Interior (29)"
+				Interior (28)"
 			);
 
 		}
 		case INTERIOR_TYPE_LARGE:
 		{
 			format(szMiscArray, sizeof(szMiscArray),
-				"Interior (2)\n\
+				"Interior (0)\n\
+				Interior (1)\n\
+				Interior (2)\n\
 				Interior (3)\n\
 				Interior (4)\n\
-				Interior (5)\n\
-				Interior (6)"
+				Interior (5)"
 			);
 		}
 	}
@@ -170,8 +170,16 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 	    strmid(idstr, inputtext, stpos+1, fpos);
 	    id = strval(idstr);
 
-	    SetPlayerInterior(playerid, floatround(InteriorsList[id][3]));
-	    SetPlayerPos(playerid, InteriorsList[id][0], InteriorsList[id][1], InteriorsList[id][2]);
+	    // Make sure the index is within bounds of the array
+	    if(id >= 0 && id < sizeof(InteriorsList))
+	    {
+	        SetPlayerInterior(playerid, floatround(InteriorsList[id][3]));
+	        SetPlayerPos(playerid, InteriorsList[id][0], InteriorsList[id][1], InteriorsList[id][2]);
+	    }
+	    else
+	    {
+	        SendClientMessageEx(playerid, COLOR_WHITE, "Invalid interior ID selected.");
+	    }
 	}
 	return 0;
 }

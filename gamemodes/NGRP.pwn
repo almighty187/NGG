@@ -86,7 +86,7 @@
 /*  ---------------- SCRIPT REVISION ----------------- */
 
 // Do not forget to change this everytime you commit - it's mandatory!
-#define SERVER_GM_TEXT "NG:RP v3.0.498"
+#define SERVER_GM_TEXT "NG:RP v3.0.499"
 
 //#define AREA_DEBUG
 //#define TEXTLABEL_DEBUG
@@ -312,7 +312,7 @@ new bool:registrationEnabled = true;
 #include "./includes/jobs/lawyer.pwn"
 #include "./includes/jobs/mechanic.pwn"
 #include "./includes/jobs/pizzaboy.pwn"
-#include "./includes/jobs/newshipment.pwn"
+#include "./includes/jobs/shipment.pwn"
 #include "./includes/jobs/treasure.pwn"
 #include "./includes/jobs/whore.pwn"
 #include "./includes/jobs/armsdealer.pwn"

@@ -125,12 +125,12 @@ CMD:nogc(playerid, params[])
 	if(!enabledGlobal)
 	{
 	    enabledGlobal = 1;
-	    SendClientMessageToAllEx(COLOR_VIP, "(( Global channel enabled by an Admin! ))");
+	    SendClientMessageToAllEx(0x73BAFF00, "(( Global channel enabled by an Admin! ))");
 	}
 	else
 	{
 	    enabledGlobal = 0;
-	    SendClientMessageToAllEx(COLOR_VIP, "(( Global channel disabled by an Admin! ))");
+	    SendClientMessageToAllEx(0x73BAFF00, "(( Global channel disabled by an Admin! ))");
 	}
 	return 1;
 }

@@ -35,6 +35,8 @@
 	* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#include <YSI\y_hooks>
+
 FoundTreasure(playerid)
 {
 	new szMessage[128];
@@ -52,7 +54,7 @@ FoundTreasure(playerid)
 	                SetPVarInt(playerid, "junkmetal", GetPVarInt(playerid, "junkmetal")+1);
 	                SaveTreasureInventory(playerid);
 
-	                format(szMessage, 128, "%s's sweeps the ground with a metal detector and finds junk metal.", GetPlayerNameEx(playerid));
+	                format(szMessage, 128, "%s sweeps the ground with a metal detector and finds junk metal.", GetPlayerNameEx(playerid));
   					ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
 	            }
 	            else if(ItemFound >= 3 && ItemFound <= 4)
@@ -60,7 +62,7 @@ FoundTreasure(playerid)
 	                SetPVarInt(playerid, "newcoin", GetPVarInt(playerid, "newcoin")+1);
 	                SaveTreasureInventory(playerid);
 
-	                format(szMessage, 128, "%s's sweeps the ground with a metal detector and finds a new coin.", GetPlayerNameEx(playerid));
+	                format(szMessage, 128, "%s sweeps the ground with a metal detector and finds a new coin.", GetPlayerNameEx(playerid));
   					ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
 	            }
                 else if(ItemFound >= 5 && ItemFound <= 6)
@@ -68,7 +70,7 @@ FoundTreasure(playerid)
 	                SetPVarInt(playerid, "oldcoin", GetPVarInt(playerid, "oldcoin")+1);
 	                SaveTreasureInventory(playerid);
 
-	                format(szMessage, 128, "%s's sweeps the ground with a metal detector and finds a old coin.", GetPlayerNameEx(playerid));
+	                format(szMessage, 128, "%s sweeps the ground with a metal detector and finds an old coin.", GetPlayerNameEx(playerid));
   					ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
 	            }
 	            else if(ItemFound >= 7 && ItemFound <= 8)
@@ -76,7 +78,7 @@ FoundTreasure(playerid)
 	                SetPVarInt(playerid, "brokenwatch", GetPVarInt(playerid, "brokenwatch")+1);
 	                SaveTreasureInventory(playerid);
 
-	                format(szMessage, 128, "%s's sweeps the ground with a metal detector and finds a broken watch.", GetPlayerNameEx(playerid));
+	                format(szMessage, 128, "%s sweeps the ground with a metal detector and finds a broken watch.", GetPlayerNameEx(playerid));
   					ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
 	            }
 	            else if(ItemFound >= 9 && ItemFound <= 10)
@@ -84,7 +86,7 @@ FoundTreasure(playerid)
 	                SetPVarInt(playerid, "oldkey", GetPVarInt(playerid, "oldkey")+1);
 	                SaveTreasureInventory(playerid);
 
-	                format(szMessage, 128, "%s's sweeps the ground with a metal detector and finds a old key.", GetPlayerNameEx(playerid));
+	                format(szMessage, 128, "%s sweeps the ground with a metal detector and finds an old key.", GetPlayerNameEx(playerid));
   					ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
 	            }
 	        }
@@ -92,7 +94,7 @@ FoundTreasure(playerid)
 	        {
 	            SendClientMessageEx(playerid, COLOR_WHITE, "You did not discover anything.");
 
-	            format(szMessage, 128, "%s's metal detector has seemed to malfunctioned", GetPlayerNameEx(playerid));
+	            format(szMessage, 128, "%s's metal detector has malfunctioned", GetPlayerNameEx(playerid));
   				ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
 	        }
 	    }
@@ -107,23 +109,23 @@ FoundTreasure(playerid)
        	    		SetPVarInt(playerid, "junkmetal", GetPVarInt(playerid, "junkmetal")+1);
          	    	SaveTreasureInventory(playerid);
 
-         	    	format(szMessage, 128, "%s's sweeps the ground with a metal detector and finds junk metal.", GetPlayerNameEx(playerid));
+         	    	format(szMessage, 128, "%s sweeps the ground with a metal detector and finds junk metal.", GetPlayerNameEx(playerid));
   					ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
            		}
-            	else if(ItemFound == 3 && ItemFound <= 4)
+            	else if(ItemFound >= 3 && ItemFound <= 4)
             	{
       	    		SetPVarInt(playerid, "newcoin", GetPVarInt(playerid, "newcoin")+1);
         	    	SaveTreasureInventory(playerid);
 
-        	    	format(szMessage, 128, "%s's sweeps the ground with a metal detector and finds a new coin.", GetPlayerNameEx(playerid));
+        	    	format(szMessage, 128, "%s sweeps the ground with a metal detector and finds a new coin.", GetPlayerNameEx(playerid));
   					ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
             	}
-            	else if(ItemFound == 5 && ItemFound <= 6)
+            	else if(ItemFound >= 5 && ItemFound <= 6)
             	{
         	    	SetPVarInt(playerid, "oldcoin", GetPVarInt(playerid, "oldcoin")+1);
          	    	SaveTreasureInventory(playerid);
 
-         	    	format(szMessage, 128, "%s's sweeps the ground with a metal detector and finds a old coin.", GetPlayerNameEx(playerid));
+         	    	format(szMessage, 128, "%s sweeps the ground with a metal detector and finds an old coin.", GetPlayerNameEx(playerid));
   					ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
             	}
             	else if(ItemFound == 7)
@@ -131,7 +133,7 @@ FoundTreasure(playerid)
         	    	SetPVarInt(playerid, "brokenwatch", GetPVarInt(playerid, "brokenwatch")+1);
          	    	SaveTreasureInventory(playerid);
 
-         	    	format(szMessage, 128, "%s's sweeps the ground with a metal detector and finds a broken watch.", GetPlayerNameEx(playerid));
+         	    	format(szMessage, 128, "%s sweeps the ground with a metal detector and finds a broken watch.", GetPlayerNameEx(playerid));
   					ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
             	}
             	else if(ItemFound == 8 || ItemFound == 9)
@@ -139,7 +141,7 @@ FoundTreasure(playerid)
         	    	SetPVarInt(playerid, "oldkey", GetPVarInt(playerid, "oldkey")+1);
          	    	SaveTreasureInventory(playerid);
 
-         	    	format(szMessage, 128, "%s's sweeps the ground with a metal detector and finds a old key.", GetPlayerNameEx(playerid));
+         	    	format(szMessage, 128, "%s sweeps the ground with a metal detector and finds an old key.", GetPlayerNameEx(playerid));
   					ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
             	}
 				else if(ItemFound == 10)
@@ -150,7 +152,7 @@ FoundTreasure(playerid)
 				        SetPVarInt(playerid, "goldwatch", GetPVarInt(playerid, "goldwatch")+1);
 	            	    SaveTreasureInventory(playerid);
 
-	            	    format(szMessage, 128, "%s's sweeps the ground with a metal detector and finds a gold watch!", GetPlayerNameEx(playerid));
+	            	    format(szMessage, 128, "%s sweeps the ground with a metal detector and finds a gold watch!", GetPlayerNameEx(playerid));
   						ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
 				    }
 				    else if(VeryRare >= 31 && VeryRare <= 60)
@@ -158,7 +160,7 @@ FoundTreasure(playerid)
 				        SetPVarInt(playerid, "silvernugget", GetPVarInt(playerid, "silvernugget")+1);
 	            	    SaveTreasureInventory(playerid);
 
-	            	    format(szMessage, 128, "%s's sweeps the ground with a metal detector and finds a silver nugget!", GetPlayerNameEx(playerid));
+	            	    format(szMessage, 128, "%s sweeps the ground with a metal detector and finds a silver nugget!", GetPlayerNameEx(playerid));
   						ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
 				    }
 				    else if(VeryRare >= 61 && VeryRare <= 90)
@@ -166,7 +168,7 @@ FoundTreasure(playerid)
 				        SetPVarInt(playerid, "goldnugget", GetPVarInt(playerid, "goldnugget")+1);
 	            	    SaveTreasureInventory(playerid);
 
-	            	    format(szMessage, 128, "%s's sweeps the ground with a metal detector and finds a gold nugget!", GetPlayerNameEx(playerid));
+	            	    format(szMessage, 128, "%s sweeps the ground with a metal detector and finds a gold nugget!", GetPlayerNameEx(playerid));
   						ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
 				    }
 				}
@@ -175,7 +177,7 @@ FoundTreasure(playerid)
 	        {
 	            SendClientMessageEx(playerid, COLOR_WHITE, "You did not discover anything.");
 
-	            format(szMessage, 128, "%s's metal detector has seemed to malfunctioned", GetPlayerNameEx(playerid));
+	            format(szMessage, 128, "%s's metal detector has malfunctioned", GetPlayerNameEx(playerid));
   				ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
 	        }
 	    }
@@ -190,23 +192,23 @@ FoundTreasure(playerid)
        	    		SetPVarInt(playerid, "junkmetal", GetPVarInt(playerid, "junkmetal")+1);
          	    	SaveTreasureInventory(playerid);
 
-         	    	format(szMessage, 128, "%s's sweeps the ground with a metal detector and finds junk metal.", GetPlayerNameEx(playerid));
+         	    	format(szMessage, 128, "%s sweeps the ground with a metal detector and finds junk metal.", GetPlayerNameEx(playerid));
   					ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
            		}
-            	else if(ItemFound == 3 && ItemFound <= 4)
+            	else if(ItemFound >= 3 && ItemFound <= 4)
             	{
       	    		SetPVarInt(playerid, "newcoin", GetPVarInt(playerid, "newcoin")+1);
         	    	SaveTreasureInventory(playerid);
 
-        	    	format(szMessage, 128, "%s's sweeps the ground with a metal detector and finds a new coin.", GetPlayerNameEx(playerid));
+        	    	format(szMessage, 128, "%s sweeps the ground with a metal detector and finds a new coin.", GetPlayerNameEx(playerid));
   					ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
             	}
-            	else if(ItemFound == 5 && ItemFound <= 6)
+            	else if(ItemFound >= 5 && ItemFound <= 6)
             	{
         	    	SetPVarInt(playerid, "oldcoin", GetPVarInt(playerid, "oldcoin")+1);
          	    	SaveTreasureInventory(playerid);
 
-         	    	format(szMessage, 128, "%s's sweeps the ground with a metal detector and finds a old coin.", GetPlayerNameEx(playerid));
+         	    	format(szMessage, 128, "%s sweeps the ground with a metal detector and finds an old coin.", GetPlayerNameEx(playerid));
   					ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
             	}
             	else if(ItemFound == 7)
@@ -214,7 +216,7 @@ FoundTreasure(playerid)
         	    	SetPVarInt(playerid, "brokenwatch", GetPVarInt(playerid, "brokenwatch")+1);
          	    	SaveTreasureInventory(playerid);
 
-         	    	format(szMessage, 128, "%s's sweeps the ground with a metal detector and finds a broken watch.", GetPlayerNameEx(playerid));
+         	    	format(szMessage, 128, "%s sweeps the ground with a metal detector and finds a broken watch.", GetPlayerNameEx(playerid));
   					ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
             	}
             	else if(ItemFound == 8 || ItemFound == 9)
@@ -222,7 +224,7 @@ FoundTreasure(playerid)
         	    	SetPVarInt(playerid, "oldkey", GetPVarInt(playerid, "oldkey")+1);
          	    	SaveTreasureInventory(playerid);
 
-         	    	format(szMessage, 128, "%s's sweeps the ground with a metal detector and finds a old key.", GetPlayerNameEx(playerid));
+         	    	format(szMessage, 128, "%s sweeps the ground with a metal detector and finds an old key.", GetPlayerNameEx(playerid));
   					ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
             	}
 				else if(ItemFound == 10)
@@ -233,7 +235,7 @@ FoundTreasure(playerid)
 				        SetPVarInt(playerid, "goldwatch", GetPVarInt(playerid, "goldwatch")+1);
 	            	    SaveTreasureInventory(playerid);
 
-	            	    format(szMessage, 128, "%s's sweeps the ground with a metal detector and finds a gold watch!", GetPlayerNameEx(playerid));
+	            	    format(szMessage, 128, "%s sweeps the ground with a metal detector and finds a gold watch!", GetPlayerNameEx(playerid));
   						ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
 				    }
 				    else if(VeryRare >= 31 && VeryRare <= 60)
@@ -241,7 +243,7 @@ FoundTreasure(playerid)
 				        SetPVarInt(playerid, "silvernugget", GetPVarInt(playerid, "silvernugget")+1);
 	            	    SaveTreasureInventory(playerid);
 
-	            	    format(szMessage, 128, "%s's sweeps the ground with a metal detector and finds a silver nugget!", GetPlayerNameEx(playerid));
+	            	    format(szMessage, 128, "%s sweeps the ground with a metal detector and finds a silver nugget!", GetPlayerNameEx(playerid));
   						ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
 				    }
 				    else if(VeryRare >= 61 && VeryRare <= 90)
@@ -249,7 +251,7 @@ FoundTreasure(playerid)
 				        SetPVarInt(playerid, "goldnugget", GetPVarInt(playerid, "goldnugget")+1);
 	            	    SaveTreasureInventory(playerid);
 
-	            	    format(szMessage, 128, "%s's sweeps the ground with a metal detector and finds a gold nugget!", GetPlayerNameEx(playerid));
+	            	    format(szMessage, 128, "%s sweeps the ground with a metal detector and finds a gold nugget!", GetPlayerNameEx(playerid));
   						ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
 				    }
 				}
@@ -258,7 +260,7 @@ FoundTreasure(playerid)
 	        {
 	            SendClientMessageEx(playerid, COLOR_WHITE, "You did not discover anything.");
 
-	            format(szMessage, 128, "%s's metal detector has seemed to malfunctioned", GetPlayerNameEx(playerid));
+	            format(szMessage, 128, "%s's metal detector has malfunctioned", GetPlayerNameEx(playerid));
   				ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
 	        }
 	    }
@@ -273,23 +275,23 @@ FoundTreasure(playerid)
        	    		SetPVarInt(playerid, "junkmetal", GetPVarInt(playerid, "junkmetal")+1);
          	    	SaveTreasureInventory(playerid);
 
-         	    	format(szMessage, 128, "%s's sweeps the ground with a metal detector and finds junk metal.", GetPlayerNameEx(playerid));
+         	    	format(szMessage, 128, "%s sweeps the ground with a metal detector and finds junk metal.", GetPlayerNameEx(playerid));
   					ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
            		}
-            	else if(ItemFound == 3 && ItemFound <= 4)
+            	else if(ItemFound >= 3 && ItemFound <= 4)
             	{
       	    		SetPVarInt(playerid, "newcoin", GetPVarInt(playerid, "newcoin")+1);
         	    	SaveTreasureInventory(playerid);
 
-        	    	format(szMessage, 128, "%s's sweeps the ground with a metal detector and finds a new coin.", GetPlayerNameEx(playerid));
+        	    	format(szMessage, 128, "%s sweeps the ground with a metal detector and finds a new coin.", GetPlayerNameEx(playerid));
   					ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
             	}
-            	else if(ItemFound == 5 && ItemFound <= 6)
+            	else if(ItemFound >= 5 && ItemFound <= 6)
             	{
         	    	SetPVarInt(playerid, "oldcoin", GetPVarInt(playerid, "oldcoin")+1);
          	    	SaveTreasureInventory(playerid);
 
-         	    	format(szMessage, 128, "%s's sweeps the ground with a metal detector and finds a old coin.", GetPlayerNameEx(playerid));
+         	    	format(szMessage, 128, "%s sweeps the ground with a metal detector and finds an old coin.", GetPlayerNameEx(playerid));
   					ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
             	}
             	else if(ItemFound == 7)
@@ -297,7 +299,7 @@ FoundTreasure(playerid)
         	    	SetPVarInt(playerid, "brokenwatch", GetPVarInt(playerid, "brokenwatch")+1);
          	    	SaveTreasureInventory(playerid);
 
-         	    	format(szMessage, 128, "%s's sweeps the ground with a metal detector and finds a broken watch.", GetPlayerNameEx(playerid));
+         	    	format(szMessage, 128, "%s sweeps the ground with a metal detector and finds a broken watch.", GetPlayerNameEx(playerid));
   					ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
             	}
             	else if(ItemFound == 8)
@@ -305,7 +307,7 @@ FoundTreasure(playerid)
         	    	SetPVarInt(playerid, "oldkey", GetPVarInt(playerid, "oldkey")+1);
          	    	SaveTreasureInventory(playerid);
 
-         	    	format(szMessage, 128, "%s's sweeps the ground with a metal detector and finds a old key.", GetPlayerNameEx(playerid));
+         	    	format(szMessage, 128, "%s sweeps the ground with a metal detector and finds an old key.", GetPlayerNameEx(playerid));
   					ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
             	}
 				else if(ItemFound == 9 || ItemFound == 10)
@@ -316,7 +318,7 @@ FoundTreasure(playerid)
 				        SetPVarInt(playerid, "goldwatch", GetPVarInt(playerid, "goldwatch")+1);
 	            	    SaveTreasureInventory(playerid);
 
-	            	    format(szMessage, 128, "%s's sweeps the ground with a metal detector and finds a gold watch!", GetPlayerNameEx(playerid));
+	            	    format(szMessage, 128, "%s sweeps the ground with a metal detector and finds a gold watch!", GetPlayerNameEx(playerid));
   						ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
 				    }
 				    else if(VeryRare >= 36 && VeryRare <= 65)
@@ -324,7 +326,7 @@ FoundTreasure(playerid)
 				        SetPVarInt(playerid, "silvernugget", GetPVarInt(playerid, "silvernugget")+1);
 	            	    SaveTreasureInventory(playerid);
 
-	            	    format(szMessage, 128, "%s's sweeps the ground with a metal detector and finds a silver nugget!", GetPlayerNameEx(playerid));
+	            	    format(szMessage, 128, "%s sweeps the ground with a metal detector and finds a silver nugget!", GetPlayerNameEx(playerid));
   						ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
 				    }
 				    else if(VeryRare >= 66 && VeryRare <= 99)
@@ -332,7 +334,7 @@ FoundTreasure(playerid)
 				        SetPVarInt(playerid, "goldnugget", GetPVarInt(playerid, "goldnugget")+1);
 	            	    SaveTreasureInventory(playerid);
 
-	            	    format(szMessage, 128, "%s's sweeps the ground with a metal detector and finds a gold nugget!", GetPlayerNameEx(playerid));
+	            	    format(szMessage, 128, "%s sweeps the ground with a metal detector and finds a gold nugget!", GetPlayerNameEx(playerid));
   						ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
 				    }
 				    else if(VeryRare == 100)
@@ -340,7 +342,7 @@ FoundTreasure(playerid)
 				        SetPVarInt(playerid, "treasure", GetPVarInt(playerid, "treasure")+1);
 	            	    SaveTreasureInventory(playerid);
 
-	            	    format(szMessage, 128, "%s's sweeps the ground with a metal detector and finds a hidden treasure!", GetPlayerNameEx(playerid));
+	            	    format(szMessage, 128, "%s sweeps the ground with a metal detector and finds a hidden treasure!", GetPlayerNameEx(playerid));
   						ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
 
   						format(szMessage, 128, "{AA3333}AdmWarning{FFFF00}: %s has just found hidden treasure ($1,000,000)", GetPlayerNameEx(playerid));
@@ -352,7 +354,7 @@ FoundTreasure(playerid)
 	        {
 	            SendClientMessageEx(playerid, COLOR_WHITE, "You did not discover anything.");
 
-	            format(szMessage, 128, "%s's metal detector has seemed to malfunctioned", GetPlayerNameEx(playerid));
+	            format(szMessage, 128, "%s's metal detector has malfunctioned", GetPlayerNameEx(playerid));
   				ProxDetector(30.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
 	        }
 		}
@@ -560,7 +562,7 @@ CMD:selltreasure(playerid, params[])
 	    }
 	}
 	else if(strcmp(choice, "treasurechest", true) == 0) {
-	    if(amount <= GetPVarInt(playerid, "treasurechest") && amount > 0) {
+	    if(amount <= GetPVarInt(playerid, "treasure") && amount > 0) {
 	        format(szMessage, 128, "You have sold %d treasure chests for $%d.", amount, amount*1000000);
 	        SendClientMessageEx(playerid, COLOR_WHITE, szMessage);
 	        GivePlayerCash(playerid, amount*1000000);

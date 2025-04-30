@@ -108,10 +108,10 @@ hook OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
     // Have they issued damage while performing a reloading animation? (same as before but provides more clarity)
     if(IsReloading(playerid) && IsWeaponPistol(weaponid) || IsReloading(playerid) && IsWeaponPrimary(weaponid))
     {
-        szMiscArray[0] = 0;
-        format(szMiscArray, sizeof(szMiscArray), "{AA3333}AdmWarning{FFFF00}: %s (ID: %d) has just issued a damage RPC while reloading (potential cleo)", GetPlayerNameEx(playerid), playerid);
-        ABroadCast(COLOR_YELLOW, szMiscArray, 2);
-        Log("logs/hack.log", szMiscArray);
+        //szMiscArray[0] = 0;
+        //format(szMiscArray, sizeof(szMiscArray), "{AA3333}AdmWarning{FFFF00}: %s (ID: %d) has just issued a damage RPC while reloading (potential cleo)", GetPlayerNameEx(playerid), playerid);
+        //ABroadCast(COLOR_YELLOW, szMiscArray, 2);
+        //Log("logs/hack.log", szMiscArray);
     }
 
     new Float:fDistance = GetPlayerDistanceFromPoint(playerid, activeBulletData[playerid][PR_origin][0], activeBulletData[playerid][PR_origin][1], activeBulletData[playerid][PR_origin][2]);
@@ -131,10 +131,10 @@ hook OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
     // Does the latest BULLET_SYNC data match the weaponid the player is trying to give damage for?
     if(activeBulletData[playerid][PR_weaponId] != weaponid && !IsMeleeWeapon(weaponid))
     {
-        szMiscArray[0] = 0;
-        format(szMiscArray, sizeof(szMiscArray), "{AA3333}AdmWarning{FFFF00}: %s (ID: %d) has just issued a damage RPC with a weapon different to their bullet packets (packet spoofing/aimbot)", GetPlayerNameEx(playerid), playerid);
-        ABroadCast(COLOR_YELLOW, szMiscArray, 2);
-        Log("logs/hack.log", szMiscArray);
+        //szMiscArray[0] = 0;
+        //format(szMiscArray, sizeof(szMiscArray), "{AA3333}AdmWarning{FFFF00}: %s (ID: %d) has just issued a damage RPC with a weapon different to their bullet packets (packet spoofing/aimbot)", GetPlayerNameEx(playerid), playerid);
+        //ABroadCast(COLOR_YELLOW, szMiscArray, 2);
+        //Log("logs/hack.log", szMiscArray);
         // Invalidate hit
         return 0;
     }
@@ -218,9 +218,9 @@ hook OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
     if(total >= dmgthreshold)
     {
         szMiscArray[0] = 0;
-        format(szMiscArray, sizeof(szMiscArray), "{AA3333}AdmWarning{FFFF00}: %s (ID: %d) has just inflicted 200 damage in a single second.", GetPlayerNameEx(playerid), playerid);
+        //format(szMiscArray, sizeof(szMiscArray), "{AA3333}AdmWarning{FFFF00}: %s (ID: %d) has just inflicted 200 damage in a single second.", GetPlayerNameEx(playerid), playerid);
         //ABroadCast(COLOR_YELLOW, szMiscArray, 2);
-        Log("logs/hack.log", szMiscArray);
+        //Log("logs/hack.log", szMiscArray);
 
         // Reset everything now theyve been flagged
         ClearAC(playerid);

@@ -4,7 +4,7 @@ hook OnGameModeInit() {
 
 	print("[Streamer] Loading Dynamic Static Vehicles...");
 
-	/*TruckerVehicles[0] = AddStaticVehicleEx(414,2471.1816,-2603.7400,13.7541,270.00000000,-1,-1,300); //Mule
+	TruckerVehicles[0] = AddStaticVehicleEx(414,2471.1816,-2603.7400,13.7541,270.00000000,-1,-1,300); //Mule
 	TruckerVehicles[1] = AddStaticVehicleEx(414,2471.2510,-2609.2668,13.7493,270.00000000,-1,-1,300); //Mule
 	TruckerVehicles[2] = AddStaticVehicleEx(414,2471.3181,-2613.7419,13.7508,270.00000000,-1,-1,300); //Mule
 	TruckerVehicles[3] = AddStaticVehicleEx(414,2471.3901,-2618.9802,13.7507,270.00000000,-1,-1,300); //Mule
@@ -22,7 +22,7 @@ hook OnGameModeInit() {
 	TruckerVehicles[15] = AddStaticVehicleEx(443,2500.7976,-2626.2476,14.2829,90.00000000,-1,-1,300); //Packer
 	TruckerVehicles[16] = AddStaticVehicleEx(443,2500.5378,-2631.7573,14.2874,90.00000000,-1,-1,300); //Packer
 	TruckerVehicles[17] = AddStaticVehicleEx(514,2498.9641,-2615.3381,14.2331,90.00000000,-1,-1,300); //Tank truck
-	TruckerVehicles[18] = AddStaticVehicleEx(514,2499.2646,-2620.0574,14.2395,90.00000000,-1,-1,300); //Tank truck*/
+	TruckerVehicles[18] = AddStaticVehicleEx(514,2499.2646,-2620.0574,14.2395,90.00000000,-1,-1,300); //Tank truck
 
 	PizzaVehicles[0] = AddStaticVehicleEx(448, 2106.4319, -1784.7222, 12.8745, 0.00000000 ,3,6,300); //Pizzaboy
 	PizzaVehicles[1] = AddStaticVehicleEx(448, 2107.4319, -1784.7222, 12.8745, 0.00000000 ,3,6,300); //Pizzaboy

@@ -453,8 +453,8 @@ new KillTime[MAX_PLAYERS];
 // SHIPMENT CONTRACTOR JOB
 
 // Shipment revamp.
-new TruckUsedBy[MAX_VEHICLES] = -1;
-new TruckHolding[MAX_VEHICLES] = 0;
+//new TruckUsedBy[MAX_VEHICLES] = -1;
+//new TruckHolding[MAX_VEHICLES] = 0;
 
 new TruckUsed[MAX_PLAYERS];
 new TruckDeliveringTo[MAX_VEHICLES];

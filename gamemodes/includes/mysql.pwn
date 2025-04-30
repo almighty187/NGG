@@ -2662,12 +2662,12 @@ stock g_mysql_SaveAccount(playerid)
 	return 1;
 }
 
-stock SaveTruckerTime(playerid)
+/*stock SaveTruckerTime(playerid)
 {
 	new query[256];
 	mysql_format(MainPipeline, query, sizeof(query), "INSERT INTO `truckerlogs` (`ID`, `TimeStart`, `TimeEnd`) VALUES (%d, %d, %d)", GetPlayerSQLId(playerid), GetPVarInt(playerid, "DeliveryStartTime"), gettime());
  	mysql_tquery(MainPipeline, query, "OnQueryFinish", "ii", SENDDATA_THREAD, playerid);
-}
+}*/
 
 stock SaveAuction(auction) {
 	new query[200];
