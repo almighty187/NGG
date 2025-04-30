@@ -204,7 +204,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 						}
 						else if(arrGroupData[PlayerInfo[playerid][pMember]][g_iAllegiance] == 2)
 						{
-							format(szCountry, sizeof(szCountry), "[NR] ");
+							format(szCountry, sizeof(szCountry), "[TR] ");
 						}
 						strcat(szCrime, szCountry);
 						strcat(szCrime, arrCrimeData[i][c_szName]);
@@ -248,7 +248,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 						}
 						else if(arrGroupData[PlayerInfo[playerid][pMember]][g_iAllegiance] == 2)
 						{
-							format(szCountry, sizeof(szCountry), "[NR] ");
+							format(szCountry, sizeof(szCountry), "[TR] ");
 						}
 						strcat(szCrime, szCountry);
 						strcat(szCrime, arrCrimeData[i][c_szName]);
@@ -287,7 +287,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				case 1:
 				{
 					format(szMiscArray, sizeof(szMiscArray), "{80FF00}%s - {FF0000}EDIT NATION", arrCrimeData[iEditCrime][c_szName]);
-					ShowPlayerDialogEx(playerid, DIALOG_CRIMES_NATION, DIALOG_STYLE_LIST, szMiscArray, "San Andreas\nNew Robada", "Select", "Cancel");
+					ShowPlayerDialogEx(playerid, DIALOG_CRIMES_NATION, DIALOG_STYLE_LIST, szMiscArray, "San Andreas\nTierra Robada", "Select", "Cancel");
 				}
 				case 2:
 				{

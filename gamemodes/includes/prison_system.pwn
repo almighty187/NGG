@@ -1603,7 +1603,7 @@ CMD:docjudgecharge(playerid, params[])
 		}
 		else if(arrGroupData[PlayerInfo[playerid][pMember]][g_iAllegiance] == 2)
 		{
-			format(szCountry, sizeof(szCountry), "[NR] ");
+			format(szCountry, sizeof(szCountry), "[TR] ");
 		}
 		strcat(szCrime, szCountry);
 		strcat(szCrime, szReason);
