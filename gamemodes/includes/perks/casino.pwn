@@ -94,7 +94,7 @@ CMD:offerdice(playerid, params[])
 	if(PlayerInfo[targetid][pCash] < amount) return SendClientMessageEx(playerid, COLOR_GREY, "Error: The player doesn't have enough money.");
 
 	SetPVarInt(playerid, "OfferingDiceID", targetid);
-	SetPVarInt(playerid, "OfferDiceTimer", gettime()+30);
+	SetPVarInt(playerid, "OfferDiceTimer", gettime()+6);
 	SetPVarInt(targetid, "OfferDiceID", playerid);
 	SetPVarInt(targetid, "OfferDiceAmount", amount);
 	SetPVarInt(targetid, "OfferDiceRolls", rolls);

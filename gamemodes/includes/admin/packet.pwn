@@ -433,7 +433,7 @@ IPacket:VEHICLE_SYNC(playerid, BitStream:bs)
             SetPlayerPos(playerid, posx, posy, posz+5);
 			PlayerPlaySound(playerid, 3200, posx, posy, posz+5);
             CreateBan(INVALID_PLAYER_ID, PlayerInfo[playerid][pId], playerid, PlayerInfo[playerid][pIP], "SYSTEM: Vehicle Warping", 180, 1); 
-            DestroyVehicle(inCarData[PR_vehicleId]);
+            //DestroyVehicle(inCarData[PR_vehicleId]);
             format(szMessage, sizeof(szMessage), "Vehicle respawned: %d ", inCarData[PR_vehicleId]);
             ABroadCast(COLOR_YELLOW, szMessage, 2);
         }
