@@ -1,0 +1,27 @@
+# Ignore everything recursively
+**/*
+
+# But not these directories and their contents
+!gamemodes/
+!gamemodes/**/*
+!filterscripts/
+!filterscripts/**/*
+!unused modules/
+!unused modules/**/*
+!modules/
+!modules/**/*
+!compiler includes/
+!compiler includes/**/*
+
+scriptfiles/
+scriptfiles/**/*
+
+# Explicitly ignore scriptfiles and its contents
+scriptfiles/
+scriptfiles/**/*
+
+# Don't ignore .gitignore itself
+!.gitignore
+
+# Don't ignore .gitattributes
+!.gitattributes
