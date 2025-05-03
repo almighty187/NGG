@@ -568,7 +568,7 @@ CMD:usekit(playerid, params[]) {
 
 CMD:searchcar(playerid, params[])
 {
-	if(!IsACop(playerid)) return SendClientMessageEx(playerid, COLOR_GREY, "You are not a law enforcement officer!");
+	if(!IsACop(playerid) && !IsAGovernment(playerid)) return SendClientMessageEx(playerid, COLOR_GREY, "You are not a law enforcement officer!");
 	if(GetPVarInt(playerid, "Injured") != 0 || GetPVarInt(playerid, "EventToken") != 0) return SendClientMessageEx (playerid, COLOR_GRAD2, "You cannot do this at this time.");
 	new closestcar = GetClosestCar(playerid), v, string[128];
 	if(!IsPlayerInRangeOfVehicle(playerid, closestcar, 9.0)) return SendClientMessageEx(playerid,COLOR_GREY,"You are not near any vehicles.");
@@ -625,7 +625,7 @@ CMD:searchcar(playerid, params[])
 
 CMD:takecarweapons(playerid, params[])
 {
-    if (!IsACop(playerid))
+    if (!IsACop(playerid) || IsAGovernment(playerid))
 	{
         SendClientMessageEx(playerid,COLOR_GREY,"You're not a law enforcement officer.");
         return 1;
@@ -686,7 +686,7 @@ CMD:mdc(playerid, params[])
 
 CMD:clearcargo(playerid, params[])
 {
-	if(!IsACop(playerid))
+	if(!IsACop(playerid) || IsAGovernment(playerid))
 	{
         SendClientMessageEx(playerid, COLOR_GRAD2, "You are not a law enforcement officer!");
         return 1;
@@ -763,7 +763,7 @@ CMD:backup(playerid, params[])
 		return SendClientMessageEx(playerid, COLOR_GREY, "OOC prisoners are restricted to only speak in /b");
 	}
 
-    if(IsACop(playerid) || IsAMedic(playerid) || arrGroupData[PlayerInfo[playerid][pMember]][g_iGroupType] == GROUP_TYPE_TOWING)
+    if(IsACop(playerid) || IsAGovernment(playerid) || IsAMedic(playerid) || arrGroupData[PlayerInfo[playerid][pMember]][g_iGroupType] == GROUP_TYPE_TOWING)
 	{
 	    new code[10],
 		zone[MAX_ZONE_NAME],
@@ -841,7 +841,7 @@ CMD:backupall(playerid, params[])
 		
 		return SendClientMessageEx(playerid, COLOR_GREY, "OOC prisoners are restricted to only speak in /b");
 	}
-    if(IsACop(playerid) || IsAMedic(playerid))
+    if(IsACop(playerid) || IsAGovernment(playerid) || IsAMedic(playerid))
 	{
 	    new
 			zone[MAX_ZONE_NAME],
@@ -888,7 +888,7 @@ CMD:backupint(playerid, params[])
 		
 		return SendClientMessageEx(playerid, COLOR_GREY, "OOC prisoners are restricted to only speak in /b");
 	}
-    if(IsACop(playerid) || IsAMedic(playerid))
+    if(IsACop(playerid) || IsAGovernment(playerid) || IsAMedic(playerid))
 	{
 	    new
 			zone[MAX_ZONE_NAME],
@@ -937,7 +937,7 @@ CMD:nobackup(playerid, params[])
 
 CMD:vmdc(playerid, params[])
 {
-    if(IsACop(playerid) || IsATowman(playerid) || IsAHitman(playerid) || PlayerInfo[playerid][pAdmin] >= 2)
+    if(IsACop(playerid) || IsAGovernment(playerid) || IsATowman(playerid) || IsAHitman(playerid) || PlayerInfo[playerid][pAdmin] >= 2)
     {
         new string[128], giveplayerid;
         if(sscanf(params, "u", giveplayerid)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /vmdc [player]");
@@ -968,7 +968,7 @@ CMD:vmdc(playerid, params[])
 
 CMD:vticket(playerid, params[])
 {
-	if(IsACop(playerid) || IsATowman(playerid)) {
+	if(IsACop(playerid) || IsAGovernment(playerid) || IsATowman(playerid)) {
 		new vehid, amount;
 		if(sscanf(params, "ii", vehid, amount)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /vticket [registration] [amount]");
 		if(PlayerInfo[playerid][pTicketTime] != 0) return SendClientMessageEx(playerid, COLOR_GRAD2, "You must wait within a minute in order to use this command again!");
@@ -1010,7 +1010,7 @@ CMD:vticket(playerid, params[])
 
 CMD:vlookup(playerid, params[]) {
 
-	if(IsACop(playerid) || IsATowman(playerid) || IsAHitman(playerid) || PlayerInfo[playerid][pAdmin] >= 2)
+	if(IsACop(playerid) || IsAGovernment(playerid) || IsATowman(playerid) || IsAHitman(playerid) || PlayerInfo[playerid][pAdmin] >= 2)
 	{
         if(isnull(params)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /vlookup [vehicle registration]");
         new carid = strval(params);
@@ -1058,7 +1058,7 @@ CMD:vlookup(playerid, params[]) {
 
 CMD:vcheck(playerid, params[])
 {
-    if(IsACop(playerid) || IsATowman(playerid) || IsAHitman(playerid) || PlayerInfo[playerid][pAdmin] >= 2)
+    if(IsACop(playerid) || IsAGovernment(playerid) || IsATowman(playerid) || IsAHitman(playerid) || PlayerInfo[playerid][pAdmin] >= 2)
 	{
         new carid = GetPlayerVehicleID(playerid);
         new closestcar = GetClosestCar(playerid, carid);
@@ -1157,7 +1157,7 @@ CMD:vcheck(playerid, params[])
 
 CMD:ram(playerid, params[])
 {
-	if(IsACop(playerid) || IsAMedic(playerid) || IsAHitman(playerid))
+	if(IsACop(playerid) || IsAMedic(playerid) || IsAGovernment(playerid) || IsAHitman(playerid))
 	{
 		if(GetPVarType(playerid, "IsInArena"))
 		{
@@ -1252,7 +1252,7 @@ CMD:ram(playerid, params[])
 
 CMD:take(playerid, params[])
 {
-	if(IsACop(playerid))
+	if(IsACop(playerid) || IsAGovernment(playerid))
 	{
 		new string[128], choice[32], giveplayerid;
 		if(sscanf(params, "s[32]u", choice, giveplayerid))
@@ -1780,7 +1780,7 @@ CMD:vradar(playerid, params[])
 	if (!IsPlayerInAnyVehicle(playerid))
 		return SendClientMessageEx(playerid, 0xFF0000FF, "You cannot use a dashboard radar outside of a vehicle.");
 
-	if(!IsACop(playerid) && !IsATowman(playerid))
+	if(!IsACop(playerid) && !IsATowman(playerid) && !IsAGovernment(playerid))
 		return SendClientMessageEx(playerid, COLOR_GREY, "You are not a law enforcement officer/towman!");
 
 	switch (CarRadars[playerid])
@@ -1813,7 +1813,7 @@ CMD:vradar(playerid, params[])
 
 CMD:radargun(playerid, params[])
 {
-	if(IsACop(playerid))
+	if(IsACop(playerid) || IsAGovernment(playerid))
 	{
 		new string[128];
 		if(IsPlayerInAnyVehicle(playerid))
@@ -2220,7 +2220,7 @@ CMD:wanted(playerid, params[])
 
 CMD:ticket(playerid, params[])
 {
-	if(IsACop(playerid))
+	if(IsACop(playerid) || IsAGovernment(playerid))
 	{
 
 		new string[128], giveplayerid, moneys, reason[64];
