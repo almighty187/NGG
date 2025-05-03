@@ -1338,7 +1338,7 @@ CMD:accept(playerid, params[])
                 SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /accept lawyer [player]");
                 return 1;
             }
-            if (IsACop(playerid)) {
+            if (IsACop(playerid) || IsAGovernment(playerid)) {
                 if(IsPlayerConnected(giveplayerid)) {
                     if(giveplayerid != INVALID_PLAYER_ID) {
                         if(PlayerInfo[giveplayerid][pJob] == 2 || PlayerInfo[giveplayerid][pJob2] == 2 || PlayerInfo[giveplayerid][pJob3] == 2) {

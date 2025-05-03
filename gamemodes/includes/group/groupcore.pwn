@@ -385,7 +385,7 @@ stock IsFirstAid(playerid)
 
 stock IsMDCPermitted(playerid)
 {
-	if(IsACop(playerid) || IsAJudge(playerid))
+	if(IsACop(playerid) || IsAJudge(playerid) || IsAGovernment(playerid))
 	{
 		return 1;
 	}
