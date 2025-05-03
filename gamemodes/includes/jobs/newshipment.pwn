@@ -715,7 +715,7 @@ public UnloadingDeliveryCrate(playerid, crate)
 
 CMD:cleartruck(playerid, params[])
 {
-    if(IsACop(playerid) || IsATrucker(playerid))
+    if(IsACop(playerid) || IsAGovernment(playerid) || IsATrucker(playerid))
     {
         new carid = GetPlayerVehicleID(playerid);
         new closestcar = GetClosestCar(playerid, carid);
@@ -760,7 +760,7 @@ CMD:cleartruck(playerid, params[])
 
 CMD:searchtruck(playerid, params[])
 {
-    if(IsACop(playerid) || IsATrucker(playerid))
+    if(IsACop(playerid) || IsAGovernment(playerid) || IsATrucker(playerid))
     {
         new carid = GetPlayerVehicleID(playerid);
         new closestcar = GetClosestCar(playerid, carid);

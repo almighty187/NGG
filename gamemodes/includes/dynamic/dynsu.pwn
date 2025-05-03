@@ -373,7 +373,7 @@ CMD:crimelist(playerid, params[])
 
 CMD:su(playerid, params[]) 
 {
-	if(IsACop(playerid)) 
+	if(IsACop(playerid) || IsAGovernment(playerid)) 
 	{
 		if(PlayerInfo[playerid][pJailTime] > 0) return SendClientMessageEx(playerid, COLOR_WHITE, "You cannot use this in jail/prison.");
 
@@ -396,7 +396,7 @@ CMD:su(playerid, params[])
 
 CMD:osu(playerid, params[]) 
 {
-	if(IsACop(playerid)) 
+	if(IsACop(playerid) || IsAGovernment(playerid)) 
 	{
 		if(PlayerInfo[playerid][pJailTime] > 0) {
 			return SendClientMessageEx(playerid, COLOR_WHITE, "You cannot use this in jail/prison.");

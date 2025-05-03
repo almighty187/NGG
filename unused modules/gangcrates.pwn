@@ -991,7 +991,7 @@ CMD:gdelivergangcrate(playerid, params[])
 
 CMD:gdestroycrate(playerid, params[])
 {
-	if(IsACop(playerid))
+	if(IsACop(playerid) || IsAGovernment(playerid))
 	{
 		new 
 			Float:fTemp[3],
