@@ -442,7 +442,7 @@ CMD:craft(playerid, params[])
 		SendClientMessageEx(playerid, COLOR_GRAD2, "cane (100)           shovel(100)");
 		SendClientMessageEx(playerid, COLOR_GRAD1, "poolcue (100)        katana(300)");
 		SendClientMessageEx(playerid, COLOR_GRAD2, "dildo (300)          spraycan(2000)");
-		SendClientMessageEx(playerid, COLOR_GRAD2, "rimkit (400000)");
+		SendClientMessageEx(playerid, COLOR_GRAD2, "rimkit (400000)      bodyarmor(2000)");
 		SendClientMessageEx(playerid, COLOR_GREEN, "________________________________________________");
 		SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /craft [player] [craftname]");
 		return 1;
@@ -469,7 +469,7 @@ CMD:craft(playerid, params[])
 			SendClientMessageEx(playerid, COLOR_GRAD2, "cane (100)           shovel(100)");
 			SendClientMessageEx(playerid, COLOR_GRAD1, "poolcue (100)        katana(300)");
 			SendClientMessageEx(playerid, COLOR_GRAD2, "dildo (300)          spraycan(2000)");
-			SendClientMessageEx(playerid, COLOR_GRAD2, "rimkit (400000)");
+			SendClientMessageEx(playerid, COLOR_GRAD2, "rimkit (400000)      bodyarmor(2000)");
 			SendClientMessageEx(playerid, COLOR_GREEN, "________________________________________________");
 			SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /craft [player] [craftname]");
 			return 1;
@@ -823,6 +823,18 @@ CMD:craft(playerid, params[])
 			else return SendClientMessageEx(playerid, COLOR_GREY, "   Not enough materials for that!");
 		}
 
+		else if(strcmp(choice, "bodyarmor", true) == 0) {
+			new Float:armor; 
+			GetPlayerArmour(playerid, armor);
+			if(armor >= 50) { return SendClientMessageEx(playerid, COLOR_GREY, "You already have body armor equipped!"); }
+
+			if(PlayerInfo[playerid][pMats] >= 2000) {
+				price = 2000;
+				weapon = 30;
+			}
+			else return SendClientMessageEx(playerid, COLOR_GREY, "   Not enough materials for that!");
+		}
+
 		else { SendClientMessageEx(playerid,COLOR_GREY,"   Invalid Craft name!"); return 1; }
 		if (ProxDetectorS(5.0, playerid, giveplayerid))
 		{
@@ -1016,6 +1028,13 @@ CMD:craft(playerid, params[])
 				case 29: {
 					PlayerInfo[playerid][pRimMod]++;
 					SendClientMessageEx(playerid, COLOR_LIGHTBLUE, "Type /userimkit as a mechanic in any car to modify your rims.");
+				}
+				case 30: {
+					new Float:armor;
+					GetPlayerArmour(playerid, armor);
+					if(armor >= 50) return SendClientMessageEx(playerid, COLOR_GREY, "You already have body armor equipped!");
+					SetPlayerArmour(playerid, 50.0);
+					SendClientMessageEx(playerid, COLOR_LIGHTBLUE, "You've equipped body armor (50%).");
 				}
 				
 				}

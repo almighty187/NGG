@@ -20,6 +20,8 @@ scriptfiles/**/*
 scriptfiles/
 scriptfiles/**/*
 
+server_log.txt
+
 # Don't ignore .gitignore itself
 !.gitignore
 
