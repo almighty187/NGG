@@ -262,8 +262,8 @@ CMD:checkjudgements(playerid, params[])
 
 CMD:freezeassets(playerid, params[])
 {
-  	if(!IsAJudge(playerid)) return SendClientMessageEx(playerid, COLOR_GREY, "You are not part of the Judicial System!");
-	if(PlayerInfo[playerid][pRank] < 4) return SendClientMessageEx(playerid, COLOR_GRAD1, "You are not authorized to use that command - only rank 4+ can do this.");
+  	if(!IsAJudge(playerid) && !IsAGovernment(playerid)) return SendClientMessageEx(playerid, COLOR_GREY, "You are not part of the Judicial System!");
+	if(PlayerInfo[playerid][pRank] < 8) return SendClientMessageEx(playerid, COLOR_GRAD1, "You are not authorized to use that command - only rank 4+ can do this.");
 	new giveplayerid, houseorcar[8];
 	if(sscanf(params, "us[8]", giveplayerid, houseorcar)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /freezeassets [player] [house/car/bank]");
 	if(giveplayerid == playerid) return SendClientMessageEx(playerid, COLOR_GRAD1, "You can't use this command on yourself!");
