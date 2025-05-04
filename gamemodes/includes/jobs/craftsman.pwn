@@ -1032,7 +1032,7 @@ CMD:craft(playerid, params[])
 				case 30: {
 					new Float:armor;
 					GetPlayerArmour(playerid, armor);
-					if(armor >= 50) return SendClientMessageEx(playerid, COLOR_GREY, "You already have body armor equipped!");
+					if(armor >= 50) return SendClientMessageEx(playerid, COLOR_GREY, "You already have body armor equipped!")
 					SetPlayerArmour(playerid, 50.0);
 					SendClientMessageEx(playerid, COLOR_LIGHTBLUE, "You've equipped body armor (50%).");
 				}

@@ -848,7 +848,7 @@ CMD:turfs(playerid, params[])
 
 CMD:shutdown(playerid, params[])
 {
-    if(IsACop(playerid)) {
+    if(IsACop(playerid) || IsAGovernment(playerid)) {
         new string[128];
         new tw = GetPlayerTurfWarsZone(playerid);
         new rank = PlayerInfo[playerid][pRank];

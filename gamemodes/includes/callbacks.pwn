@@ -2933,7 +2933,7 @@ public OnPlayerSpawn(playerid)
 		AdvanceTutorial(playerid);
 	}
 
-	if(PlayerInfo[playerid][pTut] == -1 && PlayerInfo[playerid][pNation] != 0 && PlayerInfo[playerid][pNation] != 1) ShowPlayerDialogEx(playerid, DIALOG_NATION_CHECK, DIALOG_STYLE_LIST, "Please chose a nation.", "San Andreas\nNew Robada", "Select", "<<");
+	if(PlayerInfo[playerid][pTut] == -1 && PlayerInfo[playerid][pNation] != 0 && PlayerInfo[playerid][pNation] != 1) ShowPlayerDialogEx(playerid, DIALOG_NATION_CHECK, DIALOG_STYLE_LIST, "Please chose a nation.", "San Andreas\nTierra Robada", "Select", "<<");
 	return 1;
 }
 
@@ -3225,12 +3225,12 @@ public OnPlayerEnterCheckpoint(playerid)
 	        return 1;
 	    }
 
-		/*if(!IsAtTruckDeliveryPoint(playerid))
+		if(!IsAtTruckDeliveryPoint(playerid))
  		{// In the case the player finds a way to exploit the checkpoint to different location
 			CancelTruckDelivery(playerid);
 			SendClientMessageEx(playerid, COLOR_REALRED, "ERROR: Wrong checkpoint entered. Truck delivery canceled completely.");
 			return 1;
-   		}*/
+   		}
 
 		if(GetPVarInt(playerid, "tpTruckRunTimer") != 0)
 		{
@@ -3462,7 +3462,7 @@ public OnPlayerEnterCheckpoint(playerid)
 				    	gPlayerCheckpointStatus[playerid] = CHECKPOINT_NONE;
 						TogglePlayerControllable(playerid, 0);
 						SetPVarInt(playerid, "IsFrozen", 1);
-						//DisplayOrders(playerid);
+						DisplayOrders(playerid);
 					}
 					else return SendClientMessageEx(playerid, COLOR_GREY, "You are not driving the correct Boat or Truck!");
 				}
@@ -3471,7 +3471,7 @@ public OnPlayerEnterCheckpoint(playerid)
 			{
 			    if(!IsPlayerInRangeOfPoint(playerid, 6, 2451.7603, -2598.5278, 13.6564) && !IsPlayerInRangeOfPoint(playerid, 6, 2098.6543,-104.3568,-0.4820))
 			    {// In the case the person finds a way to exploit the checkpoint to different location
-                    //CancelTruckDelivery(playerid);
+                    CancelTruckDelivery(playerid);
                     SendClientMessageEx(playerid, COLOR_REALRED, "ERROR: Wrong checkpoint entered. Truck delivery canceled completely.");
 					return 1;
 			    }

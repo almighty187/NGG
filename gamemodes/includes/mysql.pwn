@@ -2662,12 +2662,12 @@ stock g_mysql_SaveAccount(playerid)
 	return 1;
 }
 
-stock SaveTruckerTime(playerid)
+/*stock SaveTruckerTime(playerid)
 {
 	new query[256];
 	mysql_format(MainPipeline, query, sizeof(query), "INSERT INTO `truckerlogs` (`ID`, `TimeStart`, `TimeEnd`) VALUES (%d, %d, %d)", GetPlayerSQLId(playerid), GetPVarInt(playerid, "DeliveryStartTime"), gettime());
  	mysql_tquery(MainPipeline, query, "OnQueryFinish", "ii", SENDDATA_THREAD, playerid);
-}
+}*/
 
 stock SaveAuction(auction) {
 	new query[200];
@@ -2992,7 +2992,7 @@ public MDCQueryFinish(playerid, suspectid)
 	switch(PlayerInfo[suspectid][pNation])
 	{
 		case 0: nation = "San Andreas";
-		case 1: nation = "New Robada";
+		case 1: nation = "Tierra Robada";
 		default: nation = "None";
 	}
 
@@ -3312,14 +3312,14 @@ public NationAppFinish(playerid, queryid)
 							if(IsPlayerConnected(giveplayerid))
 							{
 								PlayerInfo[giveplayerid][pNation] = 1;
-								SendClientMessageEx(giveplayerid, COLOR_WHITE, "Your application for New Robada citizenship has been approved!");
+								SendClientMessageEx(giveplayerid, COLOR_WHITE, "Your application for Tierra Robada citizenship has been approved!");
 							}
 							else
 							{
 								mysql_format(MainPipeline, query, sizeof(query), "UPDATE `accounts` SET `Nation` = 1 WHERE `id` = %d", UserID);
 								mysql_tquery(MainPipeline, query, "OnQueryFinish", "i", SENDDATA_THREAD);
 							}
-							format(string, sizeof(string), "%s(%d) has approved %s's(%d) application for New Robada citizenship", GetPlayerNameEx(playerid), GetPlayerSQLId(playerid), sResult, UserID);
+							format(string, sizeof(string), "%s(%d) has approved %s's(%d) application for Tierra Robada citizenship", GetPlayerNameEx(playerid), GetPlayerSQLId(playerid), sResult, UserID);
 						}
 					}
 					Log("logs/gov.log", string);
@@ -3350,7 +3350,7 @@ public NationAppFinish(playerid, queryid)
 						case 2:
 						{
 							if(IsPlayerConnected(giveplayerid)) SendClientMessageEx(giveplayerid, COLOR_GREY, "Your application for San Andreas citizenship has been denied.");
-							format(string, sizeof(string), "%s has denied %s's application for New Robada citizenship", GetPlayerNameEx(playerid), sResult);
+							format(string, sizeof(string), "%s has denied %s's application for Tierra Robada citizenship", GetPlayerNameEx(playerid), sResult);
 						}
 					}
 					Log("logs/gov.log", string);

@@ -2769,7 +2769,7 @@ CMD:bpanic(playerid, params[])
 
 CMD:bizfind(playerid, params[])
 {
-	if(IsACop(playerid))
+	if(IsACop(playerid) || IsAGovernment(playerid))
 	{
 	    new iBusinessID, string[128];
 	    if(sscanf(params, "d", iBusinessID))

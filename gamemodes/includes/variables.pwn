@@ -453,8 +453,8 @@ new KillTime[MAX_PLAYERS];
 // SHIPMENT CONTRACTOR JOB
 
 // Shipment revamp.
-new TruckUsedBy[MAX_VEHICLES] = -1;
-new TruckHolding[MAX_VEHICLES] = 0;
+//new TruckUsedBy[MAX_VEHICLES] = -1;
+//new TruckHolding[MAX_VEHICLES] = 0;
 
 new TruckUsed[MAX_PLAYERS];
 new TruckDeliveringTo[MAX_VEHICLES];
@@ -1226,6 +1226,7 @@ new gpsState[MAX_PLAYERS] = 0;
 new wwState[MAX_PLAYERS] = 0;
 
 new turfWarsRadar[MAX_PLAYERS] = 0;
+new PointWarsRadar[MAX_PLAYERS] = 0;
 new turfWarsMiniMap[MAX_PLAYERS] = 0;
 
 // Dynamic Gift Box Stuff

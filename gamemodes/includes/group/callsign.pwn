@@ -68,7 +68,7 @@ CMD:callsign(playerid, params[])
 	new string[32];
 
 	if(!IsPlayerInAnyVehicle(playerid)) return SendClientMessageEx(playerid, COLOR_WHITE, "You are not in a vehicle.");
-	if(!IsACop(playerid)) return SendClientMessageEx(playerid, COLOR_WHITE, "You are not a law enforcement officer.");
+	if(!IsACop(playerid) && !IsAGovernment(playerid)) return SendClientMessageEx(playerid, COLOR_WHITE, "You are not a law enforcement officer.");
 	if (!IsACruiser(GetPlayerVehicleID(playerid))) return SendClientMessageEx(playerid, COLOR_WHITE, "You are not in a patrol vehicle.");
 
 	if(vehcallsign[GetPlayerVehicleID(playerid)] == 1)

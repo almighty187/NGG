@@ -282,7 +282,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				PlayerInfo[playerid][pNation] = listitem;
 				switch(listitem) {
 					case 0: SendClientMessageEx(playerid, COLOR_GRAD1, "You are now a citizen of San Andreas.");
-					case 1: SendClientMessageEx(playerid, COLOR_GRAD1, "You are now a citizen of New Robada.");
+					case 1: SendClientMessageEx(playerid, COLOR_GRAD1, "You are now a citizen of Tierra Robada.");
 				}
 			}
 			else
@@ -292,7 +292,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				PlayerInfo[playerid][pNation] = rand;
 				switch(rand) {
 					case 0: SendClientMessageEx(playerid, COLOR_GRAD1, "You are now a citizen of San Andreas.");
-					case 1: SendClientMessageEx(playerid, COLOR_GRAD1, "You are now a citizen of New Robada.");
+					case 1: SendClientMessageEx(playerid, COLOR_GRAD1, "You are now a citizen of Tierra Robada.");
 				}
 			}
 		}
@@ -5054,7 +5054,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 								if(arrGroupData[z][g_iGroupType] == GROUP_TYPE_GOV)
 								{
 									TRTax += money;
-									format(str, sizeof(str), "%s has been arrested by %s and fined $%d. $%d has been sent to the NR Government Vault.",GetPlayerNameEx(suspect), GetPlayerNameEx(playerid), moneys, money);
+									format(str, sizeof(str), "%s has been arrested by %s and fined $%d. $%d has been sent to the TR Government Vault.",GetPlayerNameEx(suspect), GetPlayerNameEx(playerid), moneys, money);
 									GroupPayLog(z, str);
 									break;
 								}
@@ -5140,7 +5140,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 								if(arrGroupData[z][g_iGroupType] == GROUP_TYPE_GOV)
 								{
 									TRTax += money;
-									format(str, sizeof(str), "%s has been arrested by %s and fined $%d. $%d has been sent to the NR Government Vault.",GetPlayerNameEx(suspect), GetPlayerNameEx(playerid), moneys, money);
+									format(str, sizeof(str), "%s has been arrested by %s and fined $%d. $%d has been sent to the TR Government Vault.",GetPlayerNameEx(suspect), GetPlayerNameEx(playerid), moneys, money);
 									GroupPayLog(z, str);
 									break;
 								}
@@ -5217,7 +5217,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 								if(arrGroupData[z][g_iGroupType] == GROUP_TYPE_GOV)
 								{
 									TRTax += money;
-									format(str, sizeof(str), "%s has been arrested by %s and fined $%d. $%d has been sent to the NR Government Vault.",GetPlayerNameEx(suspect), GetPlayerNameEx(playerid), moneys, money);
+									format(str, sizeof(str), "%s has been arrested by %s and fined $%d. $%d has been sent to the TR Government Vault.",GetPlayerNameEx(suspect), GetPlayerNameEx(playerid), moneys, money);
 									GroupPayLog(z, str);
 									break;
 								}
@@ -6764,7 +6764,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			}
 			else if(arrGroupData[PlayerInfo[playerid][pMember]][g_iAllegiance] == 2)
 			{
-				format(szCountry, sizeof(szCountry), "[NR] ");
+				format(szCountry, sizeof(szCountry), "[TR] ");
 			}
 			strcat(szCrime, szCountry);
 			strcat(szCrime, inputtext);

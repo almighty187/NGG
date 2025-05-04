@@ -385,7 +385,7 @@ stock IsFirstAid(playerid)
 
 stock IsMDCPermitted(playerid)
 {
-	if(IsACop(playerid) || IsAJudge(playerid))
+	if(IsACop(playerid) || IsAJudge(playerid) || IsAGovernment(playerid))
 	{
 		return 1;
 	}
@@ -598,7 +598,7 @@ Group_ReturnAllegiance(iAllegianceID) {
 
 	switch(iAllegianceID) {
 		case 1: szResult = "San Andreas";
-		case 2: szResult = "New Robada";
+		case 2: szResult = "Tierra Robada";
 	}
 	return szResult;
 }
@@ -3391,7 +3391,7 @@ CMD:listbugs(playerid, params[])
 }
 
 CMD:online(playerid, params[]) {
-	if(PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 1 || IsACriminal(playerid) || IsACop(playerid))
+	if(PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 1 || IsACriminal(playerid) || IsACop(playerid) || IsAMedic(playerid) || IsAReporter(playerid) || IsAGovernment(playerid) || IsAJudge(playerid) || IsAnFTSDriver(playerid) || IsATowman(playerid) || IsARacer(playerid))
 	{
 		if(PlayerInfo[playerid][pMember] == INVALID_GROUP_ID) return SendClientMessageEx(playerid, -1, "You are not a member of any group!");
 		szMiscArray[0] = 0;
@@ -5417,7 +5417,7 @@ CMD:showbadge(playerid, params[])
 				SendClientMessageEx(giveplayerid, COLOR_WHITE, string);
 				switch(arrGroupData[PlayerInfo[playerid][pMember]][g_iAllegiance]) {
 					case 1: SendClientMessageEx(giveplayerid, COLOR_WHITE, "Under the Authority of the San Andreas Government.");
-					case 2: SendClientMessageEx(giveplayerid, COLOR_WHITE, "Under the Authority of the Nation of New Robada.");
+					case 2: SendClientMessageEx(giveplayerid, COLOR_WHITE, "Under the Authority of the Nation of Tierra Robada.");
 				}
 				if(IsACop(playerid)) SendClientMessageEx(giveplayerid, COLOR_WHITE, "Official has the authority to arrest.");
 				else if(arrGroupData[PlayerInfo[playerid][pMember]][g_iGroupType] != 2) SendClientMessageEx(giveplayerid, COLOR_WHITE, "Official has the authority to assist in arrests.");

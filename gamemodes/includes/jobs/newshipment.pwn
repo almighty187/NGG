@@ -1,7 +1,7 @@
 /*
     [NOTE: OED approved revamp. Submitted to devcp via Bando. Documentation: https://docs.google.com/document/d/1nsrKfBYtC7BSN6Z36r1lkoi_ipjVjRBW3YlfHZdBpB4]
     
-    NR - pending feedback.
+    TR - pending feedback.
 
     LSPD - pending feedback.
     AddPlayerClass(7,1535.3512,-1675.4783,13.3828,269.3415,0,0,0,0,0,0); // Bando
@@ -715,7 +715,7 @@ public UnloadingDeliveryCrate(playerid, crate)
 
 CMD:cleartruck(playerid, params[])
 {
-    if(IsACop(playerid) || IsATrucker(playerid))
+    if(IsACop(playerid) || IsAGovernment(playerid) || IsATrucker(playerid))
     {
         new carid = GetPlayerVehicleID(playerid);
         new closestcar = GetClosestCar(playerid, carid);
@@ -760,7 +760,7 @@ CMD:cleartruck(playerid, params[])
 
 CMD:searchtruck(playerid, params[])
 {
-    if(IsACop(playerid) || IsATrucker(playerid))
+    if(IsACop(playerid) || IsAGovernment(playerid) || IsATrucker(playerid))
     {
         new carid = GetPlayerVehicleID(playerid);
         new closestcar = GetClosestCar(playerid, carid);

@@ -35,7 +35,7 @@
 	* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 CMD:impound(playerid, params[]) {
-	if(IsACop(playerid) || IsATowman(playerid)) {
+	if(IsACop(playerid) || IsATowman(playerid) || IsAGovernment(playerid)) {
 		if(!IsAtImpoundingPoint(playerid)) return SendClientMessageEx(playerid, COLOR_GREY, "You are not near the impound point, you can't impound!");
 		if(IsTrailerAttachedToVehicle(GetPlayerVehicleID(playerid))) {
 			new veh = -1, iVehTowed = GetVehicleTrailer(GetPlayerVehicleID(playerid)), szMessage[128];

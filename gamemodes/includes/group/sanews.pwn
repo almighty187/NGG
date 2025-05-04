@@ -1979,9 +1979,9 @@ CMD:news(playerid, params[])
 			}
 			else
 			{
-				format(szMiscArray, sizeof(szMiscArray), "NR %s: %s", GetPlayerNameEx(playerid), params);
+				format(szMiscArray, sizeof(szMiscArray), "TR %s: %s", GetPlayerNameEx(playerid), params);
 				OOCNews(COLOR_NEWS, szMiscArray);
-				format(szMiscArray, sizeof(szMiscArray), "[NEWS] NR %s: %s", GetPlayerNameEx(playerid), params);
+				format(szMiscArray, sizeof(szMiscArray), "[NEWS] TR %s: %s", GetPlayerNameEx(playerid), params);
 				GroupLog(PlayerInfo[playerid][pMember], szMiscArray);
 			}
 		}

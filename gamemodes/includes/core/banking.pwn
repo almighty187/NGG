@@ -231,7 +231,7 @@ PayDay(i) {
 			{
 				if(PlayerInfo[i][pDonateRank] < 4)
 				{
-					format(string, sizeof(string), "  Paycheck: $%s  |  NR Gov Tax: $%s (%d percent)", number_format(PlayerInfo[i][pPayCheck]), number_format((PlayerInfo[i][pPayCheck] / 100) * TRTaxValue), TRTaxValue);	
+					format(string, sizeof(string), "  Paycheck: $%s  |  TR Gov Tax: $%s (%d percent)", number_format(PlayerInfo[i][pPayCheck]), number_format((PlayerInfo[i][pPayCheck] / 100) * TRTaxValue), TRTaxValue);	
 					if(!Bank_TransferCheck((PlayerInfo[i][pPayCheck] / 100) * TRTaxValue)) return 1;
 					PlayerInfo[i][pAccount] -= (PlayerInfo[i][pPayCheck] / 100) * TRTaxValue;
 					TRTax += (PlayerInfo[i][pPayCheck] / 100) * TRTaxValue;
@@ -240,7 +240,7 @@ PayDay(i) {
 				{
 					pVIPTax = TRTaxValue - 15;
 					if(pVIPTax < 0) { pVIPTax = 0; }
-					format(string, sizeof(string), "  Paycheck: $%s  |  NR Gov Tax: $%s (%d percent) {FFFF00}(Platinum VIP: 15 percent off)", number_format(PlayerInfo[i][pPayCheck]), number_format((PlayerInfo[i][pPayCheck] / 100) * pVIPTax), pVIPTax);	
+					format(string, sizeof(string), "  Paycheck: $%s  |  TR Gov Tax: $%s (%d percent) {FFFF00}(Platinum VIP: 15 percent off)", number_format(PlayerInfo[i][pPayCheck]), number_format((PlayerInfo[i][pPayCheck] / 100) * pVIPTax), pVIPTax);	
 					if(!Bank_TransferCheck((PlayerInfo[i][pPayCheck] / 100) * pVIPTax)) return 1;
 					PlayerInfo[i][pAccount] -= (PlayerInfo[i][pPayCheck] / 100) * pVIPTax;
 					TRTax += (PlayerInfo[i][pPayCheck] / 100) * pVIPTax;

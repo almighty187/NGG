@@ -935,7 +935,7 @@ Interact_ShowLicenses(playerid, giveplayerid) {
 
 	switch(PlayerInfo[playerid][pNation]) {
 		case 0: SendClientMessageEx(giveplayerid, COLOR_WHITE, "** Citizen of San Andreas **");
-		case 1: SendClientMessageEx(giveplayerid, COLOR_TR, "** Citizen of New Robada **");
+		case 1: SendClientMessageEx(giveplayerid, COLOR_TR, "** Citizen of Tierra Robada **");
 		case 2: SendClientMessageEx(giveplayerid, COLOR_TR, "** No citizenship **");
 	}
 	format(szMiscArray, sizeof(szMiscArray), "Listing %s's licenses...", GetPlayerNameEx(playerid));

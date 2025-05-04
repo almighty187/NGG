@@ -262,11 +262,11 @@ hook OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 
             if (PlayerExplosionCount[playerid] >= 3)
             {
-                new string[128];
-                format(string, sizeof(string), "%s(%d) (ID %d) may be using an explosion hack.", GetPlayerNameEx(issuerid), GetPlayerSQLId(issuerid), issuerid);
-                Log("logs/hack.log", string);
-                format(string, sizeof(string), "{AA3333}AdmWarning{FFFF00}: %s was kicked for suspect explosion CLEOs.", GetPlayerNameEx(issuerid));
-                ABroadCast(COLOR_YELLOW, string, 2);
+                //new string[128];
+                //format(string, sizeof(string), "%s(%d) (ID %d) may be using an explosion hack.", GetPlayerNameEx(issuerid), GetPlayerSQLId(issuerid), issuerid);
+                //Log("logs/hack.log", string);
+                //format(string, sizeof(string), "{AA3333}AdmWarning{FFFF00}: %s was kicked for suspect explosion CLEOs.", GetPlayerNameEx(issuerid));
+                //ABroadCast(COLOR_YELLOW, string, 2);
 				//KickEx(issuerid);
             }
         }

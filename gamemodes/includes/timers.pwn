@@ -340,7 +340,7 @@ task SyncTime[60000]()
 					{
 						TRTax -= arrGroupData[iGroupID][g_iBudgetPayment];
 						arrGroupData[iGroupID][g_iBudget] += arrGroupData[iGroupID][g_iBudgetPayment];
-						format(szMiscArray, sizeof(szMiscArray), "NR Gov Paid $%s to %s budget fund.", number_format(arrGroupData[iGroupID][g_iBudgetPayment]), arrGroupData[iGroupID][g_szGroupName]);
+						format(szMiscArray, sizeof(szMiscArray), "TR Gov Paid $%s to %s budget fund.", number_format(arrGroupData[iGroupID][g_iBudgetPayment]), arrGroupData[iGroupID][g_szGroupName]);
 						GroupPayLog(iGroupID, szMiscArray);
 						Misc_Save();
 						SaveGroup(iGroupID);
@@ -350,7 +350,7 @@ task SyncTime[60000]()
 							{
 								if(arrGroupData[z][g_iGroupType] == GROUP_TYPE_GOV)
 								{
-									format(szMiscArray, sizeof(szMiscArray), "NR Gov Paid $%s to %s budget fund.", number_format(arrGroupData[iGroupID][g_iBudgetPayment]), arrGroupData[iGroupID][g_szGroupName]);
+									format(szMiscArray, sizeof(szMiscArray), "TR Gov Paid $%s to %s budget fund.", number_format(arrGroupData[iGroupID][g_iBudgetPayment]), arrGroupData[iGroupID][g_szGroupName]);
 									GroupPayLog(z, szMiscArray);
 									break;
 								}

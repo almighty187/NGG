@@ -861,7 +861,7 @@ CMD:docarrest(playerid, params[])
 
 CMD:arrest(playerid, params[])
 {
-	if(!IsACop(playerid)) {
+	if(!IsACop(playerid) && !IsAGovernment(playerid)) {
 	    SendClientMessageEx(playerid, COLOR_GREY, "You are not part of a LEO faction. ");
 	}
 	else if(!IsAtArrestPoint(playerid, 0) && !IsAtArrestPoint(playerid, 1)) {
@@ -1478,7 +1478,7 @@ CMD:jailhangup(playerid,params[])
 
 CMD:jailcuff(playerid, params[])
 {
-	if(IsACop(playerid))
+	if(IsACop(playerid) || IsAGovernment(playerid))
 	{
 		if(GetPVarInt(playerid, "Injured") == 1 || GetPVarInt(playerid, "jailcuffs") > 0 || PlayerCuffed[ playerid ] >= 1 || PlayerInfo[ playerid ][ pJailTime ] > 0 || PlayerInfo[playerid][pHospital] > 0)
 		{

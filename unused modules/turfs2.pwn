@@ -453,7 +453,7 @@ CMD:claim(playerid, params[]) {
 
 CMD:shutdown(playerid, params[]) {
 
-	if(!IsACop(playerid)) return SendClientMessageEx(playerid, COLOR_GRAD1, "You are not an LEO.");
+	if(!IsACop(playerid) && !IsAGovernment(playerid)) return SendClientMessageEx(playerid, COLOR_GRAD1, "You are not an LEO.");
 	if(PlayerInfo[playerid][pRank] < arrGroupData[PlayerInfo[playerid][pMember]][g_iTurfCapRank]) {
 		return SendClientMessageEx(playerid, COLOR_GRAD2, "Your rank is not high enough to shutdown turfs!");
     }

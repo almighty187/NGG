@@ -166,7 +166,8 @@ Dialog:weapon_deposit(playerid, response, listitem, inputtext[]) {
 		SendClientMessageEx(playerid, COLOR_WHITE, "You have deposited a %s into the locker.", Weapon_ReturnName(id));
 		format(szMiscArray, sizeof(szMiscArray), "%s has deposited a %s into the locker.", GetPlayerNameEx(playerid), Weapon_ReturnName(id));
 		GroupLog(PlayerInfo[playerid][pMember], szMiscArray);
-		arrGroupData[PlayerInfo[playerid][pMember]][g_iLockerStock] += arrGroupData[PlayerInfo[playerid][pMember]][g_iLockerCost][slot];
+		arrGroupData[PlayerInfo[playerid][pMember]][g_iMaterials] += arrGroupData[PlayerInfo[playerid][pMember]][g_iLockerCost][slot];
+		SendClientMessageEx(playerid, COLOR_YELLOW, "* Your weapon has been broken down into %d materials and added to the group safe.", arrGroupData[PlayerInfo[playerid][pMember]][g_iLockerCost][slot]);
 		DepositMenu(playerid, PlayerInfo[playerid][pMember]);
 	} else {
 		ShowGroupWeapons(playerid, PlayerInfo[playerid][pMember]);
