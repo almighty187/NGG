@@ -6888,6 +6888,13 @@ CMD:disarm(playerid, params[])
         if(IsPlayerConnected(giveplayerid))
         {
             ResetPlayerWeapons(giveplayerid);
+            
+            for(new i = 0; i < 13; i++)
+            {
+                PlayerInfo[giveplayerid][pGuns][i] = 0;
+                PlayerInfo[giveplayerid][pAGuns][i] = 0;
+            }
+            
             format(string, sizeof(string), "You have removed all weapons from %s.", GetPlayerNameEx(giveplayerid));
             SendClientMessageEx(playerid, COLOR_WHITE, string);
 

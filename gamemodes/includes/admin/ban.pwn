@@ -33,7 +33,7 @@ CreateBan(iBanCreator, iBanned, iPlayerID, szIPAddress[], szReason[], iLength, i
 
 	szMiscArray[0] = 0;
 
-	if(iLength > 5000) iLength = 5000;
+	if(iLength > 4000) iLength = 4000;
 
 	mysql_format(MainPipeline, szMiscArray, sizeof(szMiscArray), "INSERT INTO `ban` (`bannedid`, `creatorid`, `IP`, `reason`, `createdate`, `liftdate`, `active`) \
 		VALUES ('%d', '%d', '%s', '%e', UNIX_TIMESTAMP(), UNIX_TIMESTAMP(DATE_ADD(CURDATE(),INTERVAL %d DAY)), 1)",
@@ -313,7 +313,7 @@ CMD:ban(playerid, params[]) {
 	return 1;
 }
 
-CMD:permban(playerid, params[]) {
+/*CMD:permban(playerid, params[]) {
 
 	new
 		iTargetID,
@@ -336,51 +336,52 @@ CMD:permban(playerid, params[]) {
 	}
 	if(PlayerInfo[playerid][pAdmin] < PlayerInfo[iTargetID][pAdmin]) return SendClientMessageEx(playerid, COLOR_GREY, "That player is a higher ranking admin than you");
 
-	CreateBan(playerid, PlayerInfo[iTargetID][pId], iTargetID, GetPlayerIpEx(iTargetID), szReason, 9999999, iSilentBan, 1); 
-
+	CreateBan(playerid, PlayerInfo[iTargetID][pId], iTargetID, GetPlayerIpEx(iTargetID), szReason, 4000, iSilentBan, 1);
 	return 1;
-}
+}*/
 
 CMD:permaban(playerid, params[])
 {
-	if (PlayerInfo[playerid][pAdmin] >= 1337)
+	if(PlayerInfo[playerid][pAdmin] >= 99999)
 	{
-		new string[128], giveplayerid, reason[64];
-		if(sscanf(params, "us[64]", giveplayerid, reason))
-		{
-			SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /permaban [player] [reason]");
-			return 1;
-		}
+		new 
+			iTargetID[MAX_PLAYER_NAME],
+			szReason[32],
+			iSilentBan,
+			query[128],
+			string[128];
 
-		if(IsPlayerConnected(giveplayerid))
-		{
-			if(PlayerInfo[giveplayerid][pAdmin] > PlayerInfo[playerid][pAdmin])
-			{
-				format(string, sizeof(string), "AdmCmd: %s was banned, reason: Attempting to ban a higher admin.", GetPlayerNameEx(giveplayerid));
-				SendClientMessageToAllEx(COLOR_LIGHTRED, string);
-				new iTargetID, szReason[64], iSilentBan = 0;
-				CreateBan(playerid, PlayerInfo[iTargetID][pId], iTargetID, GetPlayerIpEx(iTargetID), szReason, 9999999, iSilentBan, 1); 
-				Kick(playerid);
-			}
-			else
-			{
-				new playerip[32];
-				GetPlayerIp(giveplayerid, playerip, sizeof(playerip));
-				format(string, sizeof(string), "AdmCmd: %s(IP:%s) was permanently banned by %s, reason: %s", GetPlayerNameEx(giveplayerid), playerip, GetPlayerNameEx(playerid), reason);
-				Log("logs/ban.log", string);
-				format(string, sizeof(string), "AdmCmd: %s was permanently banned by %s, reason: %s", GetPlayerNameEx(giveplayerid), GetPlayerNameEx(playerid), reason);
-				SendClientMessageToAllEx(COLOR_LIGHTRED, string);
-				new iTargetID, szReason[64], iSilentBan = 0;
-				CreateBan(playerid, PlayerInfo[iTargetID][pId], iTargetID, GetPlayerIpEx(iTargetID), szReason, 9999999, iSilentBan, 1); 
-				Kick(giveplayerid);
-			}
+		if(sscanf(params, "s[25]s[32]D(0)", iTargetID, szReason, iSilentBan)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /permban [playerid] [reason] [silent(optional)]"), SendClientMessageEx(playerid, COLOR_GREY, "** Acceptable values for silent are 1=Yes and 0=No, Default is 0 **");
+		//print("debug 1");
+		new 
+			TargetID = ReturnUser(iTargetID);
+		//printf("debug 2 (%d)", TargetID);
+		if(TargetID != INVALID_PLAYER_ID){
+
+			CreateBan(playerid, PlayerInfo[TargetID][pId], TargetID, GetPlayerIpEx(TargetID), szReason, 4000, iSilentBan);
 			return 1;
 		}
+		if(IsNumeric(iTargetID)) return SendClientMessageEx(playerid, COLOR_GREY, "Player ID is not online. (Try username instead)");
+
+		new tmpName[MAX_PLAYER_NAME];
+
+		mysql_escape_string(iTargetID, tmpName);
+		SetPVarString(playerid, "OnPermBanPlayer", tmpName);
+
+		mysql_format(MainPipeline, query, sizeof(query), "UPDATE `accounts` SET `Band`=1, `Disabled`=1, `PermBand`=1 WHERE `Username`='%s'", tmpName);
+		format(string, sizeof(string), "Attempting to ban %s...", tmpName);
+		SendClientMessageEx(playerid, COLOR_YELLOW, string);
+		mysql_tquery(MainPipeline, query, "OnPermBanPlayer", "i", playerid);
+
+		mysql_format(MainPipeline, query, sizeof(query), "SELECT `IP` FROM `accounts` WHERE `Username`='%s'", tmpName);
+		mysql_tquery(MainPipeline, query, "OnBanIP", "i", playerid);
 	}
-	else SendClientMessageEx(playerid, COLOR_GRAD1, "Invalid player specified.");
+	else
+	{
+		SendClientMessageEx(playerid, COLOR_GRAD1, "You are not authorized to use that command!");
+	}
 	return 1;
 }
-
 
 CMD:hackban(playerid, params[]) {
 
@@ -520,7 +521,7 @@ CMD:banaccount(playerid, params[]) {
 
 CMD:oldunban(playerid, params[])
 {
-	if(PlayerInfo[playerid][pAdmin] >= 1337 || PlayerInfo[playerid][pBanAppealer] >= 1)
+	if(PlayerInfo[playerid][pAdmin] >= 99999 || PlayerInfo[playerid][pBanAppealer] >= 1)
 	{
 		new string[128], query[256], tmpName[24];
 		if(isnull(params)) return SendClientMessageEx(playerid, COLOR_WHITE, "USAGE: /oldunban [player name]");
