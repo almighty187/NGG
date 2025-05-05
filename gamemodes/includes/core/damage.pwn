@@ -94,7 +94,7 @@ hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 	return 1;
 }
 
-public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY, Float:fZ) {
+/*public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY, Float:fZ) {
 	new string[128];
 	//SendClientMessageEx(playerid, COLOR_WHITE, "Weapon %i fired. hittype: %i   hitid: %i   pos: %f, %f, %f", weaponid, hittype, hitid, fX, fY, fZ);
 	if(GhostHacker[playerid][5] < gettime()) {
@@ -150,7 +150,7 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 		}
 	}
 */
- 	if(hittype != BULLET_HIT_TYPE_NONE ) // Bullet Crashing uses just this hittype
+ 	/*if(hittype != BULLET_HIT_TYPE_NONE ) // Bullet Crashing uses just this hittype
     {
         if(!(-1000.0 <= fX <= 1000.0) || !(-1000.0 <= fY <= 1000.0) || !(-1000.0 <= fZ <= 1000.0)) // a valid offset, it's impossible that a offset bigger than 1000 is legit (also less than -1000.0 is impossible, not used by this hack, but still, let's check for it, just for the future, who knows what hacks will appear). The object with biggest offset is having ~700-800 radius.
         {
@@ -162,7 +162,7 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
         }
     }
 	return 1;
-}
+}*/
 
 forward CheckBulletAmount(playerid);
 public CheckBulletAmount(playerid) {

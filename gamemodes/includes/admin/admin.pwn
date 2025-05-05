@@ -6808,6 +6808,7 @@ CMD:deleteaccount(playerid, params[])
 		if(PlayerInfo[giveplayerid][pAdmin] > PlayerInfo[playerid][pAdmin])
 		{
 			format(string, sizeof(string), "AdmCmd: %s has been auto-banned, reason: Trying to /deleteaccount a higher admin.", GetPlayerNameEx(playerid));
+			Log("logs/admin.log", string);
 			ABroadCast(COLOR_YELLOW,string,2);
 			PlayerInfo[playerid][pBanned] = 1;
             new ip[32];
@@ -6825,7 +6826,8 @@ CMD:deleteaccount(playerid, params[])
 
 		SetPVarString(playerid, "OnDeletePlayer", tmpName);
 
-		format(string,sizeof(string),"Attempting to delete %s's account...", tmpName);
+		format(string,sizeof(string),"%s has attempted to delete %s's account...", GetPlayerNameEx(playerid), tmpName);
+		Log("logs/admin.log", string);
 		SendClientMessageEx(playerid, COLOR_YELLOW, string);
 	}
 	return 1;

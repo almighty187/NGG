@@ -78,10 +78,10 @@ stock IsWeaponPistol(weaponid)
     return false;
 }
 
-stock IsMeleeWeapon(weaponid) {
+/*stock IsMeleeWeapon(weaponid) {
 
 	return (WEAPON_UNARMED <= weaponid <= WEAPON_KATANA) || (WEAPON_DILDO <= weaponid <= WEAPON_CANE) || weaponid == WEAPON_PISTOLWHIP;
-}
+}*/
 
 hook OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 {
