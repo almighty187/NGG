@@ -6559,7 +6559,7 @@ public OnRequestTransferFlag(playerid, flagid, to, from)
 	return ShowPlayerDialogEx(playerid, FLAG_TRANSFER, DIALOG_STYLE_MSGBOX, "FLAG TRANSFER", string, "Yes", "No");
 }
 
-forward GetShiftInfo(playerid, szMessage[]);
+/*forward GetShiftInfo(playerid, szMessage[]);
 public GetShiftInfo(playerid, szMessage[])
 {
 	new rows, fieldname[24], szResult[32], string[1288], shift[4], needs, signedup;
@@ -6593,7 +6593,7 @@ public GetShiftInfo(playerid, szMessage[])
 		SendClientMessageEx(playerid, COLOR_WHITE, string);
 	}
 	return 1;
-}
+}*/
 
 // g_mysql_LoadFIFInfo(playerid)
 // Description: Load the player's Fall Into Fun Info

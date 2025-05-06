@@ -2198,66 +2198,67 @@ CMD:apark(playerid, params[]) {
 	return 1;
 }*/
 
-CMD:aduty(playerid, params[])
-{
-    if(PlayerInfo[playerid][pAdminLevel] >= ADMIN_JUNIOR)
-	{
-	    new string[128], Float:health, Float:armor;
-	    if(GetPVarType(playerid, "AdminDuty") == 1)
-	    {
-	       	format(string, sizeof(string), "* %s %s is now {FF0000}off duty{FFFFFF}.", GetStaffRank(playerid), PlayerInfo[playerid][pUsername]);
-			foreach(new i: Player)
-			{
-				if(PlayerInfo[i][pAdminLevel] >= 2) SendClientMessageEx(i, COLOR_WHITE, string);
-			}
-	        format(string, sizeof(string), "%s went off duty as a %s.", PlayerInfo[playerid][pUsername], GetAdminRankName(PlayerInfo[playerid][pAdminLevel]));
-			Log("logs/aduty.log", string);
+//commented out to remove aduty
+// CMD:aduty(playerid, params[])
+// {
+//     if(PlayerInfo[playerid][pAdminLevel] >= ADMIN_JUNIOR)
+// 	{
+// 	    new string[128], Float:health, Float:armor;
+// 	    if(GetPVarType(playerid, "AdminDuty") == 1)
+// 	    {
+// 	       	format(string, sizeof(string), "* %s %s is now {FF0000}off duty{FFFFFF}.", GetStaffRank(playerid), PlayerInfo[playerid][pUsername]);
+// 			foreach(new i: Player)
+// 			{
+// 				if(PlayerInfo[i][pAdminLevel] >= 2) SendClientMessageEx(i, COLOR_WHITE, string);
+// 			}
+// 	        format(string, sizeof(string), "%s went off duty as a %s.", PlayerInfo[playerid][pUsername], GetAdminRankName(PlayerInfo[playerid][pAdminLevel]));
+// 			Log("logs/aduty.log", string);
 			
-			health = GetPVarFloat(playerid, "pPreGodHealth");
-			SetHealth(playerid,health);
-			armor = GetPVarFloat(playerid, "pPreGodArmor");
-			SetArmour(playerid, armor);
-			DeletePVar(playerid, "pGodMode");
-			DeletePVar(playerid, "pPreGodHealth");
-			DeletePVar(playerid, "pPreGodArmor");
+// 			health = GetPVarFloat(playerid, "pPreGodHealth");
+// 			SetHealth(playerid,health);
+// 			armor = GetPVarFloat(playerid, "pPreGodArmor");
+// 			SetArmour(playerid, armor);
+// 			DeletePVar(playerid, "pGodMode");
+// 			DeletePVar(playerid, "pPreGodHealth");
+// 			DeletePVar(playerid, "pPreGodArmor");
 			
-	   		PlayerInfo[playerid][pAdmin] = 1;
-			SetPlayerName(playerid, PlayerInfo[playerid][pUsername]);
-        	if(PlayerInfo[playerid][pAdminLevel] >= ADMIN_HEAD) PlayerInfo[playerid][pSMod] = 1;
-	        DeletePVar(playerid, "AdminDuty");
-		}
-		else
-		{
-			PlayerInfo[playerid][pAdmin] = PlayerInfo[playerid][pAdminLevel];
+// 	   		PlayerInfo[playerid][pAdmin] = 1;
+// 			SetPlayerName(playerid, PlayerInfo[playerid][pUsername]);
+//         	if(PlayerInfo[playerid][pAdminLevel] >= ADMIN_HEAD) PlayerInfo[playerid][pSMod] = 1;
+// 	        DeletePVar(playerid, "AdminDuty");
+// 		}
+// 		else
+// 		{
+// 			PlayerInfo[playerid][pAdmin] = PlayerInfo[playerid][pAdminLevel];
 
-		    SetPVarInt(playerid, "AdminDuty", 1);
+// 		    SetPVarInt(playerid, "AdminDuty", 1);
 			
-			GetHealth(playerid,health);
-			SetPVarFloat(playerid, "pPreGodHealth", health);
-			GetArmour(playerid,armor);
-			SetPVarFloat(playerid, "pPreGodArmor", armor);
-		    SetHealth(playerid, 0x7FB00000);
-		    SetArmour(playerid, 0x7FB00000);
-		    SetPVarInt(playerid, "pGodMode", 1);
+// 			GetHealth(playerid,health);
+// 			SetPVarFloat(playerid, "pPreGodHealth", health);
+// 			GetArmour(playerid,armor);
+// 			SetPVarFloat(playerid, "pPreGodArmor", armor);
+// 		    SetHealth(playerid, 0x7FB00000);
+// 		    SetArmour(playerid, 0x7FB00000);
+// 		    SetPVarInt(playerid, "pGodMode", 1);
 			
-	        format(string, sizeof(string), "* %s %s is now {00FF00}on duty{FFFFFF}.", GetStaffRank(playerid), PlayerInfo[playerid][pUsername]);
-			foreach(new i: Player)
-			{
-				if(PlayerInfo[i][pAdminLevel] >= 2) SendClientMessageEx(i, COLOR_WHITE, string);
-			}
+// 	        format(string, sizeof(string), "* %s %s is now {00FF00}on duty{FFFFFF}.", GetStaffRank(playerid), PlayerInfo[playerid][pUsername]);
+// 			foreach(new i: Player)
+// 			{
+// 				if(PlayerInfo[i][pAdminLevel] >= 2) SendClientMessageEx(i, COLOR_WHITE, string);
+// 			}
 			
-			if(strcmp(PlayerInfo[playerid][pAdminName], "None", true) != 0)
-			{
-				SetPlayerName(playerid, PlayerInfo[playerid][pAdminName]);
-			}
+// 			if(strcmp(PlayerInfo[playerid][pAdminName], "None", true) != 0)
+// 			{
+// 				SetPlayerName(playerid, PlayerInfo[playerid][pAdminName]);
+// 			}
 		
 		
-	        format(string, sizeof(string), "%s went on duty as a %s.", PlayerInfo[playerid][pUsername], GetAdminRankName(PlayerInfo[playerid][pAdminLevel]));
-			Log("logs/aduty.log", string);
-		}
-    }
-	return 1;
-}
+// 	        format(string, sizeof(string), "%s went on duty as a %s.", PlayerInfo[playerid][pUsername], GetAdminRankName(PlayerInfo[playerid][pAdminLevel]));
+// 			Log("logs/aduty.log", string);
+// 		}
+//     }
+// 	return 1;
+// }
 
 CMD:forceaduty(playerid, params[])
 {
