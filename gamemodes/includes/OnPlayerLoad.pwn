@@ -632,7 +632,7 @@ public OnPlayerLoad(playerid)
 	}
 	if (PlayerInfo[playerid][pAdminLevel] > 0)
 	{
-		//PlayerInfo[playerid][pAdmin] = 1;
+		PlayerInfo[playerid][pAdmin] = 1;
 		if(PlayerInfo[playerid][pAdminLevel] == 1)
 		{
 			if(PlayerInfo[playerid][pSMod] == 1)
