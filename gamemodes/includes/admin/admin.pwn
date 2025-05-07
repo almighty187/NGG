@@ -2260,7 +2260,7 @@ CMD:apark(playerid, params[]) {
 // 	return 1;
 // }
 
-CMD:forceaduty(playerid, params[])
+/*CMD:forceaduty(playerid, params[])
 {
     if(PlayerInfo[playerid][pAdminLevel] < 1337)
         return SendClientMessageEx(playerid, COLOR_GRAD1, "You're not authorized to use this command!");
@@ -2307,7 +2307,7 @@ CMD:forceaduty(playerid, params[])
     }
 
     return 1;
-}
+}*/
 
 CMD:a(playerid, params[]) {
 	return cmd_admin(playerid, params);

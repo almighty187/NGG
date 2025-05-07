@@ -4211,6 +4211,31 @@ public OnBanPlayer(index)
 	return 1;
 }
 
+forward OnPermBanPlayer(index);
+public OnPermBanPlayer(index)
+{
+	new string[128], name[24];
+	GetPVarString(index, "OnPermBanPlayer", name, 24);
+
+	if(cache_affected_rows()) {
+		format(string, sizeof(string), "You have successfully perma banned %s's account.", name);
+		SendClientMessageEx(index, COLOR_WHITE, string);
+
+		format(string, 128, "AdmCmd: %s was perma banned by %s.", name, GetPlayerNameEx(index));
+		ABroadCast(COLOR_LIGHTRED,string,2);
+		format(string, sizeof(string), "AdmCmd: %s was perma banned by %s.", name, GetPlayerNameEx(index));
+		Log("logs/ban.log", string);
+		print(string);
+	}
+	else {
+		format(string, sizeof(string), "There was an issue with perma banning %s's account.", name);
+		SendClientMessageEx(index, COLOR_WHITE, string);
+	}
+	DeletePVar(index, "OnPermBanPlayer");
+
+	return 1;
+}
+
 forward OnBanIP(index);
 public OnBanIP(index)
 {
@@ -6559,7 +6584,7 @@ public OnRequestTransferFlag(playerid, flagid, to, from)
 	return ShowPlayerDialogEx(playerid, FLAG_TRANSFER, DIALOG_STYLE_MSGBOX, "FLAG TRANSFER", string, "Yes", "No");
 }
 
-/*forward GetShiftInfo(playerid, szMessage[]);
+forward GetShiftInfo(playerid, szMessage[]);
 public GetShiftInfo(playerid, szMessage[])
 {
 	new rows, fieldname[24], szResult[32], string[1288], shift[4], needs, signedup;
@@ -6593,7 +6618,7 @@ public GetShiftInfo(playerid, szMessage[])
 		SendClientMessageEx(playerid, COLOR_WHITE, string);
 	}
 	return 1;
-}*/
+}
 
 // g_mysql_LoadFIFInfo(playerid)
 // Description: Load the player's Fall Into Fun Info
