@@ -51,6 +51,30 @@ ini_GetValue(szParse[], szValueName[], szDest[], iDestLen) { // brian!!1
 	return 0;
 }
 
+/*Log(sz_fileName[], sz_input[]) {
+
+	new
+		sz_logEntry[256],
+		#if defined _LINUX
+		File: logfile,
+		#endif
+		i_dateTime[2][3];
+
+	gettime(i_dateTime[0][0], i_dateTime[0][1], i_dateTime[0][2]);
+	getdate(i_dateTime[1][0], i_dateTime[1][1], i_dateTime[1][2]);
+
+	format(sz_logEntry, sizeof(sz_logEntry), "[%i/%i/%i - %i:%02i:%02i] %s\r\n", i_dateTime[1][0], i_dateTime[1][1], i_dateTime[1][2], i_dateTime[0][0], i_dateTime[0][1], i_dateTime[0][2], sz_input);
+	if(logfile) fclose(logfile);
+	if(!fexist(sz_fileName)) logfile = fopen(sz_fileName, io_write);
+	else logfile = fopen(sz_fileName, io_append);
+	if(logfile)
+	{
+		fwrite(logfile, sz_logEntry);
+		fclose(logfile);
+	}
+	return 1;
+}*/
+
 Log(sz_fileName[], sz_input[]) {
 
 	new
@@ -72,5 +96,25 @@ Log(sz_fileName[], sz_input[]) {
 		fwrite(logfile, sz_logEntry);
 		fclose(logfile);
 	}
+	
+	
+	new sz_temp[32];
+	// Extract the filename without extension
+	new pos = strfind(sz_fileName, "/");
+	if (pos != -1)
+	{
+		strmid(sz_temp, sz_fileName, pos + 1, sizeof(sz_temp) - 1);
+		sz_temp[sizeof(sz_temp) - 1] = '\0';
+	}
+
+	new dot_pos = strfind(sz_temp, ".");
+	if (dot_pos != -1)
+	{
+		sz_temp[dot_pos] = '\0';
+	}
+	//printf("%s", sz_temp);
+	new DCC_Channel:logchannel;
+	logchannel = DCC_FindChannelById("1369880798442033162");
+	DCC_SendChannelMessage(logchannel, sz_input);
 	return 1;
 }

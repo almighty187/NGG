@@ -724,10 +724,18 @@ public OnPlayerLoad(playerid)
 	g_mysql_AccountOnline(playerid, servernumber);
 	GetHomeCount(playerid);
 
-	new ip[32];
+	/*new ip[32];
 	GetPlayerIp(playerid, ip, sizeof(ip));
 	format(string, sizeof(string), "%s (ID: %d | SQL ID: %d | Level: %d | IP: %s) has logged in.", GetPlayerNameExt(playerid), playerid, GetPlayerSQLId(playerid), PlayerInfo[playerid][pLevel], ip);
-	Log("logs/login.log", string);
+	Log("logs/login.log", string);*/
+
+	new ip[32], serial[64], discordMsg[255];
+	GetPlayerIp(playerid, ip, sizeof(ip));
+	gpci(playerid, serial, sizeof(serial));
+	format(discordMsg, sizeof(discordMsg), "%s (ID: %d | SQL ID: %d | Level: %d | IP: %s | GPCI: %s) has logged in.", GetPlayerNameExt(playerid), playerid, GetPlayerSQLId(playerid), PlayerInfo[playerid][pLevel], ip, serial);
+	Log("logs/login.log", discordMsg);
+	SendDiscordMessage(4, discordMsg);
+	format(string, sizeof(string), "%s has logged in.", GetPlayerNameEx(playerid));
 
 	if(PlayerInfo[playerid][pTut] != -1) 
 	{
