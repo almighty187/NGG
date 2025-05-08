@@ -158,8 +158,8 @@ stock DynVeh_Spawn(iDvSlotID, free = 0)
 {
 	if(!(0 <= iDvSlotID < MAX_DYNAMIC_VEHICLES)) return 1;
 
-	format(szMiscArray, sizeof(szMiscArray), "Attempting to spawn DV Slot ID %d", iDvSlotID);
-	Log("logs/dvspawn.log", szMiscArray);
+	//format(szMiscArray, sizeof(szMiscArray), "Attempting to spawn DV Slot ID %d", iDvSlotID);
+	//Log("logs/dvspawn.log", szMiscArray);
 	new tmpdv = INVALID_VEHICLE_ID;
 	if(DynVehicleInfo[iDvSlotID][gv_iSpawnedID] != INVALID_VEHICLE_ID)
 	{
@@ -168,8 +168,8 @@ stock DynVeh_Spawn(iDvSlotID, free = 0)
 	}
 	if(DynVehicleInfo[iDvSlotID][gv_iSpawnedID] != INVALID_VEHICLE_ID) {
 		if(tmpdv == iDvSlotID) {
-			format(szMiscArray, sizeof(szMiscArray), "Destroying Vehicle ID %d for DV Slot %d",DynVehicleInfo[iDvSlotID][gv_iSpawnedID], iDvSlotID);
-			Log("logs/dvspawn.log", szMiscArray);
+			//format(szMiscArray, sizeof(szMiscArray), "Destroying Vehicle ID %d for DV Slot %d",DynVehicleInfo[iDvSlotID][gv_iSpawnedID], iDvSlotID);
+			//Log("logs/dvspawn.log", szMiscArray);
 			DestroyVehicle(DynVehicleInfo[iDvSlotID][gv_iSpawnedID]);
 			DynVehicleInfo[iDvSlotID][gv_iSpawnedID] = INVALID_VEHICLE_ID;
 			for(new i = 0; i != MAX_DV_OBJECTS; i++)
@@ -182,8 +182,8 @@ stock DynVeh_Spawn(iDvSlotID, free = 0)
 		}
 	}
 	if(!(400 < DynVehicleInfo[iDvSlotID][gv_iModel] < 612)) {
-		format(szMiscArray, sizeof(szMiscArray), "Invalid Vehicle Model ID for DV Slot %d", iDvSlotID);
-		Log("logs/dvspawn.log", szMiscArray);
+		//format(szMiscArray, sizeof(szMiscArray), "Invalid Vehicle Model ID for DV Slot %d", iDvSlotID);
+		//Log("logs/dvspawn.log", szMiscArray);
 		return 1;
 	}
 	if(DynVehicleInfo[iDvSlotID][gv_iDisabled]) return 1;
@@ -209,8 +209,8 @@ stock DynVeh_Spawn(iDvSlotID, free = 0)
 	}
 	DynVehicleInfo[iDvSlotID][gv_iSpawnedID] = CreateVehicle(DynVehicleInfo[iDvSlotID][gv_iModel], DynVehicleInfo[iDvSlotID][gv_fX], DynVehicleInfo[iDvSlotID][gv_fY], DynVehicleInfo[iDvSlotID][gv_fZ], DynVehicleInfo[iDvSlotID][gv_fRotZ], DynVehicleInfo[iDvSlotID][gv_iCol1], DynVehicleInfo[iDvSlotID][gv_iCol2], VEHICLE_RESPAWN, DynVehicleInfo[iDvSlotID][gv_iSiren]);
 	DynVeh_Save(iDvSlotID);
-	format(szMiscArray, sizeof(szMiscArray), "Vehicle ID %d spawned for DV Slot %d",DynVehicleInfo[iDvSlotID][gv_iSpawnedID], iDvSlotID);
-	Log("logs/dvspawn.log", szMiscArray);
+	//format(szMiscArray, sizeof(szMiscArray), "Vehicle ID %d spawned for DV Slot %d",DynVehicleInfo[iDvSlotID][gv_iSpawnedID], iDvSlotID);
+	//Log("logs/dvspawn.log", szMiscArray);
 	SetVehicleHealth(DynVehicleInfo[iDvSlotID][gv_iSpawnedID], DynVehicleInfo[iDvSlotID][gv_fMaxHealth]);
 	SetVehicleVirtualWorld(DynVehicleInfo[iDvSlotID][gv_iSpawnedID], DynVehicleInfo[iDvSlotID][gv_iVW]);
 	LinkVehicleToInterior(DynVehicleInfo[iDvSlotID][gv_iSpawnedID], DynVehicleInfo[iDvSlotID][gv_iInt]);

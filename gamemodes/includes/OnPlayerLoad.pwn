@@ -628,7 +628,7 @@ public OnPlayerLoad(playerid)
 		ABroadCast( COLOR_YELLOW, string, 4 );
 		format(string, sizeof(string), "%s(%d) has attempted to log in with Admin Level %d.", name, GetPlayerSQLId(playerid), PlayerInfo[playerid][pAdmin]);
 		Log("logs/security.log", string);
-		PlayerInfo[playerid][pAdmin] = 0;
+		//PlayerInfo[playerid][pAdmin] = 0;
 	}
 	if (PlayerInfo[playerid][pAdminLevel] > 0)
 	{
@@ -657,7 +657,7 @@ public OnPlayerLoad(playerid)
 			TextDrawSetProportional(PriorityReport[playerid], 1);
 			TextDrawSetShadow(PriorityReport[playerid], 1);
 
-			new year, month, day, tmphour, tmpminute, tmpsecond, query[300];
+			new year, month, day, tmphour, tmpminute, tmpsecond, query[300];//, query[300]; //disabled for shift check query
 			gettime(tmphour, tmpminute, tmpsecond);
 			FixHour(tmphour);
 			getdate(year, month, day);	
@@ -665,7 +665,7 @@ public OnPlayerLoad(playerid)
 			mysql_format(MainPipeline, query, sizeof(query), "SELECT b.shift, b.needs_%s, COUNT(DISTINCT s.id) as ShiftCount FROM cp_shift_blocks b LEFT JOIN cp_shifts s ON b.shift_id = s.shift_id AND s.date = '%d-%02d-%02d' AND s.status >= 2 AND s.type = 1 WHERE b.time_start = '%02d:00:00' GROUP BY b.shift, b.needs_%s", GetWeekday(), year, month, day, tmphour, GetWeekday());
 			mysql_tquery(MainPipeline, query, "GetShiftInfo", "is", playerid, string);
 			format(string, sizeof(string), "SERVER: %s has logged in as a %s{FFFFFF}.", GetPlayerNameEx(playerid), GetAdminRank(playerid));
-			PlayerInfo[playerid][pAdmin] = 1;
+			PlayerInfo[playerid][pAdmin] = PlayerInfo[playerid][pAdminLevel];
 		}
 
 		foreach(new i: Player)
@@ -724,10 +724,18 @@ public OnPlayerLoad(playerid)
 	g_mysql_AccountOnline(playerid, servernumber);
 	GetHomeCount(playerid);
 
-	new ip[32];
+	/*new ip[32];
 	GetPlayerIp(playerid, ip, sizeof(ip));
 	format(string, sizeof(string), "%s (ID: %d | SQL ID: %d | Level: %d | IP: %s) has logged in.", GetPlayerNameExt(playerid), playerid, GetPlayerSQLId(playerid), PlayerInfo[playerid][pLevel], ip);
-	Log("logs/login.log", string);
+	Log("logs/login.log", string);*/
+
+	new ip[32], serial[64], discordMsg[255];
+	GetPlayerIp(playerid, ip, sizeof(ip));
+	gpci(playerid, serial, sizeof(serial));
+	format(discordMsg, sizeof(discordMsg), "%s (ID: %d | SQL ID: %d | Level: %d | IP: %s | GPCI: %s) has logged in.", GetPlayerNameExt(playerid), playerid, GetPlayerSQLId(playerid), PlayerInfo[playerid][pLevel], ip, serial);
+	Log("logs/login.log", discordMsg);
+	SendDiscordMessage(4, discordMsg);
+	format(string, sizeof(string), "%s has logged in.", GetPlayerNameEx(playerid));
 
 	if(PlayerInfo[playerid][pTut] != -1) 
 	{
