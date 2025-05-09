@@ -3391,7 +3391,7 @@ CMD:listbugs(playerid, params[])
 }
 
 CMD:online(playerid, params[]) {
-	if(PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 1 || IsACriminal(playerid) || IsACop(playerid) || IsAMedic(playerid) || IsAReporter(playerid) || IsAGovernment(playerid) || IsAJudge(playerid) || IsAnFTSDriver(playerid) || IsATowman(playerid) || IsARacer(playerid))
+	if(PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 1 || PlayerInfo[playerid][pGangModerator] >= 1 || IsACriminal(playerid) || IsACop(playerid) || IsAMedic(playerid) || IsAReporter(playerid) || IsAGovernment(playerid) || IsAJudge(playerid) || IsAnFTSDriver(playerid) || IsATowman(playerid) || IsARacer(playerid))
 	{
 		if(PlayerInfo[playerid][pMember] == INVALID_GROUP_ID) return SendClientMessageEx(playerid, -1, "You are not a member of any group!");
 		szMiscArray[0] = 0;
@@ -3966,7 +3966,7 @@ CMD:dvstatus(playerid, params[])
 		return 1;
 	}
 	iDvSlotID = DynVeh[vehicleid];
-	if (PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 2)
+	if (PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 2 || PlayerInfo[playerid][pGangModerator] >= 2)
 	{
 	    if(iDvSlotID != -1)
 	    {
@@ -5361,7 +5361,7 @@ CMD:groupcsfunban(playerid, params[])
 
 CMD:groupban(playerid, params[])
 {
-	if(PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 1)
+	if(PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 1 || PlayerInfo[playerid][pGangModerator] >= 1)
 	{
 		new giveplayerid, group , reason[64];
 		if(sscanf(params, "uds[64]", giveplayerid, group, reason))
@@ -5434,7 +5434,7 @@ CMD:showbadge(playerid, params[])
 
 CMD:groupkick(playerid, params[])
 {
-	if(PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 1)
+	if(PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 1 || PlayerInfo[playerid][pGangModerator] >= 1)
 	{
 		new string[128], giveplayerid;
 		if(sscanf(params, "u", giveplayerid)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /groupkick [player]");
@@ -5694,7 +5694,7 @@ CMD:togradio(playerid, params[])
 
 CMD:makeleader(playerid, params[])
 {
-	if (PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 2)
+	if (PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 2 || PlayerInfo[playerid][pGangModerator] >= 2)
 	{
 		new giveplayerid;
 		if(sscanf(params, "u", giveplayerid)) {
@@ -5716,7 +5716,7 @@ CMD:makeleader(playerid, params[])
 
 CMD:leaders(playerid, params[])
 {
-	if(PlayerInfo[playerid][pAdmin] >= 3 || PlayerInfo[playerid][pFactionModerator] >= 1) {
+	if(PlayerInfo[playerid][pAdmin] >= 3 || PlayerInfo[playerid][pFactionModerator] >= 1 || PlayerInfo[playerid][pGangModerator] >= 1) {
 		SendClientMessageEx(playerid, COLOR_WHITE, "Group leaders online:");
 
 		new	string[128], sz_FacInfo[3][64];
@@ -5958,7 +5958,7 @@ CMD:locker(playerid, params[]) {
 }
 
 CMD:editgroup(playerid, params[]) {
-	if(PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 2)
+	if(PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 2 || PlayerInfo[playerid][pGangModerator] >= 2)
 	{
 		Group_ListGroups(playerid);
 	}

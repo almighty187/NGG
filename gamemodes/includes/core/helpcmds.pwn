@@ -1530,7 +1530,7 @@ CMD:help(playerid, params[])
 	SendClientMessageEx(playerid, COLOR_WHITE,"*** GENERAL *** /pay /writecheck /charity /time /buy /(check)id /music /showlicenses /mywarrants");
 	SendClientMessageEx(playerid, COLOR_WHITE,"*** GENERAL *** /apply /skills /stopani /kill /buyclothes /droplicense /calculate /refuel /car /seatbelt /checkbelt /defendtime");
 	SendClientMessageEx(playerid, COLOR_WHITE,"*** GENERAL *** /cancel /accept /eject /contract /service /gangs /joinevent /nextpaycheck /nextgift /pointtime");
-	SendClientMessageEx(playerid, COLOR_WHITE,"*** GENERAL *** /speedo /speedopos /viewmotd /nextnamechange");
+	SendClientMessageEx(playerid, COLOR_WHITE,"*** GENERAL *** /nextraid /speedo /speedopos /viewmotd /nextnamechange");
 	SendClientMessageEx(playerid, COLOR_WHITE,"*** SHOP *** /shophelp /credits /sellcredits /microshop /activeitems /cooldowns");
 
 	switch(PlayerInfo[playerid][pJob])
@@ -1682,11 +1682,11 @@ CMD:help(playerid, params[])
 		if (0 <= PlayerInfo[playerid][pLeader] < MAX_GROUPS)
 		{
 			SendClientMessageEx(playerid, COLOR_LIGHTBLUE, "*** GROUP LEADER *** /invite /uninvite /ouninvite /setdiv /giverank /gmotd /online /setbadge /setdivname /dvadjust");
-			SendClientMessageEx(playerid, COLOR_LIGHTBLUE, "*** GROUP LEADER *** /viewbudget /dvpark /dvrespawn");
+			SendClientMessageEx(playerid, COLOR_LIGHTBLUE, "*** GROUP LEADER *** /dvpark /dvrespawn");
 			if(arrGroupData[iGroupID][g_iGroupType] == GROUP_TYPE_LEA || arrGroupData[iGroupID][g_iGroupType] == GROUP_TYPE_MEDIC || arrGroupData[iGroupID][g_iGroupType] == GROUP_TYPE_JUDICIAL || arrGroupData[iGroupID][g_iGroupType] == GROUP_TYPE_TAXI || arrGroupData[iGroupID][g_iGroupType] == GROUP_TYPE_GOV || arrGroupData[iGroupID][g_iGroupType] == GROUP_TYPE_NEWS || arrGroupData[iGroupID][g_iGroupType] == GROUP_TYPE_TOWING)
 			{
 			    SendClientMessageEx(playerid, COLOR_LIGHTBLUE, "*** GROUP LEADER *** /viewbudget /grepocars /gvbuyback /gdonate /ordercrates /dvtrackcar /gwithdraw /dvstorage");
-			    SendClientMessageEx(playerid, COLOR_LIGHTBLUE, "*** GROUP LEADER *** /clearbugs /listbugs /gwithdraw");
+			    SendClientMessageEx(playerid, COLOR_LIGHTBLUE, "*** GROUP LEADER *** /clearbugs /listbugs");
 			}
 			else if(arrGroupData[iGroupID][g_iGroupType] == GROUP_TYPE_GOV)
 			{

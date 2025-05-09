@@ -1166,17 +1166,36 @@ CMD:clearall(playerid, params[])
     return 1;
 }
 
-CMD:savechars(playerid, params[])
+CMD:savedata(playerid, params[])
 {
-    if (PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1) {
+    if (PlayerInfo[playerid][pAdmin] >= 1337) {
         SaveEventPoints();
-        //mysql_SaveCrates();
-        SendClientMessageEx(playerid, COLOR_YELLOW, "All Crates Saved successfully.");
         SaveAllAccountsUpdate();
 		//g_mysql_DumpAccounts();
         SendClientMessageEx(playerid, COLOR_YELLOW, "Update Process Started - Wait for Account Saving Finish Confirmation.");
         SaveHouses();
         SendClientMessageEx(playerid, COLOR_YELLOW, "House saving process started.");
+		SaveDynamicDoors();
+		SaveGarages();
+		SaveDynamicMapIcons();
+		SaveGates();
+		SavePaintballArenas();
+		Misc_Save();
+		SaveElevatorStuff();
+		SaveMailboxes();
+		SaveSpeedCameras();
+		for (new i=0; i<MAX_POINTS; i++)
+		{
+			SavePoint(i);	
+		}
+		if(rflstatus > 0) {
+			ABroadCast(COLOR_YELLOW, "{AA3333}Maintenance{FFFF00}: Force Saving RFL Teams...", 1);
+			SaveRelayForLifeTeams();
+		}
+		g_mysql_SavePrices();
+		SaveTurfWars();
+		g_mysql_SaveMOTD();
+
     }
     else {
         SendClientMessageEx(playerid, COLOR_GREY, "You are not authorized to use that command.");
@@ -4150,7 +4169,7 @@ CMD:setstat(playerid, params[])
 			SendClientMessageEx(playerid, COLOR_GRAD2, "|24 Fishing |25 Job |26 Rank |27 Packages |28 Crates |29 Smuggler |30 Insurance |31 Warnings |32 Screwdriver");
 			SendClientMessageEx(playerid, COLOR_GRAD1, "|33 Age |34 Gender |35 NMute |36 AdMute |37 Faction |38 Restricted Weapon Time |39 Gang Warns |40 RMute |41 Reward Hours");
 			SendClientMessageEx(playerid, COLOR_GRAD1, "|42 Playing Hours |43 Gold Box Tokens |44 Computer Drawings |45 Papers |46 Business |47 BusinessRank | 48 Spraycan");
-			SendClientMessageEx(playerid, COLOR_GRAD1, "|49 Heroin |50 RawOpium |51 Syringes |52 Hunger |53 Fitness |54 Event Tokens |55 Modkit");
+			SendClientMessageEx(playerid, COLOR_GRAD1, "|49 Heroin |50 RawOpium |51 Syringes |52 Job2 |53 Job3 |54 Event Tokens |55 Modkit");
 			SendClientMessageEx(playerid, COLOR_GRAD2, "|56 Car Jack Skill |57 Lock Pick Vehicle Count |58 Lock Pick Vehicle Time |59 Tool Box |60 Crowbar");
 			return 1;
 		}
@@ -4429,12 +4448,14 @@ CMD:setstat(playerid, params[])
 
 				case 52:
 				{
-					return 1;
+					PlayerInfo[giveplayerid][pJob2] = amount;
+					format(string, sizeof(string), "   %s's(%d) second Job has been set to %d.", GetPlayerNameEx(giveplayerid), GetPlayerSQLId(giveplayerid), amount);
 				}
 
 				case 53:
 				{
-					return 1;
+					PlayerInfo[giveplayerid][pJob3] = amount;
+					format(string, sizeof(string), "   %s's(%d) third Job has been set to %d.", GetPlayerNameEx(giveplayerid), GetPlayerSQLId(giveplayerid), amount);
 				}
 
 				case 54:
@@ -5869,7 +5890,7 @@ CMD:ah(playerid, params[])
 		SendClientMessageEx(playerid, COLOR_GRAD2,"--* {00FF00}JUNIOR ADMIN{BFC0C2} --* /kick /ban /prison /freeze /unfreeze /slap /warn /admins /spec /levelones /sendtoid");
 		SendClientMessageEx(playerid, COLOR_GRAD2,"--* {00FF00}JUNIOR ADMIN{BFC0C2} --* /sendto /gotopveh /gotocar /jetpack /god /check /anetstats /ipcheck /ip /nrn /listguns");
 		SendClientMessageEx(playerid, COLOR_GRAD2,"--* {00FF00}JUNIOR ADMIN{BFC0C2} --* /setvw /setint /vehname /gethere /gotoid /hospital /goto /revive /bigears /skick /damagecheck");
-		SendClientMessageEx(playerid, COLOR_GRAD2,"--* {00FF00}JUNIOR ADMIN{BFC0C2} --* /disarm /requestevent /watch /mark(2) /n(un)mute /ad(un)mute /checkinv /disarm /lastshot");
+		SendClientMessageEx(playerid, COLOR_GRAD2,"--* {00FF00}JUNIOR ADMIN{BFC0C2} --* /requestevent /watch /mark(2) /n(un)mute /ad(un)mute /checkinv /disarm /lastshot");
 		SendClientMessageEx(playerid, COLOR_GRAD2,"--* {00FF00}JUNIOR ADMIN{BFC0C2} --* /respawncar /watchlist /watchdogs /flag /viewflag /aflag /aviewflag /transferflag /deleteflag");
 	}
 	if (PlayerInfo[playerid][pAdmin] >= 3)
@@ -5881,7 +5902,7 @@ CMD:ah(playerid, params[])
 	}
 	if (PlayerInfo[playerid][pAdmin] >= 4)
 	{
-		SendClientMessageEx(playerid, COLOR_GRAD4,"--* {EE9A4D}SENIOR ADMIN{D8D8D8} --* /asellbiz /fixvehall /givenos /blowup /setname /savechars /cnn /respawnvipcars");
+		SendClientMessageEx(playerid, COLOR_GRAD4,"--* {EE9A4D}SENIOR ADMIN{D8D8D8} --* /asellbiz /fixvehall /givenos /blowup /setname /cnn /respawnvipcars");
 		SendClientMessageEx(playerid, COLOR_GRAD4,"--* {EE9A4D}SENIOR ADMIN{D8D8D8} --* /veh /fixveh /sethp /setarmor /givegun /givemoney /setmoney /setstat /setfightstyle /switchgroup");
 		SendClientMessageEx(playerid, COLOR_GRAD4,"--* {EE9A4D}SENIOR ADMIN{D8D8D8} --* /adivorce /destroycar /destroycars /eventhelp /contracts /sprison /banip /unbanip");
 		SendClientMessageEx(playerid, COLOR_GRAD4,"--* {EE9A4D}SENIOR ADMIN{D8D8D8} --* /groupban /deletehit /setinsurance /givelicense /adestroyplant /tl(edit/text/status/next)");
@@ -5897,7 +5918,7 @@ CMD:ah(playerid, params[])
 	{
 		SendClientMessageEx(playerid, COLOR_GRAD5,"--* {FF0000}HEAD ADMIN{E3E3E3} --* /ha /setweather /giftall /removemoderator /vipgifts /buddyinvite /rewardplay /setarmorall /dynamicgift");
 		SendClientMessageEx(playerid, COLOR_GRAD5,"--* {FF0000}HEAD ADMIN{E3E3E3} --* /permaban /setcolor /payday /clearallreports /amotd /advisormotd /motd /vipmotd /givetoken /giftgvip /dvrespawnall");
-		SendClientMessageEx(playerid, COLOR_GRAD5,"--* {FF0000}HEAD ADMIN{E3E3E3} --* /vmute /vsuspend /togfireworks /togshopnotices /undercover /makewatchdog /watchlistadd");
+		SendClientMessageEx(playerid, COLOR_GRAD5,"--* {FF0000}HEAD ADMIN{E3E3E3} --* /savedata /vmute /vsuspend /togfireworks /togshopnotices /undercover /makewatchdog /watchlistadd");
 		SendClientMessageEx(playerid, COLOR_GRAD5,"--* {FF0000}HEAD ADMIN{E3E3E3} --* /gifts /rcreset /audiourl /audiostopurl /editgrouptoy  /setsec /suspend /osuspend /ounsuspend");
 		SendClientMessageEx(playerid, COLOR_GRAD5,"--* {FF0000}HEAD ADMIN{E3E3E3} --* /osetrmutes /rmute /clearall /specreset /pausespec /random /vrandom /giftreset /searchvipm /editpoint");
 	}
@@ -5953,7 +5974,7 @@ CMD:ah(playerid, params[])
 	if (PlayerInfo[playerid][pPR] >= 1) SendClientMessageEx(playerid, COLOR_GRAD5, "--* Special - Public Relations --* /advisormotd /makeadvisor /takeadvisor /checkrequestcount");
 	if (PlayerInfo[playerid][pAdmin] < 4 && PlayerInfo[playerid][pASM] >= 1) // If they're not a senior admin and they're ASM level is 1 or higher.
 	{
-		SendClientMessageEx(playerid, COLOR_GRAD5,"--* Special - ASM --* /asellbiz /fixvehall /givenos /blowup /setname /savechars /dmstrikereset /cnn /respawnvipcars");
+		SendClientMessageEx(playerid, COLOR_GRAD5,"--* Special - ASM --* /asellbiz /fixvehall /givenos /blowup /setname /dmstrikereset /cnn /respawnvipcars");
 		SendClientMessageEx(playerid, COLOR_GRAD5,"--* Special - ASM --* /veh /fixveh /sethp /setarmor /givegun /givemoney /setmoney /setstat /setfightstyle /switchgroup /switchfam");
 		SendClientMessageEx(playerid, COLOR_GRAD5,"--* Special - ASM --* /fcreate /fdelete /adivorce /destroycar /destroycars /eventhelp /contracts /sprison /banip /unbanip");
 		SendClientMessageEx(playerid, COLOR_GRAD5,"--* Special - ASM --* /groupban /deletehit /setinsurance /cmotd /givelicense /adestroyplant /tl(edit/text/status/next)");

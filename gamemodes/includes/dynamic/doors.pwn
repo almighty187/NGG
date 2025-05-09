@@ -720,7 +720,7 @@ CMD:ddname(playerid, params[]) {
 
 CMD:ddowner(playerid, params[])
 {
-	if(PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 2 || PlayerInfo[playerid][pShopTech] >= 1)
+	if(PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 2 || PlayerInfo[playerid][pGangModerator] >= 2 || PlayerInfo[playerid][pShopTech] >= 1)
 	{
 		new playername[MAX_PLAYER_NAME], doorid, szName[128];
 		if(sscanf(params, "ds[24]", doorid, playername)) return SendClientMessageEx(playerid, COLOR_WHITE, "USAGE: /ddowner [door] [player name]");

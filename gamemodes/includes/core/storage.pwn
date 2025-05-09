@@ -2917,7 +2917,7 @@ CMD:drop(playerid, params[])
 	{
 		SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /drop [name] [(optional) amount]");
 		SendClientMessageEx(playerid, COLOR_GREY, "Available names: Weapons, Materials, Packages, Radio, Pizza, Syringes, Backpack, Phone");
-		SendClientMessageEx(playerid, COLOR_GREY, "Available names: Pot, Crack, Meth, Ecstasy, Heroin");
+		SendClientMessageEx(playerid, COLOR_GREY, "Available names: Pot, Crack, Meth, Ecstasy, Heroin, Armor");
 		return 1;
 	}
 	else if(strcmp(choice,"backpack",true) == 0)
@@ -3131,6 +3131,21 @@ CMD:drop(playerid, params[])
 		else
 		{
 			SendClientMessageEx(playerid, COLOR_GREY, "You don't have a phone.");
+		}
+	}
+	else if(strcmp(choice,"armor",true) == 0)
+	{
+		if(GetPVarType(playerid, "HasArmor"))
+		{
+			SetPlayerArmour(playerid, 0.0);
+			PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
+			format(string, sizeof(string), "* %s has removed and dropped their armored vest.", GetPlayerNameEx(playerid));
+			ProxDetector(30.0, playerid, string, COLOR_PURPLE, COLOR_PURPLE, COLOR_PURPLE, COLOR_PURPLE, COLOR_PURPLE);
+			DeletePVar(playerid, "HasArmor");
+		}
+		else
+		{
+			SendClientMessageEx(playerid, COLOR_GREY, "You are not wearing any armored vest!");
 		}
 	}
 	else
