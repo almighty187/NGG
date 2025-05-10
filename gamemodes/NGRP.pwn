@@ -15,12 +15,12 @@
 
 				Current Developers:
 								*** Director of SA:MP Development:
-								    Shane
+								    
 
 								**  Development Staff:
-									187
-									Winters
-									Behemoth
+									
+									
+									
 				
 				Past Developers:
 								*** Director of SA:MP Development:
@@ -82,6 +82,7 @@
 
 #pragma disablerecursion
 #include <a_samp>
+#include <mapfix>
 
 /*  ---------------- SCRIPT REVISION ----------------- */
 
@@ -176,6 +177,9 @@ new bool:registrationEnabled = true;
 #include "./includes/business/mailsystem.pwn"
 
 //core includes
+#include "./includes/core/ATMs.pwn"
+#include "./includes/core/Banks.pwn"
+#include "./includes/core/entexit.pwn"
 #include "./includes/core/acceptcancel.pwn"
 #include "./includes/core/advertisements.pwn"
 #include "./includes/core/banking.pwn"
@@ -223,6 +227,10 @@ new bool:registrationEnabled = true;
 #include "./includes/core/vpnwhitelist.pwn"
 //#include "./includes/core/fpslimit.pwn"
 #include "./includes/core/187.pwn"
+#include "./includes/core/phone_new.pwn"
+#include "./includes/core/payphones.pwn"
+#include "./includes/core/Player_Interact.pwn"
+#include "./includes/core/minigame.pwn"
 
 //dynamic core includes
 #include "./includes/dynamic/doors.pwn"
@@ -254,6 +262,7 @@ new bool:registrationEnabled = true;
 #include "./includes/vehsystem/groupvehs.pwn"
 #include "./includes/vehsystem/playervehs.pwn"
 #include "./includes/vehsystem/cratevehicles.pwn"
+#include "./includes/vehsystem/vehauto.pwn"
 
 //event kernels includes
 #include "./includes/events/event.pwn"
@@ -296,7 +305,8 @@ new bool:registrationEnabled = true;
 #include "./includes/group/callsign.pwn"
 #include "./includes/group/groupweapons.pwn"
 #include "./includes/group/bounds.pwn"
-
+#include "./includes/group/rivalry.pwn"
+#include "./includes/group/elections.pwn"
 
 //job system includes
 #include "./includes/jobs/bartender.pwn"
@@ -331,21 +341,9 @@ new bool:registrationEnabled = true;
 #include "./includes/perks/casino.pwn"
 #include "./includes/perks/horsey.pwn"
 
-#include "./includes/core/phone_new.pwn"
-#include "./includes/core/payphones.pwn"
-#include "./includes/group/rivalry.pwn"
-
-#include "./includes/core/ATMs.pwn"
-#include "./includes/core/Banks.pwn"
-#include "./includes/core/entexit.pwn"
-#include "./includes/vehsystem/vehauto.pwn"
 #include "./includes/DBLog.pwn"
-#include "./includes/core/Player_Interact.pwn"
-
-#include "./includes/core/minigame.pwn"
 #include "./includes/furnituretextures.pwn"
 #include "./includes/furniture.pwn"
-#include "./includes/group/elections.pwn"
 
 main(){}
 

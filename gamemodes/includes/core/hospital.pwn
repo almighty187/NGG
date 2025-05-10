@@ -47,8 +47,8 @@ hook OnGameModeInit() {
 	InsurancePoint[0] = CreateDynamicSphere(2383.0728,2662.0520,8001.1479, 2.0); // regular hospital interior
 	InsurancePoint[1] = CreateDynamicSphere(564.54, 1437.02, 6000.47, 2.0); // doc hospital
 
-	CreateDynamic3DTextLabel("Insurance Point\nPress ~k~~CONVERSATION_YES~", COLOR_YELLOW, 2383.0728,2662.0520,8001.1479, 10); // Main Hospital Interior
-	CreateDynamic3DTextLabel("Insurance Point\nPress ~k~~CONVERSATION_YES~", COLOR_YELLOW, 564.54, 1437.02, 6000.47, 10); // Doc Hospital Interior
+	CreateDynamic3DTextLabel("Insurance Point\nPress ~k~~CONVERSATION_YES~", COLOR_TWYELLOW, 2383.0728,2662.0520,8001.1479, 10); // Main Hospital Interior
+	CreateDynamic3DTextLabel("Insurance Point\nPress ~k~~CONVERSATION_YES~", COLOR_TWYELLOW, 564.54, 1437.02, 6000.47, 10); // Doc Hospital Interior
 	CreateDynamicPickup(1240, 23, 2383.0728,2662.0520,8001.1479, -1); // Main hospital interior pickup
 	CreateDynamicPickup(1240, 23, 564.54, 1437.02, 6000.47, -1); // Doc hospital interior pickup
 
