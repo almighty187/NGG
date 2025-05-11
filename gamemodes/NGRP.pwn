@@ -82,7 +82,7 @@
 
 #pragma disablerecursion
 #include <a_samp>
-#include <mapfix>
+//#include <mapfix>
 
 /*  ---------------- SCRIPT REVISION ----------------- */
 
