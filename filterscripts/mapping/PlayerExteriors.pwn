@@ -3278,7 +3278,7 @@ public OnFilterScriptInit()
 	CreateDynamicObject(2822, 1993.09094, -249.54080, 0.97810,   0.00000, 0.00000, -135.00000, .streamdistance = 200);
 	CreateDynamicObject(1223, 2009.70154, -230.76430, -1.42810,   0.00000, 0.00000, 185.00000, .streamdistance = 200);
 
-	/*	new ChrisBaseSS[2];
+	new ChrisBaseSS[2];
 	new ChrisBase = CreateDynamicObject(4585, 2053.97, -275.34, -83.64,   0.00, 0.00, 0.00);
 	SetObjectMaterial(ChrisBase, 1, 13145, "ce_ground04", "rocktbrn128", 0);
 	SetObjectMaterial(ChrisBase, 3, 13145, "ce_ground04", "rocktbrn128", 0);
@@ -3367,8 +3367,6 @@ public OnFilterScriptInit()
 	CreateDynamicObject(8947, 2064.07, -300.57, 19.25,   0.00, 0.00, 224.48, .streamdistance = 200);
 	CreateDynamicObject(10558, 2055.94, -291.74, 17.77,   0.00, 0.00, 314.48, .streamdistance = 150);
 	
- */
-
 	//Josh Whitestone Custom coding exterior 39946
   	CreateDynamicObject(3353, 180.23338, 28.43765, 2.34614,   0.00000, 0.00000, 165.58871, .streamdistance = 200);
 	CreateDynamicObject(11245, 183.78436, 44.20459, 4.43960,   0.00000, -70.00000, 140.00000, .streamdistance = 200);

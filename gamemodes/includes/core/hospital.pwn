@@ -587,21 +587,6 @@ CMD:kill(playerid, params[]) {
 	return 1;
 }
 
-/*
-RemoveVendingMachines(playerid)
-{
-	// Remove 24/7 machines
-	RemoveBuildingForPlayer(playerid, 1302, 0.0, 0.0, 0.0, 6000.0);
-	RemoveBuildingForPlayer(playerid, 1209, 0.0, 0.0, 0.0, 6000.0);
-	RemoveBuildingForPlayer(playerid, 955, 0.0, 0.0, 0.0, 6000.0);
-	RemoveBuildingForPlayer(playerid, 956, 0.0, 0.0, 0.0, 6000.0);
-	RemoveBuildingForPlayer(playerid, 1775, 0.0, 0.0, 0.0, 6000.0);
-	RemoveBuildingForPlayer(playerid, 1776, 0.0, 0.0, 0.0, 6000.0);
-	RemoveBuildingForPlayer(playerid, 1977, 0.0, 0.0, 0.0, 6000.0);
-	return 1;
-}
-*/
-
 hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 
 	if(arrAntiCheat[playerid][ac_iFlags][AC_DIALOGSPOOFING] > 0) return 1;

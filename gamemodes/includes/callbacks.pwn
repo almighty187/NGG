@@ -1210,8 +1210,6 @@ public OnPlayerConnect(playerid)
 		MaxPlayersConnected = Iter_Count(Player);
 		getdate(MPYear,MPMonth,MPDay);
 	}
-
-//	RemoveVendingMachines(playerid);
 	
 	if(gettime() - PlayerInfo[playerid][pQuestLastTime] >= 86400) { 
         SendClientMessageEx(playerid, COLOR_YELLOW2, "A daily quest is available! Use /startquest to begin.");

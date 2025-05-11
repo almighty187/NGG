@@ -1226,7 +1226,7 @@ new gpsState[MAX_PLAYERS] = 0;
 new wwState[MAX_PLAYERS] = 0;
 
 new turfWarsRadar[MAX_PLAYERS] = 0;
-new PointWarsRadar[MAX_PLAYERS] = 0;
+//new PointWarsRadar[MAX_PLAYERS] = 0;
 new turfWarsMiniMap[MAX_PLAYERS] = 0;
 
 // Dynamic Gift Box Stuff
@@ -2770,3 +2770,14 @@ new packetWarpWarnings[MAX_PLAYERS];
 new joinTimestamp[MAX_PLAYERS];
 
 //new ac_bullet[MAX_PLAYERS]=0;
+new 
+	IsBoundsShowingFFC[MAX_PLAYERS],
+	IsBoundsShowingMP1[MAX_PLAYERS],
+	IsBoundsShowingMF1[MAX_PLAYERS],
+	IsBoundsShowingMP2[MAX_PLAYERS],
+	IsBoundsShowingMF2[MAX_PLAYERS],
+	IsBoundsShowingAEC[MAX_PLAYERS],
+	IsBoundsShowingDH[MAX_PLAYERS],
+	IsBoundsShowingCL[MAX_PLAYERS],
+	IsBoundsShowingDF[MAX_PLAYERS],
+	pointboundaries[9];

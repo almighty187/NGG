@@ -47,7 +47,6 @@ hook OnPlayerDisconnect(playerid, reason)
 	PlayerInfo[playerid][pAdmin] = 0;
 }
 
-
 stock IsAdminLevel(playerid, level, warning = 1) {
 
 	if(PlayerInfo[playerid][pAdmin] >= level) return 1;
@@ -3437,6 +3436,22 @@ CMD:serverstats(playerid, params[])
 	format(string, sizeof(string), "* Players connected: %d | Peak person count: %d (%d/%d/%d) | person vehicles loaded: %d | Total vehicles: %i",Iter_Count(Player),MaxPlayersConnected,MPDay,MPMonth,MPYear,PlayerCars, iVehCount);
 	SendClientMessageEx(playerid, COLOR_GREY, string);
 	return 1;
+}
+
+CMD:information(playerid, params[])
+{
+	SendClientMessageEx(playerid, 0x73BAFF00, "_____ Server Information _____");
+	SendClientMessageEx(playerid, COLOR_GREY, "Website: ng-gaming.org") ;
+	SendClientMessageEx(playerid, COLOR_GREY, "Teamspeak: ts.ng-gaming.org");
+	//SendClientMessageEx(playerid, COLOR_GREY, "Donate:");
+	//SendClientMessageEx(playerid, COLOR_GREY, "Facebook:");
+	SendClientMessageEx(playerid, COLOR_GREY, "CP: cp.ng-gaming.org");
+	SendClientMessageEx(playerid, COLOR_GREY, "Discord: discord.gg/ng-rp");
+	return 1;
+}
+
+CMD:info(playerid, params[]) {
+	return cmd_information(playerid, params);
 }
 
 CMD:payday(playerid, params[])
@@ -7321,7 +7336,7 @@ CMD:goldrims(playerid, params[])
 	return 1;
 }
 
-CMD:adminname(playerid, params[])
+/*CMD:adminname(playerid, params[])
 {
 	new query[512], name[MAX_PLAYER_NAME];
 
@@ -7347,4 +7362,4 @@ CMD:adminname(playerid, params[])
 	format(query, sizeof(query), "AdmCmd: %s changed their administrator name to %s.", PlayerInfo[playerid][pUsername], name);
 	ABroadCast(COLOR_LIGHTRED, query, 2);
 	return 1;
-}
+}*/

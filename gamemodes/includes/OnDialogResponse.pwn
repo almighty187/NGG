@@ -4345,7 +4345,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			PlayerInfo[playerid][pAcceptReport]++;
 			ReportCount[playerid]++;
 			ReportHourCount[playerid]++;
-			Reports[reportid][ReplyTimerr] = SetTimerEx("ReplyTimer", 30000, 0, "d", reportid);
+			Reports[reportid][ReplyTimerr] = SetTimerEx("ReplyTimer", 120000, 0, "d", reportid);
 			Reports[reportid][CheckingReport] = playerid;
 			//Reports[reportid][ReportFrom] = INVALID_PLAYER_ID;
 			Reports[reportid][BeingUsed] = 0;

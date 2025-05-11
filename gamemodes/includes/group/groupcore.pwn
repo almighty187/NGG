@@ -3390,42 +3390,78 @@ CMD:listbugs(playerid, params[])
 	return SendClientMessageEx(playerid, COLOR_GRAD2, "You're not authorized to use this command.");
 }
 
-CMD:online(playerid, params[]) {
-	if(PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 1 || PlayerInfo[playerid][pGangModerator] >= 1 || IsACriminal(playerid) || IsACop(playerid) || IsAMedic(playerid) || IsAReporter(playerid) || IsAGovernment(playerid) || IsAJudge(playerid) || IsAnFTSDriver(playerid) || IsATowman(playerid) || IsARacer(playerid))
-	{
-		if(PlayerInfo[playerid][pMember] == INVALID_GROUP_ID) return SendClientMessageEx(playerid, -1, "You are not a member of any group!");
-		szMiscArray[0] = 0;
-		new badge[11];
-		foreach(new i: Player)
-		{
-			if(PlayerInfo[i][pAdmin] >= 2 && PlayerInfo[i][pTogReports] == 0) goto end;
-			if(strcmp(PlayerInfo[i][pBadge], "None", true) != 0) format(badge, sizeof(badge), "[%s] ", PlayerInfo[i][pBadge]);
-			else format(badge, sizeof(badge), "");
-			if(IsAnFTSDriver(playerid) && IsAnFTSDriver(i)) switch(TransportDuty[i]) {
-				case 1: format(szMiscArray, sizeof(szMiscArray), "%s\n* %s%s (on duty), %i calls accepted", szMiscArray, badge, GetPlayerNameEx(i), PlayerInfo[i][pCallsAccepted]);
-				default: format(szMiscArray, sizeof(szMiscArray), "%s\n* %s%s (off duty), %i calls accepted", szMiscArray, badge, GetPlayerNameEx(i), PlayerInfo[i][pCallsAccepted]);
-			}
-			else if(IsAMedic(playerid) && IsAMedic(i) && (arrGroupData[PlayerInfo[playerid][pMember]][g_iAllegiance] == arrGroupData[PlayerInfo[i][pMember]][g_iAllegiance])) switch(PlayerInfo[i][pDuty]) {
-				case 1: format(szMiscArray, sizeof(szMiscArray), "%s\n* %s%s (on duty), %i calls accepted, %i patients delivered.", szMiscArray, badge, GetPlayerNameEx(i), PlayerInfo[i][pCallsAccepted], PlayerInfo[i][pPatientsDelivered]);
-				default: format(szMiscArray, sizeof(szMiscArray), "%s\n* %s%s (off duty), %i calls accepted, %i patients delivered.", szMiscArray, badge, GetPlayerNameEx(i), PlayerInfo[i][pCallsAccepted], PlayerInfo[i][pPatientsDelivered]);
-			}
-			else if(IsACriminal(playerid) && PlayerInfo[i][pMember] == PlayerInfo[playerid][pMember]) {
-				format(szMiscArray, sizeof(szMiscArray), "* %s | Rank: %s (%d) | Division: %s", GetPlayerNameEx(i), arrGroupRanks[PlayerInfo[i][pMember]][PlayerInfo[i][pRank]], PlayerInfo[i][pRank], PlayerInfo[i][pDivision] != INVALID_DIVISION ? arrGroupDivisions[PlayerInfo[i][pMember]][PlayerInfo[i][pDivision]] : ("N/A"));
-				SendClientMessageEx(playerid, -1, szMiscArray);
-			}
-			else if(PlayerInfo[i][pMember] == PlayerInfo[playerid][pMember]) switch(PlayerInfo[i][pDuty]) {
-				case 1: format(szMiscArray, sizeof(szMiscArray), "%s\n* %s%s (on duty)", szMiscArray, badge, GetPlayerNameEx(i));
-				default: format(szMiscArray, sizeof(szMiscArray), "%s\n* %s%s (off duty)", szMiscArray, badge, GetPlayerNameEx(i));
-			}
-			end:
-		}
-		if(!isnull(szMiscArray)) {
-			if(!IsACriminal(playerid)) strdel(szMiscArray, 0, 1), ShowPlayerDialogEx(playerid, 0, DIALOG_STYLE_LIST, "Online Members", szMiscArray, "Select", "Cancel");
-		}
-		else SendClientMessageEx(playerid, COLOR_GREY, "No members are online at this time.");
-	}
-	else SendClientMessageEx(playerid, COLOR_GREY, "Only group members may use this command.");
-	return 1;
+CMD:online(playerid, params[])
+{
+    if(PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 1 || PlayerInfo[playerid][pGangModerator] >= 1 || IsACriminal(playerid) || IsACop(playerid) || IsAMedic(playerid) || IsAReporter(playerid) || IsAGovernment(playerid) || IsAJudge(playerid) || IsAnFTSDriver(playerid) || IsATowman(playerid) || IsARacer(playerid))
+    {
+        if(PlayerInfo[playerid][pMember] == INVALID_GROUP_ID)
+            return SendClientMessageEx(playerid, -1, "You are not a member of any group!");
+
+        szMiscArray[0] = 0;
+        new rank[32], division[32], badge[11];
+
+        foreach(new i: Player)
+        {
+            if(PlayerInfo[i][pAdmin] >= 2 && PlayerInfo[i][pTogReports] == 0) goto end;
+
+            // Badge formatting
+            if(strcmp(PlayerInfo[i][pBadge], "None", true) != 0)
+                format(badge, sizeof(badge), "[%s] ", PlayerInfo[i][pBadge]);
+            else
+                format(badge, sizeof(badge), "");
+
+            // Assign rank and division for non-criminal group members
+            if(PlayerInfo[i][pMember] != INVALID_GROUP_ID)
+            {
+                format(rank, sizeof(rank), arrGroupRanks[PlayerInfo[i][pMember]][PlayerInfo[i][pRank]]);
+                if(PlayerInfo[i][pDivision] != INVALID_DIVISION)
+                    format(division, sizeof(division), arrGroupDivisions[PlayerInfo[i][pMember]][PlayerInfo[i][pDivision]]);
+                else
+                    format(division, sizeof(division), "N/A");
+            }
+
+            // FTS Driver logic
+            if(IsAnFTSDriver(playerid) && IsAnFTSDriver(i))
+            {
+                format(szMiscArray, sizeof(szMiscArray), "%s\n* %s%s | Rank: %s | Division: %s | %s duty | Calls Accepted: %d", szMiscArray, badge, GetPlayerNameEx(i), rank, division, TransportDuty[i] ? "On" : "Off", PlayerInfo[i][pCallsAccepted]);
+            }
+            // Medic logic with allegiance match
+            else if(IsAMedic(playerid) && IsAMedic(i) && (arrGroupData[PlayerInfo[playerid][pMember]][g_iAllegiance] == arrGroupData[PlayerInfo[i][pMember]][g_iAllegiance]))
+            {
+                format(szMiscArray, sizeof(szMiscArray), "%s\n* %s%s | Rank: %s | Division: %s | %s duty | Calls: %d | Patients: %d", szMiscArray, badge, GetPlayerNameEx(i), rank, division, PlayerInfo[i][pDuty] ? "On" : "Off", PlayerInfo[i][pCallsAccepted], PlayerInfo[i][pPatientsDelivered]);
+            }
+            // Criminals see a different format
+            else if(IsACriminal(playerid) && PlayerInfo[i][pMember] == PlayerInfo[playerid][pMember])
+            {
+                format(szMiscArray, sizeof(szMiscArray), "* %s | Rank: %s (%d) | Division: %s", GetPlayerNameEx(i), arrGroupRanks[PlayerInfo[i][pMember]][PlayerInfo[i][pRank]], PlayerInfo[i][pRank], PlayerInfo[i][pDivision] != INVALID_DIVISION ? arrGroupDivisions[PlayerInfo[i][pMember]][PlayerInfo[i][pDivision]] : ("N/A"));
+                SendClientMessageEx(playerid, -1, szMiscArray);
+            }
+            // Generic display for other group types
+            else if(PlayerInfo[i][pMember] == PlayerInfo[playerid][pMember])
+            {
+                format(szMiscArray, sizeof(szMiscArray), "%s\n* %s%s | Rank: %s | Division: %s | %s duty", szMiscArray, badge, GetPlayerNameEx(i), rank, division, PlayerInfo[i][pDuty] ? "On" : "Off");
+            }
+
+            end:
+        }
+
+        if(!isnull(szMiscArray))
+        {
+            if(!IsACriminal(playerid))
+            {
+                // Remove leading newline
+                strdel(szMiscArray, 0, 1);
+                ShowPlayerDialogEx(playerid, 0, DIALOG_STYLE_LIST, "Online Members", szMiscArray, "Select", "Cancel");
+            }
+        }
+        else SendClientMessageEx(playerid, COLOR_GREY, "No members are online at this time.");
+    }
+    else SendClientMessageEx(playerid, COLOR_GREY, "Only group members may use this command.");
+    return 1;
+}
+
+CMD:members(playerid, params[]) {
+	return cmd_online(playerid, params);
 }
 
 /*CMD:online(playerid, params[]) {
@@ -5836,6 +5872,30 @@ public HitmanTrace(playerid, iTargetID) {
 	return 1;
 }
 
+CMD:div(playerid, params[])
+{
+   	new iGroupID = PlayerInfo[playerid][pMember],
+		iRank = PlayerInfo[playerid][pRank];
+
+    if(PlayerTied[playerid] != 0 || PlayerCuffed[playerid] != 0 || PlayerInfo[playerid][pJailTime] > 0) return SendClientMessageEx(playerid, COLOR_GRAD2, "You cannot do this at this time.");
+	//if(PlayerInfo[playerid][pJailTime] && strfind(PlayerInfo[playerid][pPrisonReason], "[OOC]", true) != -1) return SendClientMessageEx(playerid, COLOR_GREY, "OOC prisoners are restricted to only speak in /b");
+	if(isnull(params)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /div [division chat]");
+	if(iGroupID == INVALID_GROUP_ID) return SendClientMessageEx(playerid, COLOR_GRAD2, "You're not a part of a group!");
+	if(PlayerInfo[playerid][pDivision] == INVALID_DIVISION) return SendClientMessageEx(playerid, COLOR_GREY, "You're not a part of any divisions in your group.");
+    
+    new string[128];
+	format(string, sizeof(string), "** [%s] (%d) %s %s: %s **", arrGroupDivisions[iGroupID][PlayerInfo[playerid][pDivision]], iRank, PlayerInfo[playerid][pRank], GetPlayerNameEx(playerid), params);
+	
+	foreach(new i : Player)
+	{
+	    if(PlayerInfo[i][pMember] == iGroupID && PlayerInfo[i][pDivision] == PlayerInfo[playerid][pDivision])
+	    {
+            SendClientMessageEx(i, COLOR_YELLOW, string);
+		}
+	}
+	return 1;
+}
+
 CMD:f(playerid, params[])
 {
 
@@ -6675,13 +6735,29 @@ CMD:lockerbalance(playerid, params[])
 	return 1;
 }
 
-CMD:turnout(playerid, params[])
+/*CMD:turnout(playerid, params[])
 {
 	if(!IsACop(playerid) && !IsAMedic(playerid)) return SendClientMessageEx(playerid, COLOR_GRAD2, "You're not a Law Enforcement Officer/Medic.");
 	new closestCar = GetClosestCar(playerid, .fRange = 8.0);
 	if(closestCar == INVALID_VEHICLE_ID) return SendClientMessageEx(playerid, COLOR_GRAD2, "You are not near any vehicle!");
 	if(!IsACopCar(closestCar) && !IsAnAmbulance(closestCar)) return SendClientMessageEx(playerid, COLOR_GRAD2, "You are not near a group vehicle!");
     return ShowPlayerDialogEx(playerid, DIALOG_GROUP_TURNOUT, DIALOG_STYLE_LIST, "Turnout", IsFirstAid(playerid) ? ("SWAT\nLS Fire\nSF Fire\nLV Fire\nOriginal Clothes"):("SWAT\nOriginal Clothes"), "Select", "Cancel");
+}*/
+
+CMD:turnout(playerid, params[])
+{
+	if(!IsACop(playerid) && !IsAMedic(playerid)) return SendClientMessageEx(playerid, COLOR_GRAD2, "You're not a Law Enforcement Officer/Medic.");
+	new closestCar = GetClosestCar(playerid, .fRange = 8.0);
+	if(closestCar == INVALID_VEHICLE_ID) return SendClientMessageEx(playerid, COLOR_GRAD2, "You are not near any vehicle!");
+	if(!IsACopCar(closestCar) && !IsAnAmbulance(closestCar)) return SendClientMessageEx(playerid, COLOR_GRAD2, "You are not near a group vehicle!");
+	if(IsAMedic(playerid))
+	{
+		return ShowPlayerDialogEx(playerid, DIALOG_GROUP_TURNOUT, DIALOG_STYLE_LIST, "Turnout", "LS Fire\nSF Fire\nLV Fire\nOriginal Clothes", "Select", "Cancel");
+	}
+	else // leo
+	{
+		return ShowPlayerDialogEx(playerid, DIALOG_GROUP_TURNOUT, DIALOG_STYLE_LIST, "Turnout", "SWAT\nOriginal Clothes", "Select", "Cancel");
+	}
 }
 
 MemberCount(groupID)

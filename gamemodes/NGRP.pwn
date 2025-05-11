@@ -87,7 +87,7 @@
 /*  ---------------- SCRIPT REVISION ----------------- */
 
 // Do not forget to change this everytime you commit - it's mandatory!
-#define SERVER_GM_TEXT "NG:RP v3.0.502"
+#define SERVER_GM_TEXT "NG:RP v3.0.503"
 
 //#define AREA_DEBUG
 //#define TEXTLABEL_DEBUG
@@ -131,7 +131,7 @@ new bool:registrationEnabled = true;
 #include "./includes/streamer.pwn"
 #include "./includes/OnDialogResponse.pwn"
 #include "./includes/discord.pwn"
-#include "./includes/walkstyle.pwn"
+#include "./includes/DBLog.pwn"
 
 #if defined AREA_DEBUG
 #include "./includes/areadebug.pwn"
@@ -231,6 +231,10 @@ new bool:registrationEnabled = true;
 #include "./includes/core/payphones.pwn"
 #include "./includes/core/Player_Interact.pwn"
 #include "./includes/core/minigame.pwn"
+#include "./includes/core/drugcore.pwn"
+#include "./includes/core/furnituretextures.pwn"
+#include "./includes/core/furniture.pwn"
+#include "./includes/core/walkstyle.pwn"
 
 //dynamic core includes
 #include "./includes/dynamic/doors.pwn"
@@ -290,7 +294,7 @@ new bool:registrationEnabled = true;
 #include "./includes/group/lea.pwn"
 #include "./includes/group/medic.pwn"
 #include "./includes/group/news.pwn"
-#include "./includes/prison_system.pwn"
+#include "./includes/group/prison_system.pwn"
 #include "./includes/group/taxi.pwn"
 #include "./includes/group/towing.pwn"
 #include "./includes/group/turfs.pwn"
@@ -315,8 +319,8 @@ new bool:registrationEnabled = true;
 #include "./includes/jobs/craftsman.pwn"
 #include "./includes/jobs/detective.pwn"
 #include "./includes/jobs/drugs.pwn"
-#include "./includes/garbagesystem.pwn"
-#include "./includes/fishingsystem.pwn"
+#include "./includes/jobs/garbagesystem.pwn"
+#include "./includes/jobs/fishingsystem.pwn"
 #include "./includes/jobs/jobcore.pwn"
 #include "./includes/jobs/dynjobcore.pwn"
 #include "./includes/jobs/lawyer.pwn"
@@ -326,7 +330,6 @@ new bool:registrationEnabled = true;
 #include "./includes/jobs/treasure.pwn"
 #include "./includes/jobs/whore.pwn"
 #include "./includes/jobs/armsdealer.pwn"
-#include "./includes/core/drugcore.pwn"
 
 //perk system includes
 #include "./includes/perks/boombox.pwn"
@@ -340,10 +343,6 @@ new bool:registrationEnabled = true;
 #include "./includes/perks/vipcore.pwn"
 #include "./includes/perks/casino.pwn"
 #include "./includes/perks/horsey.pwn"
-
-#include "./includes/DBLog.pwn"
-#include "./includes/furnituretextures.pwn"
-#include "./includes/furniture.pwn"
 
 main(){}
 
