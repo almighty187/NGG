@@ -81,6 +81,15 @@ stock CuffTacklee(playerid, giveplayerid)
 {
 	new string[128], Float: health, Float: armor;
     ClearTackle(giveplayerid);
+    if(PlayerInfo[giveplayerid][pDuffel] > 0)
+		{
+			PlayerInfo[giveplayerid][pDuffel] = 0;
+			RemovePlayerAttachedObject(playerid, 9);
+			new str[128];
+			format(str, sizeof(str), "* %s drops their duffel bag on the ground.", GetPlayerNameEx(giveplayerid));
+			ProxDetector(4.0, giveplayerid, str, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
+			SendClientMessageEx(giveplayerid, COLOR_RED, "You have dropped the duffel bag full of cash.");
+		}
 	format(string, sizeof(string), "* You have been handcuffed by %s.", GetPlayerNameEx(playerid));
 	SendClientMessageEx(giveplayerid, COLOR_LIGHTBLUE, string);
 	format(string, sizeof(string), "* You handcuffed %s, till uncuff.", GetPlayerNameEx(giveplayerid));
@@ -1903,6 +1912,15 @@ CMD:cuff(playerid, params[])
 				if(PlayerCuffed[giveplayerid] == 1 || GetPlayerSpecialAction(giveplayerid) == SPECIAL_ACTION_HANDSUP || GetPVarInt(giveplayerid, "pBagged") >= 1)
 				{
 					if(PlayerInfo[giveplayerid][pConnectHours] < 32) SendClientMessageEx(giveplayerid, COLOR_WHITE, "If you logout now you will automatically be prisoned for 2+ hours!");
+					if(PlayerInfo[giveplayerid][pDuffel] > 0)
+						{
+							PlayerInfo[giveplayerid][pDuffel] = 0;
+							RemovePlayerAttachedObject(playerid, 9);
+							new str[128];
+							format(str, sizeof(str), "* %s drops their duffel bag on the ground.", GetPlayerNameEx(giveplayerid));
+							ProxDetector(4.0, giveplayerid, str, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
+							SendClientMessageEx(giveplayerid, COLOR_RED, "You have dropped the duffel bag full of cash.");
+						}
 					format(string, sizeof(string), "* You have been handcuffed by %s.", GetPlayerNameEx(playerid));
 					SendClientMessageEx(giveplayerid, COLOR_LIGHTBLUE, string);
 					format(string, sizeof(string), "* You handcuffed %s, till uncuff.", GetPlayerNameEx(giveplayerid));

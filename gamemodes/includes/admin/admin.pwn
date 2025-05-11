@@ -7327,3 +7327,47 @@ CMD:adminname(playerid, params[])
 	ABroadCast(COLOR_LIGHTRED, query, 2);
 	return 1;
 }
+
+CMD:setrims(playerid, params[])
+{
+	if(PlayerInfo[playerid][pAdmin] >= 4)
+	{
+		new rimtype[32],string[256];
+		if(sscanf(params, "s[32]", rimtype))
+		{
+			SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /setrims [name]");
+			SendClientMessageEx(playerid, COLOR_GRAD2, " Rim Types: cutterrims (cr) || goldrims (gr)");
+			return 1;
+		}
+		else if(strcmp(rimtype,"gr",true) == 0 || strcmp(rimtype,"goldrims",true) == 0)
+		{
+			if(IsPlayerInAnyVehicle(playerid)) {
+	            AddVehicleComponent(GetPlayerVehicleID(playerid), 1080);
+	            SendClientMessageEx(playerid, COLOR_GREY, "   Gold Rims Added to Vehicle!");
+	            format(string, sizeof(string), "{AA3333}AdmWarning{FFFF00}: %s has set gold rims on vehicle ID: %d.", GetPlayerNameEx(playerid),GetPlayerVehicleID(playerid));
+				ABroadCast(COLOR_YELLOW, string, 3);
+	            format(string, sizeof(string), "(SET RIMS) %s (IP:%s) has set gold rims on vehicle ID: %d", GetPlayerNameEx(playerid),GetPlayerIpEx(playerid), GetPlayerVehicleID(playerid));
+				Log("logs/admin.log", string);
+        	}
+			else SendClientMessageEx(playerid, COLOR_GREY,"   You are not in a vehicle!");
+		}
+		else if(strcmp(rimtype,"cr",true) == 0 || strcmp(rimtype,"cutterrims",true) == 0)
+		{
+			if(IsPlayerInAnyVehicle(playerid)) {
+            	AddVehicleComponent(GetPlayerVehicleID(playerid), 1079);
+            	SendClientMessageEx(playerid, COLOR_GREY, "   Cutter Rims Added to Vehicle!");
+            	format(string, sizeof(string), "{AA3333}AdmWarning{FFFF00}: %s has set cutter rims on vehicle ID: %d.", GetPlayerNameEx(playerid),GetPlayerVehicleID(playerid));
+				ABroadCast(COLOR_YELLOW, string, 3);
+            	format(string, sizeof(string), "(SET RIMS) %s (IP:%s) has set cutter rims on vehicle ID: %d", GetPlayerNameEx(playerid),GetPlayerIpEx(playerid), GetPlayerVehicleID(playerid));
+				Log("logs/admin.log", string);
+        	}
+        	else SendClientMessageEx(playerid, COLOR_GREY,"   You are not in a vehicle!");
+		}
+	}
+	else
+	{
+		SendClientMessageEx(playerid, COLOR_GREY,"   You must be a senior admin or above to use this command.");
+		return 1;
+	}
+	return 1;
+}

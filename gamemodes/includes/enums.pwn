@@ -1303,7 +1303,9 @@ enum pInfo
 	pHorse,
 	pCountdown,
 	pLastGlobal,
-	pShowTurfs
+	pShowTurfs,
+	pDuffel,
+	pMask
 
 };
 

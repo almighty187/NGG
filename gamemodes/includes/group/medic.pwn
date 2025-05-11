@@ -144,6 +144,15 @@ public SendEMSQueue(playerid,type)
 			{
 			    firstaidexpire(playerid);
 			}
+			if(PlayerInfo[playerid][pDuffel] > 0)
+			{
+				PlayerInfo[playerid][pDuffel] = 0;
+				RemovePlayerAttachedObject(playerid, 9);
+				new str[128];
+				format(str, sizeof(str), "* %s drops their duffel bag on the ground.", GetPlayerNameEx(playerid));
+				ProxDetector(4.0, playerid, str, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
+				SendClientMessageEx(playerid, COLOR_RED, "You have dropped the duffel bag full of cash.");
+			}
 			SetPVarInt(playerid,"MedicCall",1);
 		}
 		case 2:
