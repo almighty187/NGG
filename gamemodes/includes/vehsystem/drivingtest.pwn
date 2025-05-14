@@ -137,7 +137,7 @@ DrivingSchoolSpeedMeter(playerid, Float:speed)
 	if(speed > (maxspeed + 5) && GetPVarInt(playerid, "pDTest") != 2) {
 		format(szMiscArray, sizeof(szMiscArray), "You have exceeded the max speed limit of %d MPH.", maxspeed);
 		SendClientMessageEx(playerid, COLOR_GREY, szMiscArray);
-		SetPlayerCheckpoint(playerid, 2059.1096,-1909.2521,13.2362, 4.0);
+		SetPlayerCheckpoint(playerid, 1802.5708, -1891.2285, 13.4059, 4.0);
 		SetPVarInt(playerid, "pDTest", 2);
 	}
 	return 1;
@@ -325,7 +325,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				{
 					SetPlayerVirtualWorld(playerid, 0);
 					SetPlayerInterior(playerid, 0);
-					SetPVarInt(playerid, "PTestVeh", CreateVehicle(404, 2066.5676, -1913.5797, 13.2139, 270.8088, 3, 3, -1));
+					SetPVarInt(playerid, "PTestVeh", CreateVehicle(404, 1802.9083, -1930.9276, 13.3872, 360.0000, 3, 3, -1));
 					new pTestVeh = GetPVarInt(playerid, "PTestVeh");
 					PutPlayerInVehicle(playerid, pTestVeh, 0);
 					SendClientMessageEx(playerid, COLOR_WHITE, "Driving Instructor: Please make sure you go a max of 50mph in the residential areas. You may now begin.");

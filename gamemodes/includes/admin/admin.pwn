@@ -6828,44 +6828,69 @@ CMD:resetpgifts(playerid, params[])
 	return 1;
 }
 
+forward CheckDeleteAccountAdminLevel(playerid, username[]);
+public CheckDeleteAccountAdminLevel(playerid, username[])
+{
+    new rows = cache_num_rows();
+    if(rows == 0)
+    {
+        SendClientMessageEx(playerid, COLOR_LIGHTRED, "Account not found in the database.");
+        return;
+    }
+
+    new adminLevel;
+    cache_get_value_name_int(0, "AdminLevel", adminLevel);
+
+    if(adminLevel > PlayerInfo[playerid][pAdmin])
+    {
+        SendClientMessageEx(playerid, COLOR_LIGHTRED, "You are not allowed to delete an account with higher admin level.");
+        return;
+    }
+
+    new query[128];
+    mysql_format(MainPipeline, query, sizeof(query), "DELETE FROM `accounts` WHERE `Username`='%s'", username);
+    mysql_tquery(MainPipeline, query, "OnDeletePlayer", "i", playerid);
+
+    SetPVarString(playerid, "OnDeletePlayer", username); // Optional depending on your OnDeletePlayer logic
+
+    new string[128];
+    format(string, sizeof(string), "Attempting to delete %s's account...", username);
+    SendClientMessageEx(playerid, COLOR_YELLOW, string);
+}
+
 CMD:deleteaccount(playerid, params[])
 {
-	if(PlayerInfo[playerid][pAdmin] < 99999)
-	{
-		SendClientMessageEx(playerid, COLOR_GRAD1, "You are not authorized to use that command.");
-		return 1;
-	}
+    if(PlayerInfo[playerid][pAdmin] < 99999)
+    {
+        SendClientMessageEx(playerid, COLOR_GRAD1, "You are not authorized to use that command.");
+        return 1;
+    }
 
-	new string[128], playername[MAX_PLAYER_NAME];
-	if(sscanf(params, "s[24]", playername)) return SendClientMessageEx(playerid, COLOR_WHITE, "USAGE: /deleteaccount [player name]");
+    new string[128], playername[MAX_PLAYER_NAME];
+    if(sscanf(params, "s[24]", playername)) return SendClientMessageEx(playerid, COLOR_WHITE, "USAGE: /deleteaccount [player name]");
 
     new giveplayerid = ReturnUser(playername);
-	if(IsPlayerConnected(giveplayerid))
-	{
-		if(PlayerInfo[giveplayerid][pAdmin] > PlayerInfo[playerid][pAdmin])
-		{
-			format(string, sizeof(string), "AdmCmd: %s has been auto-banned, reason: Trying to /deleteaccount a higher admin.", GetPlayerNameEx(playerid));
-			ABroadCast(COLOR_YELLOW,string,2);
-			PlayerInfo[playerid][pBanned] = 1;
-            new ip[32];
-			GetPlayerIp(giveplayerid,ip,sizeof(ip));
-			Kick(giveplayerid);
-		}
-	}
-	else
-	{
-		new query[128], tmpName[24];
+    if(giveplayerid != INVALID_PLAYER_ID && IsPlayerConnected(giveplayerid))
+    {
+        if(PlayerInfo[giveplayerid][pAdmin] > PlayerInfo[playerid][pAdmin])
+        {
+            format(string, sizeof(string), "AdmCmd: %s has been auto-banned, reason: Trying to /deleteaccount a higher admin.", GetPlayerNameEx(playerid));
+            ABroadCast(COLOR_YELLOW, string, 2);
+            PlayerInfo[playerid][pBanned] = 1;
+            Kick(playerid); // Correct person to kick
+            return 1;
+        }
+    }
 
-		mysql_escape_string(playername, tmpName);
-		mysql_format(MainPipeline, query, sizeof(query), "DELETE FROM `accounts` WHERE `Username`='%s'", tmpName);
-		mysql_tquery(MainPipeline, query, "OnDeletePlayer", "i", playerid);
+    // Escaping the name for SQL safety
+    new query[128], tmpName[24];
+    mysql_escape_string(playername, tmpName);
 
-		SetPVarString(playerid, "OnDeletePlayer", tmpName);
+    // Check admin level from the database first
+    mysql_format(MainPipeline, query, sizeof(query), "SELECT `AdminLevel` FROM `accounts` WHERE `Username`='%s' LIMIT 1", tmpName);
+    mysql_tquery(MainPipeline, query, "CheckDeleteAccountAdminLevel", "is", playerid, tmpName);
 
-		format(string,sizeof(string),"Attempting to delete %s's account...", tmpName);
-		SendClientMessageEx(playerid, COLOR_YELLOW, string);
-	}
-	return 1;
+    return 1;
 }
 
 CMD:fws(playerid, params[])
@@ -6935,18 +6960,35 @@ CMD:disarm(playerid, params[])
 
 CMD:disable(playerid, params[])
 {
-	if(PlayerInfo[playerid][pAdmin] >= 1337)
+	if(PlayerInfo[playerid][pAdmin] >= 1337 || PlayerInfo[playerid][pAP] >= 2 || PlayerInfo[playerid][pHR] >= 3 || PlayerInfo[playerid][pSecurity] >= 2)
 	{
 		new string[128], giveplayerid;
 		if(sscanf(params, "u", giveplayerid)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /disable [player]");
 
 		if(IsPlayerConnected(giveplayerid))
 		{
-			format(string, sizeof(string), "AdmCmd: %s(%d) has been disabled by %s.", GetPlayerNameEx(giveplayerid), GetPlayerSQLId(giveplayerid), GetPlayerNameEx(playerid));
+			format(string, sizeof(string), "AdmCmd: %s's(%d) account has been disabled by %s.", GetPlayerNameEx(giveplayerid), GetPlayerSQLId(giveplayerid), GetPlayerNameEx(playerid));
 			Log("logs/admin.log", string);
-			DBLog(playerid, giveplayerid, "Admin", "account suspended");
-			format(string, sizeof(string), "AdmCmd: %s has been disabled by %s.", GetPlayerNameEx(giveplayerid), GetPlayerNameEx(playerid));
+			DBLog(playerid, giveplayerid, "Admin", "account disabled");
+			format(string, sizeof(string), "AdmCmd: %s's account has been disable by %s.", GetPlayerNameEx(giveplayerid), GetPlayerNameEx(playerid));
 			ABroadCast(COLOR_LIGHTRED, string, 2);
+			PlayerInfo[giveplayerid][pAdmin] = 0;
+			PlayerInfo[giveplayerid][pHR] = 0;
+			PlayerInfo[giveplayerid][pAP] = 0;
+			PlayerInfo[giveplayerid][pPR] = 0;
+			PlayerInfo[giveplayerid][pSecurity] = 0;
+			PlayerInfo[giveplayerid][pShopTech] = 0;
+			PlayerInfo[giveplayerid][pFactionModerator] = 0;
+			PlayerInfo[giveplayerid][pGangModerator] = 0;
+			PlayerInfo[giveplayerid][pUndercover] = 0;
+			PlayerInfo[giveplayerid][pBanAppealer] = 0;
+			PlayerInfo[giveplayerid][pLeader] = 0;
+			PlayerInfo[giveplayerid][pMember] = 0;
+			PlayerInfo[giveplayerid][pSecureIP][0] = 0;
+			PlayerInfo[giveplayerid][pSMod] = 0;
+			PlayerInfo[giveplayerid][pDonateRank] = 0;
+			PlayerInfo[giveplayerid][pBanAppealer] = 0;
+			PlayerInfo[giveplayerid][pShopTech] = 0;
 			PlayerInfo[giveplayerid][pDisabled] = 1;
 			Kick(giveplayerid);
 		}
@@ -6958,32 +7000,25 @@ CMD:disable(playerid, params[])
 	return 1;
 }
 
-CMD:undisable(playerid, params[]) {
-    if(PlayerInfo[playerid][pAdmin] >= 1337) {
-        new giveplayerid[MAX_PLAYER_NAME + 1];
-        if(sscanf(params, "s", giveplayerid)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /undisable [player]");
-
-        new szName[MAX_PLAYER_NAME + 1];
-
-        mysql_escape_string(giveplayerid, szName, sizeof(szName));
-        
-        new szQuery[128];
-        mysql_format(MainPipeline, szQuery, sizeof szQuery, "UPDATE `accounts` SET `Disabled` = 0 WHERE `Username` = '%s'", szName);
-        mysql_tquery(MainPipeline, szQuery, "Undisable_QueryFinish", "i", playerid);
-
-        new logMessage[256];
-        format(logMessage, sizeof(logMessage), "AdmCmd: %s has been undisabled by %s.", szName, GetPlayerNameEx(playerid));
-        Log("logs/admin.log", logMessage);
-        format(logMessage, sizeof(logMessage), "AdmCmd: %s has been undisabled by %s.", szName, GetPlayerNameEx(playerid));
-        ABroadCast(COLOR_LIGHTRED, logMessage, 2);
-        
-        PlayerInfo[ReturnUser(giveplayerid)][pDisabled] = 0;
-    } 
-	else 
+CMD:odisable(playerid, params[])
+{
+	if(PlayerInfo[playerid][pAdmin] >= 1337 || PlayerInfo[playerid][pAP] >= 2 || PlayerInfo[playerid][pHR] >= 3 || PlayerInfo[playerid][pSecurity] >= 2)
 	{
-        SendClientMessageEx(playerid, COLOR_GRAD1, "You are not authorized to use that command.");
-    }
-    return 1;
+		new string[128], query[512], tmpName[MAX_PLAYER_NAME];
+		if(isnull(params)) return SendClientMessageEx(playerid, COLOR_WHITE, "USAGE: /odisable [player name]");
+
+		mysql_escape_string(params, tmpName);
+		SetPVarString(playerid, "OnSetSuspended", tmpName);
+
+		mysql_format(MainPipeline, query,sizeof(query),"UPDATE `accounts` SET `Disabled` = 1, `AdminLevel` = 0, `HR` = 0, `AP` = 0, `Security` = 0, `ShopTech` = 0, `FactionModerator` = 0, `GangModerator` = 0, \
+		`Undercover` = 0, `BanAppealer` = 0, `Leader` = 0, `Member` = 0, `SecureIP` = '0.0.0.0', `SeniorModerator` = 0, `BanAppealer` = 0, `ShopTech` = 0 WHERE `Username`= '%s' AND `AdminLevel` < 1338 AND `AdminLevel` > 1", tmpName);
+		mysql_tquery(MainPipeline, query, "OnSetSuspended", "ii", playerid, true);
+
+		format(string, sizeof(string), "Attempting to disable %s's account.", tmpName);
+		SendClientMessageEx(playerid, COLOR_YELLOW, string);
+	}
+	else SendClientMessageEx(playerid, COLOR_GRAD1, "You are not authorized to use that command.");
+	return 1;
 }
 
 CMD:serial(playerid, params[])
