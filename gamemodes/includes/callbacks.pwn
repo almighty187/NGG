@@ -3531,6 +3531,10 @@ public OnPlayerEnterCheckpoint(playerid)
 
 				    SendClientMessageEx(playerid, COLOR_LIGHTBLUE, string);
 				    SetVehicleToRespawn(vehicleid);
+
+					GivePlayerCredits(playerid, 10, 0, 0);
+					format(string, sizeof(string), "* You were given an additional  {FFA500}10 credits{33CCFF} for your delivery.");
+					SendClientMessageEx(playerid, COLOR_LIGHTBLUE, string);
 				}
 				else {
 				    DeletePVar(playerid, "LoadType");
@@ -3541,6 +3545,10 @@ public OnPlayerEnterCheckpoint(playerid)
 					{
 						GivePlayerCash(playerid, payment);
 						format(string, sizeof(string), "* You were paid $%d for delivering the goods and returning the vehicle.", payment);
+						
+						GivePlayerCredits(playerid, 10, 0, 0);
+						format(string, sizeof(string), "* You were given an additional  {FFA500}10 credits{33CCFF} for your delivery.");
+						SendClientMessageEx(playerid, COLOR_LIGHTBLUE, string);
 					}
 					else if(truckdeliver >= 5 && truckdeliver <= 7)
 					{
@@ -3548,6 +3556,10 @@ public OnPlayerEnterCheckpoint(playerid)
 						GivePlayerCash(playerid, payment);
 		    			format(string, sizeof(string), "* You were paid $%d for delivering the goods and returning the vehicle.", payment);
 		    			SendClientMessageEx(playerid, COLOR_LIGHTBLUE, "* You received a 25 percent bonus for the additional risk from the cops.");
+						
+						GivePlayerCredits(playerid, 10, 0, 0);
+						format(string, sizeof(string), "* You were given an additional  {FFA500}10 credits{33CCFF} for your delivery.");
+						SendClientMessageEx(playerid, COLOR_LIGHTBLUE, string);
 
 					}
 				    SendClientMessageEx(playerid, COLOR_LIGHTBLUE, string);
