@@ -514,6 +514,29 @@ CMD:movept(playerid, params[])
 	return 1;
 }
 
+CMD:giveepi(playerid, params[]) {
+	if(IsAMedic(playerid)) {
+		new giveplayerid;
+		new string[128];
+		if(sscanf(params, "u", giveplayerid)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /giveepi [player]");
+		if(IsPlayerConnected(giveplayerid)) {
+			if(GetPVarInt(giveplayerid, "Injured") == 1) {
+				SendClientMessageEx(playerid, COLOR_LIGHTBLUE, "You have given the player a dose of Epinephrine.");
+				format(string, sizeof(string), "You have received a dose of Epinephrine from %s.", GetPlayerNameEx(playerid));
+				SendClientMessageEx(giveplayerid, COLOR_LIGHTBLUE, string);
+				
+				KillEMSQueue(giveplayerid);
+				ClearAnimationsEx(giveplayerid);
+				SetHealth(giveplayerid, 100);
+			}
+		}
+		return 1;
+	}
+
+	return 1;
+
+}
+
 CMD:deliverpt(playerid, params[])
 {
     if(IsAMedic(playerid) || IsFirstAid(playerid))
