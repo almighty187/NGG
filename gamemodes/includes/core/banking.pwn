@@ -254,25 +254,40 @@ PayDay(i) {
 					if(interest > 50000) interest = 50000;
 					format(string, sizeof(string), "  Balance: $%s  |  Interest rate: 0.1 percent (50k max)", number_format(PlayerInfo[i][pAccount]));
 					SendClientMessageEx(i, COLOR_GRAD1, string);
+					GivePlayerCredits(i, 3, 0, 0);
+					format(string, sizeof(string), "  You have received {FFA500}3 credits {B4B5B7}along with your paycheck.");
+					SendClientMessageEx(i, COLOR_GRAD1, string);
 				}
 				case 1: {
 					if(interest > 100000) interest = 100000;
-					format(string, sizeof(string), "  Balance: $%s  |  Interest rate: 0.1 percent {FFFF00}(Bronze VIP: 100k max)", number_format(PlayerInfo[i][pAccount]));
+					format(string, sizeof(string), "  Balance: $%s  |  Interest rate: 0.1 percent {B4B5B7}(Bronze VIP: 100k max)", number_format(PlayerInfo[i][pAccount]));
+					SendClientMessageEx(i, COLOR_GRAD1, string);
+					GivePlayerCredits(i, 6, 0, 0);
+					format(string, sizeof(string), "  You have received {FFA500}5 credits {B4B5B7}along with your paycheck.");
 					SendClientMessageEx(i, COLOR_GRAD1, string);
 				}
 				case 2:	{
 					if(interest > 150000) interest = 150000;
-					format(string, sizeof(string), "  Balance: $%s  |  Interest rate: 0.1 percent {FFFF00}(Silver VIP: 150k max)", number_format(PlayerInfo[i][pAccount]));
+					format(string, sizeof(string), "  Balance: $%s  |  Interest rate: 0.1 percent {B4B5B7}(Silver VIP: 150k max)", number_format(PlayerInfo[i][pAccount]));
+					SendClientMessageEx(i, COLOR_GRAD1, string);
+					GivePlayerCredits(i, 9, 0, 0);
+					format(string, sizeof(string), "  You have received {FFA500}7 credits {B4B5B7}along with your paycheck.");
 					SendClientMessageEx(i, COLOR_GRAD1, string);
 				}
 				case 3: {
 					if(interest > 200000) interest = 200000;
-					format(string, sizeof(string), "  Balance: $%s  |  Interest rate: 0.1 percent {FFFF00}(Gold VIP: 200k max)", number_format(PlayerInfo[i][pAccount]));
+					format(string, sizeof(string), "  Balance: $%s  |  Interest rate: 0.1 percent {B4B5B7}(Gold VIP: 200k max)", number_format(PlayerInfo[i][pAccount]));
+					SendClientMessageEx(i, COLOR_GRAD1, string);
+					GivePlayerCredits(i, 12, 0, 0);
+					format(string, sizeof(string), "  You have received {FFA500}9 credits {B4B5B7}along with your paycheck.");
 					SendClientMessageEx(i, COLOR_GRAD1, string);
 				}
 				case 4, 5: {
 					if(interest > 250000) interest = 250000;
-					format(string, sizeof(string), "  Balance: $%s  |  Interest rate: 0.1 percent {FFFF00}(Platinum VIP: 250k max)", number_format(PlayerInfo[i][pAccount]));
+					format(string, sizeof(string), "  Balance: $%s  |  Interest rate: 0.1 percent {B4B5B7}(Platinum VIP: 250k max)", number_format(PlayerInfo[i][pAccount]));
+					SendClientMessageEx(i, COLOR_GRAD1, string);
+					GivePlayerCredits(i, 15, 0, 0);
+					format(string, sizeof(string), "  You have received {FFA500}15 credits {B4B5B7}along with your paycheck.");
 					SendClientMessageEx(i, COLOR_GRAD1, string);
 				}
 			}
