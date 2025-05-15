@@ -3195,6 +3195,9 @@ public OnPlayerEnterCheckpoint(playerid)
 			if(DynPoints[MatDeliver[playerid]][poType] == 0) { // Materials
 				SendClientMessageEx(playerid, COLOR_WHITE, "* The factory gave you %s materials for your materials packages.", number_format(MatsAmount[playerid]));
 				TransferStorage(playerid, -1, -1, -1, 4, MatsAmount[playerid], -1, 2);
+				GivePlayerCredits(playerid, 1, 0, 0);
+				format(string, sizeof(string), "* You were given an additional  {FFA500}1 credit{33CCFF} for your delivery.");
+				SendClientMessageEx(playerid, COLOR_LIGHTBLUE, string);
 			}
 			if((1 <= DynPoints[MatDeliver[playerid]][poType] < 5)) {
 				SendClientMessageEx(playerid, COLOR_WHITE, "You have delivered the packages and gained %sg of %s", number_format(MatsAmount[playerid]), drugname);
@@ -3376,6 +3379,11 @@ public OnPlayerEnterCheckpoint(playerid)
 		Misc_Save();
 		GivePlayerCash(playerid, floatround((GetPVarInt(playerid, "pizzaTimer") * 70), floatround_round));
 		SendClientMessageEx(playerid, COLOR_WHITE, string);
+
+		GivePlayerCredits(playerid, 3, 0, 0);
+		format(string, sizeof(string), "* You were given an additional  {FFA500}3 credits{33CCFF} for your delivery.");
+		SendClientMessageEx(playerid, COLOR_LIGHTBLUE, string);
+
 		DeletePVar(playerid, "Pizza");
 		DeletePVar(playerid, "pizzaTimer");
 		DisablePlayerCheckpoint(playerid);
@@ -3545,7 +3553,7 @@ public OnPlayerEnterCheckpoint(playerid)
 					{
 						GivePlayerCash(playerid, payment);
 						format(string, sizeof(string), "* You were paid $%d for delivering the goods and returning the vehicle.", payment);
-						
+						SendClientMessageEx(playerid, COLOR_LIGHTBLUE, string);
 						GivePlayerCredits(playerid, 10, 0, 0);
 						format(string, sizeof(string), "* You were given an additional  {FFA500}10 credits{33CCFF} for your delivery.");
 						SendClientMessageEx(playerid, COLOR_LIGHTBLUE, string);
