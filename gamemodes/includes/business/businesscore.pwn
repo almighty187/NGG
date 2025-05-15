@@ -548,7 +548,7 @@ stock RefreshBusinessPickup(i)
 	Streamer_SetIntData(STREAMER_TYPE_AREA, Businesses[i][bAreaID][1], E_STREAMER_EXTRA_ID, i);
 	*/
 
-	//format(szMiscArray, sizeof(szMiscArray), "[Business] Created Business: %d | Exterior Area ID: %d | Interior Area ID: %d", i, Businesses[i][bAreaID][0], Businesses[i][bAreaID][1]);
+	format(szMiscArray, sizeof(szMiscArray), "[Business] Created Business: %d | Exterior Area ID: %d | Interior Area ID: %d", i, Businesses[i][bAreaID][0], Businesses[i][bAreaID][1]);
 	Log("debug/door_business.log", szMiscArray);
 
 }
@@ -2348,7 +2348,7 @@ CMD:asellbiz(playerid, params[])
 	return 1;
 }
 
-CMD:sellbiz(playerid, params[])
+/*CMD:sellbiz(playerid, params[])
 {
     if(PlayerInfo[playerid][pBusiness] == INVALID_BUSINESS_ID )
     {
@@ -2425,7 +2425,7 @@ CMD:buybiz(playerid, params[])
 	    }
 	}
 	return SendClientMessageEx(playerid, COLOR_WHITE, "You're not near a business!");
-}
+}*/
 
 CMD:creategaspump(playerid, params[])
 {
