@@ -37,6 +37,33 @@
 
 #include <YSI\y_hooks>
 
+stock ShowTreasureInventory(playerid)
+{
+	new msg[128];
+
+	SendClientMessage(playerid, -1, "===== Your Treasure Inventory =====");
+
+	format(msg, sizeof(msg), "Junk Metal: %d | New Coin: %d | Old Coin: %d",
+		GetPVarInt(playerid, "junkmetal"),
+		GetPVarInt(playerid, "newcoin"),
+		GetPVarInt(playerid, "oldcoin"));
+	SendClientMessage(playerid, -1, msg);
+
+	format(msg, sizeof(msg), "Broken Watch: %d | Old Key: %d | Treasure: %d",
+		GetPVarInt(playerid, "brokenwatch"),
+		GetPVarInt(playerid, "oldkey"),
+		GetPVarInt(playerid, "treasure"));
+	SendClientMessage(playerid, -1, msg);
+
+	format(msg, sizeof(msg), "Gold Watch: %d | Silver Nugget: %d | Gold Nugget: %d",
+		GetPVarInt(playerid, "goldwatch"),
+		GetPVarInt(playerid, "silvernugget"),
+		GetPVarInt(playerid, "goldnugget"));
+	SendClientMessage(playerid, -1, msg);
+
+	return 1;
+}
+
 FoundTreasure(playerid)
 {
 	new szMessage[128];
@@ -374,9 +401,13 @@ CMD:search(playerid, params[])
 	else if(IsPlayerInAnyVehicle(playerid)) {
 		return SendClientMessageEx(playerid, COLOR_GREY, "You are not allowed to metal detect while in a vehicle. " );
 	}
-	else if(gettime()-GetPVarInt(playerid, "LastScan") < GetPVarInt(playerid, "ScanReload")) {
-		return SendClientMessageEx(playerid, COLOR_GRAD2, "Your metal detector is still charging.");
+	else if(gettime() - GetPVarInt(playerid, "LastScan") < GetPVarInt(playerid, "ScanReload")) {
+		new timeLeft = GetPVarInt(playerid, "ScanReload") - (gettime() - GetPVarInt(playerid, "LastScan"));
+		new msg[64];
+		format(msg, sizeof(msg), "Your metal detector is still charging. %d seconds remaining.", timeLeft);
+		return SendClientMessageEx(playerid, COLOR_GRAD2, msg);
 	}
+
 
 	else if(!GetPVarType(playerid, "HiddenTreasure")) { // New Treasure
  		SetPVarInt(playerid, "HiddenTreasure", random(sizeof(HiddenTreasure)));
@@ -574,4 +605,10 @@ CMD:selltreasure(playerid, params[])
 	    }
 	}
 	return 1;
+}
+
+CMD:mytreasure(playerid, params[])
+{
+    ShowTreasureInventory(playerid);
+    return 1;
 }

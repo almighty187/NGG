@@ -4345,7 +4345,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			PlayerInfo[playerid][pAcceptReport]++;
 			ReportCount[playerid]++;
 			ReportHourCount[playerid]++;
-			Reports[reportid][ReplyTimerr] = SetTimerEx("ReplyTimer", 30000, 0, "d", reportid);
+			Reports[reportid][ReplyTimerr] = SetTimerEx("ReplyTimer", 120000, 0, "d", reportid);
 			Reports[reportid][CheckingReport] = playerid;
 			//Reports[reportid][ReportFrom] = INVALID_PLAYER_ID;
 			Reports[reportid][BeingUsed] = 0;
@@ -8184,7 +8184,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 	else if (dialogid == DIALOG_SWITCHGROUP && response)
 	{
 
-		if (!(PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 1)) return 1;
+		if (!(PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 1 || PlayerInfo[playerid][pGangModerator] >= 1)) return 1;
 
 		new
 			iGroupID = listitem;
@@ -8201,7 +8201,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 	}
 	else if (dialogid == DIALOG_MAKELEADER && response)
 	{
-		if (PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 2)
+		if (PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 2 || PlayerInfo[playerid][pGangModerator] >= 2)
 		{
 			new
 				iGroupID = listitem,
@@ -8224,7 +8224,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 	}
 	else if (dialogid == DIALOG_DVSPAWN && response)
 	{
-		if (PlayerInfo[playerid][pAdmin] >= 3 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 2)
+		if (PlayerInfo[playerid][pAdmin] >= 3 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pFactionModerator] >= 2 || PlayerInfo[playerid][pGangModerator] >= 2)
 		{
 			new
 				iGroupID = listitem,

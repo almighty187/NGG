@@ -15,12 +15,12 @@
 
 				Current Developers:
 								*** Director of SA:MP Development:
-								    Shane
+								    
 
 								**  Development Staff:
-									187
-									Winters
-									Behemoth
+									
+									
+									
 				
 				Past Developers:
 								*** Director of SA:MP Development:
@@ -82,11 +82,12 @@
 
 #pragma disablerecursion
 #include <a_samp>
+//#include <mapfix>
 
 /*  ---------------- SCRIPT REVISION ----------------- */
 
 // Do not forget to change this everytime you commit - it's mandatory!
-#define SERVER_GM_TEXT "NG:RP v3.0.501"
+#define SERVER_GM_TEXT "NG:RP v3.0.503"
 
 //#define AREA_DEBUG
 //#define TEXTLABEL_DEBUG
@@ -130,7 +131,7 @@ new bool:registrationEnabled = true;
 #include "./includes/streamer.pwn"
 #include "./includes/OnDialogResponse.pwn"
 #include "./includes/discord.pwn"
-#include "./includes/walkstyle.pwn"
+#include "./includes/DBLog.pwn"
 
 #if defined AREA_DEBUG
 #include "./includes/areadebug.pwn"
@@ -176,6 +177,9 @@ new bool:registrationEnabled = true;
 #include "./includes/business/mailsystem.pwn"
 
 //core includes
+#include "./includes/core/ATMs.pwn"
+#include "./includes/core/Banks.pwn"
+#include "./includes/core/entexit.pwn"
 #include "./includes/core/acceptcancel.pwn"
 #include "./includes/core/advertisements.pwn"
 #include "./includes/core/banking.pwn"
@@ -223,6 +227,14 @@ new bool:registrationEnabled = true;
 #include "./includes/core/vpnwhitelist.pwn"
 //#include "./includes/core/fpslimit.pwn"
 #include "./includes/core/187.pwn"
+#include "./includes/core/phone_new.pwn"
+#include "./includes/core/payphones.pwn"
+#include "./includes/core/Player_Interact.pwn"
+#include "./includes/core/minigame.pwn"
+#include "./includes/core/drugcore.pwn"
+#include "./includes/core/furnituretextures.pwn"
+#include "./includes/core/furniture.pwn"
+#include "./includes/core/walkstyle.pwn"
 
 //dynamic core includes
 #include "./includes/dynamic/doors.pwn"
@@ -254,6 +266,7 @@ new bool:registrationEnabled = true;
 #include "./includes/vehsystem/groupvehs.pwn"
 #include "./includes/vehsystem/playervehs.pwn"
 #include "./includes/vehsystem/cratevehicles.pwn"
+#include "./includes/vehsystem/vehauto.pwn"
 
 //event kernels includes
 #include "./includes/events/event.pwn"
@@ -281,7 +294,7 @@ new bool:registrationEnabled = true;
 #include "./includes/group/lea.pwn"
 #include "./includes/group/medic.pwn"
 #include "./includes/group/news.pwn"
-#include "./includes/prison_system.pwn"
+#include "./includes/group/prison_system.pwn"
 #include "./includes/group/taxi.pwn"
 #include "./includes/group/towing.pwn"
 #include "./includes/group/turfs.pwn"
@@ -296,7 +309,8 @@ new bool:registrationEnabled = true;
 #include "./includes/group/callsign.pwn"
 #include "./includes/group/groupweapons.pwn"
 #include "./includes/group/bounds.pwn"
-
+#include "./includes/group/rivalry.pwn"
+#include "./includes/group/elections.pwn"
 
 //job system includes
 #include "./includes/jobs/bartender.pwn"
@@ -305,8 +319,8 @@ new bool:registrationEnabled = true;
 #include "./includes/jobs/craftsman.pwn"
 #include "./includes/jobs/detective.pwn"
 #include "./includes/jobs/drugs.pwn"
-#include "./includes/garbagesystem.pwn"
-#include "./includes/fishingsystem.pwn"
+#include "./includes/jobs/garbagesystem.pwn"
+#include "./includes/jobs/fishingsystem.pwn"
 #include "./includes/jobs/jobcore.pwn"
 #include "./includes/jobs/dynjobcore.pwn"
 #include "./includes/jobs/lawyer.pwn"
@@ -316,7 +330,6 @@ new bool:registrationEnabled = true;
 #include "./includes/jobs/treasure.pwn"
 #include "./includes/jobs/whore.pwn"
 #include "./includes/jobs/armsdealer.pwn"
-#include "./includes/core/drugcore.pwn"
 
 //perk system includes
 #include "./includes/perks/boombox.pwn"
@@ -330,22 +343,6 @@ new bool:registrationEnabled = true;
 #include "./includes/perks/vipcore.pwn"
 #include "./includes/perks/casino.pwn"
 #include "./includes/perks/horsey.pwn"
-
-#include "./includes/core/phone_new.pwn"
-#include "./includes/core/payphones.pwn"
-#include "./includes/group/rivalry.pwn"
-
-#include "./includes/core/ATMs.pwn"
-#include "./includes/core/Banks.pwn"
-#include "./includes/core/entexit.pwn"
-#include "./includes/vehsystem/vehauto.pwn"
-#include "./includes/DBLog.pwn"
-#include "./includes/core/Player_Interact.pwn"
-
-#include "./includes/core/minigame.pwn"
-#include "./includes/furnituretextures.pwn"
-#include "./includes/furniture.pwn"
-#include "./includes/group/elections.pwn"
 
 main(){}
 

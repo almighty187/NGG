@@ -64,6 +64,13 @@ public OnLoadArrestPoint(index)
 		cache_get_value_name_int(row, "VW", ArrestPoints[index][arrestVW]); 
 		cache_get_value_name_int(row, "Int", ArrestPoints[index][arrestInt]); 
 		cache_get_value_name_int(row, "Type", ArrestPoints[index][arrestType]); 
+        cache_get_value_name_float(row, "jailpos1x", ArrestPoints[index][JailPos1][0]);
+        cache_get_value_name_float(row, "jailpos1y", ArrestPoints[index][JailPos1][1]);
+        cache_get_value_name_float(row, "jailpos1z", ArrestPoints[index][JailPos1][2]);
+		cache_get_value_name_float(row, "jailpos2x", ArrestPoints[index][JailPos2][0]);
+        cache_get_value_name_float(row, "jailpos2y", ArrestPoints[index][JailPos2][1]);
+        cache_get_value_name_float(row, "jailpos2z", ArrestPoints[index][JailPos2][2]);
+		
 		if(ArrestPoints[index][arrestPosX] != 0)
 		{
 			switch(ArrestPoints[index][arrestType])

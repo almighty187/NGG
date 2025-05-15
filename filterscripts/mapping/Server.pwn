@@ -13,6 +13,1432 @@ public OnFilterScriptInit()
 		 ######   ######## ##    ## ######## ##     ## ##     ## ########
 	*/
 	
+	//RNE Palamino Military Base - Mapped by Arnold Brok
+	new g_NEObject;
+
+	g_NEObject = CreateDynamicObject(3095, 3162.1999, -48.7999, 16.8999, 0.0000, 90.0000, 0.0000); //a51_jetdoor
+	SetDynamicObjectMaterial(g_NEObject, 0, 3884, "samsite_sfxrf", "sam_camo-navy", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(10832, 3358.6005, 2.2000, 11.6000, 0.0000, 0.0000, 270.0000); //gatehouse2_SFSe
+	SetDynamicObjectMaterial(g_NEObject, 0, 3884, "samsite_sfxrf", "sam_camo-navy", 0xFFFFFFFF);
+	SetDynamicObjectMaterial(g_NEObject, 1, 3884, "samsite_sfxrf", "sam_camo-navy", 0xFFFFFFFF);
+	SetDynamicObjectMaterial(g_NEObject, 2, 3884, "samsite_sfxrf", "sam_camo-navy", 0xFFFFFFFF);
+	SetDynamicObjectMaterial(g_NEObject, 3, 16640, "a51", "scratchedmetal", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(3095, 3157.7878, -49.8428, 12.3737, 0.0000, 0.0000, 0.0000); //a51_jetdoor
+	SetDynamicObjectMaterial(g_NEObject, 0, 16640, "a51", "scratchedmetal", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(9241, 3174.7902, -18.6001, 31.2000, 0.0000, 0.0000, 0.0000); //copbits_sfn
+	SetDynamicObjectMaterial(g_NEObject, 1, 16640, "a51", "redmetal", 0xFFFFFFFF);
+	SetDynamicObjectMaterial(g_NEObject, 2, 16640, "a51", "scratchedmetal", 0xFFFFFFFF);
+	SetDynamicObjectMaterial(g_NEObject, 3, 16640, "a51", "scratchedmetal", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(3279, 3279.1770, -58.2262, 6.1300, 0.0000, 0.0000, 359.8991); //a51_spottower
+	SetDynamicObjectMaterial(g_NEObject, 0, 16640, "a51", "redmetal", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(16093, 3273.7998, -32.4001, 10.3000, 0.0000, 0.0000, 0.0000); //a51_gatecontrol
+	SetDynamicObjectMaterial(g_NEObject, 0, 16640, "a51", "concretemanky", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(8661, 3266.1987, 54.9574, 6.6588, 0.0000, 0.0000, 0.0000); //gnhtelgrnd_lvs
+	SetDynamicObjectMaterial(g_NEObject, 0, 10765, "airportgnd_sfse", "ws_runwaytarmac", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(8247, 3285.1005, -93.9001, 10.1000, 0.0000, 0.0000, 0.0000); //pltschlhnger69_lvs
+	SetDynamicObjectMaterial(g_NEObject, 0, 3884, "samsite_sfxrf", "sam_camo-navy", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(8661, 3064.6635, 74.7305, 6.6286, 0.0000, 0.0000, 179.9002); //gnhtelgrnd_lvs
+	SetDynamicObjectMaterial(g_NEObject, 0, 10765, "airportgnd_sfse", "ws_runwaytarmac", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(18981, 3082.8122, 84.9861, -5.7698, 0.0000, 0.0000, -90.0000); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_NEObject, 0, 915, "airconext", "CJ_plating", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(8661, 3099.2280, 19.0377, 6.6785, 0.0000, 0.0000, -1.4996); //gnhtelgrnd_lvs
+	SetDynamicObjectMaterial(g_NEObject, 0, 10765, "airportgnd_sfse", "ws_runwaytarmac", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(8661, 3100.5168, 64.5114, 6.6588, 0.0000, 0.0000, -89.9000); //gnhtelgrnd_lvs
+	SetDynamicObjectMaterial(g_NEObject, 0, 10765, "airportgnd_sfse", "ws_runwaytarmac", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(8661, 3266.1987, 74.9074, 6.6588, 0.0000, 0.0000, 0.0000); //gnhtelgrnd_lvs
+	SetDynamicObjectMaterial(g_NEObject, 0, 10765, "airportgnd_sfse", "ws_runwaytarmac", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(8661, 3257.2792, 57.1972, 6.6687, 0.0000, 0.0000, 0.0000); //gnhtelgrnd_lvs
+	SetDynamicObjectMaterial(g_NEObject, 0, 10765, "airportgnd_sfse", "ws_runwaytarmac", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(10833, 3238.3000, 46.7000, 1.6000, 0.0000, 0.0000, 179.9949); //navybase_02_SFSe
+	SetDynamicObjectMaterial(g_NEObject, 0, 3884, "samsite_sfxrf", "sam_camobits-navy", 0xFFFFFFFF);
+	SetDynamicObjectMaterial(g_NEObject, 1, 3884, "samsite_sfxrf", "sam_camo-navy", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(8661, 3266.3395, 18.5074, 6.6687, 0.0000, 0.0000, 0.0000); //gnhtelgrnd_lvs
+	SetDynamicObjectMaterial(g_NEObject, 0, 10765, "airportgnd_sfse", "ws_runwaytarmac", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(18981, 3165.2971, 84.9861, -5.7599, 0.0000, 0.0000, -90.0000); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_NEObject, 0, 915, "airconext", "CJ_plating", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(18981, 3140.6289, 84.9861, -5.7698, 0.0000, 0.0000, -90.0000); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_NEObject, 0, 915, "airconext", "CJ_plating", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(8171, 3179.5522, 64.9669, 6.6399, 0.0000, 0.0000, 90.2994); //vgsSairportland06
+	SetDynamicObjectMaterial(g_NEObject, 0, 10765, "airportgnd_sfse", "ws_runwaytarmac", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(8171, 3179.6613, 33.7671, 6.6497, 0.0000, 0.0000, 90.2994); //vgsSairportland06
+	SetDynamicObjectMaterial(g_NEObject, 0, 10765, "airportgnd_sfse", "ws_runwaytarmac", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(8661, 3266.2800, 37.2074, 6.6687, 0.0000, 0.0000, 0.0000); //gnhtelgrnd_lvs
+	SetDynamicObjectMaterial(g_NEObject, 0, 10765, "airportgnd_sfse", "ws_runwaytarmac", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(9241, 3174.7902, -76.2001, 31.2000, 0.0000, 0.0000, 0.0000); //copbits_sfn
+	SetDynamicObjectMaterial(g_NEObject, 1, 16640, "a51", "redmetal", 0xFFFFFFFF);
+	SetDynamicObjectMaterial(g_NEObject, 2, 16640, "a51", "scratchedmetal", 0xFFFFFFFF);
+	SetDynamicObjectMaterial(g_NEObject, 3, 16640, "a51", "scratchedmetal", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(9241, 3215.0810, -18.6001, 31.2000, 0.0000, 0.0000, 0.0000); //copbits_sfn
+	SetDynamicObjectMaterial(g_NEObject, 1, 16640, "a51", "redmetal", 0xFFFFFFFF);
+	SetDynamicObjectMaterial(g_NEObject, 2, 16640, "a51", "scratchedmetal", 0xFFFFFFFF);
+	SetDynamicObjectMaterial(g_NEObject, 3, 16640, "a51", "scratchedmetal", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(19327, 3271.3122, 40.0972, 14.2633, 0.0000, 0.0000, 179.6000); //7_11_sign02
+	SetDynamicObjectMaterialText(g_NEObject, 0, "Joe Goose\nMemorial Hanger", 90, "Arial", 36, 1, 0xFF473532, 0, 1);
+
+	g_NEObject = CreateDynamicObject(3095, 3162.1972, -39.7929, 16.7837, 0.0000, 12510.0000, 180.0000); //a51_jetdoor
+	SetDynamicObjectMaterial(g_NEObject, 0, 3884, "samsite_sfxrf", "sam_camo-navy", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(3095, 3157.7998, -41.2000, 12.3999, 0.0000, 0.0000, 0.0000); //a51_jetdoor
+	SetDynamicObjectMaterial(g_NEObject, 0, 16640, "a51", "scratchedmetal", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(3884, 3148.7001, -14.5993, 30.2000, 0.0000, 0.0000, 45.3988); //samsite_SFXRF
+	SetDynamicObjectMaterial(g_NEObject, 0, 16640, "a51", "a51_metal1", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(3277, 3148.7001, -14.5993, 30.2000, 0.0000, 0.0000, 259.9970); //mil_sambase
+	SetDynamicObjectMaterial(g_NEObject, 0, 16640, "a51", "redmetal", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(5711, 3357.9003, -5.2996, 9.6997, 0.0000, 0.0000, 0.0000); //cem02_law
+	SetDynamicObjectMaterial(g_NEObject, 0, 16640, "a51", "scratchedmetal", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(18981, 3190.0568, 84.9861, -5.7698, 0.0000, 0.0000, -90.0000); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_NEObject, 0, 915, "airconext", "CJ_plating", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(3884, 3148.7001, -76.7994, 30.2000, 0.0000, 0.0000, 139.9989); //samsite_SFXRF
+	SetDynamicObjectMaterial(g_NEObject, 0, 16640, "a51", "a51_metal1", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(18981, 3214.9116, 84.9869, -5.7729, 0.0000, 0.0000, -90.0000); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_NEObject, 0, 915, "airconext", "CJ_plating", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(18981, 3115.7985, 84.9861, -5.7599, 0.0000, 0.0000, -90.0000); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_NEObject, 0, 915, "airconext", "CJ_plating", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(10833, 3238.3000, 46.7000, 1.6000, 0.0000, 0.0000, 179.9949); //navybase_02_SFSe
+	SetDynamicObjectMaterial(g_NEObject, 0, 3884, "samsite_sfxrf", "sam_camobits-navy", 0xFFFFFFFF);
+	SetDynamicObjectMaterial(g_NEObject, 1, 3884, "samsite_sfxrf", "sam_camo-navy", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(3279, 3112.9003, -27.7000, 6.5998, 0.0000, 0.0000, 0.0000); //a51_spottower
+	SetDynamicObjectMaterial(g_NEObject, 0, 16640, "a51", "redmetal", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(3934, 3358.8000, 2.2999, 13.3000, 0.0000, 0.0000, 0.0000); //helipad01
+	SetDynamicObjectMaterial(g_NEObject, 0, 3816, "bighangarsfxr", "ws_breezeblocks", 0xFFFFFFFF);
+	SetDynamicObjectMaterial(g_NEObject, 1, 10631, "queensammo_sfs", "ammu_camo1", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(10826, 3189.7998, -45.5996, 13.5000, 0.0000, 0.0000, 179.9949); //subpen_ext_SFSe
+	SetDynamicObjectMaterial(g_NEObject, 1, 16640, "a51", "scratchedmetal", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(3277, 3148.7001, -76.5996, 30.2000, 0.0000, 0.0000, 259.9970); //mil_sambase
+	SetDynamicObjectMaterial(g_NEObject, 0, 16640, "a51", "redmetal", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(8661, 3064.4680, 20.1578, 6.6785, 0.0000, 0.0000, -1.4996); //gnhtelgrnd_lvs
+	SetDynamicObjectMaterial(g_NEObject, 0, 10765, "airportgnd_sfse", "ws_runwaytarmac", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(8661, 3064.9201, 38.5665, 6.6487, 0.0000, 0.0000, 1.4002); //gnhtelgrnd_lvs
+	SetDynamicObjectMaterial(g_NEObject, 0, 10765, "airportgnd_sfse", "ws_runwaytarmac", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(8661, 3099.2849, 34.8474, 6.6487, 0.0000, 0.0000, -0.1995); //gnhtelgrnd_lvs
+	SetDynamicObjectMaterial(g_NEObject, 0, 10765, "airportgnd_sfse", "ws_runwaytarmac", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(8661, 3080.8500, 64.9199, 6.6487, 0.0000, 0.0000, -89.3996); //gnhtelgrnd_lvs
+	SetDynamicObjectMaterial(g_NEObject, 0, 10765, "airportgnd_sfse", "ws_runwaytarmac", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(8325, 3124.7995, -45.7015, 17.3106, 0.0000, 0.0000, -179.7998); //vgsbboardsigns12
+	SetDynamicObjectMaterial(g_NEObject, 0, 10756, "airportroads_sfse", "Heliconcrete", 0xFFFFFFFF);
+	SetDynamicObjectMaterialText(g_NEObject, 1, "Fort Valkyrie", 90, "Arial", 46, 1, 0xFF341A1E, 0, 1);
+
+	g_NEObject = CreateDynamicObject(18981, 3090.8308, 84.9861, -5.7599, 0.0000, 0.0000, -90.0000); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_NEObject, 0, 915, "airconext", "CJ_plating", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(18981, 3057.7631, 84.9861, -5.7599, 0.0000, 0.0000, -90.0000); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_NEObject, 0, 915, "airconext", "CJ_plating", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(18981, 3044.8212, 72.9841, -5.5598, 0.0000, 0.0000, -0.0996); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_NEObject, 0, 915, "airconext", "CJ_plating", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(18981, 3044.7775, 47.9640, -5.5499, 0.0000, 0.0000, -0.0996); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_NEObject, 0, 915, "airconext", "CJ_plating", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(18981, 3044.7338, 23.0543, -5.5398, 0.0000, 0.0000, -0.0996); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_NEObject, 0, 915, "airconext", "CJ_plating", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(18981, 3057.6347, 10.6793, -5.5197, 0.0000, 0.0000, -91.5998); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_NEObject, 0, 915, "airconext", "CJ_plating", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(18981, 3082.6108, 9.9815, -5.5197, 0.0000, 0.0000, -91.5998); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_NEObject, 0, 915, "airconext", "CJ_plating", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(18981, 3107.5505, 9.2847, -5.5197, 0.0000, 0.0000, -91.5998); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_NEObject, 0, 915, "airconext", "CJ_plating", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(3279, 3112.9003, -63.5996, 6.5998, 0.0000, 0.0000, 0.0000); //a51_spottower
+	SetDynamicObjectMaterial(g_NEObject, 0, 16640, "a51", "redmetal", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(9241, 3216.2001, -76.2001, 31.2000, 0.0000, 0.0000, 0.0000); //copbits_sfn
+	SetDynamicObjectMaterial(g_NEObject, 1, 16640, "a51", "redmetal", 0xFFFFFFFF);
+	SetDynamicObjectMaterial(g_NEObject, 2, 16640, "a51", "scratchedmetal", 0xFFFFFFFF);
+	SetDynamicObjectMaterial(g_NEObject, 3, 16640, "a51", "scratchedmetal", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(9241, 3347.4003, -91.5996, 7.9000, 0.0000, 0.0000, 270.0000); //copbits_sfn
+	SetDynamicObjectMaterial(g_NEObject, 1, 16640, "a51", "redmetal", 0xFFFFFFFF);
+	SetDynamicObjectMaterial(g_NEObject, 2, 16640, "a51", "scratchedmetal", 0xFFFFFFFF);
+	SetDynamicObjectMaterial(g_NEObject, 3, 16640, "a51", "scratchedmetal", 0xFFFFFFFF);
+
+	g_NEObject = CreateDynamicObject(19805, 3156.3681, 84.3298, 2.6388, 0.0000, 0.0000, 0.0000); //Whiteboard1
+	SetDynamicObjectMaterialText(g_NEObject, 0, "Extension designed by\nChris Hayes", 90, "Arial", 24, 1, 0xFF840410, 0xFF2A77A1, 1);
+
+	g_NEObject = CreateDynamicObject(19805, 3267.7065, 75.4213, 8.9760, 0.0000, 0.0000, -90.1999); //Whiteboard1
+	SetDynamicObjectMaterialText(g_NEObject, 0, "Rodrigo Dusmetov\nRadar Tower", 90, "Arial", 24, 1, 0xFFFFFFFF, 0xFF304F45, 1);
+
+	g_NEObject = CreateDynamicObject(19327, 3241.3034, 40.3067, 14.2633, 0.0000, 0.0000, 179.6000); //7_11_sign02
+	SetDynamicObjectMaterialText(g_NEObject, 0, "Andre Stallone\nMemorial Hanger", 90, "Arial", 36, 1, 0xFF473532, 0, 1);
+
+	CreateDynamicObject(966, -1572.2031, 658.8358, 6.0781, 356.8583, 0.0000, -1.5707); //bar_gatebar01
+	CreateDynamicObject(966, -1572.2031, 658.8358, 6.0781, 356.8583, 0.0000, -1.5707); //bar_gatebar01
+	CreateDynamicObject(987, 3366.0000, 85.1996, 6.5998, 0.0000, 0.0000, 179.9949); //elecfence_BAR
+	CreateDynamicObject(987, 3366.0000, 73.3000, 6.5998, 0.0000, 0.0000, 89.9950); //elecfence_BAR
+	CreateDynamicObject(987, 3366.0000, 68.9000, 6.5998, 0.0000, 0.0000, 89.9840); //elecfence_BAR
+	CreateDynamicObject(987, 3359.6005, 85.1996, 6.5998, 0.0000, 0.0000, 179.9949); //elecfence_BAR
+	CreateDynamicObject(6959, 3366.0000, 65.4000, -14.0000, 0.0000, 90.0000, 179.9949); //vegasNbball1
+	CreateDynamicObject(11353, 3365.4003, 24.7999, 10.6000, 0.0000, 0.0000, 0.0000); //station5new
+	CreateDynamicObject(6959, 3366.0000, 47.7000, -14.0000, 0.0000, 90.0000, 179.9949); //vegasNbball1
+	CreateDynamicObject(987, 3347.6005, 85.1996, 6.5998, 0.0000, 0.0000, 179.9949); //elecfence_BAR
+	CreateDynamicObject(8661, 3345.9445, 74.9570, 6.6388, 0.0000, 0.0000, 0.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(996, 3356.6005, 27.5000, 7.4000, 0.0000, 0.0000, 0.0000); //lhouse_barrier1
+	CreateDynamicObject(16564, 3346.1005, 60.4000, 6.5998, 0.0000, 0.0000, 90.0000); //des_stmedicentre_
+	CreateDynamicObject(3113, 3362.0000, 20.2000, -4.6999, 179.9949, 104.9960, 179.9949); //CARRIER_DOOR_SFSE
+	CreateDynamicObject(3113, 3354.9003, 28.0000, 2.5499, 179.9949, 14.9799, 270.0000); //CARRIER_DOOR_SFSE
+	CreateDynamicObject(3928, 3342.0000, 45.4000, 12.8999, 0.0000, 0.0000, 0.0000); //helipad
+	CreateDynamicObject(987, 3335.6005, 85.1996, 6.5998, 0.0000, 0.0000, 179.9949); //elecfence_BAR
+	CreateDynamicObject(8661, 3344.8696, 37.5069, 6.6890, 0.0000, 0.0000, 0.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(996, 3347.7998, 27.5000, 7.4000, 0.0000, 0.0000, 0.0000); //lhouse_barrier1
+	CreateDynamicObject(3113, 3354.7998, 8.3000, 2.0999, 179.9949, 14.9960, 90.0000); //CARRIER_DOOR_SFSE
+	CreateDynamicObject(8661, 3336.8706, 54.9771, 6.6388, 0.0000, 0.0000, 0.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(16095, 3358.7998, -11.4003, 13.1997, 0.0000, 0.0000, 270.0000); //des_a51guardbox02
+	CreateDynamicObject(3113, 3350.7998, 20.2000, -4.6999, 0.0049, 284.9960, 359.9949); //CARRIER_DOOR_SFSE
+	CreateDynamicObject(1536, 3352.7001, -1.4003, 6.1999, 0.0000, 0.0000, 270.0000); //Gen_doorEXT15
+	CreateDynamicObject(11353, 3365.4003, -29.5000, 10.6000, 0.0000, 0.0000, 0.0000); //station5new
+	CreateDynamicObject(1616, 3352.4003, -5.4003, 9.8999, 0.0000, 0.0000, 0.0000); //nt_securecam1_01
+	CreateDynamicObject(12987, 3347.9003, 9.5000, 3.5999, 0.0000, 0.0000, 90.0000); //cos_sbanksteps06
+	CreateDynamicObject(8661, 3356.1005, -11.1399, 6.1999, 0.0000, 0.0000, 270.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(1536, 3352.7373, -4.4003, 6.1999, 0.0000, 0.0000, 90.0000); //Gen_doorEXT15
+	CreateDynamicObject(8661, 3336.8706, 37.3572, 6.6188, 0.0000, 0.0000, 0.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(6959, 3366.0000, -11.0993, -14.4600, 0.0000, 90.0000, 179.9949); //vegasNbball1
+	CreateDynamicObject(996, 3348.5000, 3.4000, 6.9000, 0.0000, 0.0000, 270.0000); //lhouse_barrier1
+	CreateDynamicObject(996, 3339.0000, 27.5000, 7.4000, 0.0000, 0.0000, 0.0000); //lhouse_barrier1
+	CreateDynamicObject(11496, 3344.2998, 10.1997, 0.6000, 0.0000, 0.0000, 90.0000); //des_wjetty
+	CreateDynamicObject(996, 3348.5000, -5.7996, 6.9000, 0.0000, 0.0000, 270.0000); //lhouse_barrier1
+	CreateDynamicObject(987, 3323.6005, 85.1996, 6.5998, 0.0000, 0.0000, 179.9949); //elecfence_BAR
+	CreateDynamicObject(19121, 3341.7197, 14.1400, 1.9098, 0.0000, 0.0000, 90.0000); //BollardLight1
+	CreateDynamicObject(996, 3341.0000, 8.6000, 6.9000, 0.0000, 0.0000, 0.0000); //lhouse_barrier1
+	CreateDynamicObject(1892, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000); //security_gatsh
+	CreateDynamicObject(8661, 3344.8696, -2.3626, 6.2189, 0.0000, 0.0000, 0.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(3113, 3339.6005, 20.2000, -4.6999, 179.9949, 104.9906, 179.9949); //CARRIER_DOOR_SFSE
+	CreateDynamicObject(996, 3348.5000, -15.1997, 6.9000, 0.0000, 0.0000, 270.0000); //lhouse_barrier1
+	CreateDynamicObject(19601, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000); //SnowPlow1
+	CreateDynamicObject(3113, 3332.2998, 28.0000, 2.5499, 179.9949, 14.9910, 270.0000); //CARRIER_DOOR_SFSE
+	CreateDynamicObject(996, 3330.0000, 27.5000, 7.4000, 0.0000, 0.0000, 0.0000); //lhouse_barrier1
+	CreateDynamicObject(996, 3332.2998, 8.6000, 6.9000, 0.0000, 0.0000, 0.0000); //lhouse_barrier1
+	CreateDynamicObject(3113, 3332.2001, 8.3000, 2.0999, 179.9949, 14.9910, 90.0000); //CARRIER_DOOR_SFSE
+	CreateDynamicObject(17070, 3337.7998, -10.4003, 6.1999, 0.0000, 0.0000, 92.2470); //carspaces03
+	CreateDynamicObject(3627, 3354.9003, -45.7000, 10.0000, 0.0000, 0.0000, 179.9949); //dckcanpy
+	CreateDynamicObject(8661, 3336.1706, -11.1399, 6.1999, 0.0000, 0.0000, 270.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(3113, 3328.4003, 20.2000, -4.6999, 179.9949, 104.9906, 179.9949); //CARRIER_DOOR_SFSE
+	CreateDynamicObject(996, 3320.8999, 27.5000, 7.4000, 0.0000, 0.0000, 0.0000); //lhouse_barrier1
+	CreateDynamicObject(987, 3311.6005, 85.1996, 6.5998, 0.0000, 0.0000, 179.9949); //elecfence_BAR
+	CreateDynamicObject(11496, 3328.2998, 10.1997, 0.6000, 0.0000, 0.0000, 90.0000); //des_wjetty
+	CreateDynamicObject(8661, 3356.1005, -51.1198, 6.1999, 0.0000, 0.0000, 270.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(6959, 3366.0000, -51.0996, -14.4600, 0.0000, 90.0000, 179.9949); //vegasNbball1
+	CreateDynamicObject(996, 3319.9003, 25.2098, 6.9000, 0.0000, 0.0000, 270.0000); //lhouse_barrier1
+	CreateDynamicObject(996, 3323.2998, 8.6000, 6.9000, 0.0000, 0.0000, 0.0000); //lhouse_barrier1
+	CreateDynamicObject(1696, 3317.1005, 24.8999, 6.0900, 349.9970, 0.0000, 0.0000); //roofstuff15
+	CreateDynamicObject(3113, 3319.6005, 20.2000, 2.0999, 179.9949, 14.9910, 0.0000); //CARRIER_DOOR_SFSE
+	CreateDynamicObject(8661, 3305.9912, 74.9570, 6.6388, 0.0000, 0.0000, 0.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(18234, 3325.5827, 79.1063, 6.4899, 0.0000, 0.0000, 89.9950); //cuntw_shed2_
+	CreateDynamicObject(1696, 3311.7001, 24.8999, 6.0900, 349.9970, 0.0000, 0.0000); //roofstuff15
+	CreateDynamicObject(3113, 3317.2001, 20.2000, -4.6999, 179.9949, 104.9906, 179.9949); //CARRIER_DOOR_SFSE
+	CreateDynamicObject(11353, 3365.4003, -83.7994, 10.6000, 0.0000, 0.0000, 0.0000); //station5new
+	CreateDynamicObject(987, 3299.6005, 85.1996, 6.5998, 0.0000, 0.0000, 179.9949); //elecfence_BAR
+	CreateDynamicObject(3113, 3309.7001, 28.0000, 2.5499, 179.9949, 14.9799, 270.0000); //CARRIER_DOOR_SFSE
+	CreateDynamicObject(1696, 3287.5185, 24.8999, 6.0900, 349.9970, 0.0000, 0.0000); //roofstuff15
+	CreateDynamicObject(1696, 3306.2998, 24.8999, 6.0900, 349.9970, 0.0000, 0.0000); //roofstuff15
+	CreateDynamicObject(8661, 3318.5000, -11.0000, 6.1999, 0.0000, 0.0000, 270.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(8661, 3336.1201, -51.1198, 6.1999, 0.0000, 0.0000, 270.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(3113, 3309.6005, 8.3000, 2.0999, 179.9949, 14.9910, 90.0000); //CARRIER_DOOR_SFSE
+	CreateDynamicObject(8661, 3297.1091, 57.3372, 6.6388, 0.0000, 0.0000, 0.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(673, 3323.9003, -35.0000, 6.4000, 0.0000, 0.0000, 0.0000); //sm_bevhiltree
+	CreateDynamicObject(1696, 3300.9003, 24.8999, 6.0900, 349.9970, 0.0000, 0.0000); //roofstuff15
+	CreateDynamicObject(8661, 3297.1091, 37.4275, 6.6388, 0.0000, 0.0000, 0.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(8661, 3299.9504, 17.5074, 6.2188, 0.0000, 0.0000, 0.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(8661, 3304.8500, -2.3626, 6.2189, 0.0000, 0.0000, 0.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(8661, 3356.1005, -91.0000, 6.1999, 0.0000, 0.0000, 270.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(6959, 3366.0000, -91.0195, -14.4600, 0.0000, 90.0000, 179.9949); //vegasNbball1
+	CreateDynamicObject(1696, 3295.5000, 24.8999, 6.0900, 349.9970, 0.0000, 0.0000); //roofstuff15
+	CreateDynamicObject(11245, 3316.7998, -46.5000, 22.8999, 0.0000, 289.9949, 259.9970); //sfsefirehseflag
+	CreateDynamicObject(987, 3287.6005, 85.1996, 6.5998, 0.0000, 0.0000, 179.9949); //elecfence_BAR
+	CreateDynamicObject(18234, 3317.3034, 54.4281, 6.1999, 0.0000, 0.0000, -90.0000); //cuntw_shed2_
+	CreateDynamicObject(673, 3323.9003, -57.0000, 6.4000, 0.0000, 0.0000, 0.0000); //sm_bevhiltree
+	CreateDynamicObject(11489, 3316.7998, -46.0000, 6.4000, 0.0000, 0.0000, 270.0000); //dam_statues
+	CreateDynamicObject(18234, 3325.5827, 79.1063, 6.4899, 0.0000, 0.0000, 89.9950); //cuntw_shed2_
+	CreateDynamicObject(7981, 3280.0007, 77.1994, 11.6169, 0.0000, 0.0000, -0.3998); //smallradar02_lvS
+	CreateDynamicObject(18234, 3304.3723, 79.1082, 6.4899, 0.0000, 0.0000, 89.9950); //cuntw_shed2_
+	CreateDynamicObject(673, 3309.5000, -35.0000, 6.4000, 0.0000, 0.0000, 0.0000); //sm_bevhiltree
+	CreateDynamicObject(8661, 3336.1474, -80.9188, 6.1880, 0.0000, 0.0000, 0.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(8661, 3298.6005, -11.0000, 6.1999, 0.0000, 0.0000, 270.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(1696, 3289.9995, 24.8999, 6.0900, 349.9970, 0.0000, 0.0000); //roofstuff15
+	CreateDynamicObject(996, 3319.9003, 16.6599, 6.9000, 0.0000, 0.0000, 270.0000); //lhouse_barrier1
+	CreateDynamicObject(1215, 3327.1005, -80.2001, 6.9000, 0.0000, 0.0000, 0.0000); //bollardlight
+	CreateDynamicObject(4199, 3282.6005, 13.8000, 8.3000, 0.0000, 0.0000, 270.0000); //garages1_LAn
+	CreateDynamicObject(987, 3275.6005, 85.1996, 6.5998, 0.0000, 0.0000, 179.9949); //elecfence_BAR
+	CreateDynamicObject(14397, 3308.9003, -52.7998, 5.4000, 0.0000, 0.0000, 270.0000); //girders07
+	CreateDynamicObject(18234, 3290.4182, 30.1102, 6.1999, 0.0000, 0.0000, -179.9044); //cuntw_shed2_
+	CreateDynamicObject(1696, 3288.9321, 24.2602, 6.0837, -9.8029, -0.5000, 87.9999); //roofstuff15
+	CreateDynamicObject(673, 3309.5000, -57.0996, 6.4000, 0.0000, 0.0000, 0.0000); //sm_bevhiltree
+	CreateDynamicObject(1696, 3288.8449, 21.5918, 6.0609, -9.8029, -0.5000, 87.9999); //roofstuff15
+	CreateDynamicObject(8661, 3336.1474, -99.7891, 6.1781, 0.0000, 0.0000, 0.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(3268, 3271.3571, 30.0648, 6.5307, 0.0000, 0.0000, -89.8000); //mil_hangar1_
+	CreateDynamicObject(11353, 3337.7001, -110.4001, 10.6000, 0.0000, 0.0000, 270.0000); //station5new
+	CreateDynamicObject(8661, 3298.4003, -51.0000, 6.1999, 0.0000, 0.0000, 270.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(973, 3298.9035, 24.4736, 7.1405, 0.0000, 4.6999, -91.1996); //sub_roadbarrier
+	CreateDynamicObject(8661, 3278.7001, -11.0000, 6.1999, 0.0000, 0.0000, 270.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(6959, 3346.1005, -111.0000, -14.4600, 0.0000, 90.0000, 90.0000); //vegasNbball1
+	CreateDynamicObject(987, 3263.6005, 85.1996, 6.5998, 0.0000, 0.0000, 179.9949); //elecfence_BAR
+	CreateDynamicObject(8661, 3318.2998, -91.0000, 6.1999, 0.0000, 0.0000, 270.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(1215, 3305.7998, -80.2001, 6.9000, 0.0000, 0.0000, 0.0000); //bollardlight
+	CreateDynamicObject(4199, 3267.4003, 1.2000, 8.3000, 0.0000, 0.0000, 0.0000); //garages1_LAn
+	CreateDynamicObject(996, 3280.1005, -35.9001, 7.0000, 0.0000, 0.0000, 0.0000); //lhouse_barrier1
+	CreateDynamicObject(6959, 3110.4916, 13.4637, -14.0000, 0.0000, 90.0000, 90.0000); //vegasNbball1
+	CreateDynamicObject(1714, 3274.7998, -32.0996, 10.3999, 0.0000, 0.0000, 329.9960); //kb_swivelchair1
+	CreateDynamicObject(2921, 3276.1005, -35.7998, 10.1000, 0.0000, 0.0000, 90.0000); //kmb_cam
+	CreateDynamicObject(2929, 3270.7998, -20.5995, 8.0000, 0.0000, 0.0000, 270.0000); //a51_blastdoorL
+	CreateDynamicObject(17546, 3260.5000, -4.2996, 22.7000, 0.0000, 0.0000, 90.0000); //hydro3_LAe
+	CreateDynamicObject(2774, 3268.4003, -34.9001, 28.7000, 90.0000, 0.0000, 0.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(3397, 3273.5000, -33.7000, 10.3999, 0.0000, 0.0000, 270.0000); //a51_sdsk_1_
+	CreateDynamicObject(2774, 3268.4003, -34.9001, 27.0000, 90.0000, 0.0000, 0.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(6959, 3269.2001, -18.0000, 6.4000, 0.0000, 90.0000, 0.0000); //vegasNbball1
+	CreateDynamicObject(16638, 3273.9003, -33.4001, 8.6000, 0.0000, 0.0000, 0.0000); //a51_gatecon_a
+	CreateDynamicObject(2774, 3268.4003, -34.9001, 25.2999, 90.0000, 0.0000, 0.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(6959, 3330.4003, -111.0000, -14.4600, 0.0000, 90.0000, 90.0000); //vegasNbball1
+	CreateDynamicObject(7090, 3269.2001, -38.0996, 17.7999, 0.0000, 0.0000, 0.0000); //vegasflag1
+	CreateDynamicObject(8661, 3278.5000, -51.0000, 6.1999, 0.0000, 0.0000, 270.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(996, 3280.1005, -55.5000, 7.0000, 0.0000, 0.0000, 0.0000); //lhouse_barrier1
+	CreateDynamicObject(987, 3251.6005, 85.1996, 6.5998, 0.0000, 0.0000, 179.9949); //elecfence_BAR
+	CreateDynamicObject(2774, 3268.3413, -35.7288, 13.2650, 0.0000, 0.0000, 0.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(2774, 3268.4003, -37.2998, 14.1997, 0.0000, 0.0000, 0.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(2774, 3268.2998, -45.9001, 23.7000, 90.0000, 0.0000, 0.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(2774, 3268.2998, -45.9001, 22.0000, 90.0000, 0.0000, 0.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(8661, 3298.4003, -91.0000, 6.1999, 0.0000, 0.0000, 270.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(2774, 3268.2998, -45.9001, 20.2999, 90.0000, 0.0000, 0.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(2774, 3268.4003, -58.5000, 28.7000, 90.0000, 0.0000, 0.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(7090, 3269.2001, -53.2998, 17.7999, 0.0000, 0.0000, 0.0000); //vegasflag1
+	CreateDynamicObject(2774, 3268.4003, -58.5000, 27.0000, 90.0000, 0.0000, 0.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(2774, 3268.4003, -58.5000, 25.2999, 90.0000, 0.0000, 0.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(8661, 3254.0000, -10.2002, 14.8450, 179.9949, 0.0000, 270.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(2774, 3268.4003, -52.5000, 14.1997, 0.0000, 0.0000, 0.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(7605, 3316.6005, -45.7000, 6.3000, 0.0000, 0.0000, 179.9949); //vegasNroad08
+	CreateDynamicObject(2774, 3268.4003, -54.0996, 14.1997, 0.0000, 0.0000, 0.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(996, 3270.6005, -55.5000, 7.0000, 0.0000, 0.0000, 0.0000); //lhouse_barrier1
+	CreateDynamicObject(16773, 3250.7998, -9.9003, 10.6000, 0.0000, 0.0000, 270.0000); //door_savhangr1
+	CreateDynamicObject(1569, 3269.2001, -57.5000, 6.1999, 0.0000, 0.0000, 270.0000); //ADAM_V_DOOR
+	CreateDynamicObject(1569, 3269.2001, -60.5000, 6.1999, 0.0000, 0.0000, 90.0000); //ADAM_V_DOOR
+	CreateDynamicObject(11102, 3270.7001, -67.5000, 8.3999, 0.0000, 0.0000, 179.9949); //burgalrydoor_SFS
+	CreateDynamicObject(10183, 3275.7998, -77.4001, 6.1999, 0.0000, 0.0000, 225.5000); //ferspaces
+	CreateDynamicObject(987, 3239.6005, 85.1996, 6.5998, 0.0000, 0.0000, 179.9949); //elecfence_BAR
+	CreateDynamicObject(8661, 3238.3000, 46.7000, 1.6000, 0.0000, 0.0000, 179.9949); //gnhtelgrnd_lvs
+	CreateDynamicObject(6959, 3269.2001, -74.0996, 6.4000, 0.0000, 90.0000, 0.0000); //vegasNbball1
+	CreateDynamicObject(8661, 3278.5000, -91.0000, 6.1999, 0.0000, 0.0000, 270.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(10832, 3247.7998, -45.7998, 31.2999, 0.0000, 0.0000, 0.0000); //gatehouse2_SFSe
+	CreateDynamicObject(8661, 3257.5927, -53.1327, 8.7629, 0.0000, 90.0000, 90.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(18449, 3254.4858, -45.4900, 5.6697, 0.0000, 0.0000, 0.0000); //cs_roadbridge01
+	CreateDynamicObject(6959, 3246.4003, -24.7000, 6.5998, 0.0000, 90.0000, 90.0000); //vegasNbball1
+	CreateDynamicObject(8661, 3249.2001, -45.5000, 19.5000, 0.0000, 179.9949, 0.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(6959, 3237.5000, 4.9000, 6.5998, 0.0000, 90.0000, 90.0000); //vegasNbball1
+	CreateDynamicObject(6959, 3247.5893, -37.9000, 6.3000, 0.0000, 90.0000, 90.0000); //vegasNbball1
+	CreateDynamicObject(11353, 3283.4003, -110.4001, 10.6000, 0.0000, 0.0000, 270.0000); //station5new
+	CreateDynamicObject(8661, 3234.1005, -10.2002, 14.8450, 179.9949, 0.0000, 270.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(17546, 3260.5000, -86.7994, 22.7000, 0.0000, 0.0000, 90.0000); //hydro3_LAe
+	CreateDynamicObject(6959, 3290.4003, -111.0000, -14.4600, 0.0000, 90.0000, 90.0000); //vegasNbball1
+	CreateDynamicObject(8661, 3254.0000, -81.2994, 14.8450, 179.9949, 0.0000, 270.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(6959, 3270.6855, -94.2500, -10.0298, 0.0000, 90.0000, 179.9949); //vegasNbball1
+	CreateDynamicObject(6959, 3247.4003, -66.5000, 6.5998, 0.0000, 90.0000, 90.0000); //vegasNbball1
+	CreateDynamicObject(1411, 3270.3000, -111.5000, 12.1997, 0.0000, 0.0000, 90.0000); //DYN_MESH_1
+	CreateDynamicObject(2634, 3269.5000, -111.0000, 12.0000, 0.0000, 0.0000, 180.0000); //ab_vaultDoor
+	CreateDynamicObject(6959, 3224.6005, 4.9000, 6.5998, 0.0000, 90.0000, 90.0000); //vegasNbball1
+	CreateDynamicObject(987, 3215.7189, 85.2016, 6.5998, 0.0000, 0.0000, 179.9949); //elecfence_BAR
+	CreateDynamicObject(16773, 3250.8000, -81.3999, 10.6000, 0.0000, 0.0000, 270.0000); //door_savhangr1
+	CreateDynamicObject(987, 3203.7905, 85.2027, 6.5998, 0.0000, 0.0000, 179.9949); //elecfence_BAR
+	CreateDynamicObject(8661, 3237.6027, -53.1327, 8.7629, 0.0000, 90.0000, 90.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(6959, 3224.5000, -24.7000, 6.5998, 0.0000, 90.0000, 90.0000); //vegasNbball1
+	CreateDynamicObject(8661, 3223.2998, -45.5000, 19.5000, 0.0000, 179.9949, 0.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(8661, 3214.0397, -10.2002, 14.8484, 179.9949, 0.0000, 270.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(6959, 3247.7001, -96.0000, 6.5998, 0.0000, 90.0000, 90.0000); //vegasNbball1
+	CreateDynamicObject(8661, 3234.1005, -81.2994, 14.8450, 179.9949, 0.0000, 270.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(8661, 3217.6052, -37.9286, 9.4259, 0.0000, 12510.0000, 90.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(6959, 3222.3000, -53.2000, 6.5000, 0.0000, 90.0000, 90.0000); //vegasNbball1
+	CreateDynamicObject(6959, 3224.7001, -66.5000, 6.5998, 0.0000, 90.0000, 90.0000); //vegasNbball1
+	CreateDynamicObject(8661, 3217.6025, -53.1327, 8.7629, 0.0000, 90.0000, 90.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(6959, 3250.6005, -106.4941, -14.0000, 0.0000, 90.0000, 90.0000); //vegasNbball1
+	CreateDynamicObject(987, 3191.8200, 85.2039, 6.5998, 0.0000, 0.0000, 179.9949); //elecfence_BAR
+	CreateDynamicObject(987, 3179.8781, 85.2048, 6.5998, 0.0000, 0.0000, 179.9949); //elecfence_BAR
+	CreateDynamicObject(8661, 3194.3007, -10.2002, 14.8599, 179.9949, 0.0000, 270.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(6959, 3224.7001, -96.0000, 6.5998, 0.0000, 90.0000, 90.0000); //vegasNbball1
+	CreateDynamicObject(8661, 3214.2001, -81.2994, 14.8450, 179.9949, 0.0000, 270.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(8661, 3197.6250, -37.9286, 9.3238, 0.0000, 12510.0000, 90.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(10834, 3197.6938, 61.0638, 1.5456, 0.0000, 0.0000, -179.6999); //navybase_03_SFSe
+	CreateDynamicObject(8661, 3197.6027, -53.1327, 8.7629, 0.0000, 90.0000, 90.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(6959, 3184.6005, 4.9000, 6.5998, 0.0000, 90.0000, 90.0000); //vegasNbball1
+	CreateDynamicObject(6959, 3184.5000, -24.7000, 6.5998, 0.0000, 90.0000, 90.0000); //vegasNbball1
+	CreateDynamicObject(6959, 3220.7998, -106.4941, -14.0000, 0.0000, 90.0000, 90.0000); //vegasNbball1
+	CreateDynamicObject(8661, 3183.4003, -45.5000, 19.5000, 0.0000, 179.9949, 0.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(987, 3167.9350, 85.2058, 6.5998, 0.0000, 0.0000, 179.9949); //elecfence_BAR
+	CreateDynamicObject(987, 3156.0019, 85.2068, 6.5998, 0.0000, 0.0000, 179.9949); //elecfence_BAR
+	CreateDynamicObject(8661, 3194.2998, -81.2994, 14.8450, 179.9949, 0.0000, 270.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(8661, 3174.4003, -10.2002, 14.8450, 179.9949, 0.0000, 270.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(8661, 3177.6447, -37.9286, 9.4238, 0.0000, 12510.0000, 90.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(6959, 3181.0000, -53.2000, 6.6999, 0.0000, 90.0000, 90.0000); //vegasNbball1
+	CreateDynamicObject(6959, 3184.7001, -66.5000, 6.5998, 0.0000, 90.0000, 90.0000); //vegasNbball1
+	CreateDynamicObject(8171, 3190.0000, -81.2001, 6.5998, 0.0000, 0.0000, 270.0000); //vgsSairportland06
+	CreateDynamicObject(8661, 3177.6125, -53.1327, 8.7629, 0.0000, 90.0000, 90.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(18449, 3174.5170, -45.4900, 5.6697, 0.0000, 0.0000, 0.0000); //cs_roadbridge01
+	CreateDynamicObject(19810, 3267.7067, 80.2838, 8.3755, 0.0000, 0.0000, 89.7000); //StaffOnlySign1
+	CreateDynamicObject(6959, 3184.7001, -96.0000, 6.5998, 0.0000, 90.0000, 90.0000); //vegasNbball1
+	CreateDynamicObject(7091, 3162.8999, -35.7999, 15.3999, 0.0000, 0.0000, 270.0000); //vegasflag02
+	CreateDynamicObject(8661, 3174.4003, -81.2994, 14.8450, 179.9949, 0.0000, 270.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(9819, 3160.7998, -42.2000, 13.8999, 0.0000, 0.0000, 0.0000); //shpbridge_sfw02
+	CreateDynamicObject(2985, 3160.1005, -39.7000, 12.8999, 0.0000, 159.9989, 15.9960); //minigun_base
+	CreateDynamicObject(1671, 3159.9003, -40.4001, 13.3999, 0.0000, 0.0000, 139.9989); //swivelchair_A
+	CreateDynamicObject(7091, 3162.8999, -55.5000, 15.3999, 0.0000, 0.0000, 89.9950); //vegasflag02
+	CreateDynamicObject(8661, 3154.5000, -10.2002, 14.8450, 179.9949, 0.0000, 270.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(987, 3144.0522, 85.2079, 6.5998, 0.0000, 0.0000, 179.9949); //elecfence_BAR
+	CreateDynamicObject(1671, 3159.5000, -43.0000, 13.3999, 0.0000, 0.0000, 69.9990); //swivelchair_A
+	CreateDynamicObject(1569, 3158.5000, -38.0996, 12.8999, 0.0000, 0.0000, 179.9949); //ADAM_V_DOOR
+	CreateDynamicObject(9818, 3160.2998, -50.2998, 14.6000, 0.0000, 0.0000, 0.0000); //shpbridge_sfw01
+	CreateDynamicObject(8661, 3157.6638, -37.9286, 9.2187, 0.0000, 12510.0000, 90.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(987, 3132.1027, 85.2089, 6.5998, 0.0000, 0.0000, 179.9949); //elecfence_BAR
+	CreateDynamicObject(8171, 3190.0000, -9.8999, 6.5998, 0.0000, 0.0000, 270.0000); //vgsSairportland06
+	CreateDynamicObject(2985, 3160.1005, -51.7000, 12.8999, 0.0000, 159.9989, 345.9920); //minigun_base
+	CreateDynamicObject(1569, 3155.5000, -38.0996, 12.8999, 0.0000, 0.0000, 0.0000); //ADAM_V_DOOR
+	CreateDynamicObject(16782, 3157.7001, -53.0996, 16.0000, 0.0000, 0.0000, 90.0000); //a51_radar_scan
+	CreateDynamicObject(1886, 3156.7001, -45.7000, 12.5000, 24.9939, 0.0000, 270.0000); //shop_sec_cam
+	CreateDynamicObject(923, 3154.5000, -39.2998, 13.8000, 0.0000, 0.0000, 279.9978); //Packing_carates2
+	CreateDynamicObject(3851, 3153.4003, -40.2000, 18.8999, 0.0000, 0.0000, 180.0000); //carshowwin_SFSX
+	CreateDynamicObject(3851, 3153.3999, -40.2000, 18.8999, 0.0000, 0.0000, 0.0000); //carshowwin_SFSX
+	CreateDynamicObject(3015, 3154.8999, -40.5998, 13.0000, 0.0000, 0.0000, 50.0000); //cr_cratestack
+	CreateDynamicObject(3851, 3153.3999, -40.2000, 14.8999, 0.0000, 0.0000, 179.9949); //carshowwin_SFSX
+	CreateDynamicObject(3851, 3153.3999, -40.2000, 14.8999, 0.0000, 0.0000, 0.0000); //carshowwin_SFSX
+	CreateDynamicObject(2976, 3153.2998, -42.7000, 12.6997, 0.0000, 270.0000, 0.0000); //green_gloop
+	CreateDynamicObject(3851, 3153.3999, -51.5000, 18.8999, 0.0000, 0.0000, 179.9949); //carshowwin_SFSX
+	CreateDynamicObject(3851, 3153.3999, -51.5000, 18.8999, 0.0000, 0.0000, 0.0000); //carshowwin_SFSX
+	CreateDynamicObject(944, 3154.2001, -50.2998, 13.8000, 0.0000, 0.0000, 270.0000); //Packing_carates04
+	CreateDynamicObject(2976, 3153.2998, -48.4001, 12.6997, 0.0000, 270.0000, 0.0000); //green_gloop
+	CreateDynamicObject(3851, 3153.4003, -51.5000, 14.8999, 0.0000, 0.0000, 0.0000); //carshowwin_SFSX
+	CreateDynamicObject(3851, 3153.3999, -51.5000, 14.8999, 0.0000, 0.0000, 179.9949); //carshowwin_SFSX
+	CreateDynamicObject(6959, 3180.7998, -106.4941, -14.0000, 0.0000, 90.0000, 90.0000); //vegasNbball1
+	CreateDynamicObject(1622, 3152.2001, -52.7998, 12.8999, 0.0000, 0.0000, 270.0000); //nt_securecam2_01
+	CreateDynamicObject(6959, 3144.6005, 4.9000, 6.5998, 0.0000, 90.0000, 90.0000); //vegasNbball1
+	CreateDynamicObject(6959, 3144.5000, -24.7000, 6.5998, 0.0000, 90.0000, 90.0000); //vegasNbball1
+	CreateDynamicObject(8661, 3143.7099, -45.5000, 19.5000, 0.0000, 179.9949, 0.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(8661, 3154.5000, -81.2994, 14.8450, 179.9949, 0.0000, 270.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(8661, 3134.6757, -10.2002, 14.8450, 179.9949, 0.0000, 270.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(8661, 3137.6738, -37.9286, 9.4257, 0.0000, 12510.0000, 90.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(6959, 3144.7001, -66.5000, 6.5998, 0.0000, 90.0000, 90.0000); //vegasNbball1
+	CreateDynamicObject(6959, 3141.1999, -53.2000, 6.5000, 0.0000, 90.0000, 90.0000); //vegasNbball1
+	CreateDynamicObject(987, 3120.1728, 85.2099, 6.5998, 0.0000, 0.0000, 179.9949); //elecfence_BAR
+	CreateDynamicObject(987, 3108.2216, 85.2109, 6.5998, 0.0000, 0.0000, 179.9949); //elecfence_BAR
+	CreateDynamicObject(2774, 3127.7202, -37.4799, 14.1997, 0.0000, 0.0000, 0.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(6959, 3144.7001, -96.0000, 6.5998, 0.0000, 90.0000, 90.0000); //vegasNbball1
+	CreateDynamicObject(2774, 3126.3100, -37.5000, 14.1997, 0.0000, 0.0000, 0.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(3877, 3121.2998, 2.5000, 16.6000, 0.0000, 270.0000, 0.0000); //sf_rooflite
+	CreateDynamicObject(2774, 3124.6794, -37.5499, 14.1997, 0.0000, 0.0000, 0.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(8661, 3134.6005, -81.2994, 14.8450, 179.9949, 0.0000, 270.0000); //gnhtelgrnd_lvs
+	CreateDynamicObject(2774, 3127.3703, -53.9001, 14.1997, 0.0000, 0.0000, 0.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(2774, 3124.0000, -35.9001, 14.1997, 0.0000, 0.0000, 0.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(2774, 3125.5302, -50.3903, 18.4799, 0.0000, 12510.0000, 90.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(2774, 3124.0000, -37.5000, 14.1997, 0.0000, 0.0000, 0.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(2774, 3125.6599, -50.3903, 16.8299, 0.0000, 12510.0000, 90.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(2774, 3125.6198, -50.3903, 16.0300, 0.0000, 12510.0000, 90.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(3877, 3121.2998, -22.7998, 16.6000, 0.0000, 270.0000, 0.0000); //sf_rooflite
+	CreateDynamicObject(1411, 3121.7001, -5.2996, 6.3000, 270.0000, 0.0000, 90.0000); //DYN_MESH_1
+	CreateDynamicObject(1411, 3121.7001, -10.5000, 6.3000, 270.0000, 0.0000, 90.0000); //DYN_MESH_1
+	CreateDynamicObject(2774, 3125.6997, -53.9001, 14.1997, 0.0000, 0.0000, 0.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(1411, 3121.7001, -15.6997, 6.3000, 270.0000, 0.0000, 90.0000); //DYN_MESH_1
+	CreateDynamicObject(2774, 3124.0000, -53.9001, 14.1997, 0.0000, 0.0000, 0.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(2774, 3124.0000, -55.5000, 14.1997, 0.0000, 0.0000, 0.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(2774, 3122.2995, -53.9001, 14.1997, 0.0000, 0.0000, 0.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(6959, 3120.9003, -4.6736, -14.0000, 0.0000, 90.0000, 0.0000); //vegasNbball1
+	CreateDynamicObject(3877, 3121.2998, -68.7001, 16.6000, 0.0000, 270.0000, 0.0000); //sf_rooflite
+	CreateDynamicObject(6959, 3140.8798, -106.4941, -14.0000, 0.0000, 90.0000, 90.0000); //vegasNbball1
+	CreateDynamicObject(6959, 3120.8999, -46.5998, -14.5000, 0.0000, 90.0000, 0.0000); //vegasNbball1
+	CreateDynamicObject(1411, 3121.7001, -76.9001, 6.3000, 270.0000, 0.0000, 90.0000); //DYN_MESH_1
+	CreateDynamicObject(987, 3110.6005, 1.0000, 6.5998, 0.0000, 0.0000, 0.0000); //elecfence_BAR
+	CreateDynamicObject(987, 3110.7001, 12.8999, 6.5998, 0.0000, 0.0000, 270.0000); //elecfence_BAR
+	CreateDynamicObject(1411, 3121.7001, -82.0996, 6.3000, 270.0000, 0.0000, 90.0000); //DYN_MESH_1
+	CreateDynamicObject(1411, 3121.7001, -87.2994, 6.3000, 270.0000, 0.0000, 90.0000); //DYN_MESH_1
+	CreateDynamicObject(3877, 3121.2998, -94.0000, 16.6000, 0.0000, 270.0000, 0.0000); //sf_rooflite
+	CreateDynamicObject(1411, 3121.7001, -90.0000, 6.3000, 270.0000, 0.0000, 90.0000); //DYN_MESH_1
+	CreateDynamicObject(6959, 3120.9003, -86.5380, -14.0000, 0.0000, 90.0000, 0.0000); //vegasNbball1
+	CreateDynamicObject(18449, 3094.5773, -45.4900, 5.6697, 0.0000, 0.0000, 0.0000); //cs_roadbridge01
+	CreateDynamicObject(8263, 3064.7001, -38.0996, 9.3000, 0.0000, 0.0000, 179.9949); //vgsSelecfence14
+	CreateDynamicObject(8263, 3064.7001, -53.2998, 9.3000, 0.0000, 0.0000, 0.0000); //vgsSelecfence14
+	CreateDynamicObject(18449, 3014.5878, -45.4900, 5.6697, 0.0000, 0.0000, 0.0000); //cs_roadbridge01
+	CreateDynamicObject(3264, 2998.4506, -51.8650, 5.7698, 0.0000, 0.0000, -142.8018); //privatesign3
+	CreateDynamicObject(3877, 2976.3078, -51.9737, 7.7912, 0.0000, 0.0000, 0.0000); //sf_rooflite
+	CreateDynamicObject(3265, 2972.7099, -38.7000, 10.3000, 0.0000, 0.0000, 270.0000); //privatesign4
+	CreateDynamicObject(2774, 2973.5000, -38.5000, 3.4000, 0.0000, 0.0000, 0.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(3265, 2972.7099, -52.7000, 10.3000, 0.0000, 0.0000, 270.0000); //privatesign4
+	CreateDynamicObject(2774, 2973.5000, -52.9000, 3.4000, 0.0000, 0.0000, 0.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(3264, 2970.8999, -38.7999, 6.3000, 0.0000, 0.0000, 300.0000); //privatesign3
+	CreateDynamicObject(3264, 2971.1000, -52.5000, 6.3000, 0.0000, 0.0000, 239.9980); //privatesign3
+	CreateDynamicObject(2774, 2961.8999, -38.5000, 5.4000, 0.0000, 90.0000, 0.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(2774, 2961.8999, -52.9000, 5.4000, 0.0000, 90.0000, 0.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(8263, 2944.7998, -38.0996, 9.3000, 0.0000, 0.0000, 179.9949); //vgsSelecfence14
+	CreateDynamicObject(8263, 2944.7998, -53.2998, 9.3000, 0.0000, 0.0000, 0.0000); //vgsSelecfence14
+	CreateDynamicObject(8832, 2938.0000, -48.0000, 10.6997, 0.0000, 188.5000, 0.0000); //pirtebrdg01_lvS
+	CreateDynamicObject(2774, 2938.3000, -38.5000, 5.4000, 0.0000, 90.0000, 0.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(2774, 2938.3999, -52.9000, 5.4000, 0.0000, 90.0000, 0.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(2774, 2914.6999, -38.5000, 5.4000, 0.0000, 90.0000, 0.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(2774, 2914.8000, -52.9000, 5.4000, 0.0000, 90.0000, 0.0000); //CJ_AIRP_PILLARS
+	CreateDynamicObject(19124, 2899.9470, -53.4556, 19.2192, 0.0000, 0.0000, 0.0000); //BollardLight4
+	CreateDynamicObject(19124, 2898.4174, -37.8258, 18.1592, 0.0000, 0.0000, 0.0000); //BollardLight4
+	CreateDynamicObject(987, 3227.6728, 85.2005, 6.5998, 0.0000, 0.0000, 179.9949); //elecfence_BAR
+	CreateDynamicObject(8355, 3113.7304, 58.5774, 6.6711, 0.0000, 0.0000, 89.6997); //vgsSairportland18
+	CreateDynamicObject(987, 3096.2529, 85.2120, 6.5998, 0.0000, 0.0000, 179.9949); //elecfence_BAR
+	CreateDynamicObject(987, 3084.2934, 85.2132, 6.5998, 0.0000, 0.0000, 179.9949); //elecfence_BAR
+	CreateDynamicObject(987, 3072.3105, 85.2142, 6.5998, 0.0000, 0.0000, 179.9949); //elecfence_BAR
+	CreateDynamicObject(987, 3060.3674, 85.2152, 6.5998, 0.0000, 0.0000, 179.9949); //elecfence_BAR
+	CreateDynamicObject(8674, 3049.9750, 85.0644, 8.0346, 0.0000, 0.0000, 0.0000); //csrsfence02_lvs
+	CreateDynamicObject(8674, 3044.7719, 79.9216, 8.0346, 0.0000, 0.0000, -90.2998); //csrsfence02_lvs
+	CreateDynamicObject(8674, 3044.7153, 69.6418, 8.0346, 0.0000, 0.0000, -90.2998); //csrsfence02_lvs
+	CreateDynamicObject(8674, 3044.6616, 59.3521, 8.0346, 0.0000, 0.0000, -90.2998); //csrsfence02_lvs
+	CreateDynamicObject(8674, 3044.6076, 49.0722, 8.0346, 0.0000, 0.0000, -90.2998); //csrsfence02_lvs
+	CreateDynamicObject(8674, 3044.5534, 38.7723, 8.0346, 0.0000, 0.0000, -90.2998); //csrsfence02_lvs
+	CreateDynamicObject(987, 3098.7177, 9.3399, 6.5998, 0.0000, 0.0000, 0.0000); //elecfence_BAR
+	CreateDynamicObject(987, 3086.9467, 9.7343, 6.5998, 0.0000, 0.0000, -1.5000); //elecfence_BAR
+	CreateDynamicObject(987, 3075.0417, 10.0461, 6.5998, 0.0000, 0.0000, -1.5000); //elecfence_BAR
+	CreateDynamicObject(987, 3063.1027, 10.3586, 6.5998, 0.0000, 0.0000, -1.5000); //elecfence_BAR
+	CreateDynamicObject(987, 3051.1767, 10.6709, 6.5998, 0.0000, 0.0000, -1.5000); //elecfence_BAR
+	CreateDynamicObject(8674, 3044.4978, 28.4724, 8.0346, 0.0000, 0.0000, -90.2998); //csrsfence02_lvs
+	CreateDynamicObject(8674, 3044.4433, 18.1926, 8.0346, 0.0000, 0.0000, -90.2998); //csrsfence02_lvs
+	CreateDynamicObject(8674, 3049.4086, 11.7857, 8.0346, 0.0000, 0.0000, 166.1999); //csrsfence02_lvs
+	CreateDynamicObject(3268, 3241.3950, 29.9601, 6.5307, 0.0000, 0.0000, -89.8000); //mil_hangar1_
+	CreateDynamicObject(16398, 3319.5593, 42.7108, 6.5946, 0.0000, 0.0000, 90.0000); //desn2_peckfac1
+	CreateDynamicObject(939, -301.5903, 2685.3359, 72.7894, 0.0000, 0.0000, 0.0000); //CJ_DF_UNIT
+	CreateDynamicObject(3877, 2976.3078, -39.0637, 7.7912, 0.0000, 0.0000, 0.0000); //sf_rooflite
+	CreateDynamicObject(1682, 3282.6965, 78.4823, 22.5426, 0.0000, 0.0000, 56.0998); //ap_radar1_01
+	CreateDynamicObject(8355, 3217.2309, 58.0351, 6.6911, 0.0000, 0.0000, 89.6997); //vgsSairportland18
+
+	new g_ObjectTR[805];
+	g_ObjectTR[0] = CreateDynamicObject(978, 2712.2258, -290.7125, 27.4048, 0.0000, 0.0000, -127.2000); //sub_roadright
+	g_ObjectTR[1] = CreateDynamicObject(1334, 2150.3439, 71.2854, 27.6769, 0.0000, 0.0000, -90.0000); //BinNt04_LA
+	g_ObjectTR[2] = CreateDynamicObject(1237, 1784.6689, 263.4309, 18.2835, 0.0000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[3] = CreateDynamicObject(19425, 2259.7827, 25.3362, 25.4442, 0.0000, 0.0000, 0.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[3], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[4] = CreateDynamicObject(7391, 2282.8688, 32.5966, 30.3355, 0.0000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[5] = CreateDynamicObject(19447, 2249.1879, 34.9411, 25.4246, 0.0000, 89.9001, 89.9999); //no comment
+	SetDynamicObjectMaterial(g_ObjectTR[5], 0, 17678, "lae2bridge", "Newpavement", 0x00000000);
+	g_ObjectTR[6] = CreateDynamicObject(18765, 2260.9274, 28.8980, 23.0359, 0.0000, 0.0000, 0.8999); //no comment
+	SetDynamicObjectMaterial(g_ObjectTR[6], 0, 11013, "crackdrive_sfse", "ws_asphalt2", 0x00000000);
+	g_ObjectTR[7] = CreateDynamicObject(18765, 2261.0847, 18.9594, 23.0359, 0.0000, 0.0000, 0.8999); //no comment
+	SetDynamicObjectMaterial(g_ObjectTR[7], 0, 11013, "crackdrive_sfse", "ws_asphalt2", 0x00000000);
+	g_ObjectTR[8] = CreateDynamicObject(18765, 2250.9396, 28.7413, 23.0359, 0.0000, 0.0000, 0.8999); //no comment
+	SetDynamicObjectMaterial(g_ObjectTR[8], 0, 11013, "crackdrive_sfse", "ws_asphalt2", 0x00000000);
+	g_ObjectTR[9] = CreateDynamicObject(18765, 2251.0957, 18.8024, 23.0359, 0.0000, 0.0000, 0.8999); //no comment
+	SetDynamicObjectMaterial(g_ObjectTR[9], 0, 11013, "crackdrive_sfse", "ws_asphalt2", 0x00000000);
+	g_ObjectTR[10] = CreateDynamicObject(18765, 2278.6726, 29.1769, 23.0340, 0.0000, 0.0000, 0.8999); //no comment
+	SetDynamicObjectMaterial(g_ObjectTR[10], 0, 11013, "crackdrive_sfse", "ws_asphalt2", 0x00000000);
+	g_ObjectTR[11] = CreateDynamicObject(19447, 2258.8073, 34.9411, 25.4246, 0.0000, 89.9001, 89.9999); //no comment
+	SetDynamicObjectMaterial(g_ObjectTR[11], 0, 17678, "lae2bridge", "Newpavement", 0x00000000);
+	g_ObjectTR[12] = CreateDynamicObject(18765, 2271.0825, 19.0764, 23.0359, 0.0000, 0.0000, 0.8999); //no comment
+	SetDynamicObjectMaterial(g_ObjectTR[12], 0, 11013, "crackdrive_sfse", "ws_asphalt2", 0x00000000);
+	g_ObjectTR[13] = CreateDynamicObject(18765, 2241.2077, 18.6172, 23.0359, 0.0000, 0.0000, 0.8999); //no comment
+	SetDynamicObjectMaterial(g_ObjectTR[13], 0, 11013, "crackdrive_sfse", "ws_asphalt2", 0x00000000);
+	g_ObjectTR[14] = CreateDynamicObject(11504, 2247.1398, 25.6014, 25.5324, 0.0000, 0.0000, 180.0000); //no comment
+	g_ObjectTR[15] = CreateDynamicObject(2714, 2249.1984, 29.7712, 27.1156, 0.0000, 0.0000, 180.0000); //no comment
+	g_ObjectTR[16] = CreateDynamicObject(18452, 2274.4492, 27.0445, 28.5594, 0.0000, 0.0000, 90.0000); //no comment
+	g_ObjectTR[17] = CreateDynamicObject(19793, 2251.5537, 30.0636, 25.6058, 0.0000, 0.0000, 90.0000); //FireWoodLog1
+	g_ObjectTR[18] = CreateDynamicObject(19447, 2268.4387, 34.9411, 25.4246, 0.0000, 89.9001, 89.9999); //no comment
+	SetDynamicObjectMaterial(g_ObjectTR[18], 0, 17678, "lae2bridge", "Newpavement", 0x00000000);
+	g_ObjectTR[19] = CreateDynamicObject(970, 2283.6367, 32.1276, 26.0456, 0.0000, 0.0000, 90.4999); //no comment
+	g_ObjectTR[20] = CreateDynamicObject(970, 2283.6748, 28.0077, 26.0456, 0.0000, 0.0000, 90.4999); //no comment
+	g_ObjectTR[21] = CreateDynamicObject(987, 2699.9157, -281.0596, 25.8629, 0.0000, 0.0000, -16.8999); //no comment
+	g_ObjectTR[22] = CreateDynamicObject(970, 2283.7102, 23.8978, 26.0456, 0.0000, 0.0000, 90.4999); //no comment
+	g_ObjectTR[23] = CreateDynamicObject(19329, 2250.2514, 29.7474, 28.3159, 0.0000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[24] = CreateDynamicObject(1415, 2238.1359, 20.9193, 25.4580, 0.0000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[25] = CreateDynamicObject(1265, 2237.8488, 19.6812, 25.8726, 0.0000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[26] = CreateDynamicObject(2860, 2239.0292, 19.6140, 25.4859, 0.0000, 0.0000, 42.3997); //no comment
+	g_ObjectTR[27] = CreateDynamicObject(970, 2236.1752, 31.4405, 26.0571, 0.0000, 0.0000, 90.0000); //no comment
+	g_ObjectTR[28] = CreateDynamicObject(970, 2236.1752, 20.9806, 26.0571, 0.0000, 0.0000, 90.0000); //no comment
+	g_ObjectTR[29] = CreateDynamicObject(987, 2679.2465, -274.9035, 28.3934, 0.0000, 0.0000, -16.8999); //no comment
+	g_ObjectTR[30] = CreateDynamicObject(19791, 2151.3769, 92.9709, 16.6347, 0.0000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[31] = CreateDynamicObject(966, 2842.2363, -325.9042, 6.3818, 0.0000, 0.0000, 8.1997); //no comment
+	g_ObjectTR[32] = CreateDynamicObject(3881, 2699.2885, -278.6548, 30.5426, 0.0000, 0.0000, -16.6000); //no comment
+	g_ObjectTR[33] = CreateDynamicObject(987, 2656.4260, -267.9703, 37.0531, 0.0000, 0.0000, -16.8999); //no comment
+	g_ObjectTR[34] = CreateDynamicObject(987, 2720.5571, -288.1169, 26.0523, 0.0000, 0.0000, -15.3000); //no comment
+	g_ObjectTR[35] = CreateDynamicObject(18452, 2713.9460, -282.7936, 29.4340, 0.0000, -0.1999, 73.0998); //no comment
+	g_ObjectTR[36] = CreateDynamicObject(3881, 2714.3193, -282.5877, 28.5527, 0.0000, 0.0000, 162.1000); //no comment
+	g_ObjectTR[37] = CreateDynamicObject(19966, 1889.2154, -5.8807, 33.2691, 0.0000, 0.0000, 169.9998); //no comment
+	g_ObjectTR[38] = CreateDynamicObject(19329, 1864.3824, -109.4031, 40.5569, 0.0000, 0.0000, -21.0998); //no comment
+	SetDynamicObjectMaterialText(g_ObjectTR[38], 0, "TIERRA", OBJECT_MATERIAL_SIZE_256x128, "Arial", 60, 1, 0xFFFFFFFF, 0x00000000, 0);
+	g_ObjectTR[39] = CreateDynamicObject(978, 1890.8381, 0.6327, 34.4976, 0.0000, 0.0000, -103.4999); //no comment
+	g_ObjectTR[40] = CreateDynamicObject(18452, 1896.8094, -10.6274, 36.4118, 0.0000, 0.0000, -104.4999); //no comment
+	g_ObjectTR[41] = CreateDynamicObject(18452, 1891.2917, -9.1688, 36.3894, 0.2998, 0.1999, -104.4999); //no comment
+	g_ObjectTR[42] = CreateDynamicObject(3578, 1888.6704, -8.0986, 34.4328, 0.0000, 0.0000, 75.8999); //no comment
+	g_ObjectTR[43] = CreateDynamicObject(3578, 1893.9449, -10.3311, 34.4328, 0.0000, 0.0000, 75.8999); //no comment
+	g_ObjectTR[44] = CreateDynamicObject(3578, 1899.4432, -11.7124, 34.4328, 0.0000, 0.0000, 75.8999); //no comment
+	g_ObjectTR[45] = CreateDynamicObject(19966, 1894.7010, -7.3049, 33.3292, 0.0000, 0.0000, 169.9998); //no comment
+	g_ObjectTR[46] = CreateDynamicObject(978, 1901.9908, -1.2704, 34.4976, 0.0000, 0.0000, 75.9000); //no comment
+	g_ObjectTR[47] = CreateDynamicObject(19329, 1891.3370, 3.8354, 36.5773, 0.0000, 0.0000, -36.9000); //no comment
+	SetDynamicObjectMaterialText(g_ObjectTR[47], 0, "LEAVING", OBJECT_MATERIAL_SIZE_256x128, "Arial", 60, 1, 0xFFFFFFFF, 0x00000000, 0);
+	g_ObjectTR[48] = CreateDynamicObject(19967, 1887.9161, -11.0670, 33.2028, 0.0000, 0.0000, -13.8999); //no comment
+	g_ObjectTR[49] = CreateDynamicObject(966, 1901.7884, -6.6329, 33.6453, 0.0000, 0.0000, -13.8999); //no comment
+	g_ObjectTR[50] = CreateDynamicObject(966, 1885.7065, -12.8788, 33.7024, 0.0000, 0.0000, 162.9998); //no comment
+	g_ObjectTR[51] = CreateDynamicObject(19329, 1860.7386, -107.4296, 41.0568, 0.0000, 0.0000, -21.0998); //no comment
+	SetDynamicObjectMaterialText(g_ObjectTR[51], 0, "ENTERING", OBJECT_MATERIAL_SIZE_256x128, "Arial", 58, 1, 0xFFFFFFFF, 0x00000000, 0);
+	g_ObjectTR[52] = CreateDynamicObject(987, 2456.3774, -246.3406, 32.2532, 0.0000, 0.0000, -3.2999); //no comment
+	g_ObjectTR[53] = CreateDynamicObject(987, 2456.3974, -246.3417, 27.6333, 0.0000, 0.0000, -3.2999); //no comment
+	g_ObjectTR[54] = CreateDynamicObject(3514, 1870.9311, -111.7201, 38.0708, 0.0000, 0.0000, 158.8999); //no comment
+	g_ObjectTR[55] = CreateDynamicObject(19966, 1893.3863, -12.5226, 33.3992, 0.0000, 0.0000, -13.0000); //no comment
+	g_ObjectTR[56] = CreateDynamicObject(19329, 1891.4338, 3.7634, 36.0769, 0.0000, 0.0000, -36.9000); //no comment
+	SetDynamicObjectMaterialText(g_ObjectTR[56], 0, "TIERRA ROBADA", OBJECT_MATERIAL_SIZE_256x128, "Arial", 35, 1, 0xFFFFFFFF, 0x00000000, 0);
+	g_ObjectTR[57] = CreateDynamicObject(3337, 1891.4144, 3.6282, 33.4891, 0.0000, 0.0000, 53.2999); //no comment
+	g_ObjectTR[58] = CreateDynamicObject(19329, 1865.1643, -109.7095, 41.1971, 0.0000, 0.0000, -21.2999); //no comment
+	SetDynamicObjectMaterialText(g_ObjectTR[58], 0, "ENTERING", OBJECT_MATERIAL_SIZE_256x128, "Arial", 58, 1, 0xFFFFFFFF, 0x00000000, 0);
+	g_ObjectTR[59] = CreateDynamicObject(18765, 2241.0505, 28.5860, 23.0359, 0.0000, 0.0000, 0.8999); //no comment
+	SetDynamicObjectMaterial(g_ObjectTR[59], 0, 11013, "crackdrive_sfse", "ws_asphalt2", 0x00000000);
+	g_ObjectTR[60] = CreateDynamicObject(19329, 1866.0871, -110.0690, 40.5569, 0.0000, 0.0000, -21.2999); //no comment
+	SetDynamicObjectMaterialText(g_ObjectTR[60], 0, "ROBADA", OBJECT_MATERIAL_SIZE_256x128, "Arial", 60, 1, 0xFFFFFFFF, 0x00000000, 0);
+	g_ObjectTR[61] = CreateDynamicObject(19329, 1861.0395, -107.5350, 40.3470, 0.0000, 0.0000, -21.0998); //no comment
+	SetDynamicObjectMaterialText(g_ObjectTR[61], 0, "SAN", OBJECT_MATERIAL_SIZE_256x128, "Arial", 60, 1, 0xFFFFFFFF, 0x00000000, 0);
+	g_ObjectTR[62] = CreateDynamicObject(19329, 1860.0114, -107.1483, 40.3470, 0.0000, 0.0000, -21.0998); //no comment
+	SetDynamicObjectMaterialText(g_ObjectTR[62], 0, "ANDREAS", OBJECT_MATERIAL_SIZE_256x128, "Arial", 61, 1, 0xFFFFFFFF, 0x00000000, 0);
+	g_ObjectTR[63] = CreateDynamicObject(19868, 1886.9012, -16.4132, 34.8968, 0.0000, 0.0000, 71.4999); //no comment
+	g_ObjectTR[64] = CreateDynamicObject(19868, 1885.2508, -21.3444, 34.8968, 0.0000, 0.0000, 71.4999); //no comment
+	g_ObjectTR[65] = CreateDynamicObject(19868, 1895.5499, -23.6833, 34.8968, 0.0000, 0.0000, -107.9000); //no comment
+	g_ObjectTR[66] = CreateDynamicObject(19868, 1897.1418, -18.7541, 34.8968, 0.0000, 0.0000, -107.9000); //no comment
+	g_ObjectTR[67] = CreateDynamicObject(19966, 1898.8896, -13.9364, 33.3992, 0.0000, 0.0000, -13.0000); //no comment
+	g_ObjectTR[68] = CreateDynamicObject(3578, 2710.2844, -285.5646, 27.0144, 0.0000, 0.0000, 74.5000); //no comment
+	g_ObjectTR[69] = CreateDynamicObject(4519, 2766.9382, 324.2347, 9.2292, 0.0000, 0.0000, -89.5000); //no comment
+	g_ObjectTR[70] = CreateDynamicObject(19967, 1900.1905, -8.7698, 33.2028, 0.0000, 0.0000, 167.6999); //no comment
+	g_ObjectTR[71] = CreateDynamicObject(18452, 2699.6997, -278.4710, 31.2439, 0.0000, -0.1999, 73.0998); //no comment
+	g_ObjectTR[72] = CreateDynamicObject(18452, 2694.3168, -276.8566, 31.2738, 0.0000, -0.1999, 73.0998); //no comment
+	g_ObjectTR[73] = CreateDynamicObject(18452, 2719.3420, -284.4016, 29.4441, 0.0000, -0.1999, 73.0998); //no comment
+	g_ObjectTR[74] = CreateDynamicObject(987, 2468.3078, -247.0285, 28.2833, 0.0000, 0.0000, -3.2999); //no comment
+	g_ObjectTR[75] = CreateDynamicObject(3578, 2713.0422, -275.6931, 27.0144, 0.0000, 0.0000, 74.5000); //no comment
+	g_ObjectTR[76] = CreateDynamicObject(3578, 2693.3156, -270.2239, 28.5944, 0.0000, 0.0000, 73.5998); //no comment
+	g_ObjectTR[77] = CreateDynamicObject(3578, 2692.6389, -272.5263, 28.5944, 0.0000, 0.0000, 73.5998); //no comment
+	g_ObjectTR[78] = CreateDynamicObject(3578, 2699.3110, -271.9886, 28.5944, 0.0000, 0.0000, 73.5998); //no comment
+	g_ObjectTR[79] = CreateDynamicObject(3578, 2696.8354, -280.7881, 28.5944, 0.0000, 0.0000, 73.5998); //no comment
+	g_ObjectTR[80] = CreateDynamicObject(19425, 2259.7827, 19.3362, 25.4442, 0.0000, 0.0000, 0.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[80], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[81] = CreateDynamicObject(987, 2679.2465, -274.9035, 33.4434, 0.0000, 0.0000, -16.8999); //no comment
+	g_ObjectTR[82] = CreateDynamicObject(18765, 2270.9255, 29.0552, 23.0359, 0.0000, 0.0000, 0.8999); //no comment
+	SetDynamicObjectMaterial(g_ObjectTR[82], 0, 11013, "crackdrive_sfse", "ws_asphalt2", 0x00000000);
+	g_ObjectTR[83] = CreateDynamicObject(7033, 1786.5544, 267.1415, 22.6753, 0.0000, 0.0000, -90.1996); //no comment
+	g_ObjectTR[84] = CreateDynamicObject(18765, 2278.8276, 19.1980, 23.0345, 0.0000, 0.0000, 0.8999); //no comment
+	SetDynamicObjectMaterial(g_ObjectTR[84], 0, 11013, "crackdrive_sfse", "ws_asphalt2", 0x00000000);
+	g_ObjectTR[85] = CreateDynamicObject(19425, 2262.3325, 19.3362, 25.4449, 0.0000, 0.0000, 0.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[85], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[86] = CreateDynamicObject(19425, 2259.7827, 22.3162, 25.4442, 0.0000, 0.0000, 0.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[86], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[87] = CreateDynamicObject(19425, 2262.3325, 22.3162, 25.4449, 0.0000, 0.0000, 0.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[87], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[88] = CreateDynamicObject(987, 2679.2465, -274.9035, 37.0531, 0.0000, 0.0000, -16.8999); //no comment
+	g_ObjectTR[89] = CreateDynamicObject(987, 2667.8405, -271.4382, 37.0531, 0.0000, 0.0000, -16.8999); //no comment
+	g_ObjectTR[90] = CreateDynamicObject(987, 2731.4548, -291.1094, 25.9123, 0.0000, 0.0000, -83.5998); //no comment
+	g_ObjectTR[91] = CreateDynamicObject(3578, 2723.3725, -278.0886, 27.0144, 0.0000, 0.0000, 74.3999); //no comment
+	g_ObjectTR[92] = CreateDynamicObject(3578, 2720.5258, -288.3375, 27.0144, 0.0000, 0.0000, 74.5999); //no comment
+	g_ObjectTR[93] = CreateDynamicObject(987, 2732.7897, -303.0147, 25.9123, 0.0000, 0.0000, -83.5998); //no comment
+	g_ObjectTR[94] = CreateDynamicObject(987, 2732.7846, -302.9749, 21.8724, 0.0000, 0.0000, -83.5998); //no comment
+	g_ObjectTR[95] = CreateDynamicObject(987, 2731.4633, -291.1986, 21.8724, 0.0000, 0.0000, -83.5998); //no comment
+	g_ObjectTR[96] = CreateDynamicObject(987, 2734.1093, -314.7907, 21.8724, 0.0000, 0.0000, -4.7999); //no comment
+	g_ObjectTR[97] = CreateDynamicObject(987, 2745.9980, -315.7890, 21.8724, 0.0000, 0.0000, -4.7999); //no comment
+	g_ObjectTR[98] = CreateDynamicObject(987, 2757.8955, -316.7879, 21.8724, 0.0000, 0.0000, -4.7999); //no comment
+	g_ObjectTR[99] = CreateDynamicObject(987, 2769.8339, -317.7904, 21.8724, 0.0000, 0.0000, -4.7999); //no comment
+	g_ObjectTR[100] = CreateDynamicObject(987, 2775.8332, -318.2944, 18.0722, 0.0000, 0.0000, -4.7999); //no comment
+	g_ObjectTR[101] = CreateDynamicObject(987, 2787.6909, -319.2903, 18.0722, 0.0000, 0.0000, -4.7999); //no comment
+	g_ObjectTR[102] = CreateDynamicObject(987, 2799.5893, -320.2893, 11.7320, 0.0000, 0.0000, -4.7999); //no comment
+	g_ObjectTR[103] = CreateDynamicObject(987, 2799.5893, -320.2893, 16.7224, 0.0000, 0.0000, -4.7999); //no comment
+	g_ObjectTR[104] = CreateDynamicObject(987, 2811.4672, -321.2867, 7.2322, 0.0000, 0.0000, -4.7999); //no comment
+	g_ObjectTR[105] = CreateDynamicObject(987, 2811.4672, -321.2867, 12.1124, 0.0000, 0.0000, -4.7999); //no comment
+	g_ObjectTR[106] = CreateDynamicObject(987, 2811.4672, -321.2867, 16.7224, 0.0000, 0.0000, -4.7999); //no comment
+	g_ObjectTR[107] = CreateDynamicObject(987, 2817.4475, -321.7886, 6.1223, 0.0000, 0.0000, -4.7999); //no comment
+	g_ObjectTR[108] = CreateDynamicObject(987, 2840.9453, -323.7615, 6.1223, 0.0000, 0.0000, -4.7999); //no comment
+	g_ObjectTR[109] = CreateDynamicObject(987, 2852.8632, -324.7622, 6.1223, 0.0000, 0.0000, -4.7999); //no comment
+	g_ObjectTR[110] = CreateDynamicObject(987, 2861.8015, -325.5129, 3.5724, 0.0000, 0.0000, -4.7999); //no comment
+	g_ObjectTR[111] = CreateDynamicObject(987, 2867.8422, -326.0198, 1.2022, 0.0000, 0.0000, -4.7999); //no comment
+	g_ObjectTR[112] = CreateDynamicObject(987, 2873.7705, -326.5177, -2.8575, 0.0000, 0.0000, -4.7999); //no comment
+	g_ObjectTR[113] = CreateDynamicObject(987, 2840.9453, -323.7615, 11.1124, 0.0000, 0.0000, -4.7999); //no comment
+	g_ObjectTR[114] = CreateDynamicObject(987, 2852.8735, -324.7630, 11.1124, 0.0000, 0.0000, -4.7999); //no comment
+	g_ObjectTR[115] = CreateDynamicObject(987, 2861.8112, -325.5137, 8.3823, 0.0000, 0.0000, -4.7999); //no comment
+	g_ObjectTR[116] = CreateDynamicObject(987, 2867.8005, -326.0166, 6.1023, 0.0000, 0.0000, -4.7999); //no comment
+	g_ObjectTR[117] = CreateDynamicObject(987, 2873.7697, -326.5179, 2.1024, 0.0000, 0.0000, -4.7999); //no comment
+	g_ObjectTR[118] = CreateDynamicObject(987, 2817.4475, -321.7886, 11.0024, 0.0000, 0.0000, -4.7999); //no comment
+	g_ObjectTR[119] = CreateDynamicObject(18452, 2832.4780, -323.9352, 9.1829, 1.7999, 0.0000, -171.2998); //no comment
+	g_ObjectTR[120] = CreateDynamicObject(18452, 2837.6062, -323.1535, 9.1695, 1.7999, 0.0000, -171.1999); //no comment
+	g_ObjectTR[121] = CreateDynamicObject(987, 2444.5693, -245.6595, 27.6333, 0.0000, 0.0000, -3.2999); //no comment
+	g_ObjectTR[122] = CreateDynamicObject(966, 2827.8303, -321.3078, 6.3818, 0.0000, 0.0000, -172.9998); //no comment
+	g_ObjectTR[123] = CreateDynamicObject(967, 2828.8894, -320.2445, 6.3965, 0.0000, 0.0000, 97.1996); //no comment
+	g_ObjectTR[124] = CreateDynamicObject(967, 2840.9482, -327.0379, 6.3965, 0.0000, 0.0000, -84.6996); //no comment
+	g_ObjectTR[125] = CreateDynamicObject(987, 2645.0107, -264.5021, 37.0531, 0.0000, 0.0000, -16.8999); //no comment
+	g_ObjectTR[126] = CreateDynamicObject(987, 2633.5578, -261.0223, 37.0531, 0.0000, 0.0000, -16.8999); //no comment
+	g_ObjectTR[127] = CreateDynamicObject(987, 2622.1433, -257.5541, 37.0531, 0.0000, 0.0000, -16.8999); //no comment
+	g_ObjectTR[128] = CreateDynamicObject(987, 2610.1972, -257.5516, 37.0531, 0.0000, 0.0000, -0.1999); //no comment
+	g_ObjectTR[129] = CreateDynamicObject(3578, 2835.0659, -324.2048, 6.1156, 0.0000, 0.0000, 97.9000); //no comment
+	g_ObjectTR[130] = CreateDynamicObject(3578, 2830.2109, -326.3236, 7.0089, 0.0000, 0.0000, 98.4999); //no comment
+	g_ObjectTR[131] = CreateDynamicObject(3578, 2839.9111, -320.8406, 6.7789, 0.0000, 0.0000, 98.5998); //no comment
+	g_ObjectTR[132] = CreateDynamicObject(987, 2598.2443, -257.5097, 37.0531, 0.0000, 0.0000, -0.1999); //no comment
+	g_ObjectTR[133] = CreateDynamicObject(987, 2586.3049, -257.4682, 37.0531, 0.0000, 0.0000, -0.1999); //no comment
+	g_ObjectTR[134] = CreateDynamicObject(987, 2574.3647, -257.4266, 37.0531, 0.0000, 0.0000, -0.1999); //no comment
+	g_ObjectTR[135] = CreateDynamicObject(987, 2562.4335, -257.3851, 37.0531, 0.0000, 0.0000, -0.1999); //no comment
+	g_ObjectTR[136] = CreateDynamicObject(987, 2550.5026, -257.3438, 37.0531, 0.0000, 0.0000, -0.1999); //no comment
+	g_ObjectTR[137] = CreateDynamicObject(987, 2538.5622, -257.3020, 37.0531, 0.0000, 0.0000, -0.1999); //no comment
+	g_ObjectTR[138] = CreateDynamicObject(987, 2526.6105, -257.2604, 37.0531, 0.0000, 0.0000, -0.1999); //no comment
+	g_ObjectTR[139] = CreateDynamicObject(987, 2514.6606, -257.2188, 37.0531, 0.0000, 0.0000, -0.1999); //no comment
+	g_ObjectTR[140] = CreateDynamicObject(987, 2514.6606, -257.2188, 32.2532, 0.0000, 0.0000, -0.1999); //no comment
+	g_ObjectTR[141] = CreateDynamicObject(987, 2526.6411, -257.2604, 32.2532, 0.0000, 0.0000, -0.1999); //no comment
+	g_ObjectTR[142] = CreateDynamicObject(987, 2503.1179, -253.9743, 32.2532, 0.0000, 0.0000, -15.6997); //no comment
+	g_ObjectTR[143] = CreateDynamicObject(987, 2491.6335, -250.7460, 32.2532, 0.0000, 0.0000, -15.6997); //no comment
+	g_ObjectTR[144] = CreateDynamicObject(987, 2432.6381, -244.9716, 27.6333, 0.0000, 0.0000, -3.2999); //no comment
+	g_ObjectTR[145] = CreateDynamicObject(987, 2480.1301, -247.5122, 32.2532, 0.0000, 0.0000, -15.6997); //no comment
+	g_ObjectTR[146] = CreateDynamicObject(987, 2468.3078, -247.0285, 32.2532, 0.0000, 0.0000, -3.2999); //no comment
+	g_ObjectTR[147] = CreateDynamicObject(987, 2420.7475, -244.2861, 27.6333, 0.0000, 0.0000, -3.2999); //no comment
+	g_ObjectTR[148] = CreateDynamicObject(987, 2408.8269, -243.5989, 27.6333, 0.0000, 0.0000, -3.2999); //no comment
+	g_ObjectTR[149] = CreateDynamicObject(987, 2397.2033, -246.2064, 27.6333, 0.0000, 0.0000, 12.3001); //no comment
+	g_ObjectTR[150] = CreateDynamicObject(987, 2385.5395, -248.7500, 27.6333, 0.0000, 0.0000, 12.3001); //no comment
+	g_ObjectTR[151] = CreateDynamicObject(987, 2373.8842, -251.2915, 27.6333, 0.0000, 0.0000, 12.3001); //no comment
+	g_ObjectTR[152] = CreateDynamicObject(987, 2362.2075, -253.8372, 27.6333, 0.0000, 0.0000, 12.3001); //no comment
+	g_ObjectTR[153] = CreateDynamicObject(987, 2350.5515, -256.3786, 27.6333, 0.0000, 0.0000, 12.3001); //no comment
+	g_ObjectTR[154] = CreateDynamicObject(987, 2350.5515, -256.3786, 37.3633, 0.0000, 0.0000, 12.3001); //no comment
+	g_ObjectTR[155] = CreateDynamicObject(987, 2338.8759, -258.9244, 32.3432, 0.0000, 0.0000, 12.3001); //no comment
+	g_ObjectTR[156] = CreateDynamicObject(987, 2338.8759, -258.9244, 37.5531, 0.0000, 0.0000, 12.3001); //no comment
+	g_ObjectTR[157] = CreateDynamicObject(987, 2327.1899, -261.4721, 42.6534, 0.0000, 0.0000, 12.3001); //no comment
+	g_ObjectTR[158] = CreateDynamicObject(987, 2338.8750, -258.9244, 42.6534, 0.0000, 0.0000, 12.3001); //no comment
+	g_ObjectTR[159] = CreateDynamicObject(987, 2316.0754, -265.8121, 42.6534, 0.0000, 0.0000, 21.9001); //no comment
+	g_ObjectTR[160] = CreateDynamicObject(987, 2305.0910, -270.2282, 47.8534, 0.0000, 0.0000, 21.9001); //no comment
+	g_ObjectTR[161] = CreateDynamicObject(987, 2294.0046, -274.6853, 47.8534, 0.0000, 0.0000, 21.9001); //no comment
+	g_ObjectTR[162] = CreateDynamicObject(987, 2283.0666, -279.0830, 53.1734, 0.0000, 0.0000, 21.9001); //no comment
+	g_ObjectTR[163] = CreateDynamicObject(987, 2408.8269, -243.5989, 23.2833, 0.0000, 0.0000, -3.2999); //no comment
+	g_ObjectTR[164] = CreateDynamicObject(987, 2271.9792, -283.5401, 53.1734, 0.0000, 0.0000, 21.9001); //no comment
+	g_ObjectTR[165] = CreateDynamicObject(987, 2266.6447, -285.6849, 57.6632, 0.0000, 0.0000, 21.9001); //no comment
+	g_ObjectTR[166] = CreateDynamicObject(987, 2255.6418, -290.1087, 62.6734, 0.0000, 0.0000, 21.9001); //no comment
+	g_ObjectTR[167] = CreateDynamicObject(987, 2244.7583, -285.2001, 62.6734, 0.0000, 0.0000, -23.8997); //no comment
+	g_ObjectTR[168] = CreateDynamicObject(987, 2240.3876, -283.2637, 59.1333, 0.0000, 0.0000, -23.8997); //no comment
+	g_ObjectTR[169] = CreateDynamicObject(987, 2236.1186, -281.3717, 59.1333, 0.0000, 0.0000, -23.8997); //no comment
+	g_ObjectTR[170] = CreateDynamicObject(987, 2236.1186, -281.3717, 62.6734, 0.0000, 0.0000, -23.8997); //no comment
+	g_ObjectTR[171] = CreateDynamicObject(987, 2266.6447, -285.6849, 62.5032, 0.0000, 0.0000, 21.9001); //no comment
+	g_ObjectTR[172] = CreateDynamicObject(987, 2283.0666, -279.0830, 58.1632, 0.0000, 0.0000, 21.9001); //no comment
+	g_ObjectTR[173] = CreateDynamicObject(987, 2271.8596, -283.5887, 58.1632, 0.0000, 0.0000, 21.9001); //no comment
+	g_ObjectTR[174] = CreateDynamicObject(987, 2294.0046, -274.6853, 52.8334, 0.0000, 0.0000, 21.9001); //no comment
+	g_ObjectTR[175] = CreateDynamicObject(987, 2305.1003, -270.2243, 52.8334, 0.0000, 0.0000, 21.9001); //no comment
+	g_ObjectTR[176] = CreateDynamicObject(987, 2316.0754, -265.8121, 47.5233, 0.0000, 0.0000, 21.9001); //no comment
+	g_ObjectTR[177] = CreateDynamicObject(987, 2327.1899, -261.4721, 47.5732, 0.0000, 0.0000, 12.3001); //no comment
+	g_ObjectTR[178] = CreateDynamicObject(987, 2362.2075, -253.8372, 32.5233, 0.0000, 0.0000, 12.3001); //no comment
+	g_ObjectTR[179] = CreateDynamicObject(987, 2350.5515, -256.3786, 32.3432, 0.0000, 0.0000, 12.3001); //no comment
+	g_ObjectTR[180] = CreateDynamicObject(987, 2373.8635, -251.2958, 32.5233, 0.0000, 0.0000, 12.3001); //no comment
+	g_ObjectTR[181] = CreateDynamicObject(987, 2385.5190, -248.7543, 32.5233, 0.0000, 0.0000, 12.3001); //no comment
+	g_ObjectTR[182] = CreateDynamicObject(987, 2397.2050, -246.2062, 32.5233, 0.0000, 0.0000, 12.3001); //no comment
+	g_ObjectTR[183] = CreateDynamicObject(987, 2397.2033, -246.2064, 23.2434, 0.0000, 0.0000, 12.3001); //no comment
+	g_ObjectTR[184] = CreateDynamicObject(987, 2385.5185, -248.7543, 23.2434, 0.0000, 0.0000, 12.3001); //no comment
+	g_ObjectTR[185] = CreateDynamicObject(987, 2420.7561, -244.2868, 23.2833, 0.0000, 0.0000, -3.2999); //no comment
+	g_ObjectTR[186] = CreateDynamicObject(987, 2622.1433, -257.5541, 42.0032, 0.0000, 0.0000, -16.8999); //no comment
+	g_ObjectTR[187] = CreateDynamicObject(987, 2432.6567, -244.9729, 23.2833, 0.0000, 0.0000, -3.2999); //no comment
+	g_ObjectTR[188] = CreateDynamicObject(987, 2408.8269, -243.5989, 32.5233, 0.0000, 0.0000, -3.2999); //no comment
+	g_ObjectTR[189] = CreateDynamicObject(987, 2420.7680, -244.2872, 32.5233, 0.0000, 0.0000, -3.2999); //no comment
+	g_ObjectTR[190] = CreateDynamicObject(987, 2432.6591, -244.9730, 32.5233, 0.0000, 0.0000, -3.2999); //no comment
+	g_ObjectTR[191] = CreateDynamicObject(987, 2444.4697, -245.6540, 32.5233, 0.0000, 0.0000, -3.2999); //no comment
+	g_ObjectTR[192] = CreateDynamicObject(987, 2538.5622, -257.3020, 42.0134, 0.0000, 0.0000, -0.1999); //no comment
+	g_ObjectTR[193] = CreateDynamicObject(987, 2550.5231, -257.3438, 42.0134, 0.0000, 0.0000, -0.1999); //no comment
+	g_ObjectTR[194] = CreateDynamicObject(987, 2562.4445, -257.3851, 42.0134, 0.0000, 0.0000, -0.1999); //no comment
+	g_ObjectTR[195] = CreateDynamicObject(987, 2574.3659, -257.4266, 42.0134, 0.0000, 0.0000, -0.1999); //no comment
+	g_ObjectTR[196] = CreateDynamicObject(987, 2586.3476, -257.4685, 42.0134, 0.0000, 0.0000, -0.1999); //no comment
+	g_ObjectTR[197] = CreateDynamicObject(987, 2598.2880, -257.5101, 42.0134, 0.0000, 0.0000, -0.1999); //no comment
+	g_ObjectTR[198] = CreateDynamicObject(987, 2610.2888, -257.5519, 42.0134, 0.0000, 0.0000, -0.1999); //no comment
+	g_ObjectTR[199] = CreateDynamicObject(987, 2610.2888, -257.5519, 42.0134, 0.0000, 0.0000, -0.1999); //no comment
+	g_ObjectTR[200] = CreateDynamicObject(987, 1775.2690, 231.1112, 22.8994, 0.0000, 0.0000, -100.7994); //no comment
+	g_ObjectTR[201] = CreateDynamicObject(987, 2633.5971, -261.0339, 42.0032, 0.0000, 0.0000, -16.8999); //no comment
+	g_ObjectTR[202] = CreateDynamicObject(987, 2645.0126, -264.5018, 42.0032, 0.0000, 0.0000, -16.8999); //no comment
+	g_ObjectTR[203] = CreateDynamicObject(987, 2656.4555, -267.9786, 42.0032, 0.0000, 0.0000, -16.8999); //no comment
+	g_ObjectTR[204] = CreateDynamicObject(987, 2667.8513, -271.4407, 42.0032, 0.0000, 0.0000, -16.8999); //no comment
+	g_ObjectTR[205] = CreateDynamicObject(18228, 2277.8908, -260.3280, 5.1199, 0.0000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[206] = CreateDynamicObject(987, 1779.7386, 254.5388, 18.0193, 0.0000, 0.0000, -100.7994); //no comment
+	g_ObjectTR[207] = CreateDynamicObject(987, 1777.4991, 242.8002, 18.0193, 0.0000, 0.0000, -100.7994); //no comment
+	g_ObjectTR[208] = CreateDynamicObject(987, 1777.4991, 242.8002, 22.9293, 0.0000, 0.0000, -100.7994); //no comment
+	g_ObjectTR[209] = CreateDynamicObject(987, 1775.2690, 231.1112, 18.0193, 0.0000, 0.0000, -100.7994); //no comment
+	g_ObjectTR[210] = CreateDynamicObject(987, 1773.0278, 219.3630, 22.8994, 0.0000, 0.0000, -100.7994); //no comment
+	g_ObjectTR[211] = CreateDynamicObject(987, 1773.0278, 219.3630, 18.0193, 0.0000, 0.0000, -100.7994); //no comment
+	g_ObjectTR[212] = CreateDynamicObject(987, 1770.7993, 207.6835, 22.8994, 0.0000, 0.0000, -100.7994); //no comment
+	g_ObjectTR[213] = CreateDynamicObject(987, 1773.0278, 219.3630, 27.3292, 0.0000, 0.0000, -100.7994); //no comment
+	g_ObjectTR[214] = CreateDynamicObject(18766, 2171.4414, 49.2022, 24.9256, 91.8000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[215] = CreateDynamicObject(987, 1770.7993, 207.6835, 27.3094, 0.0000, 0.0000, -100.7994); //no comment
+	g_ObjectTR[216] = CreateDynamicObject(987, 1768.5594, 195.9454, 22.8994, 0.0000, 0.0000, -100.7994); //no comment
+	g_ObjectTR[217] = CreateDynamicObject(987, 1768.5594, 195.9454, 27.2994, 0.0000, 0.0000, -100.7994); //no comment
+	g_ObjectTR[218] = CreateDynamicObject(987, 1766.3131, 184.1678, 27.2994, 0.0000, 0.0000, -117.9000); //no comment
+	g_ObjectTR[219] = CreateDynamicObject(18766, 2161.4406, 49.2022, 24.9256, 91.8000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[220] = CreateDynamicObject(987, 1760.7351, 173.6333, 28.4993, 0.0000, 0.0000, -117.9000); //no comment
+	g_ObjectTR[221] = CreateDynamicObject(18766, 2151.4460, 49.2022, 24.9256, 91.8000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[222] = CreateDynamicObject(987, 1755.1527, 163.0899, 29.2493, 0.0000, 0.0000, -117.9000); //no comment
+	g_ObjectTR[223] = CreateDynamicObject(987, 1749.5699, 152.5466, 29.9794, 0.0000, 0.0000, -117.9000); //no comment
+	g_ObjectTR[224] = CreateDynamicObject(987, 1743.9830, 141.9944, 29.9794, 0.0000, 0.0000, -117.9000); //no comment
+	g_ObjectTR[225] = CreateDynamicObject(987, 1738.3863, 131.4246, 29.9794, 0.0000, 0.0000, -117.9000); //no comment
+	g_ObjectTR[226] = CreateDynamicObject(18766, 2141.4729, 49.2022, 24.9256, 91.8000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[227] = CreateDynamicObject(987, 1726.0887, 108.1992, 31.6093, 0.0000, 0.0000, -117.9000); //no comment
+	g_ObjectTR[228] = CreateDynamicObject(987, 1720.5112, 97.6647, 31.6093, 0.0000, 0.0000, -117.9000); //no comment
+	g_ObjectTR[229] = CreateDynamicObject(18766, 2131.4724, 49.2022, 24.9256, 91.8000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[230] = CreateDynamicObject(987, 1736.9785, 128.7644, 29.9794, 0.0000, 0.0000, -117.9000); //no comment
+	g_ObjectTR[231] = CreateDynamicObject(987, 1720.5112, 97.6647, 27.0494, 0.0000, 0.0000, -117.9000); //no comment
+	g_ObjectTR[232] = CreateDynamicObject(987, 1726.0931, 108.2080, 27.0494, 0.0000, 0.0000, -117.9000); //no comment
+	g_ObjectTR[233] = CreateDynamicObject(987, 1714.9145, 87.0949, 31.6093, 0.0000, 0.0000, -117.9000); //no comment
+	g_ObjectTR[234] = CreateDynamicObject(987, 1714.9145, 87.0949, 27.0893, 0.0000, 0.0000, -117.9000); //no comment
+	g_ObjectTR[235] = CreateDynamicObject(987, 1709.3227, 76.5335, 27.0893, 0.0000, 0.0000, -117.9000); //no comment
+	g_ObjectTR[236] = CreateDynamicObject(987, 1709.3227, 76.5335, 31.6494, 0.0000, 0.0000, -117.9000); //no comment
+	g_ObjectTR[237] = CreateDynamicObject(987, 1703.7215, 65.9552, 28.0694, 0.0000, 0.0000, -117.9000); //no comment
+	g_ObjectTR[238] = CreateDynamicObject(987, 1703.7215, 65.9552, 31.6394, 0.0000, 0.0000, -117.9000); //no comment
+	g_ObjectTR[239] = CreateDynamicObject(987, 1698.1208, 55.3763, 31.6394, 0.0000, 0.0000, -117.9000); //no comment
+	g_ObjectTR[240] = CreateDynamicObject(987, 1698.1208, 55.3763, 28.0494, 0.0000, 0.0000, -117.9000); //no comment
+	g_ObjectTR[241] = CreateDynamicObject(987, 1692.5340, 44.8244, 28.0494, 0.0000, 0.0000, -117.9000); //no comment
+	g_ObjectTR[242] = CreateDynamicObject(987, 1692.5340, 44.8244, 31.5993, 0.0000, 0.0000, -117.9000); //no comment
+	g_ObjectTR[243] = CreateDynamicObject(987, 1686.9470, 34.2722, 31.5993, 0.0000, 0.0000, -117.9000); //no comment
+	g_ObjectTR[244] = CreateDynamicObject(987, 1686.9470, 34.2722, 27.6594, 0.0000, 0.0000, -117.9000); //no comment
+	g_ObjectTR[245] = CreateDynamicObject(987, 1681.3552, 23.7112, 27.6594, 0.0000, 0.0000, -117.9000); //no comment
+	g_ObjectTR[246] = CreateDynamicObject(987, 1681.3552, 23.7112, 31.5594, 0.0000, 0.0000, -117.9000); //no comment
+	g_ObjectTR[247] = CreateDynamicObject(987, 1675.7451, 13.1148, 31.5594, 0.0000, 0.0000, -117.9000); //no comment
+	g_ObjectTR[248] = CreateDynamicObject(987, 1675.7451, 13.1148, 26.7793, 0.0000, 0.0000, -117.9000); //no comment
+	g_ObjectTR[249] = CreateDynamicObject(987, 1674.8706, 11.4622, 23.8194, 0.0000, 0.0000, -117.9000); //no comment
+	g_ObjectTR[250] = CreateDynamicObject(987, 1674.8706, 11.4622, 28.5795, 0.0000, 0.0000, -117.9000); //no comment
+	g_ObjectTR[251] = CreateDynamicObject(987, 1674.8706, 11.4622, 31.5694, 0.0000, 0.0000, -117.9000); //no comment
+	g_ObjectTR[252] = CreateDynamicObject(19425, 2175.3630, 95.6462, 26.5400, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[252], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[253] = CreateDynamicObject(19425, 2175.3630, 93.5362, 26.5410, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[253], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[254] = CreateDynamicObject(987, 1780.0068, 291.3027, 17.7593, 0.0000, 0.0000, -87.0998); //no comment
+	g_ObjectTR[255] = CreateDynamicObject(987, 1779.4012, 303.2572, 17.7593, 0.0000, 0.0000, -87.0998); //no comment
+	g_ObjectTR[256] = CreateDynamicObject(987, 1778.7967, 315.1921, 17.7593, 0.0000, 0.0000, -87.0998); //no comment
+	g_ObjectTR[257] = CreateDynamicObject(987, 1778.1927, 327.1166, 17.7593, 0.0000, 0.0000, -87.0998); //no comment
+	g_ObjectTR[258] = CreateDynamicObject(987, 1777.5887, 339.0516, 17.7593, 0.0000, 0.0000, -87.0998); //no comment
+	g_ObjectTR[259] = CreateDynamicObject(987, 1776.9858, 350.9664, 17.7593, 0.0000, 0.0000, -87.0998); //no comment
+	g_ObjectTR[260] = CreateDynamicObject(987, 1780.5948, 362.3323, 17.7593, 0.0000, 0.0000, -107.6996); //no comment
+	g_ObjectTR[261] = CreateDynamicObject(987, 1784.2287, 373.7167, 17.7593, 0.0000, 0.0000, -107.6996); //no comment
+	g_ObjectTR[262] = CreateDynamicObject(987, 1786.0500, 379.4233, 17.7593, 0.0000, 0.0000, -107.6996); //no comment
+	g_ObjectTR[263] = CreateDynamicObject(987, 1792.8177, 400.6293, 17.7593, 0.0000, 0.0000, -107.6996); //no comment
+	g_ObjectTR[264] = CreateDynamicObject(987, 1796.4449, 411.9948, 17.7593, 0.0000, 0.0000, -107.6996); //no comment
+	g_ObjectTR[265] = CreateDynamicObject(987, 1800.0781, 423.3789, 17.7593, 0.0000, 0.0000, -107.6996); //no comment
+	g_ObjectTR[266] = CreateDynamicObject(987, 1803.7207, 434.7919, 17.7593, 0.0000, 0.0000, -107.6996); //no comment
+	g_ObjectTR[267] = CreateDynamicObject(987, 1805.5229, 440.4414, 12.8694, 0.0000, 0.0000, -107.6996); //no comment
+	g_ObjectTR[268] = CreateDynamicObject(987, 1807.3497, 446.1665, 8.1294, 0.0000, 0.0000, -107.6996); //no comment
+	g_ObjectTR[269] = CreateDynamicObject(987, 1807.3469, 446.1571, 3.5494, 0.0000, 0.0000, -107.6996); //no comment
+	g_ObjectTR[270] = CreateDynamicObject(19791, 2141.3764, 82.9810, 16.6347, 0.0000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[271] = CreateDynamicObject(16610, 2953.5651, 87.9400, 18.9769, 0.0000, 0.0000, 23.6000); //des_nbridgebit_02
+	g_ObjectTR[272] = CreateDynamicObject(19791, 2141.3764, 72.9906, 16.6347, 0.0000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[273] = CreateDynamicObject(19791, 2141.3764, 63.0110, 16.6347, 0.0000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[274] = CreateDynamicObject(19791, 2141.3762, 56.6710, 16.6310, 0.0000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[275] = CreateDynamicObject(19791, 2141.3764, 92.9709, 16.6347, 0.0000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[276] = CreateDynamicObject(19791, 2161.3676, 92.9709, 16.6347, 0.0000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[277] = CreateDynamicObject(19966, 1723.1157, 108.8152, 30.8295, 0.0000, 0.0000, -113.0998); //no comment
+	g_ObjectTR[278] = CreateDynamicObject(966, 1730.1578, 112.8526, 31.3197, 0.0000, 0.0000, -114.5000); //no comment
+	g_ObjectTR[279] = CreateDynamicObject(19791, 2171.3583, 92.9709, 16.6347, 0.0000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[280] = CreateDynamicObject(966, 1726.2641, 114.4011, 31.3197, 0.0000, 0.0000, 67.5000); //no comment
+	g_ObjectTR[281] = CreateDynamicObject(19966, 1735.0318, 116.6750, 30.9594, 0.0000, 0.0000, 68.9000); //no comment
+	g_ObjectTR[282] = CreateDynamicObject(19967, 1727.9714, 119.8805, 30.7907, 0.0000, 0.0000, -114.5000); //no comment
+	g_ObjectTR[283] = CreateDynamicObject(19967, 1730.4294, 106.7126, 30.7907, 0.0000, 0.0000, 69.6996); //no comment
+	g_ObjectTR[284] = CreateDynamicObject(19791, 2171.3583, 82.9809, 16.6347, 0.0000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[285] = CreateDynamicObject(19791, 2151.3769, 82.9809, 16.6347, 0.0000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[286] = CreateDynamicObject(19791, 2151.3769, 72.9809, 16.6347, 0.0000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[287] = CreateDynamicObject(19791, 2151.3769, 62.9906, 16.6347, 0.0000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[288] = CreateDynamicObject(19791, 2151.3769, 56.6707, 16.6310, 0.0000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[289] = CreateDynamicObject(19791, 2161.3676, 82.9906, 16.6347, 0.0000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[290] = CreateDynamicObject(19791, 2161.3676, 72.9906, 16.6347, 0.0000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[291] = CreateDynamicObject(4639, 1728.2209, 113.6464, 33.0993, 0.0000, 0.0000, -24.0998); //no comment
+	g_ObjectTR[292] = CreateDynamicObject(19791, 2161.3676, 62.9906, 16.6347, 0.0000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[293] = CreateDynamicObject(19791, 2171.3583, 72.9906, 16.6347, 0.0000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[294] = CreateDynamicObject(19791, 2171.3583, 63.0009, 16.6347, 0.0000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[295] = CreateDynamicObject(19791, 2161.3676, 56.6710, 16.6310, 0.0000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[296] = CreateDynamicObject(19791, 2171.3569, 56.6707, 16.6310, 0.0000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[297] = CreateDynamicObject(966, 1785.4461, 262.3670, 17.9791, 0.0000, 0.0000, 90.0000); //no comment
+	g_ObjectTR[298] = CreateDynamicObject(987, 1779.7386, 254.5388, 18.0193, 0.0000, 0.0000, 1.0000); //no comment
+	g_ObjectTR[299] = CreateDynamicObject(966, 1785.2648, 271.6469, 18.1492, 0.0000, 0.0000, -90.0000); //no comment
+	g_ObjectTR[300] = CreateDynamicObject(987, 1780.5859, 279.8674, 17.7593, 0.0000, 0.0000, -1.4996); //no comment
+	g_ObjectTR[301] = CreateDynamicObject(1237, 1788.5987, 384.1068, 17.9481, 0.0000, 0.0000, 0.0000); //strtbarrier01
+	g_ObjectTR[302] = CreateDynamicObject(1237, 1783.6391, 264.5509, 18.2436, 0.0000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[303] = CreateDynamicObject(1237, 1784.7182, 270.7340, 18.2859, 0.0000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[304] = CreateDynamicObject(1237, 1783.4865, 269.5538, 18.2758, 0.0000, 0.0000, 0.0000); //no comment
+	g_ObjectTR[305] = CreateDynamicObject(966, 1791.0281, 390.7937, 17.8395, 0.0000, 0.0000, 80.4998); //no comment
+	g_ObjectTR[306] = CreateDynamicObject(19791, 2179.3669, 85.2005, 15.8430, 0.0000, 10.8999, 0.0000); //no comment
+	g_ObjectTR[307] = CreateDynamicObject(966, 1785.0518, 377.7105, 17.8395, 0.0000, 0.0000, -97.0000); //no comment
+	g_ObjectTR[308] = CreateDynamicObject(1237, 1787.5477, 384.2068, 17.9481, 0.0000, 0.0000, 0.0000); //strtbarrier01
+	g_ObjectTR[309] = CreateDynamicObject(19791, 2189.1857, 85.2005, 13.9523, 0.0000, 10.8999, 0.0000); //no comment
+	g_ObjectTR[310] = CreateDynamicObject(11451, 2146.8837, 79.5276, 26.5841, 0.0000, 0.0000, 180.0000); //des_nwsherrif
+	g_ObjectTR[311] = CreateDynamicObject(966, 2716.9738, -281.4150, 26.4736, 0.0000, 0.0000, 161.0000); //bar_gatebar01
+	g_ObjectTR[312] = CreateDynamicObject(966, 2696.6088, -279.4178, 28.5337, 0.0000, 0.0000, -18.7000); //bar_gatebar01
+	g_ObjectTR[313] = CreateDynamicObject(1649, 3038.8076, 87.9475, 21.6145, 0.0000, 0.0000, -65.7750); //no comment
+	g_ObjectTR[314] = CreateDynamicObject(1649, 3037.5588, 90.7098, 21.6145, 0.0000, 0.0000, -65.7750); //no comment
+	g_ObjectTR[315] = CreateDynamicObject(1649, 3042.1821, 85.5911, 21.6145, 0.0000, 0.0000, 24.2194); //no comment
+	g_ObjectTR[316] = CreateDynamicObject(1649, 3046.1909, 87.3973, 21.6145, 0.0000, 0.0000, 24.2194); //no comment
+	g_ObjectTR[317] = CreateDynamicObject(1649, 3047.3381, 90.2935, 21.6145, 0.0000, 0.0000, -65.7750); //no comment
+	g_ObjectTR[318] = CreateDynamicObject(1649, 3045.5290, 94.3031, 21.6145, 0.0000, 0.0000, -65.7750); //no comment
+	g_ObjectTR[319] = CreateDynamicObject(1649, 3042.5952, 95.4212, 21.6145, 0.0000, 0.0000, 24.2306); //no comment
+	g_ObjectTR[320] = CreateDynamicObject(1649, 3038.6098, 93.6305, 21.6145, 0.0000, 0.0000, 24.2194); //no comment
+	g_ObjectTR[321] = CreateDynamicObject(18981, 3022.5302, 80.9851, 2.9103, 0.0000, 0.0000, 24.0998); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_ObjectTR[321], 0, 10765, "airportgnd_sfse", "ws_airpt_concrete", 0x00000000);
+	g_ObjectTR[322] = CreateDynamicObject(18981, 3012.3254, 103.7975, 2.9103, 0.0000, 0.0000, 24.0998); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_ObjectTR[322], 0, 10765, "airportgnd_sfse", "ws_airpt_concrete", 0x00000000);
+	g_ObjectTR[323] = CreateDynamicObject(18981, 2993.9619, 144.8473, 2.8703, 0.0000, 0.0000, 24.0998); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_ObjectTR[323], 0, 10765, "airportgnd_sfse", "ws_airpt_concrete", 0x00000000);
+	g_ObjectTR[324] = CreateDynamicObject(982, 3089.3918, 201.5442, 16.0837, 0.0000, 0.0000, 114.2414); //no comment
+	g_ObjectTR[325] = CreateDynamicObject(982, 2999.0490, 131.8235, 16.0636, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[326] = CreateDynamicObject(983, 3040.2436, 94.7770, 16.0837, 0.0000, 0.0000, -64.6639); //no comment
+	g_ObjectTR[327] = CreateDynamicObject(982, 3054.2961, 54.2779, 16.0837, 0.0000, 0.0000, 114.2414); //no comment
+	g_ObjectTR[328] = CreateDynamicObject(3851, 3044.2641, 88.2752, 17.4214, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[329] = CreateDynamicObject(3851, 3036.8398, 91.0867, 17.4214, 0.0000, 0.0000, 114.2414); //no comment
+	g_ObjectTR[330] = CreateDynamicObject(983, 3015.0832, 96.3766, 16.0837, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[331] = CreateDynamicObject(3851, 3034.0534, 83.6333, 17.4214, 0.0000, 0.0000, -155.7639); //no comment
+	g_ObjectTR[332] = CreateDynamicObject(3851, 3038.6933, 73.3189, 17.4214, 0.0000, 0.0000, -155.7639); //no comment
+	g_ObjectTR[333] = CreateDynamicObject(3851, 3044.5568, 60.2891, 17.4214, 0.0000, 0.0000, -155.7639); //no comment
+	g_ObjectTR[334] = CreateDynamicObject(1523, 3040.9965, 68.1768, 15.4214, 0.0000, 0.0000, -65.7500); //no comment
+	g_ObjectTR[335] = CreateDynamicObject(18981, 3032.7331, 58.1735, 2.9103, 0.0000, 0.0000, 24.0998); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_ObjectTR[335], 0, 10765, "airportgnd_sfse", "ws_airpt_concrete", 0x00000000);
+	g_ObjectTR[336] = CreateDynamicObject(3851, 3051.9826, 57.4905, 17.4214, 0.0000, 0.0000, 114.2359); //no comment
+	g_ObjectTR[337] = CreateDynamicObject(1523, 3046.5900, 83.1772, 15.4214, 0.0000, 0.0000, -65.7583); //no comment
+	g_ObjectTR[338] = CreateDynamicObject(1523, 3047.2016, 81.8242, 15.4214, 0.0000, 0.0000, -65.7583); //no comment
+	g_ObjectTR[339] = CreateDynamicObject(3851, 3050.1259, 75.3021, 17.4214, 0.0000, 0.0000, -155.7639); //no comment
+	g_ObjectTR[340] = CreateDynamicObject(3851, 3054.7414, 65.0315, 17.4214, 0.0000, 0.0000, -155.7639); //no comment
+	g_ObjectTR[341] = CreateDynamicObject(2797, 3041.6032, 66.8046, 18.5746, 0.0000, 0.0000, -65.7500); //no comment
+	g_ObjectTR[342] = CreateDynamicObject(2797, 3047.1721, 81.8041, 18.5746, 0.0000, 0.0000, -65.7583); //no comment
+	g_ObjectTR[343] = CreateDynamicObject(2792, 3047.9658, 78.9138, 18.3320, 0.0000, 0.0000, -65.7500); //no comment
+	g_ObjectTR[344] = CreateDynamicObject(3658, 3038.9838, 71.3200, 16.0648, 0.0000, 0.0000, 114.2499); //no comment
+	g_ObjectTR[345] = CreateDynamicObject(3658, 3036.4089, 77.0242, 16.0648, 0.0000, 0.0000, 114.2414); //no comment
+	g_ObjectTR[346] = CreateDynamicObject(2198, 3045.8986, 83.3395, 15.4214, 0.0000, 0.0000, -157.2498); //no comment
+	g_ObjectTR[347] = CreateDynamicObject(2198, 3047.4045, 59.6492, 15.4214, 0.0000, 0.0000, 24.4918); //no comment
+	g_ObjectTR[348] = CreateDynamicObject(2198, 3052.0412, 61.5898, 15.4214, 0.0000, 0.0000, 24.4832); //no comment
+	g_ObjectTR[349] = CreateDynamicObject(2773, 3050.6313, 63.6431, 15.9385, 0.0000, 0.0000, -154.7498); //no comment
+	g_ObjectTR[350] = CreateDynamicObject(2773, 3052.2253, 64.4291, 15.9385, 0.0000, 0.0000, -154.7586); //no comment
+	g_ObjectTR[351] = CreateDynamicObject(2773, 3047.7424, 62.3428, 15.9385, 0.0000, 0.0000, -154.7586); //no comment
+	g_ObjectTR[352] = CreateDynamicObject(2773, 3046.1218, 61.6314, 15.9385, 0.0000, 0.0000, -154.7586); //no comment
+	g_ObjectTR[353] = CreateDynamicObject(3659, 3046.0451, 68.9401, 16.4321, 0.0000, 0.0000, 115.2500); //no comment
+	g_ObjectTR[354] = CreateDynamicObject(982, 3049.0981, 51.9378, 16.0837, 0.0000, 0.0000, 114.2414); //no comment
+	g_ObjectTR[355] = CreateDynamicObject(3970, 3047.2551, 75.4895, 16.5109, 0.0000, 0.0000, 114.2499); //no comment
+	g_ObjectTR[356] = CreateDynamicObject(16151, 3037.2353, 90.0727, 15.7714, 0.0000, 0.0000, 114.9999); //no comment
+	g_ObjectTR[357] = CreateDynamicObject(1825, 3038.0600, 84.1725, 15.4214, 0.0000, 0.0000, -179.5000); //no comment
+	g_ObjectTR[358] = CreateDynamicObject(1825, 3040.6865, 88.1567, 15.4214, 0.0000, 0.0000, -179.5000); //no comment
+	g_ObjectTR[359] = CreateDynamicObject(2027, 3043.1445, 88.6185, 15.9898, 0.0000, 0.0000, -65.5000); //no comment
+	g_ObjectTR[360] = CreateDynamicObject(2027, 3044.1389, 86.3758, 15.9898, 0.0000, 0.0000, -65.5000); //no comment
+	g_ObjectTR[361] = CreateDynamicObject(3657, 3042.1193, 82.3759, 15.9392, 0.0000, 0.0000, 23.2416); //no comment
+	g_ObjectTR[362] = CreateDynamicObject(3657, 3040.9472, 79.1929, 15.9392, 0.0000, 0.0000, 112.7416); //no comment
+	g_ObjectTR[363] = CreateDynamicObject(1363, 3047.2973, 66.2590, 16.2576, 0.0000, 0.0000, -154.2498); //no comment
+	g_ObjectTR[364] = CreateDynamicObject(955, 3035.8193, 80.9534, 15.8212, 0.0000, 0.0000, 114.4999); //no comment
+	g_ObjectTR[365] = CreateDynamicObject(956, 3036.2700, 79.7341, 15.7714, 0.0000, 0.0000, 114.4999); //no comment
+	g_ObjectTR[366] = CreateDynamicObject(1444, 3046.6430, 57.8997, 16.2259, 0.0000, 0.0000, -179.5000); //no comment
+	g_ObjectTR[367] = CreateDynamicObject(2789, 3051.9343, 57.6095, 17.7059, 0.0000, 0.0000, -155.7498); //no comment
+	g_ObjectTR[368] = CreateDynamicObject(2790, 3050.0026, 75.2405, 17.7810, 0.0000, 0.0000, -65.7500); //no comment
+	g_ObjectTR[369] = CreateDynamicObject(3095, 3034.1750, 86.6958, 19.3934, 0.0000, 0.0000, -155.7639); //no comment
+	g_ObjectTR[370] = CreateDynamicObject(3095, 3053.4318, 65.8057, 19.3934, 0.0000, 0.0000, -155.7693); //no comment
+	g_ObjectTR[371] = CreateDynamicObject(3095, 3041.5161, 70.4001, 19.3934, 0.0000, 0.0000, -155.7693); //no comment
+	g_ObjectTR[372] = CreateDynamicObject(3095, 3042.3945, 90.3886, 19.3934, 0.0000, 0.0000, -155.7693); //no comment
+	g_ObjectTR[373] = CreateDynamicObject(3095, 3037.8200, 78.5957, 19.3934, 0.0000, 0.0000, -155.7693); //no comment
+	g_ObjectTR[374] = CreateDynamicObject(3095, 3045.1875, 62.2355, 19.3934, 0.0000, 0.0000, -155.7693); //no comment
+	g_ObjectTR[375] = CreateDynamicObject(3095, 3047.8137, 56.3805, 19.3934, 0.0000, 0.0000, -155.7693); //no comment
+	g_ObjectTR[376] = CreateDynamicObject(3095, 3046.0656, 82.1735, 19.3934, 0.0000, 0.0000, -155.7693); //no comment
+	g_ObjectTR[377] = CreateDynamicObject(3095, 3049.7373, 74.0091, 19.3934, 0.0000, 0.0000, -155.7693); //no comment
+	g_ObjectTR[378] = CreateDynamicObject(3095, 3055.9812, 60.0489, 19.3934, 0.0000, 0.0000, -155.7693); //no comment
+	g_ObjectTR[379] = CreateDynamicObject(982, 3032.1672, 58.4205, 16.0837, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[380] = CreateDynamicObject(8615, 3059.4697, 65.3889, 18.1422, 0.0000, 0.0000, 112.7499); //no comment
+	g_ObjectTR[381] = CreateDynamicObject(1649, 3045.5295, 94.3022, 21.6145, 0.0000, 0.0000, 114.2304); //no comment
+	g_ObjectTR[382] = CreateDynamicObject(1649, 3047.3391, 90.2929, 21.6145, 0.0000, 0.0000, 114.2304); //no comment
+	g_ObjectTR[383] = CreateDynamicObject(1649, 3042.5952, 95.4207, 21.6145, 0.0000, 0.0000, -155.7693); //no comment
+	g_ObjectTR[384] = CreateDynamicObject(1649, 3038.6103, 93.6305, 21.6145, 0.0000, 0.0000, -155.7749); //no comment
+	g_ObjectTR[385] = CreateDynamicObject(1649, 3046.1911, 87.3973, 21.6145, 0.0000, 0.0000, -155.7749); //no comment
+	g_ObjectTR[386] = CreateDynamicObject(1649, 3042.1818, 85.5904, 21.6145, 0.0000, 0.0000, -155.7749); //no comment
+	g_ObjectTR[387] = CreateDynamicObject(1649, 3037.5593, 90.7096, 21.6145, 0.0000, 0.0000, 114.2304); //no comment
+	g_ObjectTR[388] = CreateDynamicObject(1649, 3038.8078, 87.9468, 21.6145, 0.0000, 0.0000, 114.2304); //no comment
+	g_ObjectTR[389] = CreateDynamicObject(1523, 3039.5915, 86.0383, 19.9214, 0.0000, 0.0000, -65.7583); //no comment
+	g_ObjectTR[390] = CreateDynamicObject(3095, 3042.4921, 90.4916, 22.7434, 0.0000, 0.0000, -155.7693); //no comment
+	g_ObjectTR[391] = CreateDynamicObject(3396, 3044.7827, 94.1427, 19.9738, 0.0000, 0.0000, 24.2500); //no comment
+	g_ObjectTR[392] = CreateDynamicObject(3396, 3046.8977, 89.6090, 19.9738, 0.0000, 0.0000, 24.2415); //no comment
+	g_ObjectTR[393] = CreateDynamicObject(16782, 3043.7216, 86.8011, 21.5167, 0.0000, 0.0000, 114.0000); //no comment
+	g_ObjectTR[394] = CreateDynamicObject(16101, 3061.7512, 57.8549, 19.9486, 0.0000, 0.0000, -155.4998); //no comment
+	g_ObjectTR[395] = CreateDynamicObject(16368, 3061.7812, 57.8600, 30.8617, 0.0000, 0.0000, -179.5000); //no comment
+	g_ObjectTR[396] = CreateDynamicObject(3666, 3044.5979, 96.1790, 23.8124, 0.0000, 0.0000, -153.4998); //no comment
+	g_ObjectTR[397] = CreateDynamicObject(3666, 3048.1171, 88.2851, 23.8124, 0.0000, 0.0000, -153.5061); //no comment
+	g_ObjectTR[398] = CreateDynamicObject(3666, 3040.3198, 84.7938, 23.8124, 0.0000, 0.0000, -153.5061); //no comment
+	g_ObjectTR[399] = CreateDynamicObject(3666, 3036.8012, 92.6623, 23.8124, 0.0000, 0.0000, -153.5061); //no comment
+	g_ObjectTR[400] = CreateDynamicObject(982, 3055.4450, 68.8786, 16.0837, 0.0000, 0.0000, -155.7639); //no comment
+	g_ObjectTR[401] = CreateDynamicObject(983, 3046.4418, 88.9440, 16.0837, 0.0000, 0.0000, -155.7639); //no comment
+	g_ObjectTR[402] = CreateDynamicObject(983, 3034.4506, 92.0341, 16.0837, 0.0000, 0.0000, -64.6639); //no comment
+	g_ObjectTR[403] = CreateDynamicObject(18981, 3004.1689, 122.0261, 2.8703, 0.0000, 0.0000, 24.0998); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_ObjectTR[403], 0, 10765, "airportgnd_sfse", "ws_airpt_concrete", 0x00000000);
+	g_ObjectTR[404] = CreateDynamicObject(983, 3047.0664, 54.5275, 16.0837, 0.0000, 0.0000, -155.7639); //no comment
+	g_ObjectTR[405] = CreateDynamicObject(982, 3124.4020, 85.8638, 16.0837, 0.0000, 0.0000, 114.2414); //no comment
+	g_ObjectTR[406] = CreateDynamicObject(982, 3077.7016, 64.8636, 16.0837, 0.0000, 0.0000, 114.2414); //no comment
+	g_ObjectTR[407] = CreateDynamicObject(1215, 3031.6223, 88.6529, 15.9645, 0.0000, 0.0000, -179.5000); //no comment
+	g_ObjectTR[408] = CreateDynamicObject(1215, 3048.1462, 51.7280, 15.9645, 0.0000, 0.0000, -179.5000); //no comment
+	g_ObjectTR[409] = CreateDynamicObject(983, 3007.2448, 121.5327, 16.0837, 0.0000, 0.0000, -64.7583); //no comment
+	g_ObjectTR[410] = CreateDynamicObject(983, 3018.2807, 106.7264, 16.0837, 0.0000, 0.0000, -64.7583); //no comment
+	g_ObjectTR[411] = CreateDynamicObject(1714, 3043.4533, 93.4478, 19.9486, 0.0000, 0.0000, 114.9999); //no comment
+	g_ObjectTR[412] = CreateDynamicObject(1714, 3045.3662, 89.1171, 19.9486, 0.0000, 0.0000, 114.9940); //no comment
+	g_ObjectTR[413] = CreateDynamicObject(1714, 3044.7290, 84.2089, 15.4214, 0.0000, 0.0000, 26.5000); //no comment
+	g_ObjectTR[414] = CreateDynamicObject(1714, 3053.0830, 60.7280, 15.4214, 0.0000, 0.0000, -155.2561); //no comment
+	g_ObjectTR[415] = CreateDynamicObject(1714, 3048.3469, 58.9342, 15.4214, 0.0000, 0.0000, -155.2640); //no comment
+	g_ObjectTR[416] = CreateDynamicObject(3264, 3047.6816, 53.0699, 15.3999, 0.0000, 0.0000, -65.7583); //no comment
+	g_ObjectTR[417] = CreateDynamicObject(1256, 3033.1115, 84.6361, 16.0806, 0.0000, 0.0000, 24.0000); //no comment
+	g_ObjectTR[418] = CreateDynamicObject(1256, 3043.6149, 61.4001, 16.0806, 0.0000, 0.0000, 23.9944); //no comment
+	g_ObjectTR[419] = CreateDynamicObject(1703, 3038.1308, 90.7730, 19.9486, 0.0000, 0.0000, 113.7499); //no comment
+	g_ObjectTR[420] = CreateDynamicObject(1703, 3039.2016, 88.3031, 19.9486, 0.0000, 0.0000, 113.7415); //no comment
+	g_ObjectTR[421] = CreateDynamicObject(3998, 3139.4011, 115.1035, 2.1526, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[422] = CreateDynamicObject(3666, 3182.1718, 112.4514, 15.2622, 0.0000, 0.0000, -153.5061); //no comment
+	g_ObjectTR[423] = CreateDynamicObject(18981, 3000.8837, 161.1468, 2.8803, 0.0000, 0.0000, 114.3199); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_ObjectTR[423], 0, 10765, "airportgnd_sfse", "ws_airpt_concrete", 0x00000000);
+	g_ObjectTR[424] = CreateDynamicObject(982, 3106.3239, 195.1062, 16.0837, 0.0000, 0.0000, -155.7639); //no comment
+	g_ObjectTR[425] = CreateDynamicObject(18981, 3023.6665, 171.4427, 2.8803, 0.0000, 0.0000, 114.3199); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_ObjectTR[425], 0, 10765, "airportgnd_sfse", "ws_airpt_concrete", 0x00000000);
+	g_ObjectTR[426] = CreateDynamicObject(18981, 3046.4501, 181.7386, 2.8803, 0.0000, 0.0000, 114.3199); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_ObjectTR[426], 0, 10765, "airportgnd_sfse", "ws_airpt_concrete", 0x00000000);
+	g_ObjectTR[427] = CreateDynamicObject(18981, 3069.2160, 192.0260, 2.8803, 0.0000, 0.0000, 114.3199); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_ObjectTR[427], 0, 10765, "airportgnd_sfse", "ws_airpt_concrete", 0x00000000);
+	g_ObjectTR[428] = CreateDynamicObject(18981, 3090.0249, 201.4259, 2.8803, 0.0000, 0.0000, 114.3199); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_ObjectTR[428], 0, 10765, "airportgnd_sfse", "ws_airpt_concrete", 0x00000000);
+	g_ObjectTR[429] = CreateDynamicObject(18981, 3106.2687, 194.5050, 2.9003, 0.0000, 0.0000, 24.0998); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_ObjectTR[429], 0, 10765, "airportgnd_sfse", "ws_airpt_concrete", 0x00000000);
+	g_ObjectTR[430] = CreateDynamicObject(18981, 3116.4658, 171.7023, 2.9003, 0.0000, 0.0000, 24.0998); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_ObjectTR[430], 0, 10765, "airportgnd_sfse", "ws_airpt_concrete", 0x00000000);
+	g_ObjectTR[431] = CreateDynamicObject(18981, 3126.6611, 148.9084, 2.9003, 0.0000, 0.0000, 24.0998); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_ObjectTR[431], 0, 10765, "airportgnd_sfse", "ws_airpt_concrete", 0x00000000);
+	g_ObjectTR[432] = CreateDynamicObject(18981, 3136.8647, 126.0875, 2.9003, 0.0000, 0.0000, 24.0998); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_ObjectTR[432], 0, 10765, "airportgnd_sfse", "ws_airpt_concrete", 0x00000000);
+	g_ObjectTR[433] = CreateDynamicObject(983, 2991.1284, 157.2055, 16.0687, 0.0000, 0.0000, -65.6996); //fenceshit3
+	g_ObjectTR[434] = CreateDynamicObject(18981, 3144.6813, 108.6156, 2.9003, 0.0000, 0.0000, 24.0998); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_ObjectTR[434], 0, 10765, "airportgnd_sfse", "ws_airpt_concrete", 0x00000000);
+	g_ObjectTR[435] = CreateDynamicObject(6959, 3015.1923, 146.1546, 15.4314, 0.0000, 0.0000, -155.7530); //no comment
+	g_ObjectTR[436] = CreateDynamicObject(982, 3065.7614, 190.9221, 16.0837, 0.0000, 0.0000, 114.2414); //no comment
+	g_ObjectTR[437] = CreateDynamicObject(18981, 3138.8671, 92.8225, 2.9103, 0.0000, 0.0000, 114.3199); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_ObjectTR[437], 0, 10765, "airportgnd_sfse", "ws_airpt_concrete", 0x00000000);
+	g_ObjectTR[438] = CreateDynamicObject(982, 3127.6542, 147.7648, 16.0837, 0.0000, 0.0000, -155.7639); //no comment
+	g_ObjectTR[439] = CreateDynamicObject(982, 3117.1425, 171.1770, 16.0837, 0.0000, 0.0000, -155.7639); //no comment
+	g_ObjectTR[440] = CreateDynamicObject(982, 3028.2036, 125.1312, 16.0837, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[441] = CreateDynamicObject(982, 3015.1235, 154.0865, 16.0837, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[442] = CreateDynamicObject(983, 3013.2297, 100.4981, 16.0837, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[443] = CreateDynamicObject(983, 3033.4501, 113.4478, 16.0837, 0.0000, 0.0000, -64.7583); //no comment
+	g_ObjectTR[444] = CreateDynamicObject(983, 3027.5065, 99.8516, 16.0837, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[445] = CreateDynamicObject(3998, 3162.7145, 125.5922, 2.1526, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[446] = CreateDynamicObject(3578, 3161.6960, 127.5597, 14.6239, 0.0000, 0.0000, 114.2499); //no comment
+	g_ObjectTR[447] = CreateDynamicObject(3998, 3153.9333, 145.3085, 2.1526, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[448] = CreateDynamicObject(3998, 3145.0920, 164.9445, 2.1526, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[449] = CreateDynamicObject(3578, 3148.5065, 157.2138, 14.6239, 0.0000, 0.0000, 114.2414); //no comment
+	g_ObjectTR[450] = CreateDynamicObject(3666, 3159.5114, 101.8648, 15.2622, 0.0000, 0.0000, -153.5061); //no comment
+	g_ObjectTR[451] = CreateDynamicObject(3666, 3150.8566, 121.4608, 15.2622, 0.0000, 0.0000, -153.5061); //no comment
+	g_ObjectTR[452] = CreateDynamicObject(3666, 3173.5361, 131.7023, 15.2622, 0.0000, 0.0000, -153.5061); //no comment
+	g_ObjectTR[453] = CreateDynamicObject(3998, 3136.2363, 184.5897, 2.1526, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[454] = CreateDynamicObject(3998, 3127.4011, 204.2398, 2.1526, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[455] = CreateDynamicObject(3578, 3135.5600, 186.3464, 14.6239, 0.0000, 0.0000, 114.2414); //no comment
+	g_ObjectTR[456] = CreateDynamicObject(3998, 3118.5415, 223.9429, 2.1526, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[457] = CreateDynamicObject(3998, 3109.6977, 243.6174, 2.1526, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[458] = CreateDynamicObject(3578, 3116.3959, 228.1613, 14.6239, 0.0000, 0.0000, 114.2414); //no comment
+	g_ObjectTR[459] = CreateDynamicObject(3998, 3100.9311, 263.1246, 2.1526, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[460] = CreateDynamicObject(3998, 3092.0659, 282.7683, 2.1526, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[461] = CreateDynamicObject(3998, 3074.3706, 322.0101, 2.1526, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[462] = CreateDynamicObject(18981, 3116.0917, 82.5307, 2.9103, 0.0000, 0.0000, 114.3199); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_ObjectTR[462], 0, 10765, "airportgnd_sfse", "ws_airpt_concrete", 0x00000000);
+	g_ObjectTR[463] = CreateDynamicObject(3666, 3120.6369, 250.2758, 15.2622, 0.0000, 0.0000, -153.5061); //no comment
+	g_ObjectTR[464] = CreateDynamicObject(3666, 3097.1711, 240.8159, 15.2622, 0.0000, 0.0000, -153.5061); //no comment
+	g_ObjectTR[465] = CreateDynamicObject(3578, 3100.7414, 262.7662, 14.6239, 0.0000, 0.0000, 114.2414); //no comment
+	g_ObjectTR[466] = CreateDynamicObject(18981, 3093.3095, 72.2350, 2.9103, 0.0000, 0.0000, 114.3199); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_ObjectTR[466], 0, 10765, "airportgnd_sfse", "ws_airpt_concrete", 0x00000000);
+	g_ObjectTR[467] = CreateDynamicObject(18981, 3070.5278, 61.9393, 2.9103, 0.0000, 0.0000, 114.3199); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_ObjectTR[467], 0, 10765, "airportgnd_sfse", "ws_airpt_concrete", 0x00000000);
+	g_ObjectTR[468] = CreateDynamicObject(18981, 3049.5344, 52.4508, 2.9103, 0.0000, 0.0000, 114.3199); //Concrete1mx25mx25m
+	SetDynamicObjectMaterial(g_ObjectTR[468], 0, 10765, "airportgnd_sfse", "ws_airpt_concrete", 0x00000000);
+	g_ObjectTR[469] = CreateDynamicObject(6959, 3123.3906, 107.3067, 15.4525, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[470] = CreateDynamicObject(6959, 3106.9191, 143.7308, 15.4315, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[471] = CreateDynamicObject(6959, 3090.5341, 180.1893, 15.4314, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[472] = CreateDynamicObject(6959, 3052.8232, 163.2436, 15.4314, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[473] = CreateDynamicObject(6959, 3069.2258, 126.7627, 15.4315, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[474] = CreateDynamicObject(982, 3101.0373, 75.3402, 16.0837, 0.0000, 0.0000, 114.2414); //no comment
+	g_ObjectTR[475] = CreateDynamicObject(6959, 3085.6821, 90.3563, 15.4525, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[476] = CreateDynamicObject(6959, 3048.0527, 73.4280, 15.4525, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[477] = CreateDynamicObject(6959, 3031.5454, 109.8097, 15.4511, 0.0000, 0.0000, -155.7528); //no comment
+	g_ObjectTR[478] = CreateDynamicObject(983, 2996.9150, 159.8186, 16.0687, 0.0000, 0.0000, -65.6996); //fenceshit3
+	g_ObjectTR[479] = CreateDynamicObject(18766, 3064.0625, 339.8434, -2.3763, 0.0000, 0.0000, 24.1998); //Concrete10mx1mx5m
+	SetDynamicObjectMaterial(g_ObjectTR[479], 0, 3820, "boxhses_sfsx", "ws_mixedbrick", 0x00000000);
+	g_ObjectTR[480] = CreateDynamicObject(1232, 3071.0209, 328.8851, 10.5403, 0.0000, 0.0000, 26.6998); //Streetlamp1
+	g_ObjectTR[481] = CreateDynamicObject(19425, 3010.4797, 105.9912, 15.4672, -14.3999, 0.0000, -65.8000); //speed_bump01
+	g_ObjectTR[482] = CreateDynamicObject(1232, 3066.6359, 338.5657, 10.5403, 0.0000, 0.0000, 26.6998); //Streetlamp1
+	g_ObjectTR[483] = CreateDynamicObject(982, 3051.8632, 184.6815, 16.0837, 0.0000, 0.0000, 114.2414); //no comment
+	g_ObjectTR[484] = CreateDynamicObject(982, 3007.3120, 164.5502, 16.0837, 0.0000, 0.0000, 114.5410); //no comment
+	g_ObjectTR[485] = CreateDynamicObject(3657, 3042.7556, 74.9842, 15.9392, 0.0000, 0.0000, 112.7416); //no comment
+	g_ObjectTR[486] = CreateDynamicObject(1649, 3038.8076, 87.9475, 21.6145, 0.0000, 0.0000, -65.7750); //no comment
+	g_ObjectTR[487] = CreateDynamicObject(1649, 3037.5588, 90.7098, 21.6145, 0.0000, 0.0000, -65.7750); //no comment
+	g_ObjectTR[488] = CreateDynamicObject(1649, 3042.1821, 85.5911, 21.6145, 0.0000, 0.0000, 24.2194); //no comment
+	g_ObjectTR[489] = CreateDynamicObject(1649, 3046.1909, 87.3973, 21.6145, 0.0000, 0.0000, 24.2194); //no comment
+	g_ObjectTR[490] = CreateDynamicObject(1649, 3047.3381, 90.2935, 21.6145, 0.0000, 0.0000, -65.7750); //no comment
+	g_ObjectTR[491] = CreateDynamicObject(1649, 3045.5290, 94.3031, 21.6145, 0.0000, 0.0000, -65.7750); //no comment
+	g_ObjectTR[492] = CreateDynamicObject(1649, 3042.5952, 95.4212, 21.6145, 0.0000, 0.0000, 24.2306); //no comment
+	g_ObjectTR[493] = CreateDynamicObject(1649, 3038.6098, 93.6305, 21.6145, 0.0000, 0.0000, 24.2194); //no comment
+	g_ObjectTR[494] = CreateDynamicObject(982, 3089.1811, 201.4497, 16.0837, 0.0000, 0.0000, 114.2414); //no comment
+	g_ObjectTR[495] = CreateDynamicObject(5837, 3023.6350, 105.8927, 16.9076, 0.0000, 0.0000, -65.8498); //no comment
+	g_ObjectTR[496] = CreateDynamicObject(982, 3021.6535, 81.7723, 16.0837, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[497] = CreateDynamicObject(3851, 3044.2641, 88.2752, 17.4214, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[498] = CreateDynamicObject(3851, 3036.8398, 91.0867, 17.4214, 0.0000, 0.0000, 114.2414); //no comment
+	g_ObjectTR[499] = CreateDynamicObject(983, 3016.8693, 106.0612, 16.0837, 0.0000, 0.0000, -64.7583); //no comment
+	g_ObjectTR[500] = CreateDynamicObject(3851, 3034.0534, 83.6333, 17.4214, 0.0000, 0.0000, -155.7639); //no comment
+	g_ObjectTR[501] = CreateDynamicObject(3851, 3038.6933, 73.3189, 17.4214, 0.0000, 0.0000, -155.7639); //no comment
+	g_ObjectTR[502] = CreateDynamicObject(3851, 3044.5568, 60.2891, 17.4214, 0.0000, 0.0000, -155.7639); //no comment
+	g_ObjectTR[503] = CreateDynamicObject(1523, 3040.9965, 68.1768, 15.4214, 0.0000, 0.0000, -65.7500); //no comment
+	g_ObjectTR[504] = CreateDynamicObject(1523, 3041.6481, 66.8095, 15.4214, 0.0000, 0.0000, -65.8582); //no comment
+	g_ObjectTR[505] = CreateDynamicObject(3851, 3051.9826, 57.4905, 17.4214, 0.0000, 0.0000, 114.2359); //no comment
+	g_ObjectTR[506] = CreateDynamicObject(1523, 3046.5900, 83.1772, 15.4214, 0.0000, 0.0000, -65.7583); //no comment
+	g_ObjectTR[507] = CreateDynamicObject(1523, 3047.2016, 81.8242, 15.4214, 0.0000, 0.0000, -65.7583); //no comment
+	g_ObjectTR[508] = CreateDynamicObject(3851, 3050.1259, 75.3021, 17.4214, 0.0000, 0.0000, -155.7639); //no comment
+	g_ObjectTR[509] = CreateDynamicObject(3851, 3054.7414, 65.0315, 17.4214, 0.0000, 0.0000, -155.7639); //no comment
+	g_ObjectTR[510] = CreateDynamicObject(2797, 3041.6032, 66.8046, 18.5746, 0.0000, 0.0000, -65.7500); //no comment
+	g_ObjectTR[511] = CreateDynamicObject(2797, 3047.1721, 81.8041, 18.5746, 0.0000, 0.0000, -65.7583); //no comment
+	g_ObjectTR[512] = CreateDynamicObject(2792, 3047.9658, 78.9138, 18.3320, 0.0000, 0.0000, -65.7500); //no comment
+	g_ObjectTR[513] = CreateDynamicObject(3658, 3038.9838, 71.3200, 16.0648, 0.0000, 0.0000, 114.2499); //no comment
+	g_ObjectTR[514] = CreateDynamicObject(3658, 3036.4089, 77.0242, 16.0648, 0.0000, 0.0000, 114.2414); //no comment
+	g_ObjectTR[515] = CreateDynamicObject(2198, 3045.8986, 83.3395, 15.4214, 0.0000, 0.0000, -157.2498); //no comment
+	g_ObjectTR[516] = CreateDynamicObject(2198, 3047.4045, 59.6492, 15.4214, 0.0000, 0.0000, 24.4918); //no comment
+	g_ObjectTR[517] = CreateDynamicObject(2198, 3052.0412, 61.5898, 15.4214, 0.0000, 0.0000, 24.4832); //no comment
+	g_ObjectTR[518] = CreateDynamicObject(2773, 3050.6313, 63.6431, 15.9385, 0.0000, 0.0000, -154.7498); //no comment
+	g_ObjectTR[519] = CreateDynamicObject(2773, 3052.2253, 64.4291, 15.9385, 0.0000, 0.0000, -154.7586); //no comment
+	g_ObjectTR[520] = CreateDynamicObject(2773, 3047.7424, 62.3428, 15.9385, 0.0000, 0.0000, -154.7586); //no comment
+	g_ObjectTR[521] = CreateDynamicObject(2773, 3046.1218, 61.6314, 15.9385, 0.0000, 0.0000, -154.7586); //no comment
+	g_ObjectTR[522] = CreateDynamicObject(3659, 3046.0451, 68.9401, 16.4321, 0.0000, 0.0000, 115.2500); //no comment
+	g_ObjectTR[523] = CreateDynamicObject(8041, 3014.1542, 116.1968, 20.9668, 0.0000, 0.0000, -157.2498); //no comment
+	g_ObjectTR[524] = CreateDynamicObject(3970, 3047.2551, 75.4895, 16.5109, 0.0000, 0.0000, 114.2499); //no comment
+	g_ObjectTR[525] = CreateDynamicObject(16151, 3037.2353, 90.0727, 15.7714, 0.0000, 0.0000, 114.9999); //no comment
+	g_ObjectTR[526] = CreateDynamicObject(1825, 3038.0600, 84.1725, 15.4214, 0.0000, 0.0000, -179.5000); //no comment
+	g_ObjectTR[527] = CreateDynamicObject(1825, 3040.6865, 88.1567, 15.4214, 0.0000, 0.0000, -179.5000); //no comment
+	g_ObjectTR[528] = CreateDynamicObject(2027, 3043.1445, 88.6185, 15.9898, 0.0000, 0.0000, -65.5000); //no comment
+	g_ObjectTR[529] = CreateDynamicObject(2027, 3044.1389, 86.3758, 15.9898, 0.0000, 0.0000, -65.5000); //no comment
+	g_ObjectTR[530] = CreateDynamicObject(3657, 3042.1193, 82.3759, 15.9392, 0.0000, 0.0000, 23.2416); //no comment
+	g_ObjectTR[531] = CreateDynamicObject(3657, 3040.9472, 79.1929, 15.9392, 0.0000, 0.0000, 112.7416); //no comment
+	g_ObjectTR[532] = CreateDynamicObject(1363, 3047.2973, 66.2590, 16.2576, 0.0000, 0.0000, -154.2498); //no comment
+	g_ObjectTR[533] = CreateDynamicObject(955, 3035.8193, 80.9534, 15.8212, 0.0000, 0.0000, 114.4999); //no comment
+	g_ObjectTR[534] = CreateDynamicObject(956, 3036.2700, 79.7341, 15.7714, 0.0000, 0.0000, 114.4999); //no comment
+	g_ObjectTR[535] = CreateDynamicObject(1444, 3046.6430, 57.8997, 16.2259, 0.0000, 0.0000, -179.5000); //no comment
+	g_ObjectTR[536] = CreateDynamicObject(2789, 3051.9343, 57.6095, 17.7059, 0.0000, 0.0000, -155.7498); //no comment
+	g_ObjectTR[537] = CreateDynamicObject(2790, 3050.0026, 75.2405, 17.7810, 0.0000, 0.0000, -65.7500); //no comment
+	g_ObjectTR[538] = CreateDynamicObject(3095, 3034.1750, 86.6958, 19.3934, 0.0000, 0.0000, -155.7639); //no comment
+	g_ObjectTR[539] = CreateDynamicObject(3095, 3053.4318, 65.8057, 19.3934, 0.0000, 0.0000, -155.7693); //no comment
+	g_ObjectTR[540] = CreateDynamicObject(3095, 3041.5161, 70.4001, 19.3934, 0.0000, 0.0000, -155.7693); //no comment
+	g_ObjectTR[541] = CreateDynamicObject(3095, 3042.3945, 90.3886, 19.3934, 0.0000, 0.0000, -155.7693); //no comment
+	g_ObjectTR[542] = CreateDynamicObject(3095, 3037.8200, 78.5957, 19.3934, 0.0000, 0.0000, -155.7693); //no comment
+	g_ObjectTR[543] = CreateDynamicObject(3095, 3045.1875, 62.2355, 19.3934, 0.0000, 0.0000, -155.7693); //no comment
+	g_ObjectTR[544] = CreateDynamicObject(3095, 3047.8137, 56.3805, 19.3934, 0.0000, 0.0000, -155.7693); //no comment
+	g_ObjectTR[545] = CreateDynamicObject(3095, 3046.0656, 82.1735, 19.3934, 0.0000, 0.0000, -155.7693); //no comment
+	g_ObjectTR[546] = CreateDynamicObject(3095, 3049.7373, 74.0091, 19.3934, 0.0000, 0.0000, -155.7693); //no comment
+	g_ObjectTR[547] = CreateDynamicObject(3095, 3055.9812, 60.0489, 19.3934, 0.0000, 0.0000, -155.7693); //no comment
+	g_ObjectTR[548] = CreateDynamicObject(982, 3054.2961, 54.2779, 16.0837, 0.0000, 0.0000, 114.2414); //no comment
+	g_ObjectTR[549] = CreateDynamicObject(8615, 3059.4697, 65.3889, 18.1422, 0.0000, 0.0000, 112.7499); //no comment
+	g_ObjectTR[550] = CreateDynamicObject(1649, 3045.5295, 94.3022, 21.6145, 0.0000, 0.0000, 114.2304); //no comment
+	g_ObjectTR[551] = CreateDynamicObject(1649, 3047.3391, 90.2929, 21.6145, 0.0000, 0.0000, 114.2304); //no comment
+	g_ObjectTR[552] = CreateDynamicObject(1649, 3042.5952, 95.4207, 21.6145, 0.0000, 0.0000, -155.7693); //no comment
+	g_ObjectTR[553] = CreateDynamicObject(1649, 3038.6103, 93.6305, 21.6145, 0.0000, 0.0000, -155.7749); //no comment
+	g_ObjectTR[554] = CreateDynamicObject(1649, 3046.1911, 87.3973, 21.6145, 0.0000, 0.0000, -155.7749); //no comment
+	g_ObjectTR[555] = CreateDynamicObject(1649, 3042.1818, 85.5904, 21.6145, 0.0000, 0.0000, -155.7749); //no comment
+	g_ObjectTR[556] = CreateDynamicObject(1649, 3037.5593, 90.7096, 21.6145, 0.0000, 0.0000, 114.2304); //no comment
+	g_ObjectTR[557] = CreateDynamicObject(1649, 3038.8078, 87.9468, 21.6145, 0.0000, 0.0000, 114.2304); //no comment
+	g_ObjectTR[558] = CreateDynamicObject(1523, 3039.5915, 86.0383, 19.9214, 0.0000, 0.0000, -65.7583); //no comment
+	g_ObjectTR[559] = CreateDynamicObject(3095, 3042.4921, 90.4916, 22.7434, 0.0000, 0.0000, -155.7693); //no comment
+	g_ObjectTR[560] = CreateDynamicObject(3396, 3044.7827, 94.1427, 19.9738, 0.0000, 0.0000, 24.2500); //no comment
+	g_ObjectTR[561] = CreateDynamicObject(3396, 3046.8977, 89.6090, 19.9738, 0.0000, 0.0000, 24.2415); //no comment
+	g_ObjectTR[562] = CreateDynamicObject(16782, 3043.7216, 86.8011, 21.5167, 0.0000, 0.0000, 114.0000); //no comment
+	g_ObjectTR[563] = CreateDynamicObject(16101, 3061.7512, 57.8549, 19.9486, 0.0000, 0.0000, -155.4998); //no comment
+	g_ObjectTR[564] = CreateDynamicObject(16368, 3061.7812, 57.8600, 30.8617, 0.0000, 0.0000, -179.5000); //no comment
+	g_ObjectTR[565] = CreateDynamicObject(3666, 3044.5979, 96.1790, 23.8124, 0.0000, 0.0000, -153.4998); //no comment
+	g_ObjectTR[566] = CreateDynamicObject(3666, 3048.1171, 88.2851, 23.8124, 0.0000, 0.0000, -153.5061); //no comment
+	g_ObjectTR[567] = CreateDynamicObject(3666, 3040.3198, 84.7938, 23.8124, 0.0000, 0.0000, -153.5061); //no comment
+	g_ObjectTR[568] = CreateDynamicObject(3666, 3036.8012, 92.6623, 23.8124, 0.0000, 0.0000, -153.5061); //no comment
+	g_ObjectTR[569] = CreateDynamicObject(982, 3055.4450, 68.8786, 16.0837, 0.0000, 0.0000, -155.7639); //no comment
+	g_ObjectTR[570] = CreateDynamicObject(983, 3046.4418, 88.9440, 16.0837, 0.0000, 0.0000, -155.7639); //no comment
+	g_ObjectTR[571] = CreateDynamicObject(983, 3044.4692, 93.2686, 16.0837, 0.0000, 0.0000, -155.7639); //no comment
+	g_ObjectTR[572] = CreateDynamicObject(983, 3047.0664, 54.5275, 16.0837, 0.0000, 0.0000, -155.7639); //no comment
+	g_ObjectTR[573] = CreateDynamicObject(982, 3124.4020, 85.8638, 16.0837, 0.0000, 0.0000, 114.2414); //no comment
+	g_ObjectTR[574] = CreateDynamicObject(982, 3077.7016, 64.8636, 16.0837, 0.0000, 0.0000, 114.2414); //no comment
+	g_ObjectTR[575] = CreateDynamicObject(1215, 3031.6223, 88.6529, 15.9645, 0.0000, 0.0000, -179.5000); //no comment
+	g_ObjectTR[576] = CreateDynamicObject(1215, 3048.1462, 51.7280, 15.9645, 0.0000, 0.0000, -179.5000); //no comment
+	g_ObjectTR[577] = CreateDynamicObject(1998, 3024.9619, 104.3517, 15.3999, 0.0000, 0.0000, -155.5500); //no comment
+	g_ObjectTR[578] = CreateDynamicObject(1714, 3023.6767, 103.7738, 15.3999, 0.0000, 0.0000, 171.6999); //no comment
+	g_ObjectTR[579] = CreateDynamicObject(1714, 3043.4533, 93.4478, 19.9486, 0.0000, 0.0000, 114.9999); //no comment
+	g_ObjectTR[580] = CreateDynamicObject(1714, 3045.3662, 89.1171, 19.9486, 0.0000, 0.0000, 114.9940); //no comment
+	g_ObjectTR[581] = CreateDynamicObject(1714, 3044.7290, 84.2089, 15.4214, 0.0000, 0.0000, 26.5000); //no comment
+	g_ObjectTR[582] = CreateDynamicObject(1714, 3053.0830, 60.7280, 15.4214, 0.0000, 0.0000, -155.2561); //no comment
+	g_ObjectTR[583] = CreateDynamicObject(1714, 3048.3469, 58.9342, 15.4214, 0.0000, 0.0000, -155.2640); //no comment
+	g_ObjectTR[584] = CreateDynamicObject(3264, 3047.6816, 53.0699, 15.3999, 0.0000, 0.0000, -65.7583); //no comment
+	g_ObjectTR[585] = CreateDynamicObject(1256, 3033.1115, 84.6361, 16.0806, 0.0000, 0.0000, 24.0000); //no comment
+	g_ObjectTR[586] = CreateDynamicObject(1256, 3043.6149, 61.4001, 16.0806, 0.0000, 0.0000, 23.9944); //no comment
+	g_ObjectTR[587] = CreateDynamicObject(1703, 3038.1308, 90.7730, 19.9486, 0.0000, 0.0000, 113.7499); //no comment
+	g_ObjectTR[588] = CreateDynamicObject(1703, 3039.2016, 88.3031, 19.9486, 0.0000, 0.0000, 113.7415); //no comment
+	g_ObjectTR[589] = CreateDynamicObject(3998, 3139.4011, 115.1035, 2.1526, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[590] = CreateDynamicObject(3666, 3182.1718, 112.4514, 15.2622, 0.0000, 0.0000, -153.5061); //no comment
+	g_ObjectTR[591] = CreateDynamicObject(2596, 3025.3034, 102.7807, 18.0382, 0.0000, 0.0000, -141.5000); //no comment
+	g_ObjectTR[592] = CreateDynamicObject(982, 3106.5620, 194.5773, 16.0837, 0.0000, 0.0000, -155.7639); //no comment
+	g_ObjectTR[593] = CreateDynamicObject(6959, 3015.1923, 146.1546, 15.4314, 0.0000, 0.0000, -155.7530); //no comment
+	g_ObjectTR[594] = CreateDynamicObject(6959, 3031.5454, 109.8097, 15.4314, 0.0000, 0.0000, -155.7528); //no comment
+	g_ObjectTR[595] = CreateDynamicObject(982, 3065.7614, 190.9221, 16.0837, 0.0000, 0.0000, 114.2414); //no comment
+	g_ObjectTR[596] = CreateDynamicObject(982, 3127.6542, 147.7648, 16.0837, 0.0000, 0.0000, -155.7639); //no comment
+	g_ObjectTR[597] = CreateDynamicObject(982, 3117.1425, 171.1770, 16.0837, 0.0000, 0.0000, -155.7639); //no comment
+	g_ObjectTR[598] = CreateDynamicObject(982, 3028.2036, 125.1312, 16.0837, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[599] = CreateDynamicObject(982, 3017.6247, 148.5334, 16.0837, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[600] = CreateDynamicObject(966, 3024.1689, 109.1399, 15.3028, 0.0000, 0.0000, -155.1999); //bar_gatebar01
+	g_ObjectTR[601] = CreateDynamicObject(982, 2993.4892, 144.1750, 16.0636, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[602] = CreateDynamicObject(983, 3030.9311, 92.0500, 16.0837, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[603] = CreateDynamicObject(3998, 3162.7145, 125.5922, 2.1526, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[604] = CreateDynamicObject(3578, 3161.6960, 127.5597, 14.6239, 0.0000, 0.0000, 114.2499); //no comment
+	g_ObjectTR[605] = CreateDynamicObject(3998, 3153.9333, 145.3085, 2.1526, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[606] = CreateDynamicObject(3998, 3145.0920, 164.9445, 2.1526, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[607] = CreateDynamicObject(3578, 3148.5065, 157.2138, 14.6239, 0.0000, 0.0000, 114.2414); //no comment
+	g_ObjectTR[608] = CreateDynamicObject(3666, 3159.5114, 101.8648, 15.2622, 0.0000, 0.0000, -153.5061); //no comment
+	g_ObjectTR[609] = CreateDynamicObject(3666, 3150.8566, 121.4608, 15.2622, 0.0000, 0.0000, -153.5061); //no comment
+	g_ObjectTR[610] = CreateDynamicObject(3666, 3173.5361, 131.7023, 15.2622, 0.0000, 0.0000, -153.5061); //no comment
+	g_ObjectTR[611] = CreateDynamicObject(3998, 3136.2363, 184.5897, 2.1526, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[612] = CreateDynamicObject(3998, 3127.4011, 204.2398, 2.1526, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[613] = CreateDynamicObject(3578, 3135.5600, 186.3464, 14.6239, 0.0000, 0.0000, 114.2414); //no comment
+	g_ObjectTR[614] = CreateDynamicObject(3998, 3118.5415, 223.9429, 2.1526, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[615] = CreateDynamicObject(3998, 3109.6977, 243.6174, 2.1526, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[616] = CreateDynamicObject(3578, 3116.3959, 228.1613, 14.6239, 0.0000, 0.0000, 114.2414); //no comment
+	g_ObjectTR[617] = CreateDynamicObject(3998, 3100.9311, 263.1246, 2.1526, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[618] = CreateDynamicObject(3998, 3092.0659, 282.7683, 2.1526, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[619] = CreateDynamicObject(3998, 3083.2102, 302.3699, 2.1526, 0.0000, 0.0000, -155.7584); //no comment
+	g_ObjectTR[620] = CreateDynamicObject(3666, 3120.6369, 250.2758, 15.2622, 0.0000, 0.0000, -153.5061); //no comment
+	g_ObjectTR[621] = CreateDynamicObject(3666, 3097.1711, 240.8159, 15.2622, 0.0000, 0.0000, -153.5061); //no comment
+	g_ObjectTR[622] = CreateDynamicObject(3578, 3100.7414, 262.7662, 14.6239, 0.0000, 0.0000, 114.2414); //no comment
+	g_ObjectTR[623] = CreateDynamicObject(982, 3101.0373, 75.3402, 16.0837, 0.0000, 0.0000, 114.2414); //no comment
+	g_ObjectTR[624] = CreateDynamicObject(982, 3051.8632, 184.6815, 16.0837, 0.0000, 0.0000, 114.2414); //no comment
+	g_ObjectTR[625] = CreateDynamicObject(982, 3028.4729, 174.1334, 16.0837, 0.0000, 0.0000, 114.2414); //no comment
+	g_ObjectTR[626] = CreateDynamicObject(3657, 3042.7556, 74.9842, 15.9392, 0.0000, 0.0000, 112.7416); //no comment
+	g_ObjectTR[627] = CreateDynamicObject(640, 2175.9375, 92.8282, 27.3080, 0.0000, 0.0000, 0.0000); //kb_planter+bush2
+	g_ObjectTR[628] = CreateDynamicObject(14407, 2169.2897, 49.3866, 23.4435, 0.0000, 0.0000, 180.0000); //carter-stairs01
+	g_ObjectTR[629] = CreateDynamicObject(8650, 2151.6831, 97.4766, 27.7210, 0.0000, 0.0000, 90.0000); //shbbyhswall06_lvs
+	g_ObjectTR[630] = CreateDynamicObject(8650, 2136.8225, 81.8367, 27.7220, 0.0000, 0.0000, 0.0000); //shbbyhswall06_lvs
+	g_ObjectTR[631] = CreateDynamicObject(8650, 2136.8225, 67.0066, 27.7210, 0.0000, 0.0000, 0.0000); //shbbyhswall06_lvs
+	g_ObjectTR[632] = CreateDynamicObject(8650, 2151.6828, 52.1567, 27.7199, 0.0000, 0.0000, 90.0000); //shbbyhswall06_lvs
+	g_ObjectTR[633] = CreateDynamicObject(640, 2175.9375, 77.4981, 27.3080, 0.0000, 0.0000, 0.0000); //kb_planter+bush2
+	g_ObjectTR[634] = CreateDynamicObject(640, 2175.9360, 95.2282, 27.3069, 0.0000, 0.0000, 0.0000); //kb_planter+bush2
+	g_ObjectTR[635] = CreateDynamicObject(3262, 2153.6667, 77.6480, 26.4384, 0.0000, 0.0000, 180.0000); //privatesign1
+	g_ObjectTR[636] = CreateDynamicObject(640, 2169.6450, 97.5782, 27.2959, 0.0000, 0.0000, 90.0000); //kb_planter+bush2
+	g_ObjectTR[637] = CreateDynamicObject(640, 2175.9375, 72.1483, 27.3080, 0.0000, 0.0000, 0.0000); //kb_planter+bush2
+	g_ObjectTR[638] = CreateDynamicObject(640, 2175.9375, 66.7882, 27.3080, 0.0000, 0.0000, 0.0000); //kb_planter+bush2
+	g_ObjectTR[639] = CreateDynamicObject(640, 2175.9375, 61.4281, 27.3080, 0.0000, 0.0000, 0.0000); //kb_planter+bush2
+	g_ObjectTR[640] = CreateDynamicObject(640, 2175.9375, 56.0783, 27.3080, 0.0000, 0.0000, 0.0000); //kb_planter+bush2
+	g_ObjectTR[641] = CreateDynamicObject(640, 2175.9360, 54.3883, 27.3069, 0.0000, 0.0000, 0.0000); //kb_planter+bush2
+	g_ObjectTR[642] = CreateDynamicObject(1280, 2165.2492, 55.5228, 27.0051, 0.0000, 0.0000, 180.0000); //parkbench1
+	g_ObjectTR[643] = CreateDynamicObject(14407, 2173.2419, 49.3866, 23.4435, 0.0000, 0.0000, 180.0000); //carter-stairs01
+	g_ObjectTR[644] = CreateDynamicObject(19425, 2163.3403, 56.3263, 26.5380, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[644], 0, 14668, "711c", "cj_white_wall2", 0x00000000);
+	g_ObjectTR[645] = CreateDynamicObject(1280, 2165.2492, 62.0000, 27.0051, 0.0000, 0.0000, 180.0000); //parkbench1
+	g_ObjectTR[646] = CreateDynamicObject(983, 2151.2187, 77.9263, 27.1205, 0.0000, 0.0000, 90.0000); //fenceshit3
+	g_ObjectTR[647] = CreateDynamicObject(2395, 2167.3837, 50.0839, 23.8808, 0.0000, 0.0000, 90.0000); //CJ_SPORTS_WALL
+	SetDynamicObjectMaterial(g_ObjectTR[647], 0, 10429, "hashblock1_sfs", "Bow_Concrete_drip", 0x00000000);
+	g_ObjectTR[648] = CreateDynamicObject(982, 2163.5341, 65.4060, 27.2493, 0.0000, 0.0000, 0.0000); //fenceshit
+	g_ObjectTR[649] = CreateDynamicObject(2395, 2167.2277, 52.8344, 23.8808, 0.0000, 0.0000, -90.0000); //CJ_SPORTS_WALL
+	SetDynamicObjectMaterial(g_ObjectTR[649], 0, 10429, "hashblock1_sfs", "Bow_Concrete_drip", 0x00000000);
+	g_ObjectTR[650] = CreateDynamicObject(2395, 2175.3137, 50.0839, 23.8808, 0.0000, 0.0000, 90.0000); //CJ_SPORTS_WALL
+	SetDynamicObjectMaterial(g_ObjectTR[650], 0, 10429, "hashblock1_sfs", "Bow_Concrete_drip", 0x00000000);
+	g_ObjectTR[651] = CreateDynamicObject(2395, 2175.1635, 52.8240, 23.8808, 0.0000, 0.0000, -90.0000); //CJ_SPORTS_WALL
+	SetDynamicObjectMaterial(g_ObjectTR[651], 0, 10429, "hashblock1_sfs", "Bow_Concrete_drip", 0x00000000);
+	g_ObjectTR[652] = CreateDynamicObject(1215, 2167.2836, 51.9197, 27.0867, 0.0000, 0.0000, 0.0000); //bollardlight
+	g_ObjectTR[653] = CreateDynamicObject(1280, 2165.2492, 69.0000, 27.0051, 0.0000, 0.0000, 180.0000); //parkbench1
+	g_ObjectTR[654] = CreateDynamicObject(1215, 2175.3452, 51.9197, 27.0867, 0.0000, 0.0000, 0.0000); //bollardlight
+	g_ObjectTR[655] = CreateDynamicObject(966, 2161.7192, 77.9312, 26.1847, 0.0000, 0.0000, 0.0000); //bar_gatebar01
+	g_ObjectTR[656] = CreateDynamicObject(967, 2162.7331, 77.4385, 26.6427, 0.0000, 0.0000, 90.0000); //bar_gatebox01
+	g_ObjectTR[657] = CreateDynamicObject(983, 2149.5173, 93.8363, 27.1205, 0.0000, 0.0000, 0.0000); //fenceshit3
+	g_ObjectTR[658] = CreateDynamicObject(19425, 2163.3403, 54.1463, 26.5377, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[658], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[659] = CreateDynamicObject(19425, 2159.8010, 54.1463, 26.5377, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[659], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[660] = CreateDynamicObject(1359, 2164.4423, 76.6352, 27.2733, 0.0000, 0.0000, 0.0000); //CJ_BIN1
+	g_ObjectTR[661] = CreateDynamicObject(1536, 2150.3891, 81.1548, 26.5881, 0.0000, 0.0000, 0.0000); //Gen_doorEXT15
+	g_ObjectTR[662] = CreateDynamicObject(19425, 2157.0288, 56.3362, 26.5380, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[662], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[663] = CreateDynamicObject(19425, 2159.8010, 56.3362, 26.5380, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[663], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[664] = CreateDynamicObject(1359, 2175.8645, 50.1852, 26.0534, 0.0000, 0.0000, 0.0000); //CJ_BIN1
+	g_ObjectTR[665] = CreateDynamicObject(19425, 2157.0288, 53.3960, 26.5377, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[665], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[666] = CreateDynamicObject(19425, 2154.2883, 56.3362, 26.5380, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[666], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[667] = CreateDynamicObject(19425, 2154.2883, 54.0362, 26.5377, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[667], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[668] = CreateDynamicObject(19425, 2151.4477, 56.3362, 26.5380, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[668], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[669] = CreateDynamicObject(19425, 2151.4477, 54.0162, 26.5377, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[669], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[670] = CreateDynamicObject(19425, 2148.6967, 56.3362, 26.5380, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[670], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[671] = CreateDynamicObject(19425, 2148.6967, 54.0060, 26.5377, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[671], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[672] = CreateDynamicObject(19425, 2145.9169, 56.3362, 26.5380, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[672], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[673] = CreateDynamicObject(19425, 2145.9169, 54.0362, 26.5377, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[673], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[674] = CreateDynamicObject(19425, 2143.1567, 56.3362, 26.5380, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[674], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[675] = CreateDynamicObject(19425, 2143.1567, 54.0760, 26.5377, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[675], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[676] = CreateDynamicObject(19121, 2165.6650, 78.1419, 27.1697, 0.0000, 0.0000, 0.0000); //BollardLight1
+	g_ObjectTR[677] = CreateDynamicObject(19425, 2140.4440, 56.3362, 26.5380, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[677], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[678] = CreateDynamicObject(19425, 2140.4440, 54.0060, 26.5377, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[678], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[679] = CreateDynamicObject(19425, 2137.3239, 54.0060, 26.5377, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[679], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[680] = CreateDynamicObject(19425, 2137.3239, 56.3762, 26.5380, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[680], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[681] = CreateDynamicObject(1232, 2164.1687, 61.9697, 29.1784, 0.0000, 0.0000, 0.0000); //Streetlamp1
+	g_ObjectTR[682] = CreateDynamicObject(19121, 2167.1164, 78.1419, 27.1697, 0.0000, 0.0000, 0.0000); //BollardLight1
+	g_ObjectTR[683] = CreateDynamicObject(19121, 2164.1035, 78.1419, 27.1697, 0.0000, 0.0000, 0.0000); //BollardLight1
+	g_ObjectTR[684] = CreateDynamicObject(19121, 2175.2773, 78.1419, 27.1697, 0.0000, 0.0000, 0.0000); //BollardLight1
+	g_ObjectTR[685] = CreateDynamicObject(19121, 2173.7961, 78.1419, 27.1697, 0.0000, 0.0000, 0.0000); //BollardLight1
+	g_ObjectTR[686] = CreateDynamicObject(19121, 2170.3896, 78.1419, 27.1697, 0.0000, 0.0000, 0.0000); //BollardLight1
+	g_ObjectTR[687] = CreateDynamicObject(738, 2164.5124, 58.6696, 26.7425, 0.0000, 0.0000, 0.0000); //aw_streettree2
+	g_ObjectTR[688] = CreateDynamicObject(19121, 2172.1745, 78.1419, 27.1697, 0.0000, 0.0000, 0.0000); //BollardLight1
+	g_ObjectTR[689] = CreateDynamicObject(19121, 2168.7424, 78.1419, 27.1697, 0.0000, 0.0000, 0.0000); //BollardLight1
+	g_ObjectTR[690] = CreateDynamicObject(738, 2164.4426, 65.5000, 26.7425, 0.0000, 0.0000, 0.0000); //aw_streettree2
+	g_ObjectTR[691] = CreateDynamicObject(1257, 2161.8288, 49.1584, 26.5625, 0.0000, 0.0000, 90.0000); //bustopm
+	g_ObjectTR[692] = CreateDynamicObject(738, 2164.4326, 72.9198, 26.7425, 0.0000, 0.0000, 0.0000); //aw_streettree2
+	g_ObjectTR[693] = CreateDynamicObject(1340, 2173.6914, 58.7294, 27.6734, 0.0000, 0.0000, 180.0000); //chillidogcart
+	g_ObjectTR[694] = CreateDynamicObject(1232, 2164.1687, 55.3997, 29.1784, 0.0000, 0.0000, 0.0000); //Streetlamp1
+	g_ObjectTR[695] = CreateDynamicObject(1232, 2164.1687, 68.9999, 29.1784, 0.0000, 0.0000, 0.0000); //Streetlamp1
+	g_ObjectTR[696] = CreateDynamicObject(1341, 2174.0854, 65.0857, 27.5160, 0.0000, 0.0000, 180.0000); //icescart_prop
+	g_ObjectTR[697] = CreateDynamicObject(1342, 2173.6779, 72.8656, 27.6284, 0.0000, 0.0000, 180.0000); //noodlecart_prop
+	g_ObjectTR[698] = CreateDynamicObject(1285, 2166.5727, 52.8314, 27.1047, 0.0000, 0.0000, 0.0000); //newstandnew5
+	g_ObjectTR[699] = CreateDynamicObject(1281, 2171.9970, 68.9149, 27.4157, 0.0000, 0.0000, 90.0000); //parktable1
+	g_ObjectTR[700] = CreateDynamicObject(1281, 2171.9970, 62.2248, 27.4157, 0.0000, 0.0000, 90.0000); //parktable1
+	g_ObjectTR[701] = CreateDynamicObject(1594, 2173.6123, 54.6665, 27.0405, 0.0000, 0.0000, 0.0000); //chairsntable
+	g_ObjectTR[702] = CreateDynamicObject(19425, 2262.3325, 25.3362, 25.4449, 0.0000, 0.0000, 0.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[702], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[703] = CreateDynamicObject(3066, 2141.3276, 87.9332, 27.6732, 0.0000, 0.0000, 180.0000); //ammotrn_obj
+	g_ObjectTR[704] = CreateDynamicObject(964, 2142.1162, 81.8320, 26.6072, 0.0000, 0.0000, -90.0000); //CJ_METAL_CRATE
+	g_ObjectTR[705] = CreateDynamicObject(3576, 2141.7478, 79.5919, 28.0501, 0.0000, 0.0000, 180.0000); //DockCrates2_LA
+	g_ObjectTR[706] = CreateDynamicObject(3262, 2149.0756, 95.0080, 26.4384, 0.0000, 0.0000, 90.0000); //privatesign1
+	g_ObjectTR[707] = CreateDynamicObject(1229, 2165.2102, 47.3003, 26.1725, 0.0000, 0.0000, 90.0000); //bussign1
+	g_ObjectTR[708] = CreateDynamicObject(640, 2172.9040, 97.5782, 27.2959, 0.0000, 0.0000, 90.0000); //kb_planter+bush2
+	g_ObjectTR[709] = CreateDynamicObject(1228, 2192.9589, 81.4729, 23.7528, -2.1998, 3.6998, -31.1000); //roadworkbarrier1
+	g_ObjectTR[710] = CreateDynamicObject(19425, 2172.7131, 95.6462, 26.5400, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[710], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[711] = CreateDynamicObject(19425, 2172.7131, 93.5362, 26.5410, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[711], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[712] = CreateDynamicObject(19966, 2213.8513, 81.9769, 25.2138, 0.0000, 0.0000, -90.0000); //SAMPRoadSign19
+	g_ObjectTR[713] = CreateDynamicObject(19425, 2213.8435, 83.7962, 25.3910, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[713], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[714] = CreateDynamicObject(19425, 2213.8435, 85.2562, 25.3899, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[714], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[715] = CreateDynamicObject(19425, 2169.9521, 95.6462, 26.5400, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[715], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[716] = CreateDynamicObject(19425, 2169.9506, 93.5362, 26.5410, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[716], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[717] = CreateDynamicObject(19425, 2167.4404, 95.6462, 26.5400, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[717], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[718] = CreateDynamicObject(19425, 2167.4384, 93.5362, 26.5410, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[718], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[719] = CreateDynamicObject(19425, 2164.8298, 95.6462, 26.5400, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[719], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[720] = CreateDynamicObject(19425, 2164.8261, 93.5362, 26.5410, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[720], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[721] = CreateDynamicObject(19425, 2162.2495, 95.6462, 26.5400, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[721], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[722] = CreateDynamicObject(19425, 2162.2470, 93.5362, 26.5410, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[722], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[723] = CreateDynamicObject(19966, 2218.3508, 52.1599, 25.4594, 0.0000, 0.0000, 180.0000); //SAMPRoadSign19
+	g_ObjectTR[724] = CreateDynamicObject(19425, 2159.5983, 95.6462, 26.5400, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[724], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[725] = CreateDynamicObject(19425, 2159.5976, 93.5362, 26.5410, 0.0000, 0.0000, 90.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[725], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[726] = CreateDynamicObject(19966, 2283.5908, -34.2615, 25.4797, 0.0000, 0.0000, -90.0000); //SAMPRoadSign19
+	g_ObjectTR[727] = CreateDynamicObject(19966, 2234.0439, 97.3037, 25.3924, 0.0000, 0.0000, 90.0000); //SAMPRoadSign19
+	g_ObjectTR[728] = CreateDynamicObject(19966, 2283.5830, 86.2637, 25.3663, 0.0000, 0.0000, -90.0000); //SAMPRoadSign19
+	g_ObjectTR[729] = CreateDynamicObject(19966, 2283.5688, 35.9249, 25.4682, 0.0000, 0.0000, -90.0000); //SAMPRoadSign19
+	g_ObjectTR[730] = CreateDynamicObject(1360, 2183.6418, 80.7647, 25.0760, 11.1998, 0.0000, 90.0000); //CJ_BUSH_PROP3
+	g_ObjectTR[731] = CreateDynamicObject(19966, 2288.4204, -88.1398, 25.4097, 0.0000, 0.0000, 180.0000); //SAMPRoadSign19
+	g_ObjectTR[732] = CreateDynamicObject(19966, 2349.4079, -38.5574, 25.4491, 0.0000, 0.0000, 0.0000); //SAMPRoadSign19
+	g_ObjectTR[733] = CreateDynamicObject(19966, 2333.4838, 86.1078, 25.3525, 0.0000, 0.0000, -90.0000); //SAMPRoadSign19
+	g_ObjectTR[734] = CreateDynamicObject(19966, 2304.3488, 97.1809, 25.3810, 0.0000, 0.0000, 90.0000); //SAMPRoadSign19
+	g_ObjectTR[735] = CreateDynamicObject(19966, 2338.3364, -17.9130, 25.3367, 0.0000, 0.0000, 180.0000); //SAMPRoadSign19
+	g_ObjectTR[736] = CreateDynamicObject(19966, 2333.3168, 208.4510, 25.2367, 0.0000, 0.0000, -90.0000); //SAMPRoadSign19
+	g_ObjectTR[737] = CreateDynamicObject(19966, 2354.4694, 97.1097, 25.4416, 0.0000, 0.0000, 90.0000); //SAMPRoadSign19
+	g_ObjectTR[738] = CreateDynamicObject(19966, 2388.0397, -17.8505, 25.3045, 0.0000, 0.0000, 180.0000); //SAMPRoadSign19
+	g_ObjectTR[739] = CreateDynamicObject(19966, 2404.0881, 47.1086, 25.4044, 0.0000, 0.0000, 90.0000); //SAMPRoadSign19
+	g_ObjectTR[740] = CreateDynamicObject(19966, 2458.5903, 51.8597, 25.0604, 0.0000, 0.0000, 180.0000); //SAMPRoadSign19
+	g_ObjectTR[741] = CreateDynamicObject(19966, 2528.4536, 51.8708, 25.4221, 0.0000, 0.0000, 180.0000); //SAMPRoadSign19
+	g_ObjectTR[742] = CreateDynamicObject(19966, 2469.4538, 31.4570, 25.4843, 0.0000, 0.0000, 0.0000); //SAMPRoadSign19
+	g_ObjectTR[743] = CreateDynamicObject(19966, 2474.4406, -2.8917, 25.4542, 0.0000, 0.0000, 90.0000); //SAMPRoadSign19
+	g_ObjectTR[744] = CreateDynamicObject(19966, 2539.3193, 31.4414, 25.4591, 0.0000, 0.0000, 0.0000); //SAMPRoadSign19
+	g_ObjectTR[745] = CreateDynamicObject(19966, 2548.6254, 47.0463, 25.3925, 0.0000, 0.0000, 90.0000); //SAMPRoadSign19
+	g_ObjectTR[746] = CreateDynamicObject(19966, 2304.3564, -22.6373, 25.4043, 0.0000, 0.0000, 90.0000); //SAMPRoadSign19
+	g_ObjectTR[747] = CreateDynamicObject(19966, 1908.4770, 32.6052, 33.4556, 0.0000, 0.0000, -6.5998); //SAMPRoadSign19
+	g_ObjectTR[748] = CreateDynamicObject(640, 2179.1467, 80.7581, 26.7873, 11.1998, 0.0000, 90.0000); //kb_planter+bush2
+	g_ObjectTR[749] = CreateDynamicObject(640, 2188.6782, 80.7881, 24.8994, 11.1998, 0.0000, 90.0000); //kb_planter+bush2
+	g_ObjectTR[750] = CreateDynamicObject(19425, 2259.7827, 28.2861, 25.4442, 0.0000, 0.0000, 0.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[750], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[751] = CreateDynamicObject(19425, 2262.3325, 28.2863, 25.4449, 0.0000, 0.0000, 0.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[751], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[752] = CreateDynamicObject(19966, 2334.0227, 277.5606, 25.3892, 0.0000, 0.0000, -90.0000); //SAMPRoadSign19
+	g_ObjectTR[753] = CreateDynamicObject(19951, 2192.3125, 81.6563, 22.8917, 0.0000, 0.0000, -90.0000); //SAMPRoadSign4
+	g_ObjectTR[754] = CreateDynamicObject(640, 2179.1467, 89.6481, 26.7873, 11.1998, 0.0000, 90.0000); //kb_planter+bush2
+	g_ObjectTR[755] = CreateDynamicObject(1360, 2183.6418, 89.5947, 25.0760, 11.1998, 0.0000, 90.0000); //CJ_BUSH_PROP3
+	g_ObjectTR[756] = CreateDynamicObject(640, 2188.6782, 89.6280, 24.8994, 11.1998, 0.0000, 90.0000); //kb_planter+bush2
+	g_ObjectTR[757] = CreateDynamicObject(19425, 2259.7827, 31.3262, 25.4442, 0.0000, 0.0000, 0.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[757], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[758] = CreateDynamicObject(19425, 2262.3325, 31.3262, 25.4449, 0.0000, 0.0000, 0.0000); //speed_bump01
+	SetDynamicObjectMaterial(g_ObjectTR[758], 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	g_ObjectTR[759] = CreateDynamicObject(638, 2257.4155, 31.2703, 26.2073, 0.0000, 0.0000, 0.0000); //kb_planter+bush
+	g_ObjectTR[760] = CreateDynamicObject(1215, 2257.4125, 33.2316, 25.9009, 0.0000, 0.0000, 0.0000); //bollardlight
+	g_ObjectTR[761] = CreateDynamicObject(19793, 2251.6938, 30.0636, 25.6058, 0.0000, 0.0000, 90.0000); //FireWoodLog1
+	g_ObjectTR[762] = CreateDynamicObject(19619, 2254.6987, 30.4631, 25.8596, 0.0000, 0.0000, 0.0000); //SafeDoor1
+	g_ObjectTR[763] = CreateDynamicObject(19587, 2252.0432, 30.0790, 25.5400, 0.0000, 0.0000, 0.0000); //PlasticTray1
+	g_ObjectTR[764] = CreateDynamicObject(19793, 2251.8540, 30.0636, 25.6058, 0.0000, 0.0000, 90.0000); //FireWoodLog1
+	g_ObjectTR[765] = CreateDynamicObject(19793, 2252.0041, 30.0636, 25.6058, 0.0000, 0.0000, 90.0000); //FireWoodLog1
+	g_ObjectTR[766] = CreateDynamicObject(19793, 2252.1542, 30.0636, 25.6058, 0.0000, 0.0000, 90.0000); //FireWoodLog1
+	g_ObjectTR[767] = CreateDynamicObject(19793, 2252.2844, 30.0636, 25.6058, 0.0000, 0.0000, 90.0000); //FireWoodLog1
+	g_ObjectTR[768] = CreateDynamicObject(19793, 2252.3645, 30.0636, 25.7299, 0.0000, 0.0000, 90.0000); //FireWoodLog1
+	g_ObjectTR[769] = CreateDynamicObject(19793, 2252.4445, 30.0636, 25.6058, 0.0000, 0.0000, 90.0000); //FireWoodLog1
+	g_ObjectTR[770] = CreateDynamicObject(2690, 2271.6489, 30.0387, 26.1522, 0.0000, 0.0000, 180.0000); //CJ_FIRE_EXT
+	g_ObjectTR[771] = CreateDynamicObject(19793, 2252.0849, 30.0636, 25.7299, 0.0000, 0.0000, 90.0000); //FireWoodLog1
+	g_ObjectTR[772] = CreateDynamicObject(19793, 2251.7749, 30.0636, 25.7299, 0.0000, 0.0000, 90.0000); //FireWoodLog1
+	g_ObjectTR[773] = CreateDynamicObject(1359, 2249.1584, 30.1762, 26.1511, 0.0000, 0.0000, 0.0000); //CJ_BIN1
+	g_ObjectTR[774] = CreateDynamicObject(19916, 2253.5612, 30.0090, 25.9092, 0.0000, 90.0000, 0.0000); //CutsceneFridge1
+	g_ObjectTR[775] = CreateDynamicObject(3578, 2689.6496, -282.6854, 28.5944, 0.0000, 0.0000, 73.5998); //no comment
+	g_ObjectTR[776] = CreateDynamicObject(19619, 2253.7790, 30.4631, 25.8596, 0.0000, 0.0000, 0.0000); //SafeDoor1
+	g_ObjectTR[777] = CreateDynamicObject(18885, 2247.5119, 30.1445, 26.5921, 0.0000, 0.0000, 180.0000); //GunVendingMachine1
+	g_ObjectTR[778] = CreateDynamicObject(2690, 2277.3007, 30.0387, 26.1522, 0.0000, 0.0000, 180.0000); //CJ_FIRE_EXT
+	g_ObjectTR[779] = CreateDynamicObject(2690, 2277.3007, 24.0587, 26.1522, 0.0000, 0.0000, 0.0000); //CJ_FIRE_EXT
+	g_ObjectTR[780] = CreateDynamicObject(2690, 2271.5693, 24.0587, 26.1522, 0.0000, 0.0000, 0.0000); //CJ_FIRE_EXT
+	g_ObjectTR[781] = CreateDynamicObject(1238, 2271.6936, 29.0748, 26.1306, 0.0000, 0.0000, 0.0000); //trafficcone
+	g_ObjectTR[782] = CreateDynamicObject(1238, 2271.6936, 25.0748, 26.1306, 0.0000, 0.0000, 0.0000); //trafficcone
+	g_ObjectTR[783] = CreateDynamicObject(1238, 2277.3254, 25.0748, 26.1306, 0.0000, 0.0000, 0.0000); //trafficcone
+	g_ObjectTR[784] = CreateDynamicObject(1238, 2277.2971, 29.0748, 26.1306, 0.0000, 0.0000, 0.0000); //trafficcone
+	g_ObjectTR[785] = CreateDynamicObject(3468, 2253.1008, 32.9739, 26.1707, 0.0000, 0.0000, 90.0000); //vegstreetsign2
+	g_ObjectTR[786] = CreateDynamicObject(970, 2283.7460, 19.7681, 26.0456, 0.0000, 0.0000, 90.4999); //no comment
+	g_ObjectTR[787] = CreateDynamicObject(11713, 2257.6091, 21.4167, 26.7119, 0.0000, 0.0000, -90.0000); //FireExtPanel1
+	g_ObjectTR[788] = CreateDynamicObject(3467, 2285.6552, 31.6217, 26.1110, 0.0000, 0.0000, 0.0000); //vegstreetsign1
+	g_ObjectTR[789] = CreateDynamicObject(1421, 2241.9431, 20.9386, 26.2859, 0.0000, 0.0000, 0.0000); //DYN_BOXES
+	g_ObjectTR[790] = CreateDynamicObject(19447, 2278.0686, 34.9410, 25.4346, 0.0000, 89.9001, 89.9999); //no comment
+	SetDynamicObjectMaterial(g_ObjectTR[790], 0, 17678, "lae2bridge", "Newpavement", 0x00000000);
+	g_ObjectTR[791] = CreateDynamicObject(1450, 2245.1921, 20.8498, 26.1179, 0.0000, 0.0000, 0.0000); //DYN_CRATE_3
+	g_ObjectTR[792] = CreateDynamicObject(1355, 2247.4482, 21.1618, 25.7329, 0.0000, 0.0000, 0.0000); //CJ_FRUITCRATE1
+	g_ObjectTR[793] = CreateDynamicObject(1450, 2252.7512, 20.8498, 26.1179, 0.0000, 0.0000, 0.0000); //DYN_CRATE_3
+	g_ObjectTR[794] = CreateDynamicObject(2912, 2249.7163, 21.0366, 25.5237, 0.0000, 0.0000, 0.0000); //temp_crate1
+	g_ObjectTR[795] = CreateDynamicObject(19447, 2240.7871, 34.9411, 25.4248, 0.0000, 89.9001, 89.9999); //no comment
+	SetDynamicObjectMaterial(g_ObjectTR[795], 0, 17678, "lae2bridge", "Newpavement", 0x00000000);
+	g_ObjectTR[796] = CreateDynamicObject(18452, 1786.3270, 381.8194, 20.7168, 0.0000, 0.0000, -96.1998); //cw_tscanopy01
+	g_ObjectTR[797] = CreateDynamicObject(18452, 1786.9272, 386.9750, 20.7269, 0.0000, 0.0000, -96.1998); //cw_tscanopy01
+	g_ObjectTR[798] = CreateDynamicObject(19967, 1784.3248, 389.8089, 18.2628, 0.0000, 0.0000, -92.3999); //SAMPRoadSign20
+	g_ObjectTR[799] = CreateDynamicObject(19966, 1783.1555, 379.5228, 18.5699, 0.0000, 0.0000, -95.6998); //SAMPRoadSign19
+	g_ObjectTR[800] = CreateDynamicObject(19966, 1790.0969, 389.1683, 18.4398, 0.0000, 0.0000, 88.0000); //SAMPRoadSign19
+	g_ObjectTR[801] = CreateDynamicObject(19967, 1788.9432, 378.9327, 18.2628, 0.0000, 0.0000, 92.0000); //SAMPRoadSign20
+	g_ObjectTR[802] = CreateDynamicObject(1237, 1786.5369, 384.3468, 17.9481, 0.0000, 0.0000, 0.0000); //strtbarrier01
+	g_ObjectTR[803] = CreateDynamicObject(978, 2704.0869, -264.2942, 29.3261, 0.0000, 0.0000, 41.4000); //sub_roadright
+	g_ObjectTR[804] = CreateDynamicObject(978, 2718.0639, -275.6271, 27.3861, 0.0000, 0.0000, -105.1999); //sub_roadright
+
 	// LSVIP Rooftop by ethan freeman
 	CreateDynamicObject(10829,1784.2000000,-1543.3000000,37.9000000,0.0000000,0.0000000,87.9950000); //object(gatehouse1_sfse) (1)
 	CreateDynamicObject(3928,1768.4000000,-1559.7000000,38.0000000,0.0000000,0.0000000,353.9960000); //object(helipad) (2)
@@ -442,17 +1868,17 @@ public OnFilterScriptInit()
 	CreateDynamicObject(3850, 590.33752, -1246.04456, 17.48930,   -2.00000, 0.00000, 22.00000);
 	CreateDynamicObject(3850, 590.98529, -1247.64856, 17.54930,   -2.00000, 0.00000, 22.00000);
 	
-	/*new RodeoBank1 = CreateObject(19353, 592.8392, -1247.5953, 23.9472, 0.0000, 0.0000, 111.5353);
-	SetObjectMaterialText(RodeoBank1, 0, "Rodeo Bank", 100, "Arial", 48, 1, 0xFFFFFFFF, 0x0, 1);
+	new RodeoBank1 = CreateObject(19353, 592.8392, -1247.5953, 23.9472, 0.0000, 0.0000, 111.5353);
+	SetObjectMaterialText(RodeoBank1, "Rodeo Bank", 0, 100, "Arial", 48, 1, 0xFFFFFFFF, 0xFFFFFFFF, 1);
 	
 	new RodeoBank2 = CreateObject(19353, 596.2055, -1246.2734, 24.1765, 0.0000, 0.0000, 111.5151);
-	SetObjectMaterialText(RodeoBank2, 0,"CB", 140, "Arial", 154, 0, 0xFFFFFFFF, 0x0, 1);
+	SetObjectMaterialText(RodeoBank2, "CB", 0, 140, "Arial", 154, 0, 0xFFFFFFFF, 0xFFFFFFFF, 1);
 
 	new RodeoBank3 = CreateObject(19353, 593.6023, -1247.2923, 24.5149, 0.0000, 0.0000, 111.5884);
-	SetObjectMaterialText(RodeoBank3, 0, "Credit and Commerce Bank", 140, "Arial", 45, 1, 0xFFFFFFFF, 0x0, 1);
+	SetObjectMaterialText(RodeoBank3, "Credit and Commerce Bank", 0, 140, "Arial", 45, 1, 0xFFFFFFFF, 0x0, 1);
 
 	new RodeoBank4 = CreateObject(19353, 591.2397, -1248.2315, 24.5235, 0.0000, 0.0000, 111.6018);
-	SetObjectMaterialText(RodeoBank4, 0,"of San Andreas", 140, "Arial", 45, 1, 0xFFFFFFFF, 0x0, 1);*/
+	SetObjectMaterialText(RodeoBank4, "of San Andreas", 0, 140, "Arial", 45, 1, 0xFFFFFFFF, 0x0, 1);
 
 	// Mullholland Bank - Exterior  - Added Per Melvin
     SetDynamicObjectMaterial(CreateDynamicObject(19325, 1457.78967, -1022.28522, 26.77720,   90.00000, 90.00000, 0.00000), 0, 19466, "lsmall_shops", "lsmall_window01", 0xFFFFFFFF);
@@ -5273,7 +6699,6 @@ public OnFilterScriptInit()
 	CreateDynamicObject(8656, 2934.03, -1385.07, 3.82,   90.00, 0.00, 188.51, .worldid = 1, .streamdistance = 250);
 	CreateDynamicObject(8656, 2936.40, -1415.82, 5.96,   270.00, 0.00, 184.00, .worldid = 1, .streamdistance = 250);
 
-	/*
 	// Admin Island
 	CreateDynamicObject(4825,2354.1992200,-4276.5000000,0.0000000,0.0000000,0.0000000,0.0000000); //object(griffithoblas) (1)
     CreateDynamicObject(6965,2383.1992200,-4276.5000000,6.0000000,0.0000000,0.0000000,0.0000000); //object(venefountain02) (1)
@@ -5473,7 +6898,6 @@ public OnFilterScriptInit()
     CreateDynamicObject(17027,2420.0000000,-4219.0000000,-4.0000000,0.0000000,0.0000000,135.0000000); //object(cunt_rockgp1_03) (1)
     CreateDynamicObject(879,2427.0000000,-4227.2002000,7.4000000,0.0000000,0.0000000,179.9950000); //object(p_rubble04bcol) (1)
     CreateDynamicObject(1453,2467.1001000,-4271.8501000,4.1000000,0.0000000,90.0000000,90.0000000); //object(dyn_h_bale1) (2)
-	*/
 
 	//Garages
 	//This object is the static one which all cars park upon.
@@ -8005,7 +9429,7 @@ public OnFilterScriptInit()
 	CreateDynamicObject(3578, 1838.06995, -1873.68005, 12.02000,   0.00000, 0.00000, 0.00000, .worldid = 0, .streamdistance = 100);
 	CreateDynamicObject(19313, 1927.88000, -1853.68994, 12.55000,   0.00000, 0.00000, -13.50000, .worldid = 0, .streamdistance = 100);
 
-	/* VIP Gold/Plat Room
+	//VIP Gold/Plat Room
 	CreateDynamicObject(1536,902.68000000,1418.29000000,-81.98000000,0.00000000,0.00000000,90.00000000); //
 	CreateDynamicObject(1536,902.64000000,1421.30000000,-81.98000000,0.00000000,0.00000000,270.00000000); //
 	CreateDynamicObject(1536,911.23000000,1424.81000000,-82.18000000,0.00000000,0.00000000,90.00000000); //
@@ -8035,7 +9459,7 @@ public OnFilterScriptInit()
 	CreateDynamicObject(2291,920.23000000,1430.02000000,-82.21000000,0.00000000,0.00000000,0.00000000); //
 	CreateDynamicObject(1823,921.04000000,1428.09000000,-82.22000000,0.00000000,0.00000000,90.00000000); //
 	CreateDynamicObject(1823,920.09000000,1428.09000000,-82.22000000,0.00000000,0.00000000,90.00000000); //
-	CreateDynamicObject(2291,919.34000000,1425.70000000,-82.21000000,0.00000000,0.00000000,180.00000000); */
+	CreateDynamicObject(2291,919.34000000,1425.70000000,-82.21000000,0.00000000,0.00000000,180.00000000);
 
 	// VIP Garage
 	CreateDynamicObject(10010,-4398.91894531,871.42370605,985.81781006,0.00000000,0.00000000,356.03002930); //object(ugcarpark_sfe) (1)
@@ -12111,7 +13535,7 @@ public OnFilterScriptInit()
 	CreateDynamicObject(762, -454.69766235352, -1898.4182128906, 6.6427841186523, 0, 0, 338.07507324219, .worldid = -1, .streamdistance = 250);
 	CreateDynamicObject(762, -463.38424682617, -1872.2308349609, 5.8427839279175, 0, 0, 87.7412109375, .worldid = -1, .streamdistance = 250);
 
-	/* NOOSE
+	//NOOSE
 	CreateDynamicObject(5190, -476.54782104492, -2012.4024658203, 46.451679229736, 354, 0, 0, .worldid = -1, .streamdistance = 250);
 	CreateDynamicObject(5190, -476.5966796875, -2012.4013671875, 49.401859283447, 353.99597167969, 0, 0, .worldid = -1, .streamdistance = 250);
 	CreateDynamicObject(3265, -474.23059082031, -2019.5321044922, 45.688549041748, 1.9940185546875, 1.99951171875, 97.926635742188, .worldid = -1, .streamdistance = 250);
@@ -12616,7 +14040,6 @@ public OnFilterScriptInit()
 	CreateDynamicObject(17026, -720.38110351563, -2175.4108886719, 8.9892921447754, 0, 0, 19.97314453125, .worldid = -1, .streamdistance = 250);
 	CreateDynamicObject(762, -454.69766235352, -1898.4182128906, 6.6427841186523, 0, 0, 338.07507324219, .worldid = -1, .streamdistance = 250);
 	CreateDynamicObject(762, -463.38424682617, -1872.2308349609, 5.8427839279175, 0, 0, 87.7412109375, .worldid = -1, .streamdistance = 250);
-	*/
 
 	// SAAS LS base
     CreateDynamicObject(984, 1106.7486572266, -1752.3682861328, 13.208800315857, 0, 0, 0, .interiorid = 0, .streamdistance = 100.0);
@@ -14391,8 +15814,6 @@ public OnFilterScriptInit()
 	CreateDynamicObject(964, 2698.59399, -2654.22705, 13.63030,   0.00000, 0.00000, 88.00000, .streamdistance = 200);
 	// END SAAS - Los Santos //
 
-
-	/*
 	// SHAFT GARAGE
 	CreateDynamicObject(7245, -600.25, 433.53, 1348.48,   0.00, 0.00, 180.00);
 	CreateDynamicObject(9093, -568.51, 450.89, 1346.69,   0.00, 0.00, 0.00, .interiorid = 1, .worldid = 0, .streamdistance = 150);
@@ -15514,7 +16935,6 @@ public OnFilterScriptInit()
 	CreateDynamicObject(2636, 942.09912109375, -1752.23828125, 5590.2465820313, 0, 0, 90, 1951, 1);
 	CreateDynamicObject(2636, 942.0986328125, -1757.1767578125, 5590.2465820313, 0, 0, 90, 1951, 1);
 	CreateDynamicObject(2636, 937.173828125, -1757.0690917969, 5590.2465820313, 0, 0, 90, 1951, 1);
-	*/
 
 	// SFPD objects
 	CreateDynamicObject(2930,-1618.60510254,687.10968018,9.35209274,0.00000000,0.00000000,0.00000000); //object(chinatgate) (1)
@@ -17767,7 +19187,7 @@ public OnFilterScriptInit()
 	CreateDynamicObject(10744, -222.03369, 1524.68408, 729.86603,   180.00000, 0.00000, 0.00000);
 	CreateDynamicObject(1657, -226.42540, 1505.84631, 725.75287,   0.00000, 0.00000, 0.00000);
 
-	/*//---------------SASD HQ Interior-------------------//
+	//---------------SASD HQ Interior-------------------//
 	CreateDynamicObject(14858,2547.63281250,-1672.62011719,566.94067383,0.00000000,0.00000000,0.00000000); //object(veg_pol_main1)(1)
 	CreateDynamicObject(2614,2512.38671875,-1668.72644043,564.15686035,0.00000000,0.00000000,89.99450684); //object(cj_us_flag) (1)
 	CreateDynamicObject(2289,2513.18359375,-1688.94982910,563.91333008,0.00000000,0.00000000,0.00000000); //object(frame_2) (1)
@@ -17863,7 +19283,7 @@ public OnFilterScriptInit()
 	CreateDynamicObject(1663,2514.63232422,-1667.87194824,562.25244141,0.00000000,0.00000000,57.99682617); //object(swivelchair_b) (3)
 	CreateDynamicObject(1663,2515.10693359,-1667.07128906,562.25244141,0.00000000,0.00000000,57.99682617); //object(swivelchair_b) (4)
 	CreateDynamicObject(638,2525.97753906,-1669.66699219,562.48925781,0.00000000,0.00000000,0.00000000); //object(kb_planter_bush) (2)
-	CreateDynamicObject(638,2525.97436523,-1674.83300781,562.48925781,0.00000000,0.00000000,0.00000000); //object(kb_planter_bush) (3)*/
+	CreateDynamicObject(638,2525.97436523,-1674.83300781,562.48925781,0.00000000,0.00000000,0.00000000); //object(kb_planter_bush) (3)
 
 	//---------------SASD HQ Exterior-------------------//
 	new SASDGarageWall[6];
@@ -21527,7 +22947,7 @@ public OnFilterScriptInit()
 	CreateDynamicObject(2808, -2636.08667, 341.26691, 680.03448,   0.00000, 0.00000, 0.00000,-1, 5, -1, 130);
 	CreateDynamicObject(2808, -2638.22803, 341.26691, 680.03247,   0.00000, 0.00000, 0.00000,-1, 5, -1, 130);
 
-    /*// Judicial Lobby - by Ross
+	// Judicial Lobby - by Ross
 	CreateDynamicObject(19378, 2209.71948, -1065.97083, 1200.00000,   0.00000, 90.00000, 0.00000);
 	CreateDynamicObject(19378, 2209.71948, -1075.60413, 1200.00000,   0.00000, 90.00000, 0.00000);
 	CreateDynamicObject(19450, 2204.48242, -1070.38867, 1201.83606,   0.00000, 0.00000, 0.00000);
@@ -21788,7 +23208,7 @@ public OnFilterScriptInit()
 	CreateDynamicObject(19304, 2223.08081, -1037.52551, 1202.54907,   0.00000, 0.00000, 90.00000);
 	CreateDynamicObject(19304, 2223.07349, -1033.52136, 1202.52832,   0.00000, 0.00000, 90.00000);
 	CreateDynamicObject(19302, 2223.06250, -1036.67163, 1200.68372,   0.00000, 0.00000, 270.00000);
-	CreateDynamicObject(19302, 2223.06812, -1032.69641, 1200.68372,   0.00000, 0.00000, 270.00000);*/
+	CreateDynamicObject(19302, 2223.06812, -1032.69641, 1200.68372,   0.00000, 0.00000, 270.00000);
 
 	// Court House Interior - Updated 17 Dec 16 - MaxKnight
 	CreateDynamicObject(3998, 1719.24890, -1754.87842, 1214.19019,   0.00000, 0.00000, 0.00000,-1, 5, -1, 130);
@@ -26209,7 +27629,7 @@ public OnFilterScriptInit()
 	CreateDynamicObject(717, -1977.45178, 82.44340, 26.75640,   0.00000, 0.00000, 0.00000);
 
 	//SA News
-	/*new san_ground_tex[2],
+	new san_ground_tex[2],
 		san_wall_tex[14],
 		san_studio_tex[4],
 		san_fence_tex[3],
@@ -26309,7 +27729,7 @@ public OnFilterScriptInit()
 	SetDynamicObjectMaterial(san_grass_tex[2], 10, 16239, "des_se3", "desertgryard256", 0);
 	SetDynamicObjectMaterial(san_grass_tex[2], 0, 4013, "civic01_lan", "sl_concretewall1", 0);
 	SetDynamicObjectMaterial(san_grass_tex[3], 10, 16239, "des_se3", "desertgryard256", 0);
-	SetDynamicObjectMaterial(san_grass_tex[3], 0, 4013, "civic01_lan", "sl_concretewall1", 0);*/
+	SetDynamicObjectMaterial(san_grass_tex[3], 0, 4013, "civic01_lan", "sl_concretewall1", 0);
 	
 	// (Still SA News) - By Bando
 	CreateDynamicObject(17951, 732.09088, -1337.73926, 14.31192,   0.00000, 0.00000, 0.00000);
@@ -30976,6 +32396,21 @@ stock RemoveBuildingsFromPlayer(playerid)
 {
 	if(GetPVarInt(playerid, "BuildingRemoved") == 0)
 	{
+		//PALOMINO MAPPING REMOVAL//
+		RemoveBuildingForPlayer(playerid, 3335, 2170.1797, 49.4453, 25.3906, 0.25);
+		RemoveBuildingForPlayer(playerid, 1294, 2141.4063, 48.6172, 29.8125, 0.25);
+		RemoveBuildingForPlayer(playerid, 766, 2136.3594, 51.5391, 25.0859, 0.25);
+		RemoveBuildingForPlayer(playerid, 766, 2155.1250, 51.4375, 24.7734, 0.25);
+		RemoveBuildingForPlayer(playerid, 766, 2171.7578, 52.2266, 24.7734, 0.25);
+		RemoveBuildingForPlayer(playerid, 3276, 2139.7891, 90.2891, 31.8906, 0.25);
+		RemoveBuildingForPlayer(playerid, 3276, 2151.5391, 88.4453, 29.5859, 0.25);
+		RemoveBuildingForPlayer(playerid, 3276, 2163.3281, 86.6016, 27.4688, 0.25);
+		RemoveBuildingForPlayer(playerid, 12909, 2159.4297, 91.1250, 19.1719, 0.25);
+		RemoveBuildingForPlayer(playerid, 3276, 2142.5469, 97.5859, 31.1875, 0.25);
+		RemoveBuildingForPlayer(playerid, 3276, 2154.4609, 95.6406, 29.1797, 0.25);
+		RemoveBuildingForPlayer(playerid, 3276, 2166.3828, 93.6875, 27.2109, 0.25);
+		RemoveBuildingForPlayer(playerid, 1294, 2284.9922, 32.8047, 29.8125, 0.25);
+
 		// Trent Godfrey - DBID:7797 - Order ID:696 - Approved by Justice - MaxKnight
 		RemoveBuildingForPlayer(playerid, 1283, 2200.8203, -1127.6641, 27.7109, 0.25); // Remainder of code is in PlayerInteriors
 
@@ -31147,7 +32582,7 @@ stock RemoveBuildingsFromPlayer(playerid)
 		RemoveBuildingForPlayer(playerid, 966, -1526.3906, 481.3828, 6.1797, 0.25);
 
 		//SA News
-		/*RemoveBuildingForPlayer(playerid, 1226, 778.8594, -1391.1563, 16.3125, 0.25);
+		RemoveBuildingForPlayer(playerid, 1226, 778.8594, -1391.1563, 16.3125, 0.25);
 		RemoveBuildingForPlayer(playerid, 6491, 717.4844, -1357.3047, 20.2969, 0.25);
 		RemoveBuildingForPlayer(playerid, 1689, 650.8359, -1377.6641, 21.7578, 0.25);
 		RemoveBuildingForPlayer(playerid, 1689, 650.8359, -1356.5859, 21.7578, 0.25);
@@ -31161,7 +32596,7 @@ stock RemoveBuildingsFromPlayer(playerid)
 		RemoveBuildingForPlayer(playerid, 1635, 702.2344, -1328.8750, 25.1094, 0.25);
 		RemoveBuildingForPlayer(playerid, 1635, 721.2109, -1328.8750, 25.1094, 0.25);
 		RemoveBuildingForPlayer(playerid, 1415, 732.8516, -1332.8984, 12.6875, 0.25);
-		RemoveBuildingForPlayer(playerid, 1439, 732.7266, -1341.7734, 12.6328, 0.25);*/
+		RemoveBuildingForPlayer(playerid, 1439, 732.7266, -1341.7734, 12.6328, 0.25);
 		RemoveBuildingForPlayer(playerid, 1439, 732.7266, -1341.7734, 12.6328, 0.25);
 
 

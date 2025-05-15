@@ -528,7 +528,7 @@ stock RefreshBusinessPickup(i)
 		Businesses[i][bStateText] =	CreateDynamic3DTextLabel((Businesses[i][bStatus]) ? ("Open") : ("Closed"), (Businesses[i][bStatus]) ? BUSINESS_OPEN_COLOR : BUSINESS_CLOSED_COLOR, Businesses[i][bExtPos][0], Businesses[i][bExtPos][1], Businesses[i][bExtPos][2] + 1.05, 10.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 1, 0, 0, -1);
 		if(Businesses[i][bSupplyPos][0] != 0.0)
 		{
-			//format(szMiscArray,sizeof(szMiscArray),"%s\nSupply Delivery Point", Businesses[i][bName]);
+			format(szMiscArray,sizeof(szMiscArray),"%s\nSupply Delivery Point", Businesses[i][bName]);
 			Businesses[i][bSupplyText] = CreateDynamic3DTextLabel(szMiscArray, BUSINESS_NAME_COLOR, Businesses[i][bSupplyPos][0], Businesses[i][bSupplyPos][1], Businesses[i][bSupplyPos][2], 10.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 1, 0, 0, -1);
 		}
 	}
@@ -548,7 +548,7 @@ stock RefreshBusinessPickup(i)
 	Streamer_SetIntData(STREAMER_TYPE_AREA, Businesses[i][bAreaID][1], E_STREAMER_EXTRA_ID, i);
 	*/
 
-	//format(szMiscArray, sizeof(szMiscArray), "[Business] Created Business: %d | Exterior Area ID: %d | Interior Area ID: %d", i, Businesses[i][bAreaID][0], Businesses[i][bAreaID][1]);
+	format(szMiscArray, sizeof(szMiscArray), "[Business] Created Business: %d | Exterior Area ID: %d | Interior Area ID: %d", i, Businesses[i][bAreaID][0], Businesses[i][bAreaID][1]);
 	Log("debug/door_business.log", szMiscArray);
 
 }
@@ -2348,7 +2348,7 @@ CMD:asellbiz(playerid, params[])
 	return 1;
 }
 
-CMD:sellbiz(playerid, params[])
+/*CMD:sellbiz(playerid, params[])
 {
     if(PlayerInfo[playerid][pBusiness] == INVALID_BUSINESS_ID )
     {
@@ -2425,7 +2425,7 @@ CMD:buybiz(playerid, params[])
 	    }
 	}
 	return SendClientMessageEx(playerid, COLOR_WHITE, "You're not near a business!");
-}
+}*/
 
 CMD:creategaspump(playerid, params[])
 {

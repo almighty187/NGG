@@ -179,7 +179,7 @@ PayDay(i) {
 		
 	getdate(year, month, day);
 	
- 	if(PlayerInfo[i][pLevel] > 0 && (PlayerInfo[i][pTogReports] == 1 || PlayerInfo[i][pAdmin] < 2)) {
+ 	if(PlayerInfo[i][pLevel] > 0) {
 		if(GetPVarType(i, "debtMsg")) {
 			if(GetPlayerCash(i) < 0 && PlayerInfo[i][pJailTime] < 1 && !IsACop(i) && PlayerInfo[i][pWantedLevel] < 6) {
 				format(string,sizeof(string),"You're in debt $%s - find a way to pay back the money or you might get in trouble!", number_format(GetPlayerCash(i)));
