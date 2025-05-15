@@ -2338,6 +2338,9 @@ CMD:park(playerid, params[])
 		if(IsValidDynamic3DTextLabel(Businesses[iBusiness][bVehicleLabel][iSlot])) DestroyDynamic3DTextLabel(Businesses[iBusiness][bVehicleLabel][iSlot]), Businesses[iBusiness][bVehicleLabel][iSlot] = Text3D:-1;
 		szMiscArray[0] = 0;
 		format(szMiscArray, sizeof(szMiscArray), "%s For Sale | Price: $%s", GetVehicleName(Businesses[iBusiness][bVehID][iSlot]), number_format(Businesses[iBusiness][bPrice][iSlot]));
+		if(iBusiness == 20) {
+			format(szMiscArray, sizeof(szMiscArray), "%s For Sale | Price: {FFA500}%s", GetVehicleName(Businesses[iBusiness][bVehID][iSlot]), number_format(Businesses[iBusiness][bPrice][iSlot]));
+		}
 		Businesses[iBusiness][bVehicleLabel][iSlot] = CreateDynamic3DTextLabel(szMiscArray, COLOR_LIGHTBLUE, Businesses[iBusiness][bParkPosX][iSlot]+1.0, Businesses[iBusiness][bParkPosY][iSlot]+1.0, Businesses[iBusiness][bParkPosZ][iSlot]+1.0, 8.0, INVALID_PLAYER_ID, Businesses[iBusiness][bVehID][iSlot]);
 		
         SaveDealershipVehicle(iBusiness, iSlot);

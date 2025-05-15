@@ -8295,7 +8295,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 		new playervehicleid = GetPlayerFreeVehicleId(playerid);
 		new v = GetBusinessCarSlot(vehicleid);
 		new d = GetCarBusiness(vehicleid);
-		if(response)
+		if(response && d != 20)
 		{
 			if(!vehicleCountCheck(playerid))
 			{
@@ -8317,7 +8317,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				TogglePlayerControllable(playerid, 1);
 				return 1;
 			}
-
 			new randcolor1 = Random(0, 126);
 			new randcolor2 = Random(0, 126);
 			SetPlayerPos(playerid, Businesses[d][bParkPosX][v], Businesses[d][bParkPosY][v], Businesses[d][bParkPosZ][v]+2);
@@ -8369,6 +8368,67 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			}
 			Businesses[d][bInventory]--;
 			Businesses[d][bTotalSales]++;
+			IsPlayerEntering{playerid} = true;
+			new car = CreatePlayerVehicle(playerid, playervehicleid, Businesses[d][bModel][v], Businesses[d][bPurchaseX], Businesses[d][bPurchaseY], Businesses[d][bPurchaseZ], Businesses[d][bPurchaseAngle], randcolor1, randcolor2, cost, GetPlayerVirtualWorld(playerid), GetPlayerInterior(playerid));
+			PutPlayerInVehicle(playerid, car, 0);
+			SaveBusiness(d);
+			format(string, sizeof(string), "%s(%d) has purchased a %s(%d) from %s for $%s", GetPlayerNameEx(playerid), GetPlayerSQLId(playerid), VehicleName[Businesses[d][bModel][v] - 400], Businesses[d][bModel][v], Businesses[d][bName], number_format(Businesses[d][bPrice][v]));
+			Log("logs/dealership.log", string);
+		}
+		else if(response && d == 20) {
+			if(!vehicleCountCheck(playerid))
+			{
+				TogglePlayerControllable(playerid, 1);
+ 				RemovePlayerFromVehicle(playerid);
+ 				new Float:slx, Float:sly, Float:slz;
+ 				GetPlayerPos(playerid, slx, sly, slz);
+ 				SetPlayerPos(playerid, slx, sly, slz+1.2);
+				return SendClientMessageEx(playerid, COLOR_GREY, "ERROR: You cannot own any additional vehicles. You may purchase additional vehicle slots through /vstorage.");
+			}
+
+			if(Businesses[d][bPurchaseX] == 0.0 && Businesses[d][bPurchaseY] == 0.0 && Businesses[d][bPurchaseZ] == 0.0)
+			{
+				SendClientMessageEx(playerid, COLOR_GRAD1, "ERROR: The owner of this Car Dealership hasn't set the purchased vehicles spawn point.");
+				RemovePlayerFromVehicle(playerid);
+				new Float:slx, Float:sly, Float:slz;
+				GetPlayerPos(playerid, slx, sly, slz);
+				SetPlayerPos(playerid, slx, sly, slz+1.2);
+				TogglePlayerControllable(playerid, 1);
+				return 1;
+			}
+			new randcolor1 = Random(0, 126);
+			new randcolor2 = Random(0, 126);
+			SetPlayerPos(playerid, Businesses[d][bParkPosX][v], Businesses[d][bParkPosY][v], Businesses[d][bParkPosZ][v]+2);
+			TogglePlayerControllable(playerid, 1);
+			new cost;
+
+			cost = Businesses[d][bPrice][v];
+			if(PlayerInfo[playerid][pCredits] < cost)
+			{
+				SendClientMessageEx(playerid, COLOR_GRAD1, "ERROR: You don't have enough credits to buy this.");
+				RemovePlayerFromVehicle(playerid);
+				new Float:slx, Float:sly, Float:slz;
+				GetPlayerPos(playerid, slx, sly, slz);
+				SetPlayerPos(playerid, slx, sly, slz+1.2);
+				return 1;
+			}
+
+			format(string, sizeof(string), "Thank you for your purchase with Next Generation Roleplay.",Businesses[d][bName]);
+			SendClientMessageEx(playerid, COLOR_GRAD1, string);
+			
+			GivePlayerCredits(playerid, -cost, 0);
+			
+			format(string, sizeof(string), "You have spent %d credits you now have {FFD700}%s{A9C4E4} credits left.", cost, number_format(PlayerInfo[playerid][pCredits]));
+			SendClientMessageEx(playerid, COLOR_WHITE, string);
+
+			
+			//PlayerInfo[playerid][pCredits] -= cost;
+			//cost = Businesses[d][bPrice][v] / 100 * 15;
+			//Businesses[d][bSafeBalance] += TaxSale( cost );
+
+			//dont remove stock from business
+			//Businesses[d][bInventory]--;
+			//Businesses[d][bTotalSales]++;
 			IsPlayerEntering{playerid} = true;
 			new car = CreatePlayerVehicle(playerid, playervehicleid, Businesses[d][bModel][v], Businesses[d][bPurchaseX], Businesses[d][bPurchaseY], Businesses[d][bPurchaseZ], Businesses[d][bPurchaseAngle], randcolor1, randcolor2, cost, GetPlayerVirtualWorld(playerid), GetPlayerInterior(playerid));
 			PutPlayerInVehicle(playerid, car, 0);

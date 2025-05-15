@@ -4774,6 +4774,9 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 				return 1;
 			}
 			format(string, sizeof(string), "Would you like to purchase this %s\nThis vehicle costs $%s.", GetVehicleName(newcar), number_format(Businesses[iBusiness][bPrice][iSlot]));
+			if (iBusiness == 20) {
+				format(string, sizeof(string), "Would you like to purchase this %s?\nThis vehicle costs %s credits.", GetVehicleName(newcar), number_format(Businesses[iBusiness][bPrice][iSlot]));
+			}
 		    ShowPlayerDialogEx(playerid,DIALOG_CDBUY,DIALOG_STYLE_MSGBOX,"Buy Vehicle",string,"Buy","Cancel");
 		    TogglePlayerControllable(playerid, false);
 		    return 1;

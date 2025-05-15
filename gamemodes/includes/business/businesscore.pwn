@@ -1271,6 +1271,9 @@ CMD:editcarprice(playerid, params[])
 
 			Businesses[PlayerInfo[playerid][pBusiness]][bPrice][iSlot] = amount;
 			format(Message, sizeof(Message), "%s For Sale | Price: $%s", GetVehicleName(Businesses[PlayerInfo[playerid][pBusiness]][bVehID][iSlot]), number_format(Businesses[PlayerInfo[playerid][pBusiness]][bPrice][iSlot]));
+			if(PlayerInfo[playerid][pBusiness] == 20) {
+				format(Message, sizeof(Message), "%s For Sale | Price: {FFA500}%s credits", GetVehicleName(Businesses[PlayerInfo[playerid][pBusiness]][bVehID][iSlot]), number_format(Businesses[PlayerInfo[playerid][pBusiness]][bPrice][iSlot]));
+			}
             UpdateDynamic3DTextLabelText(Businesses[PlayerInfo[playerid][pBusiness]][bVehicleLabel][iSlot], COLOR_LIGHTBLUE, Message);
 			format(Message, sizeof(Message), "%s price has been set to $%s", GetVehicleName(vehicleid), number_format(amount));
 			SendClientMessageEx(playerid, COLOR_WHITE, Message);
@@ -1365,6 +1368,9 @@ CMD:createcdveh(playerid, params[]) {
 			   	 	Businesses[iBusiness][bParkAngle][i] = fVehPos[3];
 
 					format(label, sizeof(label), "%s For Sale | Price: $%s", GetVehicleName(Businesses[iBusiness][bVehID][i]), number_format(Businesses[iBusiness][bPrice][i]));
+					if(iBusiness == 20) {
+						format(label, sizeof(label), "%s For Sale | Price: {FFA500}%s credits", GetVehicleName(Businesses[iBusiness][bVehID][i]), number_format(Businesses[iBusiness][bPrice][i]));
+					}
 					Businesses[iBusiness][bVehicleLabel][i] = CreateDynamic3DTextLabel(label,COLOR_LIGHTBLUE,Businesses[iBusiness][bParkPosX][i], Businesses[iBusiness][bParkPosY][i], Businesses[iBusiness][bParkPosZ][i],8.0,INVALID_PLAYER_ID, Businesses[iBusiness][bVehID][i]);
 
 					Businesses[iBusiness][DealershipVehStock][i] = 1;
@@ -3338,6 +3344,9 @@ public BusinessesLoadQueryFinish()
 				{
 			 		Businesses[i][bVehID][j] = CreateVehicle(Businesses[i][bModel][j], Businesses[i][bParkPosX][j], Businesses[i][bParkPosY][j], Businesses[i][bParkPosZ][j], Businesses[i][bParkAngle][j], Businesses[i][bColor1][j], Businesses[i][bColor2][j], 10);
      				format(label, sizeof(label), "%s For Sale | Price: $%s", GetVehicleName(Businesses[i][bVehID][j]), number_format(Businesses[i][bPrice][j]));
+					if(i == 20) {
+						format(label, sizeof(label), "%s For Sale | Price: {FFA500}%s credits", GetVehicleName(Businesses[i][bVehID][j]), number_format(Businesses[i][bPrice][j]));
+					}
 					Businesses[i][bVehicleLabel][j] = CreateDynamic3DTextLabel(label,COLOR_LIGHTBLUE,Businesses[i][bParkPosX][j], Businesses[i][bParkPosY][j], Businesses[i][bParkPosZ][j],8.0,INVALID_PLAYER_ID, Businesses[i][bVehID][j]);
 				}
 			}

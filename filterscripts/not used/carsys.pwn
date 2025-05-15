@@ -361,6 +361,11 @@ public OnFilterScriptInit()
 			{
 		        new carcreated = CreateVehicle(CarDealershipInfo[d][cdVehicleModel][v], CarDealershipInfo[d][cdVehicleSpawnX][v], CarDealershipInfo[d][cdVehicleSpawnY][v], CarDealershipInfo[d][cdVehicleSpawnZ][v], CarDealershipInfo[d][cdVehicleSpawnAngle][v], 0, 0, 6);
 		        format(text_info,256,"%s For Sale | Price: %d", GetVehicleName(carcreated), CarDealershipInfo[d][cdVehicleCost][v]);
+				//if the business id is 20
+				if(d == 20) {
+					format(text_info,256,"%s For Sale | Price: {FFA500}%d", GetVehicleName(carcreated), CarDealershipInfo[d][cdVehicleCost][v]);
+				}
+
                 CarDealershipInfo[d][cdVehicleLabel][v] = CreateDynamic3DTextLabel(text_info,COLOR_LIGHTBLUE,0.0, 0.0, 0.0,8.0,INVALID_PLAYER_ID,carcreated);
                 CarDealershipInfo[d][cdVehicleId][v] = carcreated;
 			}
@@ -898,6 +903,9 @@ stock CreateCarDealershipVehicle(dealershipid, modelid, Float: x, Float: y, Floa
     CarDealershipInfo[dealershipid][cdVehicleSpawnAngle][cdvehicleid] = a;
     new carcreated = CreateVehicle(modelid, x, y, z, a, 0, 0, 6);
     format(text_info,256,"%s For Sale | Price: %d", GetVehicleName(carcreated), CarDealershipInfo[dealershipid][cdVehicleCost][cdvehicleid]);
+	if(dealershipid == 20) {
+		format(text_info,256,"%s For Sale | Price: {FFA500}%d", GetVehicleName(carcreated), CarDealershipInfo[dealershipid][cdVehicleCost][cdvehicleid]);
+	}
     CarDealershipInfo[dealershipid][cdVehicleLabel][cdvehicleid] = CreateDynamic3DTextLabel(text_info,COLOR_LIGHTBLUE,0.0, 0.0, 0.0,5.0,INVALID_PLAYER_ID,carcreated,1);
 	CarDealershipInfo[dealershipid][cdVehicleId][cdvehicleid] = carcreated;
 	SavecDealership(cdvehicleid);
@@ -2222,6 +2230,9 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	             new carcreated;
 	             carcreated = CreateVehicle(CarDealershipInfo[d][cdVehicleModel][v], CarDealershipInfo[d][cdVehicleSpawnX][v], CarDealershipInfo[d][cdVehicleSpawnY][v], CarDealershipInfo[d][cdVehicleSpawnZ][v], CarDealershipInfo[d][cdVehicleSpawnAngle][v], 0, 0, 6);
 		         format(text_info,256,"%s For Sale | Price: %d", GetVehicleName(carcreated), CarDealershipInfo[d][cdVehicleCost][v]);
+				 if(d == 20) {
+					format(text_info,256,"%s For Sale | Price: {FFA500}%d", GetVehicleName(carcreated), CarDealershipInfo[d][cdVehicleCost][v]);
+				 }
                  CarDealershipInfo[d][cdVehicleLabel][v] = CreateDynamic3DTextLabel(text_info,COLOR_LIGHTBLUE,0.0, 0.0, 0.0,8.0,INVALID_PLAYER_ID,carcreated);
 	             CarDealershipInfo[d][cdVehicleId][v] = carcreated;
 	             new listitems[] = "1 Edit Model\n2 Edit Cost\n3 Edit Park\n4 Delete Vehicle";
@@ -2248,6 +2259,9 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	             price = strval(inputtext);
 	             CarDealershipInfo[d][cdVehicleCost][v] = price;
 	             format(text_info,256,"%s For Sale | Price: %d", GetVehicleName(CarDealershipInfo[d][cdVehicleId][v]), CarDealershipInfo[d][cdVehicleCost][v]);
+				 if(d == 20) {
+					format(text_info,256,"%s For Sale | Price: {FFA500}%d", GetVehicleName(CarDealershipInfo[d][cdVehicleId][v]), CarDealershipInfo[d][cdVehicleCost][v]);
+				 }
 	             UpdateDynamic3DTextLabelText(CarDealershipInfo[d][cdVehicleLabel][v], COLOR_LIGHTBLUE, text_info);
 	             new listitems[] = "1 Edit Model\n2 Edit Cost\n3 Edit Park\n4 Delete Vehicle";
 			     ShowPlayerDialog(playerid,DIALOG_CDEDITONE,DIALOG_STYLE_LIST,"Car Dealership:", listitems,"Select","Cancel");
@@ -2296,6 +2310,9 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	             new carcreated;
 	             carcreated = CreateVehicle(CarDealershipInfo[d][cdVehicleModel][v], CarDealershipInfo[d][cdVehicleSpawnX][v], CarDealershipInfo[d][cdVehicleSpawnY][v], CarDealershipInfo[d][cdVehicleSpawnZ][v], CarDealershipInfo[d][cdVehicleSpawnAngle][v], 0, 0, 6);
 		         format(text_info,256,"%s For Sale | Price: %d", GetVehicleName(carcreated), CarDealershipInfo[d][cdVehicleCost][v]);
+				 if(d == 20) {
+					format(text_info,256,"%s For Sale | Price: {FFA500}%d", GetVehicleName(carcreated), CarDealershipInfo[d][cdVehicleCost][v]);
+				 }
                  CarDealershipInfo[d][cdVehicleLabel][v] = CreateDynamic3DTextLabel(text_info,COLOR_LIGHTBLUE,0.0, 0.0, 0.0,8.0,INVALID_PLAYER_ID,carcreated);
 	             CarDealershipInfo[d][cdVehicleId][v] = carcreated;
 	             TogglePlayerControllable(playerid, true);
