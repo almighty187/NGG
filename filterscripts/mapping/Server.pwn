@@ -23672,8 +23672,8 @@ public OnFilterScriptInit()
 	CreateDynamicObject(2010, 255.85, 176.29, 1098.21,   0.00, 0.00, 0.00, .interiorid = 1, .worldid = 43265, .streamdistance = 200);
 	CreateDynamicObject(19459, 255.16, 182.41, 1103.42,   180.00, 0.00, 0.00, .interiorid = 1, .worldid = 43265, .streamdistance = 200);
 	CreateDynamicObject(1721, 252.56, 181.65, 1098.19,   0.00, 0.00, 180.68, .interiorid = 1, .worldid = 43265, .streamdistance = 200);
-	CreateObject(18981, 250.70, 165.51, 1098.36,   0.00, 0.00, 0.00, .interiorid = 1, .worldid = 43265, .streamdistance = 200);
-	CreateObject(18981, 283.66, 158.19, 1083.02,   0.00, 0.00, 0.00, .interiorid = 1, .worldid = 43265, .streamdistance = 200);
+	CreateDynamicObject(18981, 250.70, 165.51, 1098.36,   0.00, 0.00, 0.00, .interiorid = 1, .worldid = 43265, .streamdistance = 200);
+	CreateDynamicObject(18981, 283.66, 158.19, 1083.02,   0.00, 0.00, 0.00, .interiorid = 1, .worldid = 43265, .streamdistance = 200);
 	CreateDynamicObject(19304, 253.02, 191.20, 1101.32,   0.00, 0.00, 0.00, .interiorid = 1, .worldid = 43265, .streamdistance = 200);
 	CreateDynamicObject(19303, 252.13, 191.21, 1099.45,   0.00, 0.00, 0.00, .interiorid = 1, .worldid = 43265, .streamdistance = 200);
 	CreateDynamicObject(1771, 251.97, 188.12, 1098.83,   0.00, 0.00, 0.00, .interiorid = 1, .worldid = 43265, .streamdistance = 200);
