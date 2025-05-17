@@ -58,11 +58,11 @@ new
 
 hook OnGameModeInit()
 {
-    SetTimer("CheckUnoccupiedVehicles", 1000, true);
+    //SetTimer("CheckUnoccupiedVehicles", 1000, true);
     return 1;
 }
 
-new PlayerExplosionCount[MAX_PLAYERS];
+//new PlayerExplosionCount[MAX_PLAYERS];
 //new ExplosionTimer[MAX_PLAYERS];
 
 hook OnPlayerConnect(playerid)
@@ -167,110 +167,110 @@ stock bool:IsVehicleOccupied_AntiCheat(vehicleid)
     return false;
 }
 
-forward CheckUnoccupiedVehicles();
-public CheckUnoccupiedVehicles()
-{
-    new bool:someoneKicked = false;
+// forward CheckUnoccupiedVehicles();
+// public CheckUnoccupiedVehicles()
+// {
+//     new bool:someoneKicked = false;
 
-    for (new veh = 1; veh < MAX_VEHICLES; veh++)
-    {
-        if (!IsVehicleOccupied_AntiCheat(veh))
-        {
-            new Float:vx, Float:vy, Float:vz;
-            GetVehicleVelocity(veh, vx, vy, vz);
+//     for (new veh = 1; veh < MAX_VEHICLES; veh++)
+//     {
+//         if (!IsVehicleOccupied_AntiCheat(veh))
+//         {
+//             new Float:vx, Float:vy, Float:vz;
+//             GetVehicleVelocity(veh, vx, vy, vz);
 
-            new Float:speed = floatsqroot(vx*vx + vy*vy + vz*vz);
-            if (speed < VEHICLE_SPEED_LIMIT) continue;
+//             new Float:speed = floatsqroot(vx*vx + vy*vy + vz*vz);
+//             if (speed < VEHICLE_SPEED_LIMIT) continue;
 
-            new Float:vxpos, Float:vypos, Float:vzpos;
-            GetVehiclePos(veh, vxpos, vypos, vzpos);
+//             new Float:vxpos, Float:vypos, Float:vzpos;
+//             GetVehiclePos(veh, vxpos, vypos, vzpos);
 
-            new suspect = INVALID_PLAYER_ID;
-            new Float:closestDist = 99999.0;
+//             new suspect = INVALID_PLAYER_ID;
+//             new Float:closestDist = 99999.0;
 
-            foreach (new playerid : Player)
-            {
-                if (!IsPlayerConnected(playerid)) continue;
+//             foreach (new playerid : Player)
+//             {
+//                 if (!IsPlayerConnected(playerid)) continue;
 
-                new Float:px, Float:py, Float:pz;
-                GetPlayerPos(playerid, px, py, pz);
+//                 new Float:px, Float:py, Float:pz;
+//                 GetPlayerPos(playerid, px, py, pz);
 
-                new Float:dx = vxpos - px;
-                new Float:dy = vypos - py;
-                new Float:dz = vzpos - pz;
+//                 new Float:dx = vxpos - px;
+//                 new Float:dy = vypos - py;
+//                 new Float:dz = vzpos - pz;
 
-                new Float:dist = floatsqroot(dx*dx + dy*dy + dz*dz);
-                if (dist < 25.0 && dist < closestDist)
-                {
-                    suspect = playerid;
-                    closestDist = dist;
-                }
-            }
+//                 new Float:dist = floatsqroot(dx*dx + dy*dy + dz*dz);
+//                 if (dist < 25.0 && dist < closestDist)
+//                 {
+//                     suspect = playerid;
+//                     closestDist = dist;
+//                 }
+//             }
 
-            if (suspect != INVALID_PLAYER_ID)
-            {
-                flingWarnings[suspect]++;
+//             if (suspect != INVALID_PLAYER_ID)
+//             {
+//                 flingWarnings[suspect]++;
 
-                if (flingWarnings[suspect] >= 2)
-                {
-                    new string[128];
-                    format(string, sizeof(string), "%s(%d) (ID %d) may be using a vehicle fling hack.", GetPlayerNameEx(suspect), GetPlayerSQLId(suspect), suspect);
-                    Log("logs/hack.log", string);
-                    format(string, sizeof(string), "{AA3333}AdmWarning{FFFF00}: %s was kicked for vehicle flinging.", GetPlayerNameEx(suspect));
-                    ABroadCast(COLOR_YELLOW, string, 2);
+//                 if (flingWarnings[suspect] >= 2)
+//                 {
+//                     new string[128];
+//                     format(string, sizeof(string), "%s(%d) (ID %d) may be using a vehicle fling hack.", GetPlayerNameEx(suspect), GetPlayerSQLId(suspect), suspect);
+//                     Log("logs/hack.log", string);
+//                     format(string, sizeof(string), "{AA3333}AdmWarning{FFFF00}: %s was kicked for vehicle flinging.", GetPlayerNameEx(suspect));
+//                     ABroadCast(COLOR_YELLOW, string, 2);
 
-                    KickEx(suspect);
-                    someoneKicked = true;
-                    break; // stop checking other vehicles this cycle
-                }
-            }
-        }
-    }
+//                     KickEx(suspect);
+//                     someoneKicked = true;
+//                     break; // stop checking other vehicles this cycle
+//                 }
+//             }
+//         }
+//     }
 
-    if (someoneKicked)
-    {
-        // Reset all player fling warnings
-        for (new i = 0; i < MAX_PLAYERS; i++) flingWarnings[i] = 0;
+//     if (someoneKicked)
+//     {
+//         // Reset all player fling warnings
+//         for (new i = 0; i < MAX_PLAYERS; i++) flingWarnings[i] = 0;
 
-        // Respawn all unoccupied vehicles
-        for (new veh = 1; veh < MAX_VEHICLES; veh++)
-        {
-            if (!IsVehicleOccupied_AntiCheat(veh)) SetVehicleToRespawn(veh);
-        }
-    }
+//         // Respawn all unoccupied vehicles
+//         for (new veh = 1; veh < MAX_VEHICLES; veh++)
+//         {
+//             if (!IsVehicleOccupied_AntiCheat(veh)) SetVehicleToRespawn(veh);
+//         }
+//     }
 
-    return 1;
-}
+//     return 1;
+// }
 
 hook OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 {
     // Explosion damage = weaponid 51
-    if (weaponid == 51)
-    {
-        // Check if no attacker or attacker not using explosive weapon
-        if (
-            issuerid == INVALID_PLAYER_ID ||
-            (
-                GetPlayerWeapon(issuerid) != 16 &&  // Grenade
-                GetPlayerWeapon(issuerid) != 35 &&  // RPG
-                GetPlayerWeapon(issuerid) != 36 &&  // Heat-seeking RPG
-                GetPlayerWeapon(issuerid) != 39     // Satchel
-            )
-        )
-        {
-            PlayerExplosionCount[playerid]++;
+    // if (weaponid == 51)
+    // {
+    //     // Check if no attacker or attacker not using explosive weapon
+    //     if (
+    //         issuerid == INVALID_PLAYER_ID ||
+    //         (
+    //             GetPlayerWeapon(issuerid) != 16 &&  // Grenade
+    //             GetPlayerWeapon(issuerid) != 35 &&  // RPG
+    //             GetPlayerWeapon(issuerid) != 36 &&  // Heat-seeking RPG
+    //             GetPlayerWeapon(issuerid) != 39     // Satchel
+    //         )
+    //     )
+    //     {
+    //         PlayerExplosionCount[playerid]++;
 
-            if (PlayerExplosionCount[playerid] >= 3)
-            {
-                //new string[128];
-                //format(string, sizeof(string), "%s(%d) (ID %d) may be using an explosion hack.", GetPlayerNameEx(issuerid), GetPlayerSQLId(issuerid), issuerid);
-                //Log("logs/hack.log", string);
-                //format(string, sizeof(string), "{AA3333}AdmWarning{FFFF00}: %s was kicked for suspect explosion CLEOs.", GetPlayerNameEx(issuerid));
-                //ABroadCast(COLOR_YELLOW, string, 2);
-				//KickEx(issuerid);
-            }
-        }
-    }
+    //         if (PlayerExplosionCount[playerid] >= 3)
+    //         {
+    //             //new string[128];
+    //             //format(string, sizeof(string), "%s(%d) (ID %d) may be using an explosion hack.", GetPlayerNameEx(issuerid), GetPlayerSQLId(issuerid), issuerid);
+    //             //Log("logs/hack.log", string);
+    //             //format(string, sizeof(string), "{AA3333}AdmWarning{FFFF00}: %s was kicked for suspect explosion CLEOs.", GetPlayerNameEx(issuerid));
+    //             //ABroadCast(COLOR_YELLOW, string, 2);
+	// 			//KickEx(issuerid);
+    //         }
+    //     }
+    // }
     return 1;
 }
 

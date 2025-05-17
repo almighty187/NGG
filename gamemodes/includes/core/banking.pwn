@@ -261,8 +261,8 @@ PayDay(i) {
 					SendClientMessageEx(i, COLOR_GRAD1, string);
 					//add bonus for faction and gang members
 					if(PlayerInfo[i][pMember] > 0 && PlayerInfo[i][pMember] < 11) {
-						GivePlayerCredits(i, 3, 0, 0);
-						format(string, sizeof(string), "  You have received {FFA500}20 credits {B4B5B7}along with your paycheck for your service with %s", arrGroupData[PlayerInfo[i][pMember]][g_szGroupName]);
+						GivePlayerCredits(i, 15, 0, 0);
+						format(string, sizeof(string), "  You have received {FFA500}15 credits {B4B5B7}along with your paycheck for your service with %s", arrGroupData[PlayerInfo[i][pMember]][g_szGroupName]);
 						SendClientMessageEx(i, COLOR_GRAD1, string);
 					}
 				}
@@ -275,8 +275,8 @@ PayDay(i) {
 					SendClientMessageEx(i, COLOR_GRAD1, string);
 
 					if(PlayerInfo[i][pMember] > 0 && PlayerInfo[i][pMember] < 11) {
-						GivePlayerCredits(i, 3, 0, 0);
-						format(string, sizeof(string), "  You have received {FFA500}20 credits {B4B5B7}along with your paycheck for your service with %s", arrGroupData[PlayerInfo[i][pMember]][g_szGroupName]);
+						GivePlayerCredits(i, 15, 0, 0);
+						format(string, sizeof(string), "  You have received {FFA500}15 credits {B4B5B7}along with your paycheck for your service with %s", arrGroupData[PlayerInfo[i][pMember]][g_szGroupName]);
 						SendClientMessageEx(i, COLOR_GRAD1, string);
 					}
 				}
@@ -288,8 +288,8 @@ PayDay(i) {
 					format(string, sizeof(string), "  You have received {FFA500}7 credits {B4B5B7}along with your paycheck.");
 					SendClientMessageEx(i, COLOR_GRAD1, string);
 					if(PlayerInfo[i][pMember] > 0 && PlayerInfo[i][pMember] < 11) {
-						GivePlayerCredits(i, 3, 0, 0);
-						format(string, sizeof(string), "  You have received {FFA500}20 credits {B4B5B7}along with your paycheck for your service with %s", arrGroupData[PlayerInfo[i][pMember]][g_szGroupName]);
+						GivePlayerCredits(i, 15, 0, 0);
+						format(string, sizeof(string), "  You have received {FFA500}15 credits {B4B5B7}along with your paycheck for your service with %s", arrGroupData[PlayerInfo[i][pMember]][g_szGroupName]);
 						SendClientMessageEx(i, COLOR_GRAD1, string);
 					}
 				}
@@ -301,8 +301,8 @@ PayDay(i) {
 					format(string, sizeof(string), "  You have received {FFA500}9 credits {B4B5B7}along with your paycheck.");
 					SendClientMessageEx(i, COLOR_GRAD1, string);
 					if(PlayerInfo[i][pMember] > 0 && PlayerInfo[i][pMember] < 11) {
-						GivePlayerCredits(i, 3, 0, 0);
-						format(string, sizeof(string), "  You have received {FFA500}20 credits {B4B5B7}along with your paycheck for your service with %s", arrGroupData[PlayerInfo[i][pMember]][g_szGroupName]);
+						GivePlayerCredits(i, 15, 0, 0);
+						format(string, sizeof(string), "  You have received {FFA500}15 credits {B4B5B7}along with your paycheck for your service with %s", arrGroupData[PlayerInfo[i][pMember]][g_szGroupName]);
 						SendClientMessageEx(i, COLOR_GRAD1, string);
 					}
 				}
@@ -314,8 +314,8 @@ PayDay(i) {
 					format(string, sizeof(string), "  You have received {FFA500}15 credits {B4B5B7}along with your paycheck.");
 					SendClientMessageEx(i, COLOR_GRAD1, string);
 					if(PlayerInfo[i][pMember] > 0 && PlayerInfo[i][pMember] < 11) {
-						GivePlayerCredits(i, 3, 0, 0);
-						format(string, sizeof(string), "  You have received {FFA500}20 credits {B4B5B7}along with your paycheck for your service with %s", arrGroupData[PlayerInfo[i][pMember]][g_szGroupName]);
+						GivePlayerCredits(i, 15, 0, 0);
+						format(string, sizeof(string), "  You have received {FFA500}15 credits {B4B5B7}along with your paycheck for your service with %s", arrGroupData[PlayerInfo[i][pMember]][g_szGroupName]);
 						SendClientMessageEx(i, COLOR_GRAD1, string);
 					}
 				}

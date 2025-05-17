@@ -2957,10 +2957,10 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			{
 				if(PlayerInfo[playerid][pDonateRank] > 0)
 				{
-					if(PlayerInfo[playerid][pCash] > 50000)
+					if(PlayerInfo[playerid][pCash] > 100000)
 					{
-						GivePlayerCash(playerid, -50000);
-						SendClientMessageEx(playerid, COLOR_YELLOW, "VIP: You have traded $50,000 for an M4");
+						GivePlayerCash(playerid, -100000);
+						SendClientMessageEx(playerid, COLOR_YELLOW, "VIP: You have traded $100,000 for an M4");
 						GivePlayerValidWeapon(playerid, 31);
 					}
 					else {
@@ -2977,10 +2977,10 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			{
 				if(PlayerInfo[playerid][pDonateRank] > 0)
 				{
-					if(PlayerInfo[playerid][pCash] > 40000)
+					if(PlayerInfo[playerid][pCash] > 75000)
 					{
-						GivePlayerCash(playerid, -40000);
-						SendClientMessageEx(playerid, COLOR_YELLOW, "VIP: You have traded $40,000 for an AK-47");
+						GivePlayerCash(playerid, -75000);
+						SendClientMessageEx(playerid, COLOR_YELLOW, "VIP: You have traded $75,000 for an AK-47");
 						GivePlayerValidWeapon(playerid, 30);
 					}
 					else {
@@ -2997,10 +2997,10 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			{
 				if(PlayerInfo[playerid][pDonateRank] > 0)
 				{
-					if(PlayerInfo[playerid][pCash] > 75000)
+					if(PlayerInfo[playerid][pCash] > 125000)
 					{
-						GivePlayerCash(playerid, -75000);
-						SendClientMessageEx(playerid, COLOR_YELLOW, "VIP: You have traded $75,000 for a SPAS-12");
+						GivePlayerCash(playerid, -125000);
+						SendClientMessageEx(playerid, COLOR_YELLOW, "VIP: You have traded $125,000 for a SPAS-12");
 						GivePlayerValidWeapon(playerid, 27);
 					}
 					else {
@@ -3017,10 +3017,10 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			{
 				if(PlayerInfo[playerid][pDonateRank] > 0)
 				{
-					if(PlayerInfo[playerid][pCash] > 75000)
+					if(PlayerInfo[playerid][pCash] > 125000)
 					{
-						GivePlayerCash(playerid, -75000);
-						SendClientMessageEx(playerid, COLOR_YELLOW, "VIP: You have traded $75,000 for a Sniper Rifle");
+						GivePlayerCash(playerid, -125000);
+						SendClientMessageEx(playerid, COLOR_YELLOW, "VIP: You have traded $125,000 for a Sniper Rifle");
 						GivePlayerValidWeapon(playerid, 34);
 					}
 					else {
@@ -3037,10 +3037,10 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			{
 				if(PlayerInfo[playerid][pDonateRank] > 0)
 				{
-					if(PlayerInfo[playerid][pCash] > 100000)
+					if(PlayerInfo[playerid][pCash] > 125000)
 					{
-						GivePlayerCash(playerid, -100000);
-						SendClientMessageEx(playerid, COLOR_YELLOW, "VIP: You have traded $100,000 for a Sawn-Off Shotgun");
+						GivePlayerCash(playerid, -125000);
+						SendClientMessageEx(playerid, COLOR_YELLOW, "VIP: You have traded $125,000 for a Sawn-Off Shotgun");
 						GivePlayerValidWeapon(playerid, 26);
 					}
 					else {
@@ -3844,8 +3844,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				{
 					switch(PlayerInfo[playerid][pDonateRank])
 					{
-						case 1, 2: ShowPlayerDialogEx(playerid, VIPWEPSMENU, DIALOG_STYLE_LIST, "VIP Weapons", "Desert Eagle (3)\nShotgun (2)\nMP5 (3)\nSilenced Pistol (2)\nGolf Club (1)\nBat (1)\nDildo (1)\nSword (1)\n9mm (2)\nM4 ($50000)\nAK-47 ($40000)\nSPAS-12 ($75000)\nSniper ($75000)\nSawn-Off Shotgun ($100000)", "Select", "Cancel");
-						default: ShowPlayerDialogEx(playerid, VIPWEPSMENU, DIALOG_STYLE_LIST, "VIP Weapons", "Desert Eagle\nShotgun\nMP5\nSilenced Pistol\nGolf Club\nBat\nDildo\nSword\n9mm\nM4 ($50000)\nAK-47 ($40000)\nSPAS-12 ($75000)\nSniper ($75000)\nSawn-Off Shotgun ($100000)", "Select", "Cancel");
+						case 1, 2: ShowPlayerDialogEx(playerid, VIPWEPSMENU, DIALOG_STYLE_LIST, "VIP Weapons", "Desert Eagle (3)\nShotgun (2)\nMP5 (3)\nSilenced Pistol (2)\nGolf Club (1)\nBat (1)\nDildo (1)\nSword (1)\n9mm (2)\nM4 ($100000)\nAK-47 ($75000)\nSPAS-12 ($125000)\nSniper ($125000)\nSawn-Off Shotgun ($125000)", "Select", "Cancel");
+						default: ShowPlayerDialogEx(playerid, VIPWEPSMENU, DIALOG_STYLE_LIST, "VIP Weapons", "Desert Eagle\nShotgun\nMP5\nSilenced Pistol\nGolf Club\nBat\nDildo\nSword\n9mm\nM4 ($100000)\nAK-47 ($75000)\nSPAS-12 ($125000)\nSniper ($125000)\nSawn-Off Shotgun ($125000)", "Select", "Cancel");
 					}
 				}
 				else
