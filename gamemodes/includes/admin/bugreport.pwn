@@ -175,6 +175,13 @@ public OnBugReport(playerid)
 
 	format(string, sizeof(string), "[BugID: %d] %s(%d) submitted a%sbug (%s)", cache_insert_id(), GetPlayerNameEx(playerid), GetPVarInt(playerid, "pSQLID"), GetPVarInt(playerid, "BugAnonymous") == 1 ? (" anonymous "):(" "), bug);
 	Log("logs/bugreport.log", string);
+	
+	format(string, sizeof(string), "[BugID: %d] %s submitted a%sbug (%s)", cache_insert_id(), GetPlayerNameEx(playerid), GetPVarInt(playerid, "BugAnonymous") == 1 ? (" anonymous "):(" "), bug, bugdesc);
+	SendDiscordMessage(7, string);
+	
+	format(string, sizeof(string), "%s", bugdesc);
+	SendDiscordMessage(7, string);
+	
 	ShowPlayerDialogEx(playerid, DIALOG_NOTHING, DIALOG_STYLE_MSGBOX , "Bug Report Submitted", 
 	"{FFFFFF}Your bug report has been successfully submitted.\n\
 	 We highly suggest adding more information regarding the bug by visiting: http://cp.ng-gaming.net\n\

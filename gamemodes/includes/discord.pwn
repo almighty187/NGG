@@ -45,6 +45,7 @@ new DCC_Channel:g_ServerErrorsChannelId = DCC_INVALID_CHANNEL;
 new DCC_Channel:g_IpWhiteListChannelId = DCC_INVALID_CHANNEL;
 new DCC_Channel:g_LogChannelChannelId = DCC_INVALID_CHANNEL;
 new DCC_Channel:g_MacShopChannelId = DCC_INVALID_CHANNEL;
+new DCC_Channel:g_BetaTesterChannelId = DCC_INVALID_CHANNEL;
 
 new CountingPlayer;
 
@@ -66,6 +67,7 @@ public InitDiscordChannels()
     g_IpWhiteListChannelId = DCC_FindChannelById("1369879683864330260");
     g_LogChannelChannelId = DCC_FindChannelById("1369880798442033162");
     g_MacShopChannelId = DCC_FindChannelById("1372680031012388954");
+	g_BetaTesterChannelId = DCC_FindChannelById("1373897449327820830");
     print("[DCC] Discord channel IDs initialized.");
 }
 
@@ -161,6 +163,13 @@ stock SendDiscordMessage(channel, message[])
             else
                 print("[DCC] Failed to send message to #economy-logs (channel ID invalid).");
         }
+		case 7: //beta-testers
+		{
+			if (g_BetaTesterChannelId != DCC_INVALID_CHANNEL)
+			DCC_SendChannelMessage(g_BetaTesterChannelId, message);
+            else
+                print("[DCC] Failed to send message to #beta-testers (channel ID invalid).");
+		}
     }
     return 1;
 }
