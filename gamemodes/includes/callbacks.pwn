@@ -3563,6 +3563,7 @@ public OnPlayerEnterCheckpoint(playerid)
 						payment = floatround(payment * 1.25);
 						GivePlayerCash(playerid, payment);
 		    			format(string, sizeof(string), "* You were paid $%d for delivering the goods and returning the vehicle.", payment);
+						SendClientMessageEx(playerid, COLOR_LIGHTBLUE, string);
 		    			SendClientMessageEx(playerid, COLOR_LIGHTBLUE, "* You received a 25 percent bonus for the additional risk from the cops.");
 						
 						GivePlayerCredits(playerid, 10, 0, 0);

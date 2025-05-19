@@ -515,8 +515,13 @@ CMD:movept(playerid, params[])
 }
 
 CMD:giveepi(playerid, params[]) {
-	if(IsAMedic(playerid)) {
+	if(IsFirstAid(playerid)) {
+
+		
 		new giveplayerid;
+
+		if (giveplayerid == playerid) return SendClientMessageEx(playerid, COLOR_GREY, "You can't give yourself a dose of Epinephrine.");
+
 		new string[128];
 		if(sscanf(params, "u", giveplayerid)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /giveepi [player]");
 		if(IsPlayerConnected(giveplayerid)) {

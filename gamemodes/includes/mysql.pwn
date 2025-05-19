@@ -5182,6 +5182,7 @@ public OnPinCheck2(index)
 						case 9: ShowModelSelectionMenu(index, CarList3, "Restricted Car Shop");
 						case 10: cmd_changename(index, "");
 						case 11: cmd_microshop(index, "");
+						case 12: cmd_creditshop(index, "");
 					}
 					DeletePVar(index, "OpenShop");
 				}

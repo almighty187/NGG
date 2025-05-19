@@ -44,6 +44,7 @@ new DCC_Channel:g_HeadAdminChannelId = DCC_INVALID_CHANNEL;
 new DCC_Channel:g_ServerErrorsChannelId = DCC_INVALID_CHANNEL;
 new DCC_Channel:g_IpWhiteListChannelId = DCC_INVALID_CHANNEL;
 new DCC_Channel:g_LogChannelChannelId = DCC_INVALID_CHANNEL;
+new DCC_Channel:g_MacShopChannelId = DCC_INVALID_CHANNEL;
 
 new CountingPlayer;
 
@@ -64,6 +65,7 @@ public InitDiscordChannels()
     g_ServerErrorsChannelId = DCC_FindChannelById("1360504778718711870");
     g_IpWhiteListChannelId = DCC_FindChannelById("1369879683864330260");
     g_LogChannelChannelId = DCC_FindChannelById("1369880798442033162");
+    g_MacShopChannelId = DCC_FindChannelById("1372680031012388954");
     print("[DCC] Discord channel IDs initialized.");
 }
 
@@ -152,6 +154,13 @@ stock SendDiscordMessage(channel, message[])
             else
                 print("[DCC] Failed to send message to #log-channel (channel ID invalid).");
 		}
+        case 6: //mac-shop
+        {
+            if (g_MacShopChannelId != DCC_INVALID_CHANNEL)
+            DCC_SendChannelMessage(g_MacShopChannelId, message);
+            else
+                print("[DCC] Failed to send message to #economy-logs (channel ID invalid).");
+        }
     }
     return 1;
 }

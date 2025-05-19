@@ -846,6 +846,8 @@ native IsValidVehicle(vehicleid);
 
 #define         DIALOG_MISCSHOP             (4700)
 #define         DIALOG_MISCSHOP2            (4705)
+#define         DIALOG_MACSHOP            (4706)
+#define         DIALOG_MACSHOP2            (4707)
 
 #define         DIALOG_EDITSHOP             (4710)
 #define         DIALOG_EDITSHOP2            (4715)

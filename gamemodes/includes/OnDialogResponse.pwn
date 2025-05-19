@@ -9641,6 +9641,272 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			}
 		}
 	}
+	if(dialogid == DIALOG_MACSHOP && response)
+	{
+		SetPVarInt(playerid, "MacShop", listitem+1);
+		switch(listitem)
+		{
+			case 0:
+			{
+				format(string, sizeof(string), "Item: Car Voucher\nYour Credits: %s\nCost: {FFD700}%s{A9C4E4}\nCredits Left: %s", number_format(PlayerInfo[playerid][pCredits]), 500, number_format(PlayerInfo[playerid][pCredits]-500));
+				ShowPlayerDialogEx(playerid, DIALOG_MACSHOP2, DIALOG_STYLE_MSGBOX, "Misc Shop", string, "Purchase", "Cancel");
+			}
+			case 1:
+			{
+				format(string, sizeof(string), "Item: Rim Kit\nYour Credits: %s\nCost: {FFD700}%s{A9C4E4}\nCredits Left: %s", number_format(PlayerInfo[playerid][pCredits]), 1500, number_format(PlayerInfo[playerid][pCredits]-1500));
+				ShowPlayerDialogEx(playerid, DIALOG_MACSHOP2, DIALOG_STYLE_MSGBOX, "Misc Shop", string, "Purchase", "Cancel");
+			}
+			case 2:
+			{
+				format(string, sizeof(string), "Item: Custom License Plate\nYour Credits: %s\nCost: {FFD700}%s{A9C4E4}\nCredits Left: %s", number_format(PlayerInfo[playerid][pCredits]), 100, number_format(PlayerInfo[playerid][pCredits]-100));
+				ShowPlayerDialogEx(playerid, DIALOG_MACSHOP2, DIALOG_STYLE_MSGBOX, "Misc Shop", string, "Purchase", "Cancel");
+			}
+			case 3:
+			{
+				format(string, sizeof(string), "Item: House or DD\nYour Credits: %s\nCost: {FFD700}%s{A9C4E4}\nCredits Left: %s", number_format(PlayerInfo[playerid][pCredits]), 1500, number_format(PlayerInfo[playerid][pCredits]-1500));
+				ShowPlayerDialogEx(playerid, DIALOG_MACSHOP2, DIALOG_STYLE_MSGBOX, "Misc Shop", string, "Purchase", "Cancel");
+			}
+			case 4:
+			{
+				format(string, sizeof(string), "Item: House or DD move\nYour Credits: %s\nCost: {FFD700}%s{A9C4E4}\nCredits Left: %s", number_format(PlayerInfo[playerid][pCredits]), 250, number_format(PlayerInfo[playerid][pCredits]-250));
+				ShowPlayerDialogEx(playerid, DIALOG_MACSHOP2, DIALOG_STYLE_MSGBOX, "Misc Shop", string, "Purchase", "Cancel");
+			}
+			case 5:
+			{
+				format(string, sizeof(string), "Item: Interior Change\nYour Credits: %s\nCost: {FFD700}%s{A9C4E4}\nCredits Left: %s", number_format(PlayerInfo[playerid][pCredits]), 250, number_format(PlayerInfo[playerid][pCredits]-250));
+				ShowPlayerDialogEx(playerid, DIALOG_MACSHOP2, DIALOG_STYLE_MSGBOX, "Misc Shop", string, "Purchase", "Cancel");
+			}
+			case 6:
+			{
+				format(string, sizeof(string), "Item: Custom Mapping 100 Objects\nYour Credits: %s\nCost: {FFD700}%s{A9C4E4}\nCredits Left: %s", number_format(PlayerInfo[playerid][pCredits]), 5000, number_format(PlayerInfo[playerid][pCredits]-5000));
+				ShowPlayerDialogEx(playerid, DIALOG_MACSHOP2, DIALOG_STYLE_MSGBOX, "Misc Shop", string, "Purchase", "Cancel");
+			}	
+			case 7:
+			{
+				format(string, sizeof(string), "Item: Gate\nYour Credits: %s\nCost: {FFD700}%s{A9C4E4}\nCredits Left: %s", number_format(PlayerInfo[playerid][pCredits]), 750, number_format(PlayerInfo[playerid][pCredits]-750));
+				ShowPlayerDialogEx(playerid, DIALOG_MACSHOP2, DIALOG_STYLE_MSGBOX, "Misc Shop", string, "Purchase", "Cancel");
+			}
+			case 8:
+			{
+				if(GetPVarInt(playerid, "PinConfirmed"))
+				{
+					ShowModelSelectionMenu(playerid, ToyList2, "Toy Shop");
+				}
+				else
+				{
+					PinLogin(playerid);
+				}
+			}
+			case 9:
+			{
+				format(string, sizeof(string), "Item: Custom Toy\nYour Credits: %s\nCost: {FFD700}%s{A9C4E4}\nCredits Left: %s", number_format(PlayerInfo[playerid][pCredits]), 1250, number_format(PlayerInfo[playerid][pCredits]-1250));
+				ShowPlayerDialogEx(playerid, DIALOG_MACSHOP2, DIALOG_STYLE_MSGBOX, "Misc Shop", string, "Purchase", "Cancel");
+			}
+			case 10:
+			{
+				format(string, sizeof(string), "Item: Boombox\nYour Credits: %s\nCost: {FFD700}%s{A9C4E4}\nCredits Left: %s", number_format(PlayerInfo[playerid][pCredits]), 1000, number_format(PlayerInfo[playerid][pCredits]-1000));
+				ShowPlayerDialogEx(playerid, DIALOG_MACSHOP2, DIALOG_STYLE_MSGBOX, "Misc Shop", string, "Purchase", "Cancel");
+			}
+			case 11:
+			{
+				new bdialog[145];
+				format(bdialog, sizeof(bdialog), "Small Backpack (Credits: {FFD700}%s{A9C4E4})\nMedium Backpack (Credits: {FFD700}%s{A9C4E4})\nLarge Backpack (Credits: {FFD700}%s{A9C4E4})",
+				number_format(ShopItems[36][sItemPrice]), number_format(ShopItems[37][sItemPrice]), number_format(ShopItems[38][sItemPrice]));
+				ShowPlayerDialogEx(playerid, DIALOG_BACKPACKS, DIALOG_STYLE_LIST, "Misc Shop", bdialog, "Select", "Cancel");
+			}
+			case 12:
+			{
+				format(string, sizeof(string), "Item: Fireworks x5\nYour Credits: %s\nCost: {FFD700}%s{A9C4E4}\nCredits Left: %s", number_format(PlayerInfo[playerid][pCredits]), 100, number_format(PlayerInfo[playerid][pCredits]-100));
+				ShowPlayerDialogEx(playerid, DIALOG_MACSHOP2, DIALOG_STYLE_MSGBOX, "Misc Shop", string, "Purchase", "Cancel");
+			}
+			case 13:
+			{				
+				format(string, sizeof(string), "Restricted Last Name\nYour Credits: %s\nCost: {FFD700}%s{A9C4E4}\nCredits Left: %s", number_format(PlayerInfo[playerid][pCredits]), 2000, number_format(PlayerInfo[playerid][pCredits]-2000));
+				ShowPlayerDialogEx(playerid, DIALOG_MACSHOP2, DIALOG_STYLE_MSGBOX, "Misc Shop", string, "Purchase", "Cancel");
+			}
+		}
+	}
+
+	if (dialogid == DIALOG_MACSHOP2 && response)
+	{
+		new macShopString[128];
+		if(GetPVarInt(playerid, "MacShop") == 1)
+		{
+			if(PlayerInfo[playerid][pCredits] < 500) return SendClientMessageEx(playerid, COLOR_GREY, "You don't have enough credits.");
+			GivePlayerCredits(playerid, -500, 0, 0);
+			SendClientMessageEx(playerid, COLOR_WHITE, "You have purchased a car voucher and a report has been sent to the admins.");
+
+			format(macShopString, sizeof(macShopString), "**%s** (ID: %d) (IP: %s) has purchased a car voucher. (Credits: %s, Credits Left: %s)", GetPlayerNameEx(playerid), GetPlayerSQLId(playerid), GetPlayerIpEx(playerid), number_format(PlayerInfo[playerid][pCredits]+500), number_format(PlayerInfo[playerid][pCredits]));
+			SendDiscordMessage(6, macShopString);
+
+			SendReportToQue(playerid, "Car Voucher", 3, 5);
+
+			//flag player
+			AddFlag(playerid, INVALID_PLAYER_ID, "1x Car Voucher");
+		}
+		else if(GetPVarInt(playerid, "MacShop") == 2)
+		{
+			//rim kit
+			if(PlayerInfo[playerid][pCredits] < 1500) return SendClientMessageEx(playerid, COLOR_GREY, "You don't have enough credits.");
+			GivePlayerCredits(playerid, -1500, 0, 0);
+			SendClientMessageEx(playerid, COLOR_WHITE, "You have purchased a rim kit and a report has been sent to the admins.");
+
+			format(macShopString, sizeof(macShopString), "**%s** (ID: %d) (IP: %s) has purchased a rim kit. (Credits: %s, Credits Left: %s)", GetPlayerNameEx(playerid), GetPlayerSQLId(playerid), GetPlayerIpEx(playerid), number_format(PlayerInfo[playerid][pCredits]+1500), number_format(PlayerInfo[playerid][pCredits]));
+			SendDiscordMessage(6, macShopString);
+
+			SendReportToQue(playerid, "Rim Kit", 3, 5);
+
+			//flag player
+			AddFlag(playerid, INVALID_PLAYER_ID, "1x Rim Kit");
+		}
+		else if(GetPVarInt(playerid, "MacShop") == 3)
+		{
+			//custom license plate
+			if(PlayerInfo[playerid][pCredits] < 100) return SendClientMessageEx(playerid, COLOR_GREY, "You don't have enough credits.");
+			GivePlayerCredits(playerid, -100, 0, 0);
+			SendClientMessageEx(playerid, COLOR_WHITE, "You have purchased a custom license plate and a report has been sent to the admins.");
+
+			SendReportToQue(playerid, "Custom License Plate", 3, 5);
+
+			format(macShopString, sizeof(macShopString), "**%s** (ID: %d) (IP: %s) has purchased a custom license plate. (Credits: %s, Credits Left: %s)", GetPlayerNameEx(playerid), GetPlayerSQLId(playerid), GetPlayerIpEx(playerid), number_format(PlayerInfo[playerid][pCredits]+100), number_format(PlayerInfo[playerid][pCredits]));
+			SendDiscordMessage(6, macShopString);
+
+			//flag player
+			AddFlag(playerid, INVALID_PLAYER_ID, "1x Custom License Plate");
+		}
+		else if(GetPVarInt(playerid, "MacShop") == 4)
+		{
+			//house or dd
+			if(PlayerInfo[playerid][pCredits] < 1500) return SendClientMessageEx(playerid, COLOR_GREY, "You don't have enough credits.");
+			GivePlayerCredits(playerid, -1500, 0, 0);
+			SendClientMessageEx(playerid, COLOR_WHITE, "You have purchased a house or dd and a report has been sent to the admins.");
+
+			SendReportToQue(playerid, "House or DD", 3, 5);
+
+			format(macShopString, sizeof(macShopString), "**%s** (ID: %d) (IP: %s) has purchased a house or dd. (Credits: %s, Credits Left: %s)", GetPlayerNameEx(playerid), GetPlayerSQLId(playerid), GetPlayerIpEx(playerid), number_format(PlayerInfo[playerid][pCredits]+1500), number_format(PlayerInfo[playerid][pCredits]));
+			SendDiscordMessage(6, macShopString);
+
+			//flag player
+			AddFlag(playerid, INVALID_PLAYER_ID, "1x House or DD");
+		}
+		else if(GetPVarInt(playerid, "MacShop") == 5)
+		{
+			//house or dd move
+			if(PlayerInfo[playerid][pCredits] < 250) return SendClientMessageEx(playerid, COLOR_GREY, "You don't have enough credits.");
+			GivePlayerCredits(playerid, -250, 0, 0);
+			SendClientMessageEx(playerid, COLOR_WHITE, "You have purchased a house or dd move and a report has been sent to the admins.");
+
+			SendReportToQue(playerid, "House or DD Move", 3, 5);
+
+			format(macShopString, sizeof(macShopString), "**%s** (ID: %d) (IP: %s) has purchased a house or dd move. (Credits: %s, Credits Left: %s)", GetPlayerNameEx(playerid), GetPlayerSQLId(playerid), GetPlayerIpEx(playerid), number_format(PlayerInfo[playerid][pCredits]+250), number_format(PlayerInfo[playerid][pCredits]));
+			SendDiscordMessage(6, macShopString);
+
+			//flag player
+			AddFlag(playerid, INVALID_PLAYER_ID, "1x House or DD Move");
+		}
+		else if(GetPVarInt(playerid, "MacShop") == 6)
+		{
+			//interior change
+			if(PlayerInfo[playerid][pCredits] < 250) return SendClientMessageEx(playerid, COLOR_GREY, "You don't have enough credits.");
+			GivePlayerCredits(playerid, -250, 0, 0);
+			SendClientMessageEx(playerid, COLOR_WHITE, "You have purchased a interior change and a report has been sent to the admins.");
+
+			SendReportToQue(playerid, "Interior Change", 3, 5);
+
+			format(macShopString, sizeof(macShopString), "**%s** (ID: %d) (IP: %s) has purchased a interior change. (Credits: %s, Credits Left: %s)", GetPlayerNameEx(playerid), GetPlayerSQLId(playerid), GetPlayerIpEx(playerid), number_format(PlayerInfo[playerid][pCredits]+250), number_format(PlayerInfo[playerid][pCredits]));
+			SendDiscordMessage(6, macShopString);
+
+			//flag player
+			AddFlag(playerid, INVALID_PLAYER_ID, "1x Interior Change");
+		}
+		else if(GetPVarInt(playerid, "MacShop") == 7)
+		{
+			//custom mapping 100 objects
+			if(PlayerInfo[playerid][pCredits] < 5000) return SendClientMessageEx(playerid, COLOR_GREY, "You don't have enough credits.");
+			GivePlayerCredits(playerid, -5000, 0, 0);
+			SendClientMessageEx(playerid, COLOR_WHITE, "You have purchased a custom mapping 100 objects. Please message an admin in discord to have it applied.");
+
+			format(macShopString, sizeof(macShopString), "**%s** (ID: %d) (IP: %s) has purchased a custom mapping 100 objects. (Credits: %s, Credits Left: %s)", GetPlayerNameEx(playerid), GetPlayerSQLId(playerid), GetPlayerIpEx(playerid), number_format(PlayerInfo[playerid][pCredits]+5000), number_format(PlayerInfo[playerid][pCredits]));
+			SendDiscordMessage(6, macShopString);
+
+			//flag player
+			AddFlag(playerid, INVALID_PLAYER_ID, "1x Custom Mapping 100 Objects");
+		}
+		else if(GetPVarInt(playerid, "MacShop") == 8)
+		{
+			//gate
+			if(PlayerInfo[playerid][pCredits] < 750) return SendClientMessageEx(playerid, COLOR_GREY, "You don't have enough credits.");
+			GivePlayerCredits(playerid, -750, 0, 0);
+			SendClientMessageEx(playerid, COLOR_WHITE, "You have purchased a gate and a report has been sent to the admins.");
+
+			SendReportToQue(playerid, "Gate", 3, 5);
+
+			format(macShopString, sizeof(macShopString), "**%s** (ID: %d) (IP: %s) has purchased a gate. (Credits: %s, Credits Left: %s)", GetPlayerNameEx(playerid), GetPlayerSQLId(playerid), GetPlayerIpEx(playerid), number_format(PlayerInfo[playerid][pCredits]+750), number_format(PlayerInfo[playerid][pCredits]));
+			SendDiscordMessage(6, macShopString);
+
+			//flag player
+			AddFlag(playerid, INVALID_PLAYER_ID, "1x Gate");
+		}
+		else if(GetPVarInt(playerid, "MacShop") == 10)
+		{
+			//custom toy
+			if(PlayerInfo[playerid][pCredits] < 1250) return SendClientMessageEx(playerid, COLOR_GREY, "You don't have enough credits.");
+			GivePlayerCredits(playerid, -1250, 0, 0);
+			SendClientMessageEx(playerid, COLOR_WHITE, "You have purchased a custom toy and a report has been sent to the admins.");
+
+			SendReportToQue(playerid, "Custom Toy", 3, 5);
+
+			format(macShopString, sizeof(macShopString), "**%s** (ID: %d) (IP: %s) has purchased a custom toy. (Credits: %s, Credits Left: %s)", GetPlayerNameEx(playerid), GetPlayerSQLId(playerid), GetPlayerIpEx(playerid), number_format(PlayerInfo[playerid][pCredits]+1250), number_format(PlayerInfo[playerid][pCredits]));
+			SendDiscordMessage(6, macShopString);
+
+			//flag player
+			AddFlag(playerid, INVALID_PLAYER_ID, "1x Custom Toy");
+		}
+		else if(GetPVarInt(playerid, "MacShop") == 11)
+		{
+			//boombox
+			if(PlayerInfo[playerid][pCredits] < 1000) return SendClientMessageEx(playerid, COLOR_GREY, "You don't have enough credits.");
+			GivePlayerCredits(playerid, -1000, 0, 0);
+			SendClientMessageEx(playerid, COLOR_WHITE, "You have purchased a boombox and a report has been sent to the admins.");
+
+			SendReportToQue(playerid, "Boombox", 3, 5);
+
+			format(macShopString, sizeof(macShopString), "**%s** (ID: %d) (IP: %s) has purchased a boombox. (Credits: %s, Credits Left: %s)", GetPlayerNameEx(playerid), GetPlayerSQLId(playerid), GetPlayerIpEx(playerid), number_format(PlayerInfo[playerid][pCredits]+1000), number_format(PlayerInfo[playerid][pCredits]));
+			SendDiscordMessage(6, macShopString);
+
+			//flag player
+			AddFlag(playerid, INVALID_PLAYER_ID, "1x Boombox");
+		}
+		else if(GetPVarInt(playerid, "MacShop") == 13)
+		{
+			//fireworks
+			if(PlayerInfo[playerid][pCredits] < 100) return SendClientMessageEx(playerid, COLOR_GREY, "You don't have enough credits.");
+			GivePlayerCredits(playerid, -100, 0, 0);
+			SendClientMessageEx(playerid, COLOR_WHITE, "You have purchased a fireworks and a report has been sent to the admins.");
+
+			SendReportToQue(playerid, "Fireworks", 3, 5);
+
+			format(macShopString, sizeof(macShopString), "**%s** (ID: %d) (IP: %s) has purchased a fireworks. (Credits: %s, Credits Left: %s)", GetPlayerNameEx(playerid), GetPlayerSQLId(playerid), GetPlayerIpEx(playerid), number_format(PlayerInfo[playerid][pCredits]+100), number_format(PlayerInfo[playerid][pCredits]));
+			SendDiscordMessage(6, macShopString);
+
+			//flag player
+			AddFlag(playerid, INVALID_PLAYER_ID, "1x Fireworks");
+		}
+		else if(GetPVarInt(playerid, "MacShop") == 14)
+		{
+			//restricted last name
+			if(PlayerInfo[playerid][pCredits] < 2000) return SendClientMessageEx(playerid, COLOR_GREY, "You don't have enough credits.");
+			GivePlayerCredits(playerid, -2000, 0, 0);
+			SendClientMessageEx(playerid, COLOR_WHITE, "You have purchased a restricted last name. Please message an admin in discord to have it applied.");
+
+			format(macShopString, sizeof(macShopString), "**%s** (ID: %d) (IP: %s) has purchased a restricted last name. (Credits: %s, Credits Left: %s)", GetPlayerNameEx(playerid), GetPlayerSQLId(playerid), GetPlayerIpEx(playerid), number_format(PlayerInfo[playerid][pCredits]+2000), number_format(PlayerInfo[playerid][pCredits]));
+			SendDiscordMessage(6, macShopString);
+
+			//flag player
+			AddFlag(playerid, INVALID_PLAYER_ID, "1x Restricted Last Name");
+		}
+	}
+
 	if(dialogid == DIALOG_MISCSHOP && response)
 	{
 		SetPVarInt(playerid, "MiscShop", listitem+1);

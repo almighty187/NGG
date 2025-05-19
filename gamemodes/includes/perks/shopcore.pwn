@@ -846,9 +846,10 @@ CMD:miscshop(playerid, params[])
 			format(szDialog, sizeof(szDialog), "Poker Table (Credits: {FFD700}%s{A9C4E4})\nBoombox (Credits: {FFD700}%s{A9C4E4})\n100 Paintball Tokens (Credits: {FFD700}%s{A9C4E4})\nEXP Token (Credits: {FFD700}%s{A9C4E4})\nFireworks x5 (Credits: {FFD700}%s{A9C4E4})\nCustom License Plate (Credits: {FFD700}%s{A9C4E4})",
 			number_format(ShopItems[6][sItemPrice]), number_format(ShopItems[7][sItemPrice]), number_format(ShopItems[8][sItemPrice]), number_format(ShopItems[9][sItemPrice]), 
 			number_format(ShopItems[10][sItemPrice]), number_format(ShopItems[22][sItemPrice]));
+			
 			format(szDialog, sizeof(szDialog), "%s\nRestricted Last Name (NEW) (Credits: {FFD700}%s{A9C4E4})\nRestricted Last Name (CHANGE) (Credits: {FFD700}%s{A9C4E4})\nCustom User Title (NEW) (Credits: {FFD700}%s{A9C4E4})\nCustom User Title (CHANGE) (Credits: {FFD700}%s{A9C4E4})\nTeamspeak User Channel (Credits: {FFD700}%s{A9C4E4})\nBackpacks\nDeluxe Car Alarm (Credits: {FFD700}%s{A9C4E4})", 
 			szDialog, number_format(ShopItems[31][sItemPrice]), number_format(ShopItems[32][sItemPrice]), number_format(ShopItems[33][sItemPrice]), number_format(ShopItems[34][sItemPrice]), number_format(ShopItems[35][sItemPrice]), number_format(ShopItems[39][sItemPrice]));
-			ShowPlayerDialogEx(playerid, DIALOG_MISCSHOP, DIALOG_STYLE_LIST, "Misc Shop", szDialog, "Select", "Cancel");
+			ShowPlayerDialogEx(playerid, DIALOG_MISCSHOP, DIALOG_STYLE_LIST, "Credit Shop", szDialog, "Select", "Cancel");
 		}
 		else
 		{
@@ -862,6 +863,79 @@ CMD:miscshop(playerid, params[])
 	}
 	return 1;
 }
+
+CMD:creditshop(playerid, params[])
+{
+	if(GetPVarType(playerid, "PlayerCuffed") || GetPVarInt(playerid, "pBagged") >= 1 || GetPVarType(playerid, "Injured") || GetPVarType(playerid, "IsFrozen") || PlayerInfo[playerid][pHospital] || PlayerInfo[playerid][pJailTime] > 0 || GetPVarInt(playerid, "EventToken") == 1 || GetPVarInt(playerid, "IsInArena"))
+		return SendClientMessageEx(playerid, COLOR_GRAD2, "You can't do this at this time!");
+	if(PlayerInfo[playerid][pWantedLevel] > 0) return SendClientMessageEx(playerid, COLOR_GRAD2, "You are currently wanted, you cannot use this commmand.");
+	if(gettime() - LastShot[playerid] < 60) return SendClientMessageEx(playerid, COLOR_GRAD2, "You have been shot within the last 60 seconds, you cannot use this command.");
+
+    if(ShopClosed == 1)
+	    return SendClientMessageEx(playerid, COLOR_GREY, "The shop is currently closed.");
+
+ 	if(GetPVarInt(playerid, "PinConfirmed"))
+   	{
+		new szDialog[1024];
+		
+		format(szDialog, sizeof(szDialog), 
+		"Car Voucher (Credits: {FFD700}%s{A9C4E4})\nRim Kit (Credits: {FFD700}%s{A9C4E4})\nCustom License Plate (Credits: {FFD700}%s{A9C4E4})\nHouse or DD (Credits: {FFD700}%s{A9C4E4})\nHouse or DD Move (Credits: {FFD700}%s{A9C4E4})\nInterior Change (Credits: {FFD700}%s{A9C4E4})",
+		number_format(500), 
+		number_format(1500), 
+		number_format(100), 
+		number_format(1500), 
+		number_format(250), 
+		number_format(250));
+		
+		format(szDialog, sizeof(szDialog), 
+		"%s\n100 Mapping Objects (Credits: {FFD700}%s{A9C4E4})\nGate (Credits: {FFD700}%s{A9C4E4})\nToy Shop\nCustom Toy (Credits: {FFD700}%s{A9C4E4})\nBoomBox (Credits: {FFD700}%s{A9C4E4})\nBackpack\nFireworks x5 (Credits: {FFD700}%s{A9C4E4})\nRestricted Last Name (Credits: {FFD700}%s{A9C4E4})", 
+		szDialog, 
+		number_format(5000),
+		number_format(750), 
+		number_format(1250), 
+		number_format(1000), 
+		number_format(100), 
+		number_format(2000));
+
+		ShowPlayerDialogEx(playerid, DIALOG_MACSHOP, DIALOG_STYLE_LIST, "Credits Shop", szDialog, "Select", "Cancel");
+	}
+	else
+	{
+	    SetPVarInt(playerid, "OpenShop", 12);
+  		PinLogin(playerid);
+	}
+	return 1;
+}
+
+CMD:currencyexchange(playerid, params[])
+{
+	if(PlayerInfo[playerid][pCash] < 1250000) return SendClientMessageEx(playerid, COLOR_GREY, "You don't have enough money to exchange.");
+	//get the amount from params
+	new amount;
+	if(sscanf(params, "i", amount)) return SendClientMessageEx(playerid, COLOR_GREY, "Usage: /currencyexchange [dollar amount] (1,250,000 SAD = 100 Credits)");
+
+	if(amount < 1250000) return SendClientMessageEx(playerid, COLOR_GREY, "You can't exchange less than 1,250,000 SAD.");
+	//divide amount by 1,250,000 to get the amount of credits
+	new test = (amount / 1250000) * 100;
+	//only allow multiples of 1250000
+	if(amount % 1250000 != 0) return SendClientMessageEx(playerid, COLOR_GREY, "You can only exchange multiples of 1,250,000 SAD.");
+
+	//check if player has enough money
+	if(PlayerInfo[playerid][pCash] < amount) return SendClientMessageEx(playerid, COLOR_GREY, "You don't have enough money to exchange.");
+	
+	GivePlayerCredits(playerid, test, 0, 0);
+	GivePlayerCash(playerid, -amount);
+
+	SendClientMessageEx(playerid, COLOR_GREY, "You have exchanged %d cash for %d credits.", amount, test);
+
+	new string[128];
+	format(string, sizeof(string), "**%s** (%d) (IP: %s) has exchanged **%d** cash for **%d** credits.", GetPlayerNameEx(playerid), GetPlayerSQLId(playerid), GetPlayerIpEx(playerid), amount, test);
+	SendDiscordMessage(6, string);
+	return 1;
+}
+
+
+
 
 CMD:credits(playerid, params[])
 {
@@ -899,27 +973,29 @@ CMD:shophelp(playerid, params[]) {
 }
 
 CMD:nggshop(playerid, params[]) {
-	if(GetPVarType(playerid, "PlayerCuffed") || GetPVarInt(playerid, "pBagged") >= 1 || GetPVarType(playerid, "Injured") || GetPVarType(playerid, "IsFrozen") || PlayerInfo[playerid][pHospital] || PlayerInfo[playerid][pJailTime] > 0 || GetPVarInt(playerid, "EventToken") == 1 || GetPVarInt(playerid, "IsInArena"))
-		return SendClientMessage(playerid, COLOR_GRAD2, "You can't do this at this time!");
-	if(PlayerInfo[playerid][pWantedLevel] > 0) return SendClientMessageEx(playerid, COLOR_GRAD2, "You are currently wanted, you cannot use this commmand.");
-	if(gettime() - LastShot[playerid] < 60) return SendClientMessageEx(playerid, COLOR_GRAD2, "You have been shot within the last 60 seconds, you cannot use this command.");
-	if(IsPlayerInDynamicArea(playerid, NGGShop)) return SendClientMessageEx(playerid, COLOR_GRAD2, "You are already at NGG's Shop");
-	if(IsPlayerInAnyVehicle(playerid)) return SendClientMessageEx(playerid, COLOR_GRAD2, "You cannot do this while being inside a vehicle.");
-	if(GetPVarInt(playerid, "ShopTP") == 1) return SendClientMessageEx(playerid, COLOR_GRAD2, "You have already requested a Teleport to the NGG Shop.");
+	return SendClientMessageEx(playerid, COLOR_GREY, "This command is currently disabled. Please use /creditshop instead.");
+
+	// if(GetPVarType(playerid, "PlayerCuffed") || GetPVarInt(playerid, "pBagged") >= 1 || GetPVarType(playerid, "Injured") || GetPVarType(playerid, "IsFrozen") || PlayerInfo[playerid][pHospital] || PlayerInfo[playerid][pJailTime] > 0 || GetPVarInt(playerid, "EventToken") == 1 || GetPVarInt(playerid, "IsInArena"))
+	// 	return SendClientMessage(playerid, COLOR_GRAD2, "You can't do this at this time!");
+	// if(PlayerInfo[playerid][pWantedLevel] > 0) return SendClientMessageEx(playerid, COLOR_GRAD2, "You are currently wanted, you cannot use this commmand.");
+	// if(gettime() - LastShot[playerid] < 60) return SendClientMessageEx(playerid, COLOR_GRAD2, "You have been shot within the last 60 seconds, you cannot use this command.");
+	// if(IsPlayerInDynamicArea(playerid, NGGShop)) return SendClientMessageEx(playerid, COLOR_GRAD2, "You are already at NGG's Shop");
+	// if(IsPlayerInAnyVehicle(playerid)) return SendClientMessageEx(playerid, COLOR_GRAD2, "You cannot do this while being inside a vehicle.");
+	// if(GetPVarInt(playerid, "ShopTP") == 1) return SendClientMessageEx(playerid, COLOR_GRAD2, "You have already requested a Teleport to the NGG Shop.");
 	
-	SendClientMessageEx(playerid, COLOR_LIGHTBLUE, "You have requested a Teleport to the NGG Shop, please wait 30 seconds..");
-	SetTimerEx("TeleportToShop", 30000, false, "i", playerid);
-	TogglePlayerControllable(playerid, 0);
-	SetPVarInt(playerid, "ShopTP", 1);
+	// SendClientMessageEx(playerid, COLOR_LIGHTBLUE, "You have requested a Teleport to the NGG Shop, please wait 30 seconds..");
+	// SetTimerEx("TeleportToShop", 30000, false, "i", playerid);
+	// TogglePlayerControllable(playerid, 0);
+	// SetPVarInt(playerid, "ShopTP", 1);
 	
-	new Float:tmp[3];
-	GetPlayerPos(playerid, tmp[0], tmp[1], tmp[2]);
-	SetPVarFloat(playerid, "tmpX", tmp[0]);
-	SetPVarFloat(playerid, "tmpY", tmp[1]);
-	SetPVarFloat(playerid, "tmpZ", tmp[2]);
-	SetPVarInt(playerid, "tmpInt", GetPlayerInterior(playerid));
-	SetPVarInt(playerid, "tmpVW", GetPlayerVirtualWorld(playerid));
-	return 1;
+	// new Float:tmp[3];
+	// GetPlayerPos(playerid, tmp[0], tmp[1], tmp[2]);
+	// SetPVarFloat(playerid, "tmpX", tmp[0]);
+	// SetPVarFloat(playerid, "tmpY", tmp[1]);
+	// SetPVarFloat(playerid, "tmpZ", tmp[2]);
+	// SetPVarInt(playerid, "tmpInt", GetPlayerInterior(playerid));
+	// SetPVarInt(playerid, "tmpVW", GetPlayerVirtualWorld(playerid));
+	// return 1;
 }
 
 CMD:leaveshop(playerid, params[]) {
