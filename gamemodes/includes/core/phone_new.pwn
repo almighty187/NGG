@@ -988,9 +988,6 @@ Phone_Music(iPlayerID)
 
 Phone_Map(iPlayerID)
 {
-	//check if player has a checkpoint
-	if(CheckPointCheck(playerid)) return SendClientMessageEx(playerid, COLOR_WHITE, "Please ensure that your current checkpoint is destroyed first (you either have material packages, or another existing checkpoint).");
-	DisablePlayerCheckpoint(iPlayerID);
 	cmd_mygps(iPlayerID, "");
 }
 

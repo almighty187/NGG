@@ -528,7 +528,7 @@ CreatePokerGUI(playerid)
 	PlayerTextDrawSetOutline(playerid, PlayerPokerUI[playerid][42], 1);
 	PlayerTextDrawSetProportional(playerid, PlayerPokerUI[playerid][42], 1);
 
-	PlayerPokerUI[playerid][43] = CreatePlayerTextDraw(playerid, 589.000000, 396.000000, "GhoulSlayeR's");
+	PlayerPokerUI[playerid][43] = CreatePlayerTextDraw(playerid, 589.000000, 396.000000, "Poker Table");
 	PlayerTextDrawAlignment(playerid, PlayerPokerUI[playerid][43], 2);
 	PlayerTextDrawBackgroundColor(playerid, PlayerPokerUI[playerid][43], 255);
 	PlayerTextDrawFont(playerid, PlayerPokerUI[playerid][43], 2);

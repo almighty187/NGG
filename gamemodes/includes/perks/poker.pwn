@@ -1521,7 +1521,7 @@ ShowCasinoGamesMenu(playerid, dialogid)
 		}
 		case DIALOG_CGAMESCREDITS: {
 
-			return ShowPlayerDialogEx(playerid, DIALOG_CGAMESCREDITS, DIALOG_STYLE_MSGBOX, "{FFFFFF}Casino Games - (Credits)", "{FFFFFF}Developed By: Dan 'GhoulSlayeR' Reed", "Back", "");
+			return ShowPlayerDialogEx(playerid, DIALOG_CGAMESCREDITS, DIALOG_STYLE_MSGBOX, "{FFFFFF}Casino Games - (Credits)", "{FFFFFF}Developed By:GhoulSlayeR, Edited by Sixxy ", "Back", "");
 		}
 		case DIALOG_CGAMESSETUPPGAME: {
 

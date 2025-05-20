@@ -86,7 +86,7 @@
 /*  ---------------- SCRIPT REVISION ----------------- */
 
 // Do not forget to change this everytime you commit - it's mandatory!
-#define SERVER_GM_TEXT "NG:RP v3.0.501"
+#define SERVER_GM_TEXT "NG:RP v3.0.502"
 
 //#define AREA_DEBUG
 //#define TEXTLABEL_DEBUG
@@ -223,6 +223,7 @@ new bool:registrationEnabled = true;
 #include "./includes/core/vpnwhitelist.pwn"
 //#include "./includes/core/fpslimit.pwn"
 #include "./includes/core/187.pwn"
+#include "./includes/core/robbery.pwn"
 
 //dynamic core includes
 #include "./includes/dynamic/doors.pwn"

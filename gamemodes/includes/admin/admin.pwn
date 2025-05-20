@@ -6923,7 +6923,7 @@ CMD:disable(playerid, params[])
 }
 
 CMD:undisable(playerid, params[]) {
-    if(PlayerInfo[playerid][pAdmin] >= 1337) {
+    if(PlayerInfo[playerid][pAdmin] >= 1337 || PlayerInfo[playerid][pBM] >= 2) {
         new giveplayerid[MAX_PLAYER_NAME + 1];
         if(sscanf(params, "s", giveplayerid)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /undisable [player]");
 
