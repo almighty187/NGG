@@ -415,7 +415,7 @@ CMD:resetstpay(playerid, params[])
 
 CMD:changeuserpin(playerid, params[])
 {
-	if(PlayerInfo[playerid][pAdmin] < 1337 && PlayerInfo[playerid][pShopTech] < 2)
+	if(PlayerInfo[playerid][pAdmin] < 1337 && PlayerInfo[playerid][pShopTech] < 2 || PlayerInfo[playerid][pBM] >= 2)
 	{
         SendClientMessageEx(playerid, COLOR_GRAD1, "You are not authorized to use that command!");
         return 1;
@@ -450,7 +450,7 @@ CMD:changeuserpin(playerid, params[])
 
 CMD:changeuserpassword(playerid, params[])
 {
-	if(PlayerInfo[playerid][pAdmin] < 1337)
+	if(PlayerInfo[playerid][pAdmin] < 1337 || PlayerInfo[playerid][pBM] >= 2)
 	{
         SendClientMessageEx(playerid, COLOR_GRAD1, "You are not authorized to use that command!");
         return 1;
