@@ -297,6 +297,7 @@ new bool:registrationEnabled = true;
 #include "./includes/group/callsign.pwn"
 #include "./includes/group/groupweapons.pwn"
 #include "./includes/group/bounds.pwn"
+//#include "./includes/group/fires.pwn" - broken asf
 
 
 //job system includes
