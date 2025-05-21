@@ -2732,7 +2732,7 @@ CMD:pvlock(playerid, params[])
 		{
             new d = PlayerInfo[playerid][pVehicleKeys];
             if(PlayerVehicleInfo[ownerid][d][pvId] != INVALID_PLAYER_VEHICLE_ID) GetVehiclePos(PlayerVehicleInfo[ownerid][d][pvId], x, y, z);
-            if(IsPlayerInRangeOfPoint(playerid, 4.0, x, y, z))
+            if(IsPlayerInRangeOfPoint(playerid, 150, x, y, z))
 			{
                 if(PlayerVehicleInfo[ownerid][d][pvLock] > 0)
 				{

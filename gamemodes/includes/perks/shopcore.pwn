@@ -1214,8 +1214,8 @@ CMD:sellcredits(playerid, params[])
 	if(SellClosed == 1)
 		return SendClientMessageEx(playerid, COLOR_GREY, "Selling of credits is currently disabled.");
 
-	if(PlayerInfo[playerid][pDonateRank] < 2 && !nonvipcredits)
-		return SendClientMessageEx(playerid, COLOR_GREY, "You cannot initiate trades unless you are SVIP+!");
+	//if(PlayerInfo[playerid][pDonateRank] < 2 && !nonvipcredits) - removed due to update adding credits to normal players
+		//return SendClientMessageEx(playerid, COLOR_GREY, "You cannot initiate trades unless you are SVIP+!");
 
 	if(sscanf(params, "udd", Player, Credits, Amount))
 		return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /sellcredits [Player] [Credits] [Amount]");
