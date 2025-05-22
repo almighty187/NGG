@@ -1325,6 +1325,8 @@ native IsValidVehicle(vehicleid);
 #define 		DIALOG_HELPCATOTHER				8032
 #define 		DIALOG_HELPCATOTHER1			8033
 
+#define         FLAG_PLAYER_LIST            	8034
+
 #define 		DIALOG_MAINTENANCE				8034
 #define 		DIALOG_HORSE_RACE				8035
 
@@ -1509,6 +1511,7 @@ native IsValidVehicle(vehicleid);
 #define 		Flag_Query_Display  			1
 #define 		Flag_Query_Offline  			2
 #define 		Flag_Query_Count    			3
+ #define 		Flag_Query_Player_Display       6
 #define 		Skin_Query_Display   			1
 #define 		Skin_Query_Count     			2
 #define 		Skin_Query_ID	     			3

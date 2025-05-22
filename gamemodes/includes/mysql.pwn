@@ -3083,6 +3083,19 @@ public FlagQueryFinish(playerid, suspectid, queryid)
 			}
 			ShowPlayerDialogEx(playerid, FLAG_LIST, DIALOG_STYLE_LIST, header, resultline, "Select", "Close");
 		}
+		case Flag_Query_Player_Display:
+	    {
+			format(header, sizeof(header), "{FF6347}Your Flags");
+			if(!rows) return ShowPlayerDialogEx(playerid, DIALOG_NOTHING, DIALOG_STYLE_MSGBOX, header, "{FF6347}You have no flags on your account.", "Close", "");
+			for(new i; i < rows; i++)
+			{
+				cache_get_value_name(i, "fid", sResult); FlagID = strval(sResult);
+				cache_get_value_name(i, "flag", FlagText, 64);
+				if(strlen(FlagText) > 60) strmid(FlagText, FlagText, 0, 58), format(FlagText, sizeof(FlagText), "%s[...]", FlagText);
+				format(resultline, sizeof(resultline),"%s{FF6347}(ID: %d): {BFC0C2}%s\n", resultline, FlagID, FlagText);
+			}
+			ShowPlayerDialogEx(playerid, FLAG_PLAYER_LIST, DIALOG_STYLE_LIST, header, resultline, "Select", "Close");
+		}
 		case Flag_Query_Offline:
 		{
 			new string[128], name[24], reason[64], psqlid[12];
@@ -6659,4 +6672,15 @@ g_mysql_SaveGroupToy(playerid) {
 		PlayerInfo[playerid][pGroupToy][8], GetPlayerSQLId(playerid));
 
 	mysql_tquery(MainPipeline, szMiscArray, "OnQueryFinish", "i", SENDDATA_THREAD);
+}
+
+stock PlayerDisplayFlags(playerid, targetid, type = 1)
+{
+	new query[128];
+	CountFlags(targetid);
+	mysql_format(MainPipeline, query, sizeof(query), "SELECT fid, flag FROM `flags` WHERE id=%d AND type = %d ORDER BY `time` LIMIT 20", GetPlayerSQLId(targetid), type);
+	mysql_tquery(MainPipeline, query, "FlagQueryFinish", "iii", playerid, targetid, Flag_Query_Player_Display);
+	SetPVarInt(playerid, "viewingflags", targetid);
+	DeletePVar(playerid, "ManageFlagID");
+	return 1;
 }

@@ -6553,6 +6553,27 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			}
 		}
 	}
+	else if(dialogid == FLAG_PLAYER_LIST)
+	{
+		if(response)
+		{
+			if(!GetPVarType(playerid, "ManageFlagID"))
+			{
+				new stpos = strfind(inputtext, "(");
+				new fpos = strfind(inputtext, ")");
+				new fid[11];
+				strmid(fid, inputtext, stpos+5, fpos);
+				SetPVarInt(playerid, "ManageFlagID", strval(fid));
+				format(string, sizeof(string), "Managing FlagID: %d", GetPVarInt(playerid, "ManageFlagID"));
+				return ShowPlayerDialogEx(playerid, FLAG_LIST, DIALOG_STYLE_LIST, string, "View\n", "Select", "Close");
+			}
+			if(listitem == 0)
+			{
+				mysql_format(MainPipeline, string, sizeof(string), "SELECT fid, issuer, flag, time FROM `flags` WHERE fid = %d", GetPVarInt(playerid, "ManageFlagID"));
+				mysql_tquery(MainPipeline, string, "FlagQueryFinish", "iii", playerid, GetPVarInt(playerid, "viewingflags"), 0);
+			}
+		}
+	}
 	else if(dialogid == FLAG_DELETE)
 	{
 		if(response)

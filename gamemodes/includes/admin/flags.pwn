@@ -187,3 +187,17 @@ CMD:deleteflag(playerid, params[])
 	if(PlayerInfo[playerid][pAdmin] < 2) return SendClientMessageEx(playerid, COLOR_GRAD1, "You are not authorized to use that command.");
 	return ShowPlayerDialogEx(playerid, FLAG_DELETE, DIALOG_STYLE_INPUT, "FLAG DELETION", "Which flag would you like to delete?", "Delete Flag", "Close");
 }
+
+CMD:myflags(playerid, params[])
+{
+	if(gPlayerLogged{playerid} == 0)
+	{
+		SendClientMessageEx(playerid, COLOR_GREY, "You're not logged in.");
+		return 1;
+	}
+	else
+	{
+		PlayerDisplayFlags(playerid, playerid);
+	}
+	return 1;
+}
