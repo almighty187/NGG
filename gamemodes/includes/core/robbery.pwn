@@ -134,31 +134,46 @@ CMD:robbank(playerid, params[])
 	if(bankrobbed == 2) return SendClientMessageEx(playerid, COLOR_GRAD1, "The bank has been robbed recently. (( The bank can only be robbed once an hour ))");
 	//if(admins < 1) return SendClientMessageEx(playerid, COLOR_GRAD1, "There are no administrators in-game at this time.");
 
+	new AdminCount = 0;
 	foreach(new i: Player)
 	{
 		if(PlayerInfo[i][pAdmin] >= 2) 
 		{
-			if(i < 2)  return SendClientMessageEx(playerid, COLOR_GRAD1, "You cannot initiate a bank robbery with less than two admins in-game.");
+			AdminCount++;
 		}
 	}
+
+	if (AdminCount < 2) return SendClientMessageEx(playerid, COLOR_GRAD1, "You cannot initiate a bank robbery with less than two administrators in-game.");
 
 	format(szMiscArray, sizeof(szMiscArray), "{AA3333}AdmWarning{FFFF00}: %s has initiated a bank robbery .", GetPlayerNameEx(playerid));
 	ABroadCast(COLOR_YELLOW, szMiscArray, 2);
 
 	new string[128];
+
+
+	//check amount of players online
+
 	foreach(new i: Player)
+	{
+		if(IsACop(i))
 		{
-			if(IsACop(i))
-			{
-				LeoOnline ++;
-				if(LeoOnline < 3)  return SendClientMessageEx(playerid, COLOR_GRAD1, "You cannot initiate a bank robbery with less than three law enforcement officers in-game.");
-			}
-			if(IsACop(i))
-			{
-				format(string, sizeof(string), "HQ: All units, The Mulholland Bank is being robbed!");
-				SendClientMessageEx(i, COLOR_DBLUE, string);
-			}
-		}	
+			LeoOnline++;
+		}
+	}
+
+	if (LeoOnline < 3) return SendClientMessageEx(playerid, COLOR_GRAD1, "You cannot initiate a bank robbery with less than three law enforcement officers in-game.");
+	
+	//alert the cops if the robbery is succesffully started
+	foreach(new i: Player)
+	{
+		if(IsACop(i))
+		{
+			format(string, sizeof(string), "HQ: All units, The Mulholland Bank is being robbed!");
+			SendClientMessageEx(i, COLOR_DBLUE, string);
+		}
+	}
+	
+	
 	bankrobbed = 1;
 	new str[128];
 	format(str, sizeof(str), "* One of the bankers trips the alarm.");
