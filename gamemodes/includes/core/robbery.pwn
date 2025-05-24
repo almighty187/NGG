@@ -295,6 +295,7 @@ CMD:unloadbag(playerid, params[])
 	ProxDetector(4.0, playerid, str, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
 	format(str, sizeof(str), "You received $%d from your share of the bank robbery.", rand);
     SendClientMessageEx(playerid, COLOR_GRAD1, str);
+	bankrobbed = 2;
 	return 1;
 }
 
@@ -381,7 +382,6 @@ public C4Robbery(playerid)
 	CreateExplosion(C4Point[0], C4Point[1], C4Point[2], 0, 5);
 	DestroyVault();
 	SendClientMessageEx(playerid, COLOR_GREEN, "You have blown the vault door, Start loading the duffelbags");
-	bankrobbed = 2;
 	DestroyDynamicObject(VaultDoor); // just in case it dont remove the 1st time.
 	return 1;
 }
