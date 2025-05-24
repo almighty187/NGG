@@ -1325,7 +1325,7 @@ native IsValidVehicle(vehicleid);
 #define 		DIALOG_HELPCATOTHER				8032
 #define 		DIALOG_HELPCATOTHER1			8033
 
-#define         FLAG_PLAYER_LIST            	8034
+#define         FLAG_PLAYER_LIST            	8036
 
 #define 		DIALOG_MAINTENANCE				8034
 #define 		DIALOG_HORSE_RACE				8035
