@@ -193,8 +193,6 @@ CMD:robbank(playerid, params[])
 
 	if (AdminCount < 2) return SendClientMessageEx(playerid, COLOR_GRAD1, "You cannot initiate a bank robbery with less than two administrators in-game.");
 
-	format(szMiscArray, sizeof(szMiscArray), "{AA3333}AdmWarning{FFFF00}: %s has initiated a bank robbery .", GetPlayerNameEx(playerid));
-	ABroadCast(COLOR_YELLOW, szMiscArray, 2);
 
 	new string[128];
 
@@ -210,6 +208,9 @@ CMD:robbank(playerid, params[])
 	}
 
 	if (LeoOnline < 3) return SendClientMessageEx(playerid, COLOR_GRAD1, "You cannot initiate a bank robbery with less than three law enforcement officers in-game.");
+
+	format(szMiscArray, sizeof(szMiscArray), "{AA3333}AdmWarning{FFFF00}: %s has initiated a bank robbery .", GetPlayerNameEx(playerid));
+	ABroadCast(COLOR_YELLOW, szMiscArray, 2);
 	
 	//alert the cops if the robbery is succesffully started
 	foreach(new i: Player)
