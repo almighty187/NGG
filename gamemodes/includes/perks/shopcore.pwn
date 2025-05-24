@@ -1150,8 +1150,8 @@ CMD:carshop(playerid, params[])
     if(ShopClosed == 1)
 	    return SendClientMessageEx(playerid, COLOR_GREY, "The shop is currently closed.");
 
-	if(IsPlayerInRangeOfPoint(playerid, 4, 2280.5720, -2325.2490, 13.5469) || IsPlayerInRangeOfPoint(playerid, 4,-1731.1923, 127.4794, 3.2976) || IsPlayerInRangeOfPoint(playerid, 4, 1663.9569, 1628.5106, 10.8203) ||
-	IsPlayerInRangeOfPoint(playerid, 4, 2958.2200, -1339.2900, 5.2100))
+	
+	IsPlayerInRangeOfPoint(playerid, 4, 1027.8379,-1425.3427,13.5953)
 	{
 		if(GetPVarInt(playerid, "PinConfirmed"))
 		{
