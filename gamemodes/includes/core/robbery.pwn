@@ -36,28 +36,31 @@ CREATE TABLE IF NOT EXISTS `robbery_points` (
 	new Float:C4CratePoint[3];
 	new C4CrateTimer[MAX_PLAYERS];
 
-hook OnGameModeInit() {
-	LoadRobberyPoints();
-	RehashVault();
+// hook OnGameModeInit() {
+// 	LoadRobberyPoints();
+// 	RehashVault();
 
-	CreateDynamic3DTextLabel("Type /loadbag to start packing your duffel bag", COLOR_YELLOW, BagPoint[0], BagPoint[1], BagPoint[2]+ 1.0, 20.0);
-	CreateDynamic3DTextLabel("Type /placec4 to place the C4 block against the vault door", COLOR_YELLOW, C4Point[0], C4Point[1], C4Point[2]+ 1.0, 20.0);
-	CreateDynamic3DTextLabel("Type /robbank to initiate a bank robbery", COLOR_YELLOW, BankCounterPoint[0], BankCounterPoint[1], BankCounterPoint[2]+ 1.0, 20.0);
-	CreateDynamic3DTextLabel("Type /unloadbag to unload your stolen cash", COLOR_YELLOW, SafePoint[0], SafePoint[1], SafePoint[2]+ 1.0, 20.0);
-	CreateDynamic3DTextLabel("Type /stealc4 to steal a crate of C4", COLOR_YELLOW, C4CratePoint[0], C4CratePoint[1], C4CratePoint[2]+ 1.0, 20.0);
-	//CreateDynamicPickup(1550, 23, BagPoint[0], BagPoint[1], BagPoint[2], -1);
-	//CreateDynamicPickup(1654, 23, C4Point[0], C4Point[1], C4Point[2], -1);
-	//CreateDynamicPickup(1274, 23, BankCounterPoint[0], BankCounterPoint[1], BankCounterPoint[2], -1);
-	//CreateDynamicPickup(1274, 23, SafePoint[0], SafePoint[1], SafePoint[2], -1);
+// 	printf("ON GAME MODE LOADED FROM ROBBERY SYSTEM!!!!!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+
+// 	CreateDynamic3DTextLabel("Type /loadbag to start packing your duffel bag", COLOR_YELLOW, BagPoint[0], BagPoint[1], BagPoint[2]+ 1.0, 20.0);
+// 	CreateDynamic3DTextLabel("Type /placec4 to place the C4 block against the vault door", COLOR_YELLOW, C4Point[0], C4Point[1], C4Point[2]+ 1.0, 20.0);
+// 	CreateDynamic3DTextLabel("Type /robbank to initiate a bank robbery", COLOR_YELLOW, BankCounterPoint[0], BankCounterPoint[1], BankCounterPoint[2]+ 1.0, 20.0);
+// 	CreateDynamic3DTextLabel("Type /unloadbag to unload your stolen cash", COLOR_YELLOW, SafePoint[0], SafePoint[1], SafePoint[2]+ 1.0, 20.0);
+// 	CreateDynamic3DTextLabel("Type /stealc4 to steal a crate of C4", COLOR_YELLOW, C4CratePoint[0], C4CratePoint[1], C4CratePoint[2]+ 1.0, 20.0);
+// 	//CreateDynamicPickup(1550, 23, BagPoint[0], BagPoint[1], BagPoint[2], -1);
+// 	//CreateDynamicPickup(1654, 23, C4Point[0], C4Point[1], C4Point[2], -1);
+// 	//CreateDynamicPickup(1274, 23, BankCounterPoint[0], BankCounterPoint[1], BankCounterPoint[2], -1);
+// 	//CreateDynamicPickup(1274, 23, SafePoint[0], SafePoint[1], SafePoint[2], -1);
 	
-	return 1;
-}
+// 	return 1;
+// }
 
 // New function to load robbery points from MySQL
 stock LoadRobberyPoints() {
-	new query[256];
-	mysql_format(MainPipeline, query, sizeof(query), "SELECT * FROM robbery_points WHERE id = 1");
-	mysql_tquery(MainPipeline, query, "OnLoadRobberyPoints", "");
+	if (mysql_tquery(MainPipeline, "SELECT * FROM robbery_points WHERE id = 1", "OnLoadRobberyPoints", "") != 1) {
+		printf("ERROR: Failed to load robbery points from database");
+	}
+
 	return 1;
 }
 
@@ -84,9 +87,25 @@ public OnLoadRobberyPoints() {
 		cache_get_value_name_float(0, "c4crate_x", C4CratePoint[0]);
 		cache_get_value_name_float(0, "c4crate_y", C4CratePoint[1]);
 		cache_get_value_name_float(0, "c4crate_z", C4CratePoint[2]);
+
+		printf("LOADED: Bank Counter Point: %.4f, %.4f, %.4f", BankCounterPoint[0], BankCounterPoint[1], BankCounterPoint[2]);
+		printf("LOADED: C4 Point: %.4f, %.4f, %.4f", C4Point[0], C4Point[1], C4Point[2]);
+		printf("LOADED: Bag Point: %.4f, %.4f, %.4f", BagPoint[0], BagPoint[1], BagPoint[2]);
+		printf("LOADED: Safe Point: %.4f, %.4f, %.4f", SafePoint[0], SafePoint[1], SafePoint[2]);
+		printf("LOADED: C4 Crate Point: %.4f, %.4f, %.4f", C4CratePoint[0], C4CratePoint[1], C4CratePoint[2]);
+
+		//CreateDynamic3DTextLabel("Type /robbank to initiate a bank robbery", COLOR_TWDBLUE, BankCounterPoint[0], BankCounterPoint[1], BankCounterPoint[2] + 0.6, 4.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 1, 0, 0, -1);
+
+		CreateDynamic3DTextLabel("Type /loadbag to start packing your duffel bag", COLOR_YELLOW, BagPoint[0], BagPoint[1], BagPoint[2]+ 1.0, 5.0);
+		CreateDynamic3DTextLabel("Type /placec4 to place the C4 block against the vault door", COLOR_YELLOW, C4Point[0], C4Point[1], C4Point[2]+ 1.0, 5.0);
+		CreateDynamic3DTextLabel("Type /robbank to initiate a bank robbery", COLOR_YELLOW, BankCounterPoint[0], BankCounterPoint[1], BankCounterPoint[2]+ 1.0, 5.0);
+		CreateDynamic3DTextLabel("Type /unloadbag to unload your stolen cash", COLOR_YELLOW, SafePoint[0], SafePoint[1], SafePoint[2]+ 1.0, 5.0);
+		CreateDynamic3DTextLabel("Type /stealc4 to steal a crate of C4", COLOR_YELLOW, C4CratePoint[0], C4CratePoint[1], C4CratePoint[2]+ 1.0, 5.0);
 	}
 	else {
 		// If no points exist, create default points
+
+		printf("NO POINTS FOUND, CREATING DEFAULT POINTS");
 		BankCounterPoint[0] = 1430.1919;
 		BankCounterPoint[1] = -986.1155;
 		BankCounterPoint[2] = 996.1050;
@@ -115,7 +134,7 @@ public OnLoadRobberyPoints() {
 
 // New function to save robbery points to MySQL
 stock SaveRobberyPoints() {
-	new query[512];
+	new query[1024];
 	mysql_format(MainPipeline, query, sizeof(query), "INSERT INTO robbery_points (id, bank_x, bank_y, bank_z, c4_x, c4_y, c4_z, bag_x, bag_y, bag_z, safe_x, safe_y, safe_z, c4crate_x, c4crate_y, c4crate_z) VALUES (1, %.4f, %.4f, %.4f, %.4f, %.4f, %.4f, %.4f, %.4f, %.4f, %.4f, %.4f, %.4f, %.4f, %.4f, %.4f) ON DUPLICATE KEY UPDATE bank_x = VALUES(bank_x), bank_y = VALUES(bank_y), bank_z = VALUES(bank_z), c4_x = VALUES(c4_x), c4_y = VALUES(c4_y), c4_z = VALUES(c4_z), bag_x = VALUES(bag_x), bag_y = VALUES(bag_y), bag_z = VALUES(bag_z), safe_x = VALUES(safe_x), safe_y = VALUES(safe_y), safe_z = VALUES(safe_z), c4crate_x = VALUES(c4crate_x), c4crate_y = VALUES(c4crate_y), c4crate_z = VALUES(c4crate_z)",
 		BankCounterPoint[0], BankCounterPoint[1], BankCounterPoint[2],
 		C4Point[0], C4Point[1], C4Point[2],
@@ -123,7 +142,15 @@ stock SaveRobberyPoints() {
 		SafePoint[0], SafePoint[1], SafePoint[2],
 		C4CratePoint[0], C4CratePoint[1], C4CratePoint[2]
 	);
-	mysql_tquery(MainPipeline, query, "", "");
+
+	printf("Bank Counter Point: %.4f, %.4f, %.4f", BankCounterPoint[0], BankCounterPoint[1], BankCounterPoint[2]);
+	printf("C4 Point: %.4f, %.4f, %.4f", C4Point[0], C4Point[1], C4Point[2]);
+	printf("Bag Point: %.4f, %.4f, %.4f", BagPoint[0], BagPoint[1], BagPoint[2]);
+	printf("Safe Point: %.4f, %.4f, %.4f", SafePoint[0], SafePoint[1], SafePoint[2]);
+	printf("C4 Crate Point: %.4f, %.4f, %.4f", C4CratePoint[0], C4CratePoint[1], C4CratePoint[2]);
+	printf("Saving robbery points to database: %s", query);
+
+	mysql_tquery(MainPipeline, query, "OnQueryFinish", "i", SENDDATA_THREAD);
 	return 1;
 }
 
@@ -191,7 +218,7 @@ CMD:robbank(playerid, params[])
 		}
 	}
 
-	if (AdminCount < 2) return SendClientMessageEx(playerid, COLOR_GRAD1, "You cannot initiate a bank robbery with less than two administrators in-game.");
+	//if (AdminCount < 2) return SendClientMessageEx(playerid, COLOR_GRAD1, "You cannot initiate a bank robbery with less than two administrators in-game.");
 
 
 	new string[128];
@@ -207,7 +234,7 @@ CMD:robbank(playerid, params[])
 		}
 	}
 
-	if (LeoOnline < 3) return SendClientMessageEx(playerid, COLOR_GRAD1, "You cannot initiate a bank robbery with less than three law enforcement officers in-game.");
+	//if (LeoOnline < 3) return SendClientMessageEx(playerid, COLOR_GRAD1, "You cannot initiate a bank robbery with less than three law enforcement officers in-game.");
 
 	format(szMiscArray, sizeof(szMiscArray), "{AA3333}AdmWarning{FFFF00}: %s has initiated a bank robbery .", GetPlayerNameEx(playerid));
 	ABroadCast(COLOR_YELLOW, szMiscArray, 2);
@@ -244,7 +271,7 @@ CMD:placec4(playerid, params[])
 	if(PlayerInfo[playerid][pC4] < 1) return SendClientMessageEx(playerid, COLOR_GRAD1, "You do not have enough C4 to blow this vault");
 	if (PlayerInfo[playerid][pC4] >= 1){	
 		SetTimerEx("C4Robbery", 30000, false, "i", playerid);
-		SetTimerEx("C4Countdown", 30000, false, "ii", playerid, 30); // Start countdown timer on screen - can't do with above timer or will have issues
+		SetTimerEx("C4Countdown", 1000, false, "ii", playerid, 30); // Start countdown timer on screen - can't do with above timer or will have issues
 		new str[128];
 		format(str, sizeof(str), "* %s places the block of C4 against the vault door and sets it for 30 seconds.", GetPlayerNameEx(playerid));
 		ProxDetector(4.0, playerid, str, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
@@ -415,6 +442,7 @@ stock RehashVault()
 
 CMD:rehash(playerid)
 {
+	SaveRobberyPoints();
 	RehashVault();
 	DestroyVault();
 	printf("Vaults rehashed");
@@ -425,13 +453,25 @@ CMD:rehash(playerid)
 forward C4Countdown(playerid, timeleft);
 public C4Countdown(playerid, timeleft)
 {
-    if(timeleft > 0)
-    {
-        new str[32];
-        format(str, sizeof(str), "~r~Detonation in: %d seconds", timeleft);
-        GameTextForPlayer(playerid, str, 30000, 3);
-        SetTimerEx("C4Countdown", 30000, false, "ii", playerid, timeleft - 1);
-    }
+	
+	new string[6];
+	if(--SystemUpdate == 0) KillTimer(SystemTimer), Maintenance();
+	if(SystemUpdate == 15) GameTextForAll("~n~~n~~n~~n~~w~Please ~r~log out ~w~now to ensure ~y~account data ~w~has been ~g~saved~w~!", 2000, 3);
+	if(SystemUpdate < 0) SystemUpdate = 0;
+	format(string, sizeof(string), "%s", STimeConvert(SystemUpdate));
+	TextDrawSetString(UpdateIn[1], string);
+	TextDrawShowForAll(UpdateIn[1]);
+
+
+
+
+    // if(timeleft > 0)
+    // {
+    //     new str[32];
+    //     format(str, sizeof(str), "~r~Detonation in: %d seconds", timeleft);
+    //     GameTextForPlayer(playerid, str, 30000, 3);
+    //     SetTimerEx("C4Countdown", 30000, false, "ii", playerid, timeleft - 1);
+    // }
     return 1;
 }
 

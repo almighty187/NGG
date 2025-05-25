@@ -23,6 +23,8 @@ InitiateGamemode()
 	LoadGarages();
 	LoadCrimes();
 
+	LoadRobberyPoints();
+
 	/*---[Shop Automation]---*/
 	
  	g_mysql_LoadSales();
